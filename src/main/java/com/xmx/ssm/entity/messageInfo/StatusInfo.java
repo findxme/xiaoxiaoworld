@@ -1,4 +1,4 @@
-package com.xmx.ssm.entity;
+package com.xmx.ssm.entity.messageInfo;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;

@@ -1,0 +1,478 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xmx.ssm.dao.TAdminMapper">
+  <resultMap id="BaseResultMap" type="com.xmx.ssm.entity.TAdmin">
+    <result column="b_admin_id" jdbcType="INTEGER" property="bAdminId" />
+    <result column="b_admin__no" jdbcType="VARCHAR" property="bAdminNo" />
+    <result column="b_admin_name" jdbcType="VARCHAR" property="bAdminName" />
+    <result column="b_admin_password" jdbcType="VARCHAR" property="bAdminPassword" />
+    <result column="b_admin_email" jdbcType="VARCHAR" property="bAdminEmail" />
+    <result column="b_admin_type" jdbcType="VARCHAR" property="bAdminType" />
+    <result column="b_admin_create_date" jdbcType="DATE" property="bAdminCreateDate" />
+    <result column="b_admin_stop_date" jdbcType="DATE" property="bAdminStopDate" />
+    <result column="b_admin_Remarks" jdbcType="VARCHAR" property="bAdminRemarks" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    b_admin_id, b_admin__no, b_admin_name, b_admin_password, b_admin_email, b_admin_type, 
+    b_admin_create_date, b_admin_stop_date, b_admin_Remarks
+  </sql>
+  <select id="selectByExample" parameterType="com.xmx.ssm.entity.TAdminExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_admin
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.xmx.ssm.entity.TAdminExample">
+    delete from t_admin
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.xmx.ssm.entity.TAdmin">
+    insert into t_admin (b_admin_id, b_admin__no, b_admin_name, 
+      b_admin_password, b_admin_email, b_admin_type, 
+      b_admin_create_date, b_admin_stop_date, b_admin_Remarks
+      )
+    values (#{bAdminId,jdbcType=INTEGER}, #{bAdminNo,jdbcType=VARCHAR}, #{bAdminName,jdbcType=VARCHAR}, 
+      #{bAdminPassword,jdbcType=VARCHAR}, #{bAdminEmail,jdbcType=VARCHAR}, #{bAdminType,jdbcType=VARCHAR}, 
+      #{bAdminCreateDate,jdbcType=DATE}, #{bAdminStopDate,jdbcType=DATE}, #{bAdminRemarks,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xmx.ssm.entity.TAdmin">
+    insert into t_admin
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="bAdminId != null">
+        b_admin_id,
+      </if>
+      <if test="bAdminNo != null">
+        b_admin__no,
+      </if>
+      <if test="bAdminName != null">
+        b_admin_name,
+      </if>
+      <if test="bAdminPassword != null">
+        b_admin_password,
+      </if>
+      <if test="bAdminEmail != null">
+        b_admin_email,
+      </if>
+      <if test="bAdminType != null">
+        b_admin_type,
+      </if>
+      <if test="bAdminCreateDate != null">
+        b_admin_create_date,
+      </if>
+      <if test="bAdminStopDate != null">
+        b_admin_stop_date,
+      </if>
+      <if test="bAdminRemarks != null">
+        b_admin_Remarks,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="bAdminId != null">
+        #{bAdminId,jdbcType=INTEGER},
+      </if>
+      <if test="bAdminNo != null">
+        #{bAdminNo,jdbcType=VARCHAR},
+      </if>
+      <if test="bAdminName != null">
+        #{bAdminName,jdbcType=VARCHAR},
+      </if>
+      <if test="bAdminPassword != null">
+        #{bAdminPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="bAdminEmail != null">
+        #{bAdminEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="bAdminType != null">
+        #{bAdminType,jdbcType=VARCHAR},
+      </if>
+      <if test="bAdminCreateDate != null">
+        #{bAdminCreateDate,jdbcType=DATE},
+      </if>
+      <if test="bAdminStopDate != null">
+        #{bAdminStopDate,jdbcType=DATE},
+      </if>
+      <if test="bAdminRemarks != null">
+        #{bAdminRemarks,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.xmx.ssm.entity.TAdminExample" resultType="java.lang.Long">
+    select count(*) from t_admin
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update t_admin
+    <set>
+      <if test="record.bAdminId != null">
+        b_admin_id = #{record.bAdminId,jdbcType=INTEGER},
+      </if>
+      <if test="record.bAdminNo != null">
+        b_admin__no = #{record.bAdminNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bAdminName != null">
+        b_admin_name = #{record.bAdminName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bAdminPassword != null">
+        b_admin_password = #{record.bAdminPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bAdminEmail != null">
+        b_admin_email = #{record.bAdminEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bAdminType != null">
+        b_admin_type = #{record.bAdminType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bAdminCreateDate != null">
+        b_admin_create_date = #{record.bAdminCreateDate,jdbcType=DATE},
+      </if>
+      <if test="record.bAdminStopDate != null">
+        b_admin_stop_date = #{record.bAdminStopDate,jdbcType=DATE},
+      </if>
+      <if test="record.bAdminRemarks != null">
+        b_admin_Remarks = #{record.bAdminRemarks,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update t_admin
+    set b_admin_id = #{record.bAdminId,jdbcType=INTEGER},
+      b_admin__no = #{record.bAdminNo,jdbcType=VARCHAR},
+      b_admin_name = #{record.bAdminName,jdbcType=VARCHAR},
+      b_admin_password = #{record.bAdminPassword,jdbcType=VARCHAR},
+      b_admin_email = #{record.bAdminEmail,jdbcType=VARCHAR},
+      b_admin_type = #{record.bAdminType,jdbcType=VARCHAR},
+      b_admin_create_date = #{record.bAdminCreateDate,jdbcType=DATE},
+      b_admin_stop_date = #{record.bAdminStopDate,jdbcType=DATE},
+      b_admin_Remarks = #{record.bAdminRemarks,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <resultMap id="BaseResultMap" type="com.xmx.ssm.entity.TAdmin">
+    <id column="b_id" jdbcType="INTEGER" property="bId" />
+    <id column="b_name" jdbcType="VARCHAR" property="bName" />
+    <id column="b_email" jdbcType="VARCHAR" property="bEmail" />
+    <id column="b_user_no" jdbcType="VARCHAR" property="bUserNo" />
+    <result column="b_password" jdbcType="VARCHAR" property="bPassword" />
+    <result column="b_type" jdbcType="VARCHAR" property="bType" />
+    <result column="b_create_date" jdbcType="DATE" property="bCreateDate" />
+    <result column="b_stop_date" jdbcType="DATE" property="bStopDate" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    b_id, b_name, b_email, b_user_no, b_password, b_type, b_create_date, b_stop_date
+  </sql>
+  <select id="selectByExample" parameterType="com.xmx.ssm.entity.TAdminExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_admin
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_admin
+    where b_id = #{bId,jdbcType=INTEGER}
+      and b_name = #{bName,jdbcType=VARCHAR}
+      and b_email = #{bEmail,jdbcType=VARCHAR}
+      and b_user_no = #{bUserNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="map">
+    delete from t_admin
+    where b_id = #{bId,jdbcType=INTEGER}
+      and b_name = #{bName,jdbcType=VARCHAR}
+      and b_email = #{bEmail,jdbcType=VARCHAR}
+      and b_user_no = #{bUserNo,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.xmx.ssm.entity.TAdminExample">
+    delete from t_admin
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.xmx.ssm.entity.TAdmin">
+    insert into t_admin (b_id, b_name, b_email, 
+      b_user_no, b_password, b_type, 
+      b_create_date, b_stop_date)
+    values (#{bId,jdbcType=INTEGER}, #{bName,jdbcType=VARCHAR}, #{bEmail,jdbcType=VARCHAR}, 
+      #{bUserNo,jdbcType=VARCHAR}, #{bPassword,jdbcType=VARCHAR}, #{bType,jdbcType=VARCHAR}, 
+      #{bCreateDate,jdbcType=DATE}, #{bStopDate,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xmx.ssm.entity.TAdmin">
+    insert into t_admin
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="bId != null">
+        b_id,
+      </if>
+      <if test="bName != null">
+        b_name,
+      </if>
+      <if test="bEmail != null">
+        b_email,
+      </if>
+      <if test="bUserNo != null">
+        b_user_no,
+      </if>
+      <if test="bPassword != null">
+        b_password,
+      </if>
+      <if test="bType != null">
+        b_type,
+      </if>
+      <if test="bCreateDate != null">
+        b_create_date,
+      </if>
+      <if test="bStopDate != null">
+        b_stop_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="bId != null">
+        #{bId,jdbcType=INTEGER},
+      </if>
+      <if test="bName != null">
+        #{bName,jdbcType=VARCHAR},
+      </if>
+      <if test="bEmail != null">
+        #{bEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="bUserNo != null">
+        #{bUserNo,jdbcType=VARCHAR},
+      </if>
+      <if test="bPassword != null">
+        #{bPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="bType != null">
+        #{bType,jdbcType=VARCHAR},
+      </if>
+      <if test="bCreateDate != null">
+        #{bCreateDate,jdbcType=DATE},
+      </if>
+      <if test="bStopDate != null">
+        #{bStopDate,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.xmx.ssm.entity.TAdminExample" resultType="java.lang.Long">
+    select count(*) from t_admin
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update t_admin
+    <set>
+      <if test="record.bId != null">
+        b_id = #{record.bId,jdbcType=INTEGER},
+      </if>
+      <if test="record.bName != null">
+        b_name = #{record.bName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bEmail != null">
+        b_email = #{record.bEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bUserNo != null">
+        b_user_no = #{record.bUserNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bPassword != null">
+        b_password = #{record.bPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bType != null">
+        b_type = #{record.bType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bCreateDate != null">
+        b_create_date = #{record.bCreateDate,jdbcType=DATE},
+      </if>
+      <if test="record.bStopDate != null">
+        b_stop_date = #{record.bStopDate,jdbcType=DATE},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update t_admin
+    set b_id = #{record.bId,jdbcType=INTEGER},
+      b_name = #{record.bName,jdbcType=VARCHAR},
+      b_email = #{record.bEmail,jdbcType=VARCHAR},
+      b_user_no = #{record.bUserNo,jdbcType=VARCHAR},
+      b_password = #{record.bPassword,jdbcType=VARCHAR},
+      b_type = #{record.bType,jdbcType=VARCHAR},
+      b_create_date = #{record.bCreateDate,jdbcType=DATE},
+      b_stop_date = #{record.bStopDate,jdbcType=DATE}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xmx.ssm.entity.TAdmin">
+    update t_admin
+    <set>
+      <if test="bPassword != null">
+        b_password = #{bPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="bType != null">
+        b_type = #{bType,jdbcType=VARCHAR},
+      </if>
+      <if test="bCreateDate != null">
+        b_create_date = #{bCreateDate,jdbcType=DATE},
+      </if>
+      <if test="bStopDate != null">
+        b_stop_date = #{bStopDate,jdbcType=DATE},
+      </if>
+    </set>
+    where b_id = #{bId,jdbcType=INTEGER}
+      and b_name = #{bName,jdbcType=VARCHAR}
+      and b_email = #{bEmail,jdbcType=VARCHAR}
+      and b_user_no = #{bUserNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xmx.ssm.entity.TAdmin">
+    update t_admin
+    set b_password = #{bPassword,jdbcType=VARCHAR},
+      b_type = #{bType,jdbcType=VARCHAR},
+      b_create_date = #{bCreateDate,jdbcType=DATE},
+      b_stop_date = #{bStopDate,jdbcType=DATE}
+    where b_id = #{bId,jdbcType=INTEGER}
+      and b_name = #{bName,jdbcType=VARCHAR}
+      and b_email = #{bEmail,jdbcType=VARCHAR}
+      and b_user_no = #{bUserNo,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xmx.ssm.dao.TBookTypeMapper">
+  <resultMap id="BaseResultMap" type="com.xmx.ssm.entity.TBookType">
+    <id column="b_book_type_id" jdbcType="INTEGER" property="bBookTypeId" />
+    <id column="b_book_type_no" jdbcType="VARCHAR" property="bBookTypeNo" />
+    <result column="b_book_type" jdbcType="VARCHAR" property="bBookType" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    b_book_type_id, b_book_type_no, b_book_type
+  </sql>
+  <select id="selectByExample" parameterType="com.xmx.ssm.entity.TBookTypeExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_book_type
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_book_type
+    where b_book_type_id = #{bBookTypeId,jdbcType=INTEGER}
+      and b_book_type_no = #{bBookTypeNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="map">
+    delete from t_book_type
+    where b_book_type_id = #{bBookTypeId,jdbcType=INTEGER}
+      and b_book_type_no = #{bBookTypeNo,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.xmx.ssm.entity.TBookTypeExample">
+    delete from t_book_type
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.xmx.ssm.entity.TBookType">
+    insert into t_book_type (b_book_type_id, b_book_type_no, b_book_type
+      )
+    values (#{bBookTypeId,jdbcType=INTEGER}, #{bBookTypeNo,jdbcType=VARCHAR}, #{bBookType,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xmx.ssm.entity.TBookType">
+    insert into t_book_type
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="bBookTypeId != null">
+        b_book_type_id,
+      </if>
+      <if test="bBookTypeNo != null">
+        b_book_type_no,
+      </if>
+      <if test="bBookType != null">
+        b_book_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="bBookTypeId != null">
+        #{bBookTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="bBookTypeNo != null">
+        #{bBookTypeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="bBookType != null">
+        #{bBookType,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.xmx.ssm.entity.TBookTypeExample" resultType="java.lang.Long">
+    select count(*) from t_book_type
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update t_book_type
+    <set>
+      <if test="record.bBookTypeId != null">
+        b_book_type_id = #{record.bBookTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.bBookTypeNo != null">
+        b_book_type_no = #{record.bBookTypeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bBookType != null">
+        b_book_type = #{record.bBookType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update t_book_type
+    set b_book_type_id = #{record.bBookTypeId,jdbcType=INTEGER},
+      b_book_type_no = #{record.bBookTypeNo,jdbcType=VARCHAR},
+      b_book_type = #{record.bBookType,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xmx.ssm.entity.TBookType">
+    update t_book_type
+    <set>
+      <if test="bBookType != null">
+        b_book_type = #{bBookType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where b_book_type_id = #{bBookTypeId,jdbcType=INTEGER}
+      and b_book_type_no = #{bBookTypeNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xmx.ssm.entity.TBookType">
+    update t_book_type
+    set b_book_type = #{bBookType,jdbcType=VARCHAR}
+    where b_book_type_id = #{bBookTypeId,jdbcType=INTEGER}
+      and b_book_type_no = #{bBookTypeNo,jdbcType=VARCHAR}
+  </update>
+</mapper>
