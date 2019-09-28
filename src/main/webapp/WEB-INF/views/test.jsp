@@ -129,12 +129,12 @@
                             <dd data-name="content">
                                 <a href="javascript:;">内容系统</a>
                                 <dl class="layui-nav-child">
-                                    <dd data-name="list"><a lay-href="${ctx}/static/layuiAdmin/src/views/app/content/list.html">图书列表</a></dd>
+                                    <dd data-name="list"><a lay-href="user2/list ">图书列表</a></dd>
                                     <dd data-name="tags"><a lay-href="${ctx}/static/layuiAdmin/src/views/app/content/tags.html">分类管理</a></dd>
                                 </dl>
                             </dd>
-
-                    <%--</li>--%>
+                        </dl>
+                    </li>
 
 
 

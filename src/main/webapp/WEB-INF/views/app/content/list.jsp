@@ -1,4 +1,7 @@
-
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+  request.setAttribute("ctx",request.getContextPath());
+%>
 
 <!DOCTYPE html>
 <html>
@@ -8,8 +11,8 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
-  <link rel="stylesheet" href="../../../layuiadmin/layui/css/layui.css" media="all">
-  <link rel="stylesheet" href="../../../layuiadmin/style/admin.css" media="all">
+  <link rel="stylesheet" href="${ctx}/static/layuiAdmin/layui/css/layui.css" media="all">
+  <link rel="stylesheet" href="${ctx}/static/layuiAdmin/style/admin.css" media="all">
 </head>
 <body>
 
@@ -18,25 +21,25 @@
       <div class="layui-form layui-card-header layuiadmin-card-header-auto">
         <div class="layui-form-item">
           <div class="layui-inline">
-            <label class="layui-form-label">文章ID</label>
+            <label class="layui-form-label">图书ID</label>
             <div class="layui-input-inline">
               <input type="text" name="id" placeholder="请输入" autocomplete="off" class="layui-input">
             </div>
           </div>
           <div class="layui-inline">
-            <label class="layui-form-label">作者</label>
+            <label class="layui-form-label">书名</label>
             <div class="layui-input-inline">
               <input type="text" name="author" placeholder="请输入" autocomplete="off" class="layui-input">
             </div>
           </div>
           <div class="layui-inline">
-            <label class="layui-form-label">标题</label>
+            <label class="layui-form-label">作者</label>
             <div class="layui-input-inline">
               <input type="text" name="title" placeholder="请输入" autocomplete="off" class="layui-input">
             </div>
           </div>
           <div class="layui-inline">
-            <label class="layui-form-label">文章标签</label>
+            <label class="layui-form-label">图书类型</label>
             <div class="layui-input-inline">
               <select name="label">
                 <option value="">请选择标签</option>
@@ -77,10 +80,10 @@
     </div>
   </div>
 
-  <script src="../../../layuiadmin/layui/layui.js"></script>  
+  <script src="${ctx}/static/layuiAdmin/layui/layui.js"></script>
   <script>
   layui.config({
-    base: '../../../layuiadmin/' //静态资源所在路径
+    base: '../static/layuiAdmin/' //静态资源所在路径
   }).extend({
     index: 'lib/index' //主入口模块
   }).use(['index', 'contlist', 'table'], function(){

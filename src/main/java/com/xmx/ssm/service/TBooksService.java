@@ -4,11 +4,12 @@ package com.xmx.ssm.service;
 import com.xmx.ssm.entity.TBook;
 
 import java.util.List;
+import java.util.Map;
 
 public interface TBooksService {
 
     /*查找全部*/
-    List<TBook> findBooksAll();
+    List<Map<String ,Object>> findBooksAll();
 
     /*删除书本信息*/
     void deleteBooksNo(TBook tBook);

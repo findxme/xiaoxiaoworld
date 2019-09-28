@@ -178,4 +178,28 @@
     where b_book_type_id = #{bBookTypeId,jdbcType=INTEGER}
       and b_book_type_no = #{bBookTypeNo,jdbcType=VARCHAR}
   </update>
+
+
+
+
+
+
+
+  <insert id="insterBooksType" parameterType="com.xmx.ssm.entity.TBookType">
+
+  </insert>
+
+  <select id="selectBooksType" resultType="map">
+
+  </select>
+
+  <delete id="deleteBooksType" parameterType="com.xmx.ssm.entity.TBookType">
+
+  </delete>
+
+
+  <update id="updateBookType" parameterType="com.xmx.ssm.entity.TBookType">
+
+  </update>
+
 </mapper>

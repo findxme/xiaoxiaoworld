@@ -168,12 +168,17 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.xmx.ssm.entity.TBookExample" resultType="java.lang.Long">
+  <!--查出有多少条记录-->
+  <!--parameterType="com.xmx.ssm.entity.TBookExample"-->
+  <select id="countByExample"  resultType="java.lang.Long">
     select count(*) from t_book
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
+
+<!--    <if test="_parameter != null">-->
+<!--      <include refid="Example_Where_Clause" />-->
+<!--    </if>-->
+
   </select>
+
   <update id="updateByExampleSelective" parameterType="map">
     update t_book
     <set>
@@ -256,4 +261,99 @@
     where b_book_id = #{bBookId,jdbcType=INTEGER}
       and b_book_no = #{bBookNo,jdbcType=VARCHAR}
   </update>
+  <select id="findBooksAll" resultType="map">
+    select * from t_book
+  </select>
+
+  <delete id="deleteBooksNo" parameterType="com.xmx.ssm.entity.TBook">
+DELETE FROM t_book  WHERE b_book_no=#{bBookNo}
+  </delete>
+
+
+<insert id="insertBook" parameterType="com.xmx.ssm.entity.TBook">
+  insert into t_book
+  <trim prefix="(" suffix=")" suffixOverrides=",">
+    <if test="bBookId != null">
+      b_book_id,
+    </if>
+    <if test="bBookNo != null">
+      b_book_no,
+    </if>
+    <if test="bBookName != null">
+      b_book_name,
+    </if>
+    <if test="bBookAuthor != null">
+      b_book_author,
+    </if>
+    <if test="bBookNumber != null">
+      b_book_number,
+    </if>
+    <if test="bBookType != null">
+      b_book_type,
+    </if>
+    <if test="bBookCreatedate != null">
+      b_book_createDate,
+    </if>
+    <if test="bStopDate != null">
+      b_stop_date,
+    </if>
+  </trim>
+  <trim prefix="values (" suffix=")" suffixOverrides=",">
+    <if test="bBookId != null">
+      #{bBookId,jdbcType=INTEGER},
+    </if>
+    <if test="bBookNo != null">
+      #{bBookNo,jdbcType=VARCHAR},
+    </if>
+    <if test="bBookName != null">
+      #{bBookName,jdbcType=VARCHAR},
+    </if>
+    <if test="bBookAuthor != null">
+      #{bBookAuthor,jdbcType=VARCHAR},
+    </if>
+    <if test="bBookNumber != null">
+      #{bBookNumber,jdbcType=INTEGER},
+    </if>
+    <if test="bBookType != null">
+      #{bBookType,jdbcType=VARCHAR},
+    </if>
+    <if test="bBookCreatedate != null">
+      #{bBookCreatedate,jdbcType=DATE},
+    </if>
+    <if test="bStopDate != null">
+      #{bStopDate,jdbcType=DATE},
+    </if>
+  </trim>
+</insert>
+<update id="updateBook" parameterType="com.xmx.ssm.entity.TBook">
+  update t_book
+  <set>
+    <if test="bBookName != null">
+      b_book_name = #{bBookName,jdbcType=VARCHAR},
+    </if>
+    <if test="bBookAuthor != null">
+      b_book_author = #{bBookAuthor,jdbcType=VARCHAR},
+    </if>
+    <if test="bBookNumber != null">
+      b_book_number = #{bBookNumber,jdbcType=INTEGER},
+    </if>
+    <if test="bBookType != null">
+      b_book_type = #{bBookType,jdbcType=VARCHAR},
+    </if>
+    <if test="bBookCreatedate != null">
+      b_book_createDate = #{bBookCreatedate,jdbcType=DATE},
+    </if>
+    <if test="bStopDate != null">
+      b_stop_date = #{bStopDate,jdbcType=DATE},
+    </if>
+  </set>
+  and b_book_no = #{bBookNo,jdbcType=VARCHAR}
+</update>
+
+
+
+<select id="findBooksOne" parameterType="com.xmx.ssm.entity.TBook" resultType="map">
+
+</select>
+
 </mapper>

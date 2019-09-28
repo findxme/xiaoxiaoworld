@@ -70,6 +70,11 @@ public class LoginController {
         }
         return statusInfo;
     }
+    @RequestMapping("/list")
+    public String findBooksAll(){
+        return "app/content/list";
+
+    }
 
     @RequestMapping("/toRegister")
     public String toRegister(){
