@@ -10,6 +10,8 @@ public interface TAdminMapper {
 
     int deleteByExample(TAdminExample example);
 
+    TAdmin findAdminByName(@Param("bAdminName")String bAdminNo);
+
     int insert(TAdmin record);
 
     int insertSelective(TAdmin record);

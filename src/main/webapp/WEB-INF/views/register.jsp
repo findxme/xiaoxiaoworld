@@ -31,11 +31,11 @@
             <form id="register_form" action="" method="post">
                 <div class="mb-2">
                     <label class="mr-4">
-                        <input class="with-gap" name="userType" type="radio" value="librarion" />
+                        <input class="with-gap" name="userType" type="radio" value="librarion" id="librarion" />
                         <span>图书管理员</span>
                     </label>
                     <label class="mr-4">
-                        <input class="with-gap" name="userType" type="radio" value="reader" checked />
+                        <input class="with-gap" name="userType" type="radio" value="reader" id="reader" checked />
                         <span>普通读者</span>
                     </label>
                 </div>
@@ -52,23 +52,32 @@
                 <div class="input-field">
                     <input placeholder="手机号" id="mobile" name="mobile" type="text" class="validate">
                 </div>
+                <%--<div class="input-field">--%>
+                    <%--<input placeholder="地址" id="address" name="address" type="text" class="validate">--%>
+                <%--</div>--%>
+                <%--<div class="input-field">--%>
+                    <%--<input placeholder="地区/省" id="district" name="district" type="text" class="validate">--%>
+                <%--</div>--%>
+
+                <div class="input-field" id="ideaCodeDiv" style="display: none;">
+                    <input placeholder="认证码" id="ideaCode" name="ideaCode">
+                </div>
+
                 <div class="input-field">
-                    <input placeholder="地址" id="address" name="address" type="text" class="validate">
+                    <span style="color: white">备注：</span>
+                    <textarea class="table-bordered" id="remarks" name="remarks"></textarea>
                 </div>
-                <div class="input-field">
-                    <input placeholder="地区/省" id="district" name="district" type="text" class="validate">
-                </div>
-                <div class="row">
-                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 pl-0 tm-pr-xs-0">
-                        <select name="city">
-                            <option value="-">你的城市</option>
-                            <option value="Bangkok">武汉</option>
-                            <option value="Yangon">天津</option>
-                            <option value="Mumbai">北京</option>
-                            <option value="Singapore">深圳</option>
-                        </select>
-                    </div>
-                </div>
+                <%--<div class="row">--%>
+                    <%--<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 pl-0 tm-pr-xs-0">--%>
+                        <%--<select name="city">--%>
+                            <%--<option value="-">你的城市</option>--%>
+                            <%--<option value="Bangkok">武汉</option>--%>
+                            <%--<option value="Yangon">天津</option>--%>
+                            <%--<option value="Mumbai">北京</option>--%>
+                            <%--<option value="Singapore">深圳</option>--%>
+                        <%--</select>--%>
+                    <%--</div>--%>
+                <%--</div>--%>
                 <div class="text-right mt-4">
                     <button type="button" id="register_button" class="waves-effect btn-large btn-large-white px-4 black-text">注册</button>
                 </div>
@@ -81,7 +90,7 @@
                 <p class="grey-text">Love books - this is the source of knowledge! Only knowledge can be useful. Only knowledge can make us strong, loyal and rational in spirit, and can we truly love human beings, respect human labor, and sincerely appreciate the good fruits of the great human labor. Gorky on Youth
                 </p>
             </header>
-
+            <p style="color: #b9def0;">已有账户？<a href="toLogin" style="text-decoration: underline">快去读书吧</a></p>
         </div>
     </div>
     <footer class="row tm-mt-big mb-3">
@@ -98,6 +107,15 @@
 <script src="${ctx}/static/js/materialize.min.js"></script>
 <script>
     $(document).ready(function () {
+
+        $(".mb-2").on("click",function(){
+            if($("#reader").prop("checked")){
+                $("#ideaCodeDiv").fadeOut();
+            }else{
+                $("#ideaCodeDiv").fadeIn();
+            }
+        });
+
         $("#register_button").on("click",function(){
             $.ajax({
                 url:"register",

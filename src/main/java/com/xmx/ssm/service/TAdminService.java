@@ -7,4 +7,6 @@ import java.util.List;
 public interface TAdminService {
 
     List<TAdmin> findAll();
+
+    TAdmin findAdminByName(String adminName);
 }

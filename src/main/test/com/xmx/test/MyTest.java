@@ -23,7 +23,7 @@ import java.util.List;
 @ContextConfiguration(locations = {"classpath*:spring-mybatis.xml"})
 public class MyTest {
     @Resource
-    private TAdminMapper tAdminService;
+    private TAdminService tAdminService;
 
     @Test
     public void test()throws Exception{
@@ -36,8 +36,8 @@ public class MyTest {
         tAdmin.setbAdminType("1");
         tAdmin.setbAdminNo("122");
 ////        tAdminService.queryTAdmin();
-        int flag = tAdminService.insert(tAdmin);
-        System.out.println(flag);
+//        int flag = tAdminService.insert(tAdmin);
+        System.out.println(tAdminService.findAdminByName("admin"));
 
     }
 }

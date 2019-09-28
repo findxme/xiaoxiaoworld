@@ -3,7 +3,7 @@
 <mapper namespace="com.xmx.ssm.dao.TAdminMapper">
   <resultMap id="BaseResultMap" type="com.xmx.ssm.entity.TAdmin">
     <result column="b_admin_id" jdbcType="INTEGER" property="bAdminId" />
-    <result column="b_admin__no" jdbcType="VARCHAR" property="bAdminNo" />
+    <result column="b_admin_no" jdbcType="VARCHAR" property="bAdminNo" />
     <result column="b_admin_name" jdbcType="VARCHAR" property="bAdminName" />
     <result column="b_admin_password" jdbcType="VARCHAR" property="bAdminPassword" />
     <result column="b_admin_email" jdbcType="VARCHAR" property="bAdminEmail" />
@@ -71,9 +71,14 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    b_admin_id, b_admin__no, b_admin_name, b_admin_password, b_admin_email, b_admin_type, 
+    b_admin_id, b_admin_no, b_admin_name, b_admin_password, b_admin_email, b_admin_type,
     b_admin_create_date, b_admin_stop_date, b_admin_Remarks
   </sql>
+
+  <select id="findAdminByName" parameterType="String" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/> from t_admin where b_admin_name=#{bAdminName}
+  </select>
+
   <select id="selectByExample" parameterType="com.xmx.ssm.entity.TAdminExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
@@ -95,7 +100,7 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.xmx.ssm.entity.TAdmin">
-    insert into t_admin (b_admin_id, b_admin__no, b_admin_name, 
+    insert into t_admin (b_admin_id, b_admin_no, b_admin_name,
       b_admin_password, b_admin_email, b_admin_type, 
       b_admin_create_date, b_admin_stop_date, b_admin_Remarks
       )
@@ -111,7 +116,7 @@
         b_admin_id,
       </if>
       <if test="bAdminNo != null">
-        b_admin__no,
+        b_admin_no,
       </if>
       <if test="bAdminName != null">
         b_admin_name,
@@ -178,7 +183,7 @@
         b_admin_id = #{record.bAdminId,jdbcType=INTEGER},
       </if>
       <if test="record.bAdminNo != null">
-        b_admin__no = #{record.bAdminNo,jdbcType=VARCHAR},
+        b_admin_no = #{record.bAdminNo,jdbcType=VARCHAR},
       </if>
       <if test="record.bAdminName != null">
         b_admin_name = #{record.bAdminName,jdbcType=VARCHAR},
@@ -209,7 +214,7 @@
   <update id="updateByExample" parameterType="map">
     update t_admin
     set b_admin_id = #{record.bAdminId,jdbcType=INTEGER},
-      b_admin__no = #{record.bAdminNo,jdbcType=VARCHAR},
+      b_admin_no = #{record.bAdminNo,jdbcType=VARCHAR},
       b_admin_name = #{record.bAdminName,jdbcType=VARCHAR},
       b_admin_password = #{record.bAdminPassword,jdbcType=VARCHAR},
       b_admin_email = #{record.bAdminEmail,jdbcType=VARCHAR},
