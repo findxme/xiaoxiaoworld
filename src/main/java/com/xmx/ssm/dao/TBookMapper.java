@@ -6,44 +6,45 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 
 public interface TBookMapper {
+    /*ok*/
      /*查出有多少条记录*/
-    long countByExample(TBookExample example);
+    long countByExample();
 
-    int deleteByExample(TBookExample example);
-
-    int deleteByPrimaryKey(@Param("bBookId") Integer bBookId, @Param("bBookNo") String bBookNo);
-
-    int insert(TBook record);
-
-    int insertSelective(TBook record);
-
-    List<TBook> selectByExample(TBookExample example);
-
-    TBook selectByPrimaryKey(@Param("bBookId") Integer bBookId, @Param("bBookNo") String bBookNo);
-
-    int updateByExampleSelective(@Param("record") TBook record, @Param("example") TBookExample example);
-
-    int updateByExample(@Param("record") TBook record, @Param("example") TBookExample example);
-
-    int updateByPrimaryKeySelective(TBook record);
-
-    int updateByPrimaryKey(TBook record);
-
-
-    /*查找全部*/
+    /*查找全部ok*/
+    //  @Select("select * from t_book")
     List<Map<String ,Object>> findBooksAll();
 
-    /*删除书本信息*/
-    void deleteBooksNo(TBook tBook);
-
-    /*增加书本信息*/
-    void insertBook(TBook tBook);
-
-    /*更新书本信息*/
-    void  updateBook(TBook tBook);
-
+    /*ok*/
     /*条件查询*/
-    List<TBook> findBooksOne(TBook tBook);
+    List<Map<String ,Object>> findBooksOne(TBook tBook);
+
+    /*ok*/
+    /*根据主键查找数据 nook*/
+    TBook selectByPrimaryKey(@Param("bBookNo") String bBookNo);
+
+
+    /*ok*/
+    /*增加啊书本信息 图书编号，图书书名，作何，书店类型，书的入库时间，必填ok*/
+    int insertBooks(TBook record);
+
+    /*ok*/
+    /*根据no建插入信息，作者，书店类型，书的入库时间，必填ok*/
+    int insertSelective(TBook record);
+
+
+    /*ok*/
+    /* 根据no字段更新数据ok*/
+    int updateByExample( TBook record);
+
+    /*ok*/
+    /*根据no字段删除*/
+    int deleteByTBook(TBook tBook);
+
+
+
+
+
 }

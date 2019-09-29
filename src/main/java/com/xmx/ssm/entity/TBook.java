@@ -82,4 +82,18 @@ public class TBook {
     public void setbStopDate(Date bStopDate) {
         this.bStopDate = bStopDate;
     }
+
+    @Override
+    public String toString() {
+        return "TBook{" +
+                "bBookId=" + bBookId +
+                ", bBookNo='" + bBookNo + '\'' +
+                ", bBookName='" + bBookName + '\'' +
+                ", bBookAuthor='" + bBookAuthor + '\'' +
+                ", bBookNumber=" + bBookNumber +
+                ", bBookType='" + bBookType + '\'' +
+                ", bBookCreatedate=" + bBookCreatedate +
+                ", bStopDate=" + bStopDate +
+                '}';
+    }
 }

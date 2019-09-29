@@ -70,6 +70,9 @@
   <sql id="Base_Column_List">
     b_book_reader_id, b_book_no, b_reader_no, b_borrow_date, b_return_date, b_over_date
   </sql>
+
+
+
   <select id="selectByExample" parameterType="com.xmx.ssm.entity.TBookReaderExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
@@ -98,12 +101,19 @@
       and b_book_no = #{bBookNo,jdbcType=VARCHAR}
       and b_reader_no = #{bReaderNo,jdbcType=VARCHAR}
   </delete>
+
+
+
   <delete id="deleteByExample" parameterType="com.xmx.ssm.entity.TBookReaderExample">
     delete from t_book_reader
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
+
+
+
+
   <insert id="insert" parameterType="com.xmx.ssm.entity.TBookReader">
     insert into t_book_reader (b_book_reader_id, b_book_no, b_reader_no, 
       b_borrow_date, b_return_date, b_over_date
@@ -112,6 +122,11 @@
       #{bBorrowDate,jdbcType=DATE}, #{bReturnDate,jdbcType=DATE}, #{bOverDate,jdbcType=INTEGER}
       )
   </insert>
+
+
+
+
+
   <insert id="insertSelective" parameterType="com.xmx.ssm.entity.TBookReader">
     insert into t_book_reader
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -155,6 +170,11 @@
       </if>
     </trim>
   </insert>
+
+
+
+
+
   <select id="countByExample" parameterType="com.xmx.ssm.entity.TBookReaderExample" resultType="java.lang.Long">
     select count(*) from t_book_reader
     <if test="_parameter != null">
