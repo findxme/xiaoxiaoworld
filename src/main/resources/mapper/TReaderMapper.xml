@@ -9,8 +9,9 @@
     <result column="b_reader_password" jdbcType="VARCHAR" property="bReaderPassword" />
     <result column="b_reader_borrow_number" jdbcType="INTEGER" property="bReaderBorrowNumber" />
     <result column="b_reader_borrow_already_number" jdbcType="INTEGER" property="bReaderBorrowAlreadyNumber" />
-    <result column="b_reader_borrow_time" jdbcType="VARCHAR" property="bReaderBorrowTime" />
-    <result column="b_reader_moile" jdbcType="VARCHAR" property="bReaderMoile" />
+    <result column="b_reader_borrow_time" jdbcType="DOUBLE" property="bReaderBorrowTime" />
+    <result column="b_reader_mobile" jdbcType="VARCHAR" property="bReaderMobile" />
+    <result column="b_reader_Remarks" jdbcType="VARCHAR" property="bReaderRemarks" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -72,7 +73,7 @@
   </sql>
   <sql id="Base_Column_List">
     b_reader_id, b_reader_no, b_reader_name, b_reader_email, b_reader_password, b_reader_borrow_number, 
-    b_reader_borrow_already_number, b_reader_borrow_time, b_reader_moile
+    b_reader_borrow_already_number, b_reader_borrow_time, b_reader_mobile, b_reader_Remarks
   </sql>
   <select id="selectByExample" parameterType="com.xmx.ssm.entity.TReaderExample" resultMap="BaseResultMap">
     select
@@ -114,11 +115,11 @@
     insert into t_reader (b_reader_id, b_reader_no, b_reader_name, 
       b_reader_email, b_reader_password, b_reader_borrow_number, 
       b_reader_borrow_already_number, b_reader_borrow_time, 
-      b_reader_moile)
+      b_reader_mobile, b_reader_Remarks)
     values (#{bReaderId,jdbcType=INTEGER}, #{bReaderNo,jdbcType=VARCHAR}, #{bReaderName,jdbcType=VARCHAR}, 
       #{bReaderEmail,jdbcType=VARCHAR}, #{bReaderPassword,jdbcType=VARCHAR}, #{bReaderBorrowNumber,jdbcType=INTEGER}, 
-      #{bReaderBorrowAlreadyNumber,jdbcType=INTEGER}, #{bReaderBorrowTime,jdbcType=VARCHAR}, 
-      #{bReaderMoile,jdbcType=VARCHAR})
+      #{bReaderBorrowAlreadyNumber,jdbcType=INTEGER}, #{bReaderBorrowTime,jdbcType=DOUBLE}, 
+      #{bReaderMobile,jdbcType=VARCHAR}, #{bReaderRemarks,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.xmx.ssm.entity.TReader">
     insert into t_reader
@@ -147,8 +148,11 @@
       <if test="bReaderBorrowTime != null">
         b_reader_borrow_time,
       </if>
-      <if test="bReaderMoile != null">
-        b_reader_moile,
+      <if test="bReaderMobile != null">
+        b_reader_mobile,
+      </if>
+      <if test="bReaderRemarks != null">
+        b_reader_Remarks,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -174,10 +178,13 @@
         #{bReaderBorrowAlreadyNumber,jdbcType=INTEGER},
       </if>
       <if test="bReaderBorrowTime != null">
-        #{bReaderBorrowTime,jdbcType=VARCHAR},
+        #{bReaderBorrowTime,jdbcType=DOUBLE},
       </if>
-      <if test="bReaderMoile != null">
-        #{bReaderMoile,jdbcType=VARCHAR},
+      <if test="bReaderMobile != null">
+        #{bReaderMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="bReaderRemarks != null">
+        #{bReaderRemarks,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -212,10 +219,13 @@
         b_reader_borrow_already_number = #{record.bReaderBorrowAlreadyNumber,jdbcType=INTEGER},
       </if>
       <if test="record.bReaderBorrowTime != null">
-        b_reader_borrow_time = #{record.bReaderBorrowTime,jdbcType=VARCHAR},
+        b_reader_borrow_time = #{record.bReaderBorrowTime,jdbcType=DOUBLE},
       </if>
-      <if test="record.bReaderMoile != null">
-        b_reader_moile = #{record.bReaderMoile,jdbcType=VARCHAR},
+      <if test="record.bReaderMobile != null">
+        b_reader_mobile = #{record.bReaderMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bReaderRemarks != null">
+        b_reader_Remarks = #{record.bReaderRemarks,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -231,8 +241,9 @@
       b_reader_password = #{record.bReaderPassword,jdbcType=VARCHAR},
       b_reader_borrow_number = #{record.bReaderBorrowNumber,jdbcType=INTEGER},
       b_reader_borrow_already_number = #{record.bReaderBorrowAlreadyNumber,jdbcType=INTEGER},
-      b_reader_borrow_time = #{record.bReaderBorrowTime,jdbcType=VARCHAR},
-      b_reader_moile = #{record.bReaderMoile,jdbcType=VARCHAR}
+      b_reader_borrow_time = #{record.bReaderBorrowTime,jdbcType=DOUBLE},
+      b_reader_mobile = #{record.bReaderMobile,jdbcType=VARCHAR},
+      b_reader_Remarks = #{record.bReaderRemarks,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -250,10 +261,13 @@
         b_reader_borrow_already_number = #{bReaderBorrowAlreadyNumber,jdbcType=INTEGER},
       </if>
       <if test="bReaderBorrowTime != null">
-        b_reader_borrow_time = #{bReaderBorrowTime,jdbcType=VARCHAR},
+        b_reader_borrow_time = #{bReaderBorrowTime,jdbcType=DOUBLE},
       </if>
-      <if test="bReaderMoile != null">
-        b_reader_moile = #{bReaderMoile,jdbcType=VARCHAR},
+      <if test="bReaderMobile != null">
+        b_reader_mobile = #{bReaderMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="bReaderRemarks != null">
+        b_reader_Remarks = #{bReaderRemarks,jdbcType=VARCHAR},
       </if>
     </set>
     where b_reader_id = #{bReaderId,jdbcType=INTEGER}
@@ -266,8 +280,9 @@
     set b_reader_password = #{bReaderPassword,jdbcType=VARCHAR},
       b_reader_borrow_number = #{bReaderBorrowNumber,jdbcType=INTEGER},
       b_reader_borrow_already_number = #{bReaderBorrowAlreadyNumber,jdbcType=INTEGER},
-      b_reader_borrow_time = #{bReaderBorrowTime,jdbcType=VARCHAR},
-      b_reader_moile = #{bReaderMoile,jdbcType=VARCHAR}
+      b_reader_borrow_time = #{bReaderBorrowTime,jdbcType=DOUBLE},
+      b_reader_mobile = #{bReaderMobile,jdbcType=VARCHAR},
+      b_reader_Remarks = #{bReaderRemarks,jdbcType=VARCHAR}
     where b_reader_id = #{bReaderId,jdbcType=INTEGER}
       and b_reader_no = #{bReaderNo,jdbcType=VARCHAR}
       and b_reader_name = #{bReaderName,jdbcType=VARCHAR}

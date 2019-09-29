@@ -332,6 +332,76 @@ public class TBookReaderExample {
             return (Criteria) this;
         }
 
+        public Criteria andBUserNoIsNull() {
+            addCriterion("b_user_no is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andBUserNoIsNotNull() {
+            addCriterion("b_user_no is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andBUserNoEqualTo(String value) {
+            addCriterion("b_user_no =", value, "bUserNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andBUserNoNotEqualTo(String value) {
+            addCriterion("b_user_no <>", value, "bUserNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andBUserNoGreaterThan(String value) {
+            addCriterion("b_user_no >", value, "bUserNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andBUserNoGreaterThanOrEqualTo(String value) {
+            addCriterion("b_user_no >=", value, "bUserNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andBUserNoLessThan(String value) {
+            addCriterion("b_user_no <", value, "bUserNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andBUserNoLessThanOrEqualTo(String value) {
+            addCriterion("b_user_no <=", value, "bUserNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andBUserNoLike(String value) {
+            addCriterion("b_user_no like", value, "bUserNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andBUserNoNotLike(String value) {
+            addCriterion("b_user_no not like", value, "bUserNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andBUserNoIn(List<String> values) {
+            addCriterion("b_user_no in", values, "bUserNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andBUserNoNotIn(List<String> values) {
+            addCriterion("b_user_no not in", values, "bUserNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andBUserNoBetween(String value1, String value2) {
+            addCriterion("b_user_no between", value1, value2, "bUserNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andBUserNoNotBetween(String value1, String value2) {
+            addCriterion("b_user_no not between", value1, value2, "bUserNo");
+            return (Criteria) this;
+        }
+
         public Criteria andBBorrowDateIsNull() {
             addCriterion("b_borrow_date is null");
             return (Criteria) this;
@@ -509,6 +579,196 @@ public class TBookReaderExample {
 
         public Criteria andBOverDateNotBetween(Integer value1, Integer value2) {
             addCriterion("b_over_date not between", value1, value2, "bOverDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsReturnBookIsNull() {
+            addCriterion("is_return_book is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsReturnBookIsNotNull() {
+            addCriterion("is_return_book is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsReturnBookEqualTo(String value) {
+            addCriterion("is_return_book =", value, "isReturnBook");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsReturnBookNotEqualTo(String value) {
+            addCriterion("is_return_book <>", value, "isReturnBook");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsReturnBookGreaterThan(String value) {
+            addCriterion("is_return_book >", value, "isReturnBook");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsReturnBookGreaterThanOrEqualTo(String value) {
+            addCriterion("is_return_book >=", value, "isReturnBook");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsReturnBookLessThan(String value) {
+            addCriterion("is_return_book <", value, "isReturnBook");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsReturnBookLessThanOrEqualTo(String value) {
+            addCriterion("is_return_book <=", value, "isReturnBook");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsReturnBookLike(String value) {
+            addCriterion("is_return_book like", value, "isReturnBook");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsReturnBookNotLike(String value) {
+            addCriterion("is_return_book not like", value, "isReturnBook");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsReturnBookIn(List<String> values) {
+            addCriterion("is_return_book in", values, "isReturnBook");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsReturnBookNotIn(List<String> values) {
+            addCriterion("is_return_book not in", values, "isReturnBook");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsReturnBookBetween(String value1, String value2) {
+            addCriterion("is_return_book between", value1, value2, "isReturnBook");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsReturnBookNotBetween(String value1, String value2) {
+            addCriterion("is_return_book not between", value1, value2, "isReturnBook");
+            return (Criteria) this;
+        }
+
+        public Criteria andBRenewFrequencyIsNull() {
+            addCriterion("b_renew_frequency is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andBRenewFrequencyIsNotNull() {
+            addCriterion("b_renew_frequency is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andBRenewFrequencyEqualTo(Integer value) {
+            addCriterion("b_renew_frequency =", value, "bRenewFrequency");
+            return (Criteria) this;
+        }
+
+        public Criteria andBRenewFrequencyNotEqualTo(Integer value) {
+            addCriterion("b_renew_frequency <>", value, "bRenewFrequency");
+            return (Criteria) this;
+        }
+
+        public Criteria andBRenewFrequencyGreaterThan(Integer value) {
+            addCriterion("b_renew_frequency >", value, "bRenewFrequency");
+            return (Criteria) this;
+        }
+
+        public Criteria andBRenewFrequencyGreaterThanOrEqualTo(Integer value) {
+            addCriterion("b_renew_frequency >=", value, "bRenewFrequency");
+            return (Criteria) this;
+        }
+
+        public Criteria andBRenewFrequencyLessThan(Integer value) {
+            addCriterion("b_renew_frequency <", value, "bRenewFrequency");
+            return (Criteria) this;
+        }
+
+        public Criteria andBRenewFrequencyLessThanOrEqualTo(Integer value) {
+            addCriterion("b_renew_frequency <=", value, "bRenewFrequency");
+            return (Criteria) this;
+        }
+
+        public Criteria andBRenewFrequencyIn(List<Integer> values) {
+            addCriterion("b_renew_frequency in", values, "bRenewFrequency");
+            return (Criteria) this;
+        }
+
+        public Criteria andBRenewFrequencyNotIn(List<Integer> values) {
+            addCriterion("b_renew_frequency not in", values, "bRenewFrequency");
+            return (Criteria) this;
+        }
+
+        public Criteria andBRenewFrequencyBetween(Integer value1, Integer value2) {
+            addCriterion("b_renew_frequency between", value1, value2, "bRenewFrequency");
+            return (Criteria) this;
+        }
+
+        public Criteria andBRenewFrequencyNotBetween(Integer value1, Integer value2) {
+            addCriterion("b_renew_frequency not between", value1, value2, "bRenewFrequency");
+            return (Criteria) this;
+        }
+
+        public Criteria andBRenewTimeIsNull() {
+            addCriterion("b_renew_time is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andBRenewTimeIsNotNull() {
+            addCriterion("b_renew_time is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andBRenewTimeEqualTo(Integer value) {
+            addCriterion("b_renew_time =", value, "bRenewTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andBRenewTimeNotEqualTo(Integer value) {
+            addCriterion("b_renew_time <>", value, "bRenewTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andBRenewTimeGreaterThan(Integer value) {
+            addCriterion("b_renew_time >", value, "bRenewTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andBRenewTimeGreaterThanOrEqualTo(Integer value) {
+            addCriterion("b_renew_time >=", value, "bRenewTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andBRenewTimeLessThan(Integer value) {
+            addCriterion("b_renew_time <", value, "bRenewTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andBRenewTimeLessThanOrEqualTo(Integer value) {
+            addCriterion("b_renew_time <=", value, "bRenewTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andBRenewTimeIn(List<Integer> values) {
+            addCriterion("b_renew_time in", values, "bRenewTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andBRenewTimeNotIn(List<Integer> values) {
+            addCriterion("b_renew_time not in", values, "bRenewTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andBRenewTimeBetween(Integer value1, Integer value2) {
+            addCriterion("b_renew_time between", value1, value2, "bRenewTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andBRenewTimeNotBetween(Integer value1, Integer value2) {
+            addCriterion("b_renew_time not between", value1, value2, "bRenewTime");
             return (Criteria) this;
         }
     }

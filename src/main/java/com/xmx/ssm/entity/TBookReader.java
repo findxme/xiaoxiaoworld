@@ -9,11 +9,19 @@ public class TBookReader {
 
     private String bReaderNo;
 
+    private String bUserNo;
+
     private Date bBorrowDate;
 
     private Date bReturnDate;
 
     private Integer bOverDate;
+
+    private String isReturnBook;
+
+    private Integer bRenewFrequency;
+
+    private Integer bRenewTime;
 
     public Integer getbBookReaderId() {
         return bBookReaderId;
@@ -39,6 +47,14 @@ public class TBookReader {
         this.bReaderNo = bReaderNo == null ? null : bReaderNo.trim();
     }
 
+    public String getbUserNo() {
+        return bUserNo;
+    }
+
+    public void setbUserNo(String bUserNo) {
+        this.bUserNo = bUserNo == null ? null : bUserNo.trim();
+    }
+
     public Date getbBorrowDate() {
         return bBorrowDate;
     }
@@ -61,5 +77,29 @@ public class TBookReader {
 
     public void setbOverDate(Integer bOverDate) {
         this.bOverDate = bOverDate;
+    }
+
+    public String getIsReturnBook() {
+        return isReturnBook;
+    }
+
+    public void setIsReturnBook(String isReturnBook) {
+        this.isReturnBook = isReturnBook == null ? null : isReturnBook.trim();
+    }
+
+    public Integer getbRenewFrequency() {
+        return bRenewFrequency;
+    }
+
+    public void setbRenewFrequency(Integer bRenewFrequency) {
+        this.bRenewFrequency = bRenewFrequency;
+    }
+
+    public Integer getbRenewTime() {
+        return bRenewTime;
+    }
+
+    public void setbRenewTime(Integer bRenewTime) {
+        this.bRenewTime = bRenewTime;
     }
 }
