@@ -36,7 +36,7 @@ public class TBooksController {
         List<Map<String, Object>> booksAll = tBookMapper.findBooksLimit(currIndex, limit);
 
        JSONObject json=  PageLimit.layuiJson(0,"", tBookMapper.countByExample(),booksAll);
-       
+
         return json;
     }
 
