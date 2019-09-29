@@ -2,10 +2,8 @@ package com.xmx.test;
 
 import com.xmx.ssm.dao.TAdminMapper;
 import com.xmx.ssm.dao.TBookMapper;
-import com.xmx.ssm.entity.TAdmin;
-import com.xmx.ssm.entity.TAdminExample;
-import com.xmx.ssm.entity.TBook;
-import com.xmx.ssm.entity.TBookExample;
+import com.xmx.ssm.dao.TBookTypeMapper;
+import com.xmx.ssm.entity.*;
 import com.xmx.ssm.service.TAdminService;
 import com.xmx.ssm.service.TBooksService;
 import org.junit.Test;
@@ -32,6 +30,8 @@ public class MyTest {
 //    private TAdminService tAdminService;
     @Resource
     private  TBooksService tBooksService;
+    @Resource
+    private TBookTypeMapper tBookTypeMapper;
 
 //    @Autowired
 //    private  TBookMapper tBookMapper;
@@ -66,11 +66,20 @@ public class MyTest {
       // tBook.setbBookCreatedate(new Date());
 
 //        List<Map<String ,Object>> a=  tBooksService.findBooksOne(tBook);
-tBook.setbBookNo("123");
-tBooksService.deleteBooksNo(tBook);
+//tBook.setbBookNo("123");
+//tBooksService.deleteBooksNo(tBook);
 
 //        System.out.println(123+a.toString());
 //        System.out.println("+123"+a);
+        TBookType tBookType =new TBookType();
+        tBookType.setbBookTypeNo("type6");
+        tBookType.setbBookType("熊熊");
+//        tBookType.setbBookTypeNo("type1");
+////       List<Map<String,Object>>  a=tBookTypeMapper.selectBooksTypeOne(tBookType);
+        tBookTypeMapper.insertTBookType(tBookType);
+        System.out.println();
 
     }
+
+
 }

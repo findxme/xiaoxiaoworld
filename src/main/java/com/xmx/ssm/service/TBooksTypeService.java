@@ -7,17 +7,30 @@ import java.util.List;
 import java.util.Map;
 
 public interface TBooksTypeService {
-    /*增加书本类型*/
-    void insterBooksType(TBookType tbooksType);
 
-    /*查找书本类型*/
-    List<Map<String ,Object>> selectBooksType(TBookType tBookType);
+    /*OK*/
+    /*查出有多少条记录ok*/
+    long countByExample();
 
+    /*ok*/
+    /*根据查找书本类型*/
+    List<Map<String ,Object>> selectBooksTypeOne(TBookType tBookType);
+
+    /*ok*/
+    /*增加书籍信息 需要传入no和type*/
+    int insertTBookType(TBookType record);
+
+
+    /*ok*/
+    /*查询全部*/
+    List<Map<String ,Object>> selectBooksType();
+
+
+
+    /*ok*/
     /*删除书本类型*/
    void deleteBooksType(TBookType tBookType);
 
-    /*更新书本信息*/
-    void  updateBookType(TBookType tBookType);
 
 
 
