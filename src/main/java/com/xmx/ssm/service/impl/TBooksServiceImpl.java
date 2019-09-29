@@ -25,14 +25,19 @@ public class TBooksServiceImpl implements TBooksService {
         System.out.println(123);
         return tBookMapper.countByExample();
     }
+
+    @Override
+    public List<Map<String, Object>> findBooksAll() {
+        return null;
+    }
     /*ok*/
     /*查找全部*/
-    @Override
-    public  List<Map<String ,Object>> findBooksAll() {
-        System.out.println(123);
-//        return null;
-        return tBookMapper.findBooksAll();
-    }
+//    @Override
+//    public  List<Map<String ,Object>> findBooksAll() {
+//        System.out.println(123);
+////        return null;
+//        return tBookMapper.findBooksAll();
+//    }
 
 
     /*OK*/

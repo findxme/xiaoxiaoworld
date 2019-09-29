@@ -13,9 +13,14 @@ public interface TBookMapper {
      /*查出有多少条记录*/
     long countByExample();
 
-    /*查找全部ok*/
-    //  @Select("select * from t_book")
-    List<Map<String ,Object>> findBooksAll();
+    /**
+     * 分页查询
+     * @param currIndex
+     * @param pageSize
+     * @return
+     */
+    @Select("select * from t_book  limit #{currIndex},#{pageSize}")
+    List<Map<String ,Object>> findBooksLimit(@Param("currIndex") int currIndex,@Param("pageSize") int pageSize);
 
     /*ok*/
     /*条件查询*/
