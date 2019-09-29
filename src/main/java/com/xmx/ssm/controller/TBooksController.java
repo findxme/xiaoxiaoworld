@@ -10,12 +10,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 import java.util.Map;
 
 @Controller
-@RequestMapping("/user2")
+@RequestMapping("/Books")
 public class TBooksController {
 
     @Autowired
@@ -27,7 +28,7 @@ public class TBooksController {
 
     @ResponseBody
     @RequestMapping("/test")
-    public JSONObject findBooksAll() {
+    public ModelAndView findBooksAll() {
         int page=2;//页面号
         int limit=3;//单页显示数据长度
 //        page limit
@@ -37,7 +38,9 @@ public class TBooksController {
 
        JSONObject json=  PageLimit.layuiJson(0,"", tBookMapper.countByExample(),booksAll);
 
-        return json;
+       // return json;
+    ModelAndView view =new ModelAndView("app/content/books-list");
+        return view;
     }
 
     public void deleteBooksNo(TBook tBook) {

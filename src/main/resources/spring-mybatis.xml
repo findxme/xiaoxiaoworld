@@ -32,4 +32,5 @@
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
         <property name="basePackage" value="com.xmx.ssm.dao"/>
     </bean>
+
 </beans>

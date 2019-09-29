@@ -43,6 +43,12 @@ public interface TBooksService {
     /*删除书本信息*/
     void deleteBooksNo(TBook tBook);
 
-
+    /**
+     * 分页查询
+     * @param currIndex
+     * @param pageSize
+     * @return
+     */
+    List<Map<String ,Object>> findBooksLimit(@Param("currIndex") int currIndex,@Param("pageSize") int pageSize);
 
 }

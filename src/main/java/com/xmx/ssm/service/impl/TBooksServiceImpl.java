@@ -25,10 +25,19 @@ public class TBooksServiceImpl implements TBooksService {
         System.out.println(123);
         return tBookMapper.countByExample();
     }
-
+    /*查找全部*/
     @Override
     public List<Map<String, Object>> findBooksAll() {
-        return null;
+        return tBookMapper.findBooksAll();
+    }
+    /**
+     * 分页查询
+     * @param currIndex
+     * @param pageSize
+     * @return
+     */
+    public List<Map<String ,Object>> findBooksLimit(@Param("currIndex") int currIndex,@Param("pageSize") int pageSize){
+        return tBookMapper.findBooksLimit(currIndex,pageSize);
     }
     /*ok*/
     /*查找全部*/

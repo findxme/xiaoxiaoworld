@@ -22,6 +22,9 @@ public interface TBookMapper {
     @Select("select * from t_book  limit #{currIndex},#{pageSize}")
     List<Map<String ,Object>> findBooksLimit(@Param("currIndex") int currIndex,@Param("pageSize") int pageSize);
 
+    /*查找全部*/
+    List<Map<String ,Object>> findBooksAll();
+
     /*ok*/
     /*条件查询*/
     List<Map<String ,Object>> findBooksOne(TBook tBook);
