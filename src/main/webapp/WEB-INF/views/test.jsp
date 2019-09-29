@@ -129,7 +129,7 @@
                             <dd data-name="content">
                                 <a href="javascript:;">内容系统</a>
                                 <dl class="layui-nav-child">
-                                    <dd data-name="list"><a lay-href="user2/list ">图书列表</a></dd>
+                                    <dd data-name="list"><a lay-href="${ctx}/user2/test ">图书列表</a></dd>
                                     <dd data-name="tags"><a lay-href="${ctx}/static/layuiAdmin/src/views/app/content/tags.html">分类管理</a></dd>
                                 </dl>
                             </dd>
@@ -158,17 +158,20 @@
                             <cite>借阅信息管理</cite>
                         </a>
                         <dl class="layui-nav-child">
-
-                            <dd data-name="content">
-                                <a href="javascript:;">内容系统</a>
-                                <dl class="layui-nav-child">
-
-                                    <dd data-name="list"><a lay-href="${ctx}/static/layuiAdmin/src/views/app/content/list.html">借阅列表</a></dd>
-                                    <dd data-name="tags"><a lay-href="${ctx}/static/layuiAdmin/src/views/app/content/tags.html">借书</a></dd>
-                                    <dd data-name="comment"><a lay-href="${ctx}/static/layuiAdmin/src/views/app/content/comment.html">还书</a></dd>
-                                    <dd data-name="comment"><a lay-href="${ctx}/static/layuiAdmin/src/views/app/forum/replys.html">续借</a></dd>
-                                </dl>
+                            <dd data-name="header">
+                            <a lay-href="${ctx}/tBookReader/bookInfoPage">图书</a>
                             </dd>
+                            <%--<dd data-name="content">--%>
+                                <%--<a href="javascript:;">内容系统</a>--%>
+                                <%--<dl class="layui-nav-child">--%>
+
+                                    <%--<dd data-name="list"><a lay-href="${ctx}/static/layuiAdmin/src/views/app/content/list.html">借阅列表</a></dd>--%>
+                                    <%--&lt;%&ndash;<dd data-name="tags"><a lay-href="${ctx}/static/layuiAdmin/src/views/app/content/tags.html">借书</a></dd>&ndash;%&gt;--%>
+                                    <%--&lt;%&ndash;<dd data-name="comment"><a lay-href="${ctx}/static/layuiAdmin/src/views/app/content/comment.html">还书</a></dd>&ndash;%&gt;--%>
+                                    <%--&lt;%&ndash;<dd data-name="comment"><a lay-href="${ctx}/static/layuiAdmin/src/views/app/forum/replys.html">续借</a></dd>&ndash;%&gt;--%>
+                                <%--</dl>--%>
+                            <%--</dd>--%>
+                            <dd data-name="content">
                             <a lay-href="${ctx}/static/layuiAdmin/src/views/app/message/index.html">消息中心（在一周内如果要归还在这里）</a>
                             </dd>
                             <dd data-name="workorder">
@@ -223,7 +226,7 @@
             </div>
             <div class="layui-tab" lay-unauto lay-allowClose="true" lay-filter="layadmin-layout-tabs">
                 <ul class="layui-tab-title" id="LAY_app_tabsheader">
-                    <li lay-id="home/console.html" lay-attr="home/console.html" class="layui-this"><i class="layui-icon layui-icon-home"></i></li>
+                    <li lay-id="index" lay-attr="home/console.html" class="layui-this"><i class="layui-icon layui-icon-home"></i></li>
                 </ul>
             </div>
         </div>

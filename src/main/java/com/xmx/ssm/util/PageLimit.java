@@ -18,7 +18,7 @@ public class PageLimit {
         JSONObject json = new JSONObject();
         json.put("code",code);//解析接口状态
         json.put("msg",msg);//解析提示文本
-        json.put("count",code);//解析数据长度
+        json.put("count",count);//解析数据长度
         json.put("data",data);//解析数据
         return json;
     }
