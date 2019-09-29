@@ -8,8 +8,13 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 
 public interface TBookReaderMapper {
+
+
+//    @Select("select * from t_book_reader limit #{currentIndex},#{pageSize}")
+    List<Map<String,Object>> pagingInfo(@Param("currentIndex")Integer currentIndex,@Param("pageSize")Integer pageSize);
 
     TBookReader queryInfoByBookReaderDate(@Param("bookNo")String bookNo,@Param("readerNo")String readerNo,@Param("borrowDate") String borrowDate);
 

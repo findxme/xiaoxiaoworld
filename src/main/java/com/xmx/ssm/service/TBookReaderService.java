@@ -11,6 +11,10 @@ import java.util.Map;
 
 public interface TBookReaderService {
 
+    Integer countInfos();
+
+    List<Map<String,Object>> pagingInfo(Integer page,Integer pageSize);
+
     List<Map<String,Object>> findAll();
 
     int borrowBook(TBook tBook, TReader tReader);

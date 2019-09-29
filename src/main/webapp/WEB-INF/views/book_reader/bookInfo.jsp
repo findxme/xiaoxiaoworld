@@ -50,7 +50,7 @@
         //执行一个 table 实例
         table.render({
             elem: '#demo'
-             // ,height: 420
+             ,height: 420
              ,url: '${ctx}/tBookReader/books' //数据接口
             ,title: '图书预览'
             ,page: true //开启分页
@@ -58,50 +58,31 @@
             // ,totalRow: true //开启合计行
             ,cols: [[ //标题栏
                 {type:'checkbox'}
-                ,{field: 'bBookNo', title: '图书编号',sort: true}
-                ,{field: 'bBookName', title: '书名'}
-                ,{field: 'bBookAuthor', title: '作者'}
-                ,{field: 'bBookNumber', title: '数量',sort: true}
-                ,{field: 'bBookCreateDate', title: '入库时间'}
-                ,{field: 'bBookType', title: '类型'}
+                ,{field: 'b_book_no', title: '图书编号',sort: true}
+                ,{field: 'b_book_name', title: '书名'}
+                ,{field: 'b_book_author', title: '作者'}
+                ,{field: 'b_book_number', title: '数量',sort: true}
+                ,{field: 'b_book_createDate', title: '入库时间'}
+                ,{field: 'b_book_type', title: '类型'}
                 ,{ title: '操作', toolbar: '#barDemo',align:'center',width:110}
 
-            ]],
-            // data: [{
-            //     "bBookNo": "10001"
-            //     ,"bBookName": "杜甫"
-            //     ,"bBookAuthor": "xianxin@layui.com"
-            //     ,"bBookNumber": "男"
-            //     ,"bBookCreateDate": "浙江杭州"
-            //     ,"bBookType": "人生恰似一场修行",
-            // },{
-            //     "bBookNo": "10001"
-            //     ,"bBookName": "杜甫"
-            //     ,"bBookAuthor": "xianxin@layui.com"
-            //     ,"bBookNumber": "男"
-            //     ,"bBookCreateDate": "浙江杭州"
-            //     ,"bBookType": "人生恰似一场修行",
-            // },{
-            //     "bBookNo": "10001"
-            //     ,"bBookName": "杜甫"
-            //     ,"bBookAuthor": "xianxin@layui.com"
-            //     ,"bBookNumber": "男"
-            //     ,"bBookCreateDate": "浙江杭州"
-            //     ,"bBookType": "人生恰似一场修行",
-            // }]
+            ]]
         });
 
         //监听头工具栏事件
         table.on('toolbar(test)', function(obj){
+            console.log("adsk");
             var checkStatus = table.checkStatus(obj.config.id)
                 ,data = checkStatus.data; //获取选中的数据
             switch(obj.event){
                 case 'add':
+                    console.log("ads")
+                    layer.msg("das")
                     layer.open({
                         type: 2
                         ,title: '添加图书信息'
                         ,content: 'book_listform_add.html'
-                        // ,maxmin: true
+                        ,maxmin: true
                         ,area: ['350px', '440px']
                     });
 
@@ -138,7 +119,7 @@
                 });
             } else if(layEvent === 'edit'){
 
-                // layer.msg('编辑操作'+data.id);
+                layer.msg('编辑操作'+data.id);
 
                 // data.id 当前行数据id
                 var index=layer.open({

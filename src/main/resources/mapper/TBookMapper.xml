@@ -145,7 +145,7 @@
   <!--ok-->
   <!--查找全部-->
   <select id="findBooksAll" resultType="map" parameterType="integer">
-    select * from t_book limit #{head},#{end}
+    select * from t_book
   </select>
 
   <!--ok-->

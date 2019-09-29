@@ -21,6 +21,26 @@ public class TBookReaderImpl implements TBookReaderService {
     @Autowired
     private TBookReaderMapper tBookReaderMapper;
 
+
+    @Override
+    public Integer countInfos(){
+        long counts = tBookReaderMapper.countByExample(new TBookReaderExample());
+        return new Long(counts).intValue();
+    }
+
+
+    /**
+     *
+     * @param page  页面号
+     * @param pageSize  单页面显示的长度
+     * @return
+     */
+    @Override
+    public List<Map<String,Object>> pagingInfo(Integer page,Integer pageSize){
+        int currentIndex = (page-1)*pageSize;
+        return tBookReaderMapper.pagingInfo(currentIndex,pageSize);
+    }
+
     @Override
     public List<Map<String,Object>> findAll(){
         return tBookReaderMapper.findAll();
