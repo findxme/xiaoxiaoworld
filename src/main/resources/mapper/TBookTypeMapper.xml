@@ -67,45 +67,19 @@
   <sql id="Base_Column_List">
     b_book_type_id, b_book_type_no, b_book_type
   </sql>
-  <select id="selectByExample" parameterType="com.xmx.ssm.entity.TBookTypeExample" resultMap="BaseResultMap">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from t_book_type
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-  </select>
-  <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from t_book_type
-    where b_book_type_id = #{bBookTypeId,jdbcType=INTEGER}
-      and b_book_type_no = #{bBookTypeNo,jdbcType=VARCHAR}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="map">
-    delete from t_book_type
-    where b_book_type_id = #{bBookTypeId,jdbcType=INTEGER}
-      and b_book_type_no = #{bBookTypeNo,jdbcType=VARCHAR}
-  </delete>
-  <delete id="deleteByExample" parameterType="com.xmx.ssm.entity.TBookTypeExample">
-    delete from t_book_type
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </delete>
-  <insert id="insert" parameterType="com.xmx.ssm.entity.TBookType">
-    insert into t_book_type (b_book_type_id, b_book_type_no, b_book_type
-      )
-    values (#{bBookTypeId,jdbcType=INTEGER}, #{bBookTypeNo,jdbcType=VARCHAR}, #{bBookType,jdbcType=VARCHAR}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="com.xmx.ssm.entity.TBookType">
+
+
+
+
+<!--  <insert id="insertTBookType" parameterType="com.xmx.ssm.entity.TBookType">-->
+<!--    insert into t_book_type (b_book_type_id, b_book_type_no, b_book_type-->
+<!--      )-->
+<!--    values (#{bBookTypeId,jdbcType=INTEGER}, #{bBookTypeNo,jdbcType=VARCHAR}, #{bBookType,jdbcType=VARCHAR}-->
+<!--      )-->
+<!--  </insert>-->
+
+
+  <insert id="insertTBookType" parameterType="com.xmx.ssm.entity.TBookType">
     insert into t_book_type
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="bBookTypeId != null">
@@ -130,76 +104,46 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.xmx.ssm.entity.TBookTypeExample" resultType="java.lang.Long">
+
+
+  <!--ok-->
+  <!--查找有多少条数据-->
+  <select id="countByExample"  resultType="java.lang.Long">
     select count(*) from t_book_type
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
-  <update id="updateByExampleSelective" parameterType="map">
-    update t_book_type
-    <set>
-      <if test="record.bBookTypeId != null">
-        b_book_type_id = #{record.bBookTypeId,jdbcType=INTEGER},
-      </if>
-      <if test="record.bBookTypeNo != null">
-        b_book_type_no = #{record.bBookTypeNo,jdbcType=VARCHAR},
-      </if>
-      <if test="record.bBookType != null">
-        b_book_type = #{record.bBookType,jdbcType=VARCHAR},
-      </if>
-    </set>
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map">
-    update t_book_type
-    set b_book_type_id = #{record.bBookTypeId,jdbcType=INTEGER},
-      b_book_type_no = #{record.bBookTypeNo,jdbcType=VARCHAR},
-      b_book_type = #{record.bBookType,jdbcType=VARCHAR}
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.xmx.ssm.entity.TBookType">
-    update t_book_type
-    <set>
-      <if test="bBookType != null">
-        b_book_type = #{bBookType,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where b_book_type_id = #{bBookTypeId,jdbcType=INTEGER}
-      and b_book_type_no = #{bBookTypeNo,jdbcType=VARCHAR}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.xmx.ssm.entity.TBookType">
-    update t_book_type
-    set b_book_type = #{bBookType,jdbcType=VARCHAR}
-    where b_book_type_id = #{bBookTypeId,jdbcType=INTEGER}
-      and b_book_type_no = #{bBookTypeNo,jdbcType=VARCHAR}
-  </update>
 
 
-
-
-
-
-
-  <insert id="insterBooksType" parameterType="com.xmx.ssm.entity.TBookType">
-
-  </insert>
-
+  <!--ok-->
+  <!--查询全部-->
   <select id="selectBooksType" resultType="map">
-
+select * from t_book_type;
   </select>
 
-  <delete id="deleteBooksType" parameterType="com.xmx.ssm.entity.TBookType">
 
+
+
+
+  <!--条件查询查询一条-->
+  <select id="selectBooksTypeOne"  resultType="map" parameterType="com.xmx.ssm.entity.TBookType">
+    select * from t_book_type
+    <where>
+    <if test="bBookTypeNo != null">
+      b_book_type_no=#{bBookTypeNo};
+    </if>
+    </where>
+  </select>
+
+
+  <delete id="deleteBooksType" parameterType="com.xmx.ssm.entity.TBookType">
+ delete from t_book_type
+    where
+     b_book_type_no = #{bBookTypeNo}
   </delete>
 
 
-  <update id="updateBookType" parameterType="com.xmx.ssm.entity.TBookType">
 
-  </update>
 
 </mapper>

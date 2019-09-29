@@ -9,38 +9,23 @@ import com.xmx.ssm.service.TBooksTypeService;
 import org.apache.ibatis.annotations.Param;
 
 public interface TBookTypeMapper {
-    long countByExample(TBookTypeExample example);
 
-    int deleteByExample(TBookTypeExample example);
+    /*ok*/
+    /*查找有多少条数据*/
+    long countByExample();
 
-    int deleteByPrimaryKey(@Param("bBookTypeId") Integer bBookTypeId, @Param("bBookTypeNo") String bBookTypeNo);
+    /*ok*/
+    /*根据查找书本类型*/
+    List<Map<String ,Object>> selectBooksTypeOne(TBookType tBookType);
 
-    int insert(TBookType record);
-
-    int insertSelective(TBookType record);
-
-    List<TBookType> selectByExample(TBookTypeExample example);
-
-    TBookType selectByPrimaryKey(@Param("bBookTypeId") Integer bBookTypeId, @Param("bBookTypeNo") String bBookTypeNo);
-
-    int updateByExampleSelective(@Param("record") TBookType record, @Param("example") TBookTypeExample example);
-
-    int updateByExample(@Param("record") TBookType record, @Param("example") TBookTypeExample example);
-
-    int updateByPrimaryKeySelective(TBookType record);
-
-    int updateByPrimaryKey(TBookType record);
-
+     /*ok*/
+    /*查询全部*/
+    List<Map<String ,Object>> selectBooksType();
 
     /*增加书本类型*/
-    void insterBooksType(TBookType tbooksType);
-
-    /*查找书本类型*/
-    List<Map<String ,Object>> selectBooksType(TBookType tBookType);
+    int insertTBookType(TBookType record);
 
     /*删除书本类型*/
     void deleteBooksType(TBookType tBookType);
 
-    /*更新书本信息*/
-    void  updateBookType(TBookType tBookType);
 }
