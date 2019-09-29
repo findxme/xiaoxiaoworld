@@ -51,4 +51,8 @@ public interface TBooksService {
      */
     List<Map<String ,Object>> findBooksLimit(@Param("currIndex") int currIndex,@Param("pageSize") int pageSize);
 
+
+    /*查出每种数的类型有多少本 数量字段名quantity*/
+    List<Map<String,Object>> countBooksTypeQuantity();
+
 }

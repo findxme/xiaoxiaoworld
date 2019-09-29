@@ -28,6 +28,10 @@ public class TBookReaderController {
         return "book_reader/bookInfo";
     }
 
+
+    JSONObject json = new JSONObject();
+
+
     @RequestMapping("/books")
     @ResponseBody
     public JSONObject getBookInfo(int page,int limit){

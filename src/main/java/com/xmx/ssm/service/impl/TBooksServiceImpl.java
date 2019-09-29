@@ -39,6 +39,12 @@ public class TBooksServiceImpl implements TBooksService {
     public List<Map<String ,Object>> findBooksLimit(@Param("currIndex") int currIndex,@Param("pageSize") int pageSize){
         return tBookMapper.findBooksLimit(currIndex,pageSize);
     }
+
+    /*查出每种数的类型有多少本 数量字段名quantity*/
+    @Override
+    public List<Map<String, Object>> countBooksTypeQuantity() {
+        return tBookMapper.countBooksTypeQuantity();
+    }
     /*ok*/
     /*查找全部*/
 //    @Override

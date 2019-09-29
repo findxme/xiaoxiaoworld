@@ -71,13 +71,17 @@ public class MyTest {
 
 //        System.out.println(123+a.toString());
 //        System.out.println("+123"+a);
-        TBookType tBookType =new TBookType();
-        tBookType.setbBookTypeNo("type6");
-        tBookType.setbBookType("熊熊");
-//        tBookType.setbBookTypeNo("type1");
-////       List<Map<String,Object>>  a=tBookTypeMapper.selectBooksTypeOne(tBookType);
-        tBookTypeMapper.insertTBookType(tBookType);
-        System.out.println();
+//        TBookType tBookType =new TBookType();
+//        tBookType.setbBookTypeNo("type6");
+//        tBookType.setbBookType("熊熊");
+////        tBookType.setbBookTypeNo("type1");
+//////       List<Map<String,Object>>  a=tBookTypeMapper.selectBooksTypeOne(tBookType);
+//        tBookTypeMapper.insertTBookType(tBookType);
+//        System.out.println();
+
+        List<Map<String,Object>> list =tBooksService.countBooksTypeQuantity();
+        System.out.println(list);
+        System.out.println(list.get(1).get("quantity"));
 
     }
 

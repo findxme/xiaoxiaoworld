@@ -51,8 +51,8 @@ public interface TBookMapper {
     /*根据no字段删除*/
     int deleteByTBook(TBook tBook);
 
-
-
+    /*查出每种数的类型有多少本 数量字段名quantity*/
+    List<Map<String,Object>> countBooksTypeQuantity();
 
 
 }

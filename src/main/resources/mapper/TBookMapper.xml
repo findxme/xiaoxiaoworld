@@ -306,6 +306,10 @@
     </where>
   </delete>
 
+ <!--查出每种数的类型有多少本 数量字段名quantity-->
+  <select id="countBooksTypeQuantity" resultType="map">
+    select b_book_type,COUNT(b_book_id) as quantity from t_book GROUP BY b_book_type
+  </select>
 
 
 
