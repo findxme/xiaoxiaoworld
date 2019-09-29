@@ -17,17 +17,19 @@
     <!--开启注解模式-->
 
 
-    <!--静态资源默认servlet配置-->
-    <mvc:default-servlet-handler/>
 
+    <!--使用mvc:annotation-driven 代替注解映射器和注解适配器配置 -->
     <mvc:annotation-driven/>
+
+    <!--静态资源默认servlet配置 将静态资源交还给WEB服务器处理-->
+    <mvc:default-servlet-handler/>
     <mvc:resources mapping="/static/**" location="/static/"/>
     <mvc:resources mapping="/css/**" location="/static/css/"/>
     <mvc:resources mapping="/js/**" location="/static/js/"/>
     <mvc:resources mapping="/img/**" location="/static/img/"/>
     <mvc:resources mapping="/layer/**" location="/static/layer/"/>
 
-
+    <!-- ViewResolver 视图解析器 -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/views/"/>
         <property name="suffix" value=".jsp"/>
