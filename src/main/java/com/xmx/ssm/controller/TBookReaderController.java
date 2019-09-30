@@ -29,16 +29,23 @@ public class TBookReaderController {
     }
 
 
-    JSONObject json = new JSONObject();
+//    JSONObject json = new JSONObject();
 
-
+    /**
+     * 借阅信息分页查询
+     * @param page
+     * @param limit
+     * @return
+     */
     @RequestMapping("/books")
     @ResponseBody
     public JSONObject getBookInfo(int page,int limit){
-        System.err.println(page);
-        List<Map<String,Object>> list =  tBooksService.findBooksAll();
-        System.err.println(PageLimit.layuiJson(0,"",5,list));
-        return PageLimit.layuiJson(0,"",5,list);
+
+        System.err.println(tBookReaderService.findAll());
+
+        List<Map<String,Object>> list =  tBookReaderService.pagingInfo(page,limit);
+//        System.err.println(PageLimit.layuiJson(0,"",tBookReaderService.countInfos(),list));
+        return PageLimit.layuiJson(0,"",tBookReaderService.countInfos(),list);
     }
 
 //    @RequestMapping("/manageReaderAndBook")

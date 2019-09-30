@@ -18,10 +18,7 @@
 
 </head>
 <body>
-<h1>测试测试</h1>
 <table class="layui-hide" id="demo" lay-filter="test"></table>
-
-
 
 <script type="text/html" id="toolbarDemo">
     <div class="layui-btn-container">
@@ -31,11 +28,9 @@
 </script>
 
 <script type="text/html" id="barDemo">
-    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+    <a class="layui-btn layui-btn-xs" lay-event="edit">查看详细</a>
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 </script>
-
-
 
 <script src="${ctx}/static/layuiAdmin/layui/layui.js"></script>
 <script>
@@ -50,7 +45,7 @@
         //执行一个 table 实例
         table.render({
             elem: '#demo'
-             ,height: 420
+             // ,height: 420
              ,url: '${ctx}/tBookReader/books' //数据接口
             ,title: '图书预览'
             ,page: true //开启分页
@@ -58,14 +53,11 @@
             // ,totalRow: true //开启合计行
             ,cols: [[ //标题栏
                 {type:'checkbox'}
-                ,{field: 'b_book_no', title: '图书编号',sort: true}
+                ,{field: 'b_book_reader_id', title: 'ID',sort: true}
+                ,{field: 'b_admin_name', title: '管理员姓名'}
                 ,{field: 'b_book_name', title: '书名'}
-                ,{field: 'b_book_author', title: '作者'}
-                ,{field: 'b_book_number', title: '数量',sort: true}
-                ,{field: 'b_book_createDate', title: '入库时间'}
-                ,{field: 'b_book_type', title: '类型'}
-                ,{ title: '操作', toolbar: '#barDemo',align:'center',width:110}
-
+                ,{field: 'b_reader_name', title: '借阅人姓名',sort: true}
+                ,{ title: '操作', toolbar: '#barDemo',align:'center',width:150}
             ]]
         });
 
@@ -110,8 +102,8 @@
                 ,layEvent = obj.event //获得 lay-event 对应的值
                 ,field = obj.field;
             if(layEvent === 'del'){
-                layer.confirm('真的删除行么', function(index){
-                    layer.msg(data.id);
+                layer.confirm('确定删除'+data.b_book_reader_id+"号记录?", function(index){
+                    // layer.msg(data.b_book_reader_id);
                     obj.del(); //删除对应行（tr）的DOM结构
                     layer.close(index);
                     //向服务端发送删除指令
@@ -119,12 +111,12 @@
                 });
             } else if(layEvent === 'edit'){
 
-                layer.msg('编辑操作'+data.id);
+                // layer.msg('编辑操作'+data.id);
 
                 // data.id 当前行数据id
                 var index=layer.open({
                     type: 2
-                    ,title: '编辑'
+                    ,title: '查看详细'
                     ,content: 'book_listform_add.html'
                     // ,maxmin: true
                     ,area: ['350px', '440px']
