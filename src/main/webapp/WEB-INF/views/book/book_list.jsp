@@ -18,8 +18,8 @@
 
 <script type="text/html" id="toolbarDemo">
   <div class="layui-btn-container">
-    <button class="layui-btn layui-btn-sm" lay-event="add">新增</button>
-    <button class="layui-btn layui-btn-sm" lay-event="delete">删除</button>
+    <button class="layui-btn layui-btn-sm" onclick="add()">新增</button>
+    <button class="layui-btn layui-btn-sm" onclick="deleteList()">删除</button>
   </div>
 </script>
 
@@ -31,11 +31,12 @@
 <script src="${ctx}/static/layuiAdmin/layui/layui.all.js"></script>
 <script>
 
+var  deleteListData=[];
+
 layui.use(['laypage', 'layer', 'table'], function(){
   var laydate = layui.laypage = layui.laypage //分页
   ,layer = layui.layer //弹层
   ,table = layui.table //表格
-
 
   //执行一个 table 实例
   table.render({
@@ -46,6 +47,7 @@ layui.use(['laypage', 'layer', 'table'], function(){
     ,page: true //开启分页
     ,toolbar: '#toolbarDemo' //开启工具栏，此处显示默认图标，可以自定义模板，详见文档
     // ,totalRow: true //开启合计行
+    ,id:'idTest'
 	,cols: [[ //标题栏
 	     {type:'checkbox'}
       ,{field: 'b_book_no', title: '图书编号',sort: true}
@@ -59,38 +61,12 @@ layui.use(['laypage', 'layer', 'table'], function(){
     ]]
   });
 
-  //监听头工具栏事件
-  table.on('toolbar(test)', function(obj){
-    var checkStatus = table.checkStatus(obj.config.id)
-    ,data = checkStatus.data; //获取选中的数据
-    switch(obj.event){
-      case 'add':
-		layer.open({
-		  type: 2
-		  ,title: '添加图书信息'
-		  ,content: 'https://www.baidu.com'
-		  // ,maxmin: true
-		  ,area: ['350px', '440px']
-		});
+  table.on('checkbox(test)', function (obj) {
+    var checkStatus = table.checkStatus('idTest');
+    deleteListData=checkStatus.data;
+    console.log(deleteListData);
 
-      break;
-      case 'delete':
-        if(data.length === 0){
-          layer.msg('请选择一行');
-        } else {
-		var data = checkStatus.data;
-		JSON.stringify(data)
-
-		// 删除多行
-		layer.alert(JSON.stringify(data));
-
-
-          // layer.msg('删除');
-        }
-      break;
-    };
   });
-
   //监听行工具事件
   table.on('tool(test)', function(obj){ //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
     var data = obj.data //获得当前行数据
@@ -131,9 +107,33 @@ layui.use(['laypage', 'layer', 'table'], function(){
 		});
 
     }
-  });
-
+  })
 });
+
+function add() {
+  layer.open({
+    type: 2
+    ,title: '添加图书信息'
+    ,content: 'book_listform_add'
+    // ,maxmin: true
+    ,area: ['350px', '440px']
+  });
+}
+
+function  deleteList() {
+  if(deleteListData.length === 0){
+    layer.msg('请选择一行');
+  } else {
+  JSON.stringify(deleteListData)
+
+  // 删除多行
+  layer.alert(JSON.stringify(deleteListData));
+
+
+    // layer.msg('删除');
+  }
+}
+
 </script>
 </body>
 </html>
