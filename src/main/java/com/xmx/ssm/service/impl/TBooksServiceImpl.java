@@ -22,7 +22,6 @@ public class TBooksServiceImpl implements TBooksService {
     /*查找有多少条记录*/
     @Override
     public long  countByExample(){
-        System.out.println(123);
         return tBookMapper.countByExample();
     }
     /*查找全部*/

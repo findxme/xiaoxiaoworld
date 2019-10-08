@@ -126,13 +126,13 @@
                         </a>
                         <dl class="layui-nav-child">
 
-                            <dd data-name="content">
-                                <a href="javascript:;">内容系统</a>
-                                <dl class="layui-nav-child">
+<%--                            <dd data-name="content">--%>
+<%--                                <a href="javascript:;">内容系统</a>--%>
+<%--                                <dl class="layui-nav-child">--%>
                                     <dd data-name="list"><a lay-href="${ctx}/tBooks/list">图书列表</a></dd>
                                     <dd data-name="tags"><a lay-href="${ctx}/tBooksType/booksType">分类管理</a></dd>
-                                </dl>
-                            </dd>
+<%--                                </dl>--%>
+<%--                            </dd>--%>
                         </dl>
                     </li>
 

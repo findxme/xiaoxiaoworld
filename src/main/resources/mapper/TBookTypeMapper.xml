@@ -119,7 +119,7 @@
   <!--ok-->
   <!--查询全部-->
   <select id="selectBooksType" resultType="map">
-select * from t_book_type;
+        select * from t_book_type;
   </select>
 
 

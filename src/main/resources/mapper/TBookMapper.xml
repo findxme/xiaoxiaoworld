@@ -197,7 +197,7 @@
   <!--  增加啊书本信息 图书编号，图书书名，作何，书店类型，书的入库时间，必填-->
   <insert id="insertBooks" parameterType="com.xmx.ssm.entity.TBook">
     insert into t_book (b_book_id, b_book_no, b_book_name,
-      b_book_author, b_book_number, b_book_type,
+      b_book_author, b_book_number, b_book_type_no,
       b_book_createDate, b_stop_date)
     values (#{bBookId,jdbcType=INTEGER}, #{bBookNo,jdbcType=VARCHAR}, #{bBookName,jdbcType=VARCHAR},
       #{bBookAuthor,jdbcType=VARCHAR}, #{bBookNumber,jdbcType=INTEGER}, #{bBookType,jdbcType=VARCHAR},
@@ -225,7 +225,7 @@
         b_book_number,
       </if>
       <if test="bBookType != null">
-        b_book_type,
+        b_book_type_no,
       </if>
       <if test="bBookCreatedate != null">
         b_book_createDate,
@@ -280,7 +280,7 @@
         b_book_number = #{bBookNumber,jdbcType=INTEGER},
       </if>
       <if test="bBookType != null">
-        b_book_type = #{bBookType,jdbcType=VARCHAR},
+        b_book_type_no = #{bBookType,jdbcType=VARCHAR},
       </if>
       <if test="bBookCreatedate != null">
         b_book_createDate = #{bBookCreatedate,jdbcType=DATE},

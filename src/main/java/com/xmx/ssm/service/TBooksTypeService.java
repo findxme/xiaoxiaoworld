@@ -12,6 +12,8 @@ public interface TBooksTypeService {
     /*查出有多少条记录ok*/
     long countByExample();
 
+    List<Map<String ,Object>> findBooksTypeLimit(int currIndex,int pageSize);
+
     /*ok*/
     /*根据查找书本类型*/
     List<Map<String ,Object>> selectBooksTypeOne(TBookType tBookType);

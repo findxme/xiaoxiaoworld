@@ -41,7 +41,7 @@ public class TBookReaderController {
     @ResponseBody
     public JSONObject getBookInfo(int page,int limit){
 
-        System.err.println(tBookReaderService.findAll());
+//        System.err.println(tBookReaderService.findAll());
 
         List<Map<String,Object>> list =  tBookReaderService.pagingInfo(page,limit);
 //        System.err.println(PageLimit.layuiJson(0,"",tBookReaderService.countInfos(),list));

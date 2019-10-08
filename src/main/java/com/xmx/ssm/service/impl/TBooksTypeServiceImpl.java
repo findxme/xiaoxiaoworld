@@ -22,6 +22,12 @@ public class TBooksTypeServiceImpl implements TBooksTypeService {
     public long countByExample() {
         return tBookTypeMapper.countByExample();
     }
+
+    @Override
+    public List<Map<String, Object>> findBooksTypeLimit(int currIndex, int pageSize) {
+        return tBookTypeMapper.findBooksTypeLimit(currIndex,pageSize);
+    }
+
     /*ok*/
     /*根据on查找书本类型*/
     @Override
