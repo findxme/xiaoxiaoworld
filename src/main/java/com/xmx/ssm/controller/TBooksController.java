@@ -81,8 +81,15 @@ public class TBooksController {
     /* 根据no字段更新数据ok*/
     @ResponseBody
     @RequestMapping("/updateByExample")
-    public ModelAndView updateByExample() {
-        return null;
+    public void updateByExample(String no,String name, String author, int number, String type) {
+        TBook tBook = new TBook();
+        tBook.setbBookNo(no);
+        tBook.setbBookName(name);
+        tBook.setbBookAuthor(author);
+        tBook.setbBookNumber(number);
+        tBook.setbBookType(type);
+        tBooksService.updateByExample(tBook);
+//        System.err.println(no+","+name + "," + author + "," + number + "," + type);
     }
 
 
@@ -113,7 +120,7 @@ public class TBooksController {
     /*根据no建插入信息，作者，书店类型，书的入库时间，必填ok*/
     @ResponseBody
     @RequestMapping("/insertSelective")
-    public String insertSelective(String no, String name, String author, int number, String type) {
+    public void insertSelective(String no, String name, String author, int number, String type) {
         TBook tBook = new TBook();
         tBook.setbBookNo(no);
         tBook.setbBookName(name);
@@ -127,7 +134,6 @@ public class TBooksController {
         tBooksService.insertBooks(tBook);
 
 //        System.err.println(no + "," + name + "," + author + "," + number + "," + type);
-        return "";
     }
 
 
@@ -150,12 +156,12 @@ public class TBooksController {
     }
 
     @RequestMapping("/book_listform_update")
-    public ModelAndView update(String id,ModelAndView modelAndView) {
+    public ModelAndView update(String id, ModelAndView modelAndView) {
         TBook tBook = new TBook();
         tBook.setbBookNo(id);
         List<Map<String, Object>> booksOne = tBooksService.findBooksOne(tBook);
-        System.err.println(booksOne.get(0));
-
+//        System.err.println(booksOne.get(0));
+        modelAndView.addObject("book", booksOne.get(0));
 
         List<Map<String, Object>> typeList = tBooksTypeService.selectBooksType();
         modelAndView.addObject("typeList", typeList);

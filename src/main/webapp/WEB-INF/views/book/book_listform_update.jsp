@@ -19,33 +19,33 @@
 <body>
 <div class="layui-form" lay-filter="layuiadmin-app-form-list" id="layuiadmin-app-form-list form"
      style="padding: 20px 30px 0 0;">
-    <form action="" method="post">
+    <form action="${ctx}/tBooks/updateByExample" method="post">
         <div class="layui-form-item">
             <label class="layui-form-label">图书编号</label>
             <div class="layui-input-inline">
                 <input type="text" name="no" lay-verify="required" placeholder="请输入图书编号" autocomplete="off"
-                       class="layui-input no" disabled>
+                       class="layui-input no" readonly value="${book.b_book_no}">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">书名</label>
             <div class="layui-input-inline">
                 <input type="text" name="name" lay-verify="required" placeholder="请输入书名" autocomplete="off"
-                       class="layui-input">
+                       class="layui-input" value="${book.b_book_name}">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">作者</label>
             <div class="layui-input-inline">
                 <input type="text" name="author" lay-verify="required" placeholder="请输入作者" autocomplete="off"
-                       class="layui-input">
+                       class="layui-input" value="${book.b_book_author}">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">数量</label>
             <div class="layui-input-inline">
                 <input type="number" name="number" lay-verify="number" min="0" placeholder="请输入数量" autocomplete="off"
-                       class="layui-input">
+                       class="layui-input" value="${book.b_book_number}">
             </div>
         </div>
         <div class="layui-form-item">
@@ -54,7 +54,7 @@
                 <select name="type" lay-verify="required">
                     <option value="">请选择类型</option>
                     <c:forEach items="${typeList}" var="type">
-                        <option value="${type.b_book_type_no}">${type.b_book_type}</option>
+                        <option value="${type.b_book_type_no}" <c:if test="${type.b_book_type_no==book.b_book_type_no}">selected</c:if>>${type.b_book_type}</option>
                     </c:forEach>
                 </select>
             </div>
