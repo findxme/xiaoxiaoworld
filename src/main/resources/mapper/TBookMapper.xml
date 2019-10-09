@@ -187,8 +187,7 @@
   <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
     select *
     from t_book
-    where b_book_id = #{bBookId,jdbcType=INTEGER}
-      and b_book_no = #{bBookNo,jdbcType=VARCHAR}
+    where b_book_no = #{bBookNo,jdbcType=VARCHAR}
   </select>
 
 

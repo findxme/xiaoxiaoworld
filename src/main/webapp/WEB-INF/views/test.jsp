@@ -15,7 +15,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <link rel="stylesheet" href="${ctx}/static/layuiAdmin/layui/css/layui.css" media="all">
     <link rel="stylesheet" href="${ctx}/static/layuiAdmin/style/admin.css" media="all">
-
+    <script type="text/javascript" src="${ctx}/static/js/cookieDao.js"></script>
     <script>
         /^http(s*):\/\//.test(location.href) || alert('请先部署到 localhost 下再访问');
     </script>
@@ -73,7 +73,7 @@
                 </li>
                 <li class="layui-nav-item" lay-unselect>
                     <a href="javascript:;">
-                        <cite>贤心</cite>
+                        <cite id="loginName"></cite>
                     </a>
                     <dl class="layui-nav-child">
                         <dd><a lay-href="set/user/info.html">基本资料</a></dd>
@@ -159,7 +159,12 @@
                         </a>
                         <dl class="layui-nav-child">
                             <dd data-name="header">
-                            <a lay-href="${ctx}/tBookReader/bookInfoPage">图书</a>
+                            <a lay-href="" id="book">图书</a>
+                                <script>
+                                    var readerNo = getCookie("readerNo")
+                                    var str = "${ctx}/tBookReader/bookInfoPage?readerNo="+readerNo;
+                                    document.getElementById("book").setAttribute("lay-href",str);
+                                </script>
                             </dd>
                             <%--<dd data-name="content">--%>
                                 <%--<a href="javascript:;">内容系统</a>--%>
@@ -175,7 +180,7 @@
                             <a lay-href="${ctx}/static/layuiAdmin/src/views/app/message/index.html">消息中心（在一周内如果要归还在这里）</a>
                             </dd>
                             <dd data-name="workorder">
-                                <a lay-href="${ctx}/static/layuiAdmin/src/views/app/workorder/list.html">工单系统</a>
+                                <a lay-href="${ctx}/tBookReader/bookBorrowReturnInfo">工单系统</a>
                             </dd>
                         </dl>
                     </li>
@@ -244,8 +249,18 @@
     </div>
 </div>
 
+<script src="${ctx}/static/js/jquery-3.2.1.js"></script>
+<script src="${ctx}/static/js/cookieDao.js"></script>
 <script src="${ctx}/static/layuiAdmin/layui/layui.js"></script>
 <script>
+    var loginName;
+    if(getCookie("adminName")==null||getCookie("adminName")==""){
+        loginName = getCookie("readerName");
+    }else{
+        loginName = getCookie("adminName");
+    }
+    console.log(document.cookie)
+    $("#loginName").html(loginName)
     layui.config({
         base: '../static/layuiAdmin/' //静态资源所在路径
     }).extend({

@@ -1,8 +1,10 @@
 package com.xmx.ssm.controller;
 
 import com.xmx.ssm.entity.TAdmin;
+import com.xmx.ssm.entity.TReader;
 import com.xmx.ssm.entity.messageInfo.StatusInfo;
 import com.xmx.ssm.service.TAdminService;
+import com.xmx.ssm.service.TReadersService;
 import com.xmx.ssm.util.CookiesDao;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,9 @@ import javax.servlet.http.HttpServletResponse;
 public class LoginController {
     @Autowired
     private TAdminService tAdminService;
+
+    @Autowired
+    private TReadersService tReadersService;
 
 
 
@@ -38,8 +43,7 @@ public class LoginController {
     @ResponseBody
     public StatusInfo login(@Param("userName")String userName,
                             @Param("password")String password,
-                            @Param("userType")String userType,
-                            HttpServletResponse response){
+                            @Param("userType")String userType){
         StatusInfo statusInfo = new StatusInfo();
 
 
@@ -50,17 +54,28 @@ public class LoginController {
         }
 
 
-        if("reader".equals(userType)){
 
+        if("reader".equals(userType)){
+            TReader tReader = tReadersService.findReaderByName(userName);
+            if(tReader==null){
+                statusInfo.setStatus(404);
+                statusInfo.setMessage("不存在该用户");
+            }else{
+                if(!tReader.getbReaderPassword().equals(password)){
+                    statusInfo.setStatus(500);
+                    statusInfo.setMessage("用户密码错误");
+                }else{
+                    statusInfo.setMessage(tReader.getbReaderNo());
+                }
+            }
         }else {
             TAdmin tAdmin = tAdminService.findAdminByName(userName);
             if(tAdmin==null){
-                System.out.println("管理员不存在");
                 statusInfo.setStatus(404);
                 statusInfo.setMessage("不存在该管理员");
             }else{
                 if(tAdmin.getbAdminPassword().equals(password)){
-                    CookiesDao.LoginIn(userName,response);
+                    statusInfo.setMessage(tAdmin.getbAdminNo());
                 }else{
                     statusInfo.setStatus(500);
                     statusInfo.setMessage("密码错误");

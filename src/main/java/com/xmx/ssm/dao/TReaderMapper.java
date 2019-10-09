@@ -4,8 +4,14 @@ import com.xmx.ssm.entity.TReader;
 import com.xmx.ssm.entity.TReaderExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 
 public interface TReaderMapper {
+
+    TReader findReaderByName(@Param("readerName")String readerName);
+
+    TReader findReaderByNo(@Param("readerNo")String readerNo);
+
     long countByExample(TReaderExample example);
 
     int deleteByExample(TReaderExample example);

@@ -15,9 +15,11 @@ public class TReader {
 
     private Integer bReaderBorrowAlreadyNumber;
 
-    private String bReaderBorrowTime;
+    private Double bReaderBorrowTime;
 
-    private String bReaderMoile;
+    private String bReaderMobile;
+
+    private String bReaderRemarks;
 
     public Integer getbReaderId() {
         return bReaderId;
@@ -37,6 +39,22 @@ public class TReader {
 
     public String getbReaderName() {
         return bReaderName;
+    }
+
+    @Override
+    public String toString() {
+        return "TReader{" +
+                "bReaderId=" + bReaderId +
+                ", bReaderNo='" + bReaderNo + '\'' +
+                ", bReaderName='" + bReaderName + '\'' +
+                ", bReaderEmail='" + bReaderEmail + '\'' +
+                ", bReaderPassword='" + bReaderPassword + '\'' +
+                ", bReaderBorrowNumber=" + bReaderBorrowNumber +
+                ", bReaderBorrowAlreadyNumber=" + bReaderBorrowAlreadyNumber +
+                ", bReaderBorrowTime=" + bReaderBorrowTime +
+                ", bReaderMobile='" + bReaderMobile + '\'' +
+                ", bReaderRemarks='" + bReaderRemarks + '\'' +
+                '}';
     }
 
     public void setbReaderName(String bReaderName) {
@@ -75,19 +93,27 @@ public class TReader {
         this.bReaderBorrowAlreadyNumber = bReaderBorrowAlreadyNumber;
     }
 
-    public String getbReaderBorrowTime() {
+    public Double getbReaderBorrowTime() {
         return bReaderBorrowTime;
     }
 
-    public void setbReaderBorrowTime(String bReaderBorrowTime) {
-        this.bReaderBorrowTime = bReaderBorrowTime == null ? null : bReaderBorrowTime.trim();
+    public void setbReaderBorrowTime(Double bReaderBorrowTime) {
+        this.bReaderBorrowTime = bReaderBorrowTime;
     }
 
-    public String getbReaderMoile() {
-        return bReaderMoile;
+    public String getbReaderMobile() {
+        return bReaderMobile;
     }
 
-    public void setbReaderMoile(String bReaderMoile) {
-        this.bReaderMoile = bReaderMoile == null ? null : bReaderMoile.trim();
+    public void setbReaderMobile(String bReaderMobile) {
+        this.bReaderMobile = bReaderMobile == null ? null : bReaderMobile.trim();
+    }
+
+    public String getbReaderRemarks() {
+        return bReaderRemarks;
+    }
+
+    public void setbReaderRemarks(String bReaderRemarks) {
+        this.bReaderRemarks = bReaderRemarks == null ? null : bReaderRemarks.trim();
     }
 }

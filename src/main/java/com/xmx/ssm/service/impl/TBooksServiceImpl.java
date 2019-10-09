@@ -64,7 +64,7 @@ public class TBooksServiceImpl implements TBooksService {
 
     /*OK*/
     /*根据主键查找数据*/
-    public TBook selectByPrimaryKey(@Param("bBookNo") String bBookNo){
+    public TBook selectByPrimaryKey(String bBookNo){
         return  tBookMapper.selectByPrimaryKey(bBookNo);
     }
 

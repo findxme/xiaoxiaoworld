@@ -6,10 +6,7 @@ import com.xmx.ssm.service.TBookReaderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class TBookReaderImpl implements TBookReaderService {
@@ -26,6 +23,21 @@ public class TBookReaderImpl implements TBookReaderService {
     public Integer countInfos(){
         long counts = tBookReaderMapper.countByExample(new TBookReaderExample());
         return new Long(counts).intValue();
+    }
+
+
+    @Override
+    public TBookReader queryInfoByBookReader(String bookNo,String readerNo){
+        List<TBookReader> tBookReaders = tBookReaderMapper.queryInfoByBookReaderDate(bookNo, readerNo);
+        Iterator<TBookReader> tBookReaderIterator = tBookReaders.iterator();
+        TBookReader tBookReader = null;
+        while(tBookReaderIterator.hasNext()){
+            TBookReader item = tBookReaderIterator.next();
+            if("未还".equals(item.getIsReturnBook())){
+                tBookReader = item;
+            }
+        }
+        return tBookReader;
     }
 
 
@@ -48,8 +60,12 @@ public class TBookReaderImpl implements TBookReaderService {
 
     @Override
     public int borrowBook(TBook tBook, TReader tReader){
+        System.out.println(tBook.getbBookNo()+","+tReader.getbReaderNo());
         if(tBook.getbBookNo()==null||tReader.getbReaderNo()==null){
             return 0;
+        }
+        if(this.queryInfoByBookReader(tBook.getbBookNo(),tReader.getbReaderNo())!=null){
+            return -2;
         }
         TBookReader tBookReader = new TBookReader();
         tBookReader.setbBorrowDate(new Date());
@@ -58,22 +74,54 @@ public class TBookReaderImpl implements TBookReaderService {
         tBookReader.setbUserNo("admin1");
         tBookReader.setbOverDate(0);
         tBookReader.setIsReturnBook(notReturn);
-        return tBookReaderMapper.insert(tBookReader);
+        if(tBookReaderMapper.insert(tBookReader)==0){
+            return 0;
+        }
+
+        //书，读者的书的数量
+        int bookNumber = tBook.getbBookNumber();
+        if(bookNumber==0){
+            return -1;
+        }
+        tBook.setbBookNumber(--bookNumber);
+        int readerBorrowNumber = tReader.getbReaderBorrowNumber();
+        int readerAlNum = tReader.getbReaderBorrowAlreadyNumber();
+        if(readerBorrowNumber==0){
+            return -1;
+        }
+        tReader.setbReaderBorrowNumber(--readerBorrowNumber);
+        tReader.setbReaderBorrowAlreadyNumber(++readerAlNum);
+
+        return tBookReaderMapper.borrowOrReturnBook(tBook,tReader);
     }
 
     @Override
-    public int returnBookByNo(TBook tBook, TReader tReader,String borrowDate){
+    public int returnBook(TBook tBook,TReader tReader){
         if(tBook.getbBookNo()==null||tReader.getbReaderNo()==null){
             return 0;
         }
-        TBookReader tBookReader = tBookReaderMapper.queryInfoByBookReaderDate(tBook.getbBookNo(),tReader.getbReaderNo(),borrowDate);
+        TBookReader tBookReader = this.queryInfoByBookReader(tBook.getbBookNo(),tReader.getbReaderNo());
         if(tBookReader==null){
-            return 0;
+            return -2;
         }
         tBookReader.setbReturnDate(new Date());
         tBookReader.setIsReturnBook(alreadyReturn);
-        return tBookReaderMapper.updateByPrimaryKey(tBookReader);
+        if(tBookReaderMapper.updateByPrimaryKey(tBookReader)==0){
+            return 0;
+        }
+        int bookTotals = tBook.getbBookNumber();
+        int readerBook = tReader.getbReaderBorrowNumber();
+        int readerHaveBorrowBook = tReader.getbReaderBorrowAlreadyNumber();
+        if(readerHaveBorrowBook==0){
+            return -1;
+        }
+        tReader.setbReaderBorrowAlreadyNumber(--readerHaveBorrowBook);
+        tReader.setbReaderBorrowNumber(++readerBook);
+        System.out.println("readerBook:"+readerBook);
+        tBook.setbBookNumber(++bookTotals);
+        return tBookReaderMapper.borrowOrReturnBook(tBook,tReader);
     }
+
 
     @Override
     public List<TBookReader> findBookByReader(TReader tReader){
@@ -121,7 +169,7 @@ public class TBookReaderImpl implements TBookReaderService {
      */
     @Override
     public int renewBook(TBook tBook, TReader tReader, String borrowDate){
-        TBookReader tBookReader = tBookReaderMapper.queryInfoByBookReaderDate(tBook.getbBookNo(),tReader.getbReaderNo(),borrowDate);
+        TBookReader tBookReader = this.queryInfoByBookReader(tBook.getbBookNo(),tReader.getbReaderNo());
         if(tBookReader==null){
             return 0;
         }

@@ -21,4 +21,8 @@ public interface TReadersService {
 
     /*条件查询*/
     List<TReader> findReadersOne(TReader tReader);
+
+    TReader findReaderByNo(String readerNo);
+
+    TReader findReaderByName(String readerName);
 }

@@ -75,7 +75,16 @@
     b_book_reader_id, b_book_no, b_reader_no, b_user_no, b_borrow_date, b_return_date, 
     b_over_date, is_return_book, b_renew_frequency, b_renew_time
   </sql>
-  
+
+
+  <update id="borrowOrReturnBook" parameterType="map">
+    update t_book b,t_reader r
+    set b.b_book_number=#{tBook.bBookNumber}
+    ,r.b_reader_borrow_number=#{tReader.bReaderBorrowNumber}
+    ,r.b_reader_borrow_already_number=#{tReader.bReaderBorrowAlreadyNumber}
+    where b.b_book_no=#{tBook.bBookNo} and r.b_reader_no=#{tReader.bReaderNo};
+  </update>
+
   <select id="pagingInfo" parameterType="map" resultType="map">
     select rb.b_book_reader_id,b.b_book_name,r.b_reader_name,a.b_admin_name
     from t_book_reader rb,t_book b,t_reader r,t_admin a
@@ -100,7 +109,6 @@
       from t_book_reader
       where b_book_no=#{bookNo}
       and b_reader_no=#{readerNo}
-      and date_format(b_borrow_date,'%Y-%m-%d') = date_format(#{borrowDate},'%Y-%m-%d')
   </select>
   
   <select id="selectByExample" parameterType="com.xmx.ssm.entity.TBookReaderExample" resultMap="BaseResultMap">

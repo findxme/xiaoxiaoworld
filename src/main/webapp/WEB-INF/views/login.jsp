@@ -55,6 +55,7 @@
     </div>
     <script type="text/javascript" src="${ctx}/static/js/jquery-3.2.1.js"></script>
     <script type="text/javascript" src="${ctx}/static/layer/layer.js"></script>
+    <script type="text/javascript" src="${ctx}/static/js/cookieDao.js"></script>
     <script type="text/javascript">
         var loginPage;
         $(function(){
@@ -76,10 +77,20 @@
                         loginPage =  layer.msg('登录中...', {icon: 16,shade: [0.5, '#f5f5f5'],scrollbar: false,offset: '0px',time: 0});
                     },
                     success:function(data){
+                        var userType = $("input[name='userType']:checked").val();
                         if(data.status===200){
+                            if(userType==="reader"){
+                                addCookie("readerNo",data.message,1)
+                                addCookie("readerName",$("#userName").val(),1)
+                            }else{
+                                addCookie("adminNo",data.message,1)
+                                addCookie("adminName",$("#userName").val(),1)
+                            }
                             window.location="home"
+                        }else{
+                            $("#errorMsg").html(data.message)
                         }
-                        $("#errorMsg").html(data.message)
+
                     },
                     complete:function(){
                         layer.close(loginPage);

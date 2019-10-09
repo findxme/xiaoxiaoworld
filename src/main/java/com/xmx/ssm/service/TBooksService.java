@@ -25,7 +25,7 @@ public interface TBooksService {
 
     /*OK*/
     /*根据主键查找数据 nook*/
-    TBook selectByPrimaryKey(@Param("bBookNo") String bBookNo);
+    TBook selectByPrimaryKey(String bBookNo);
 
 
     /*OK*/

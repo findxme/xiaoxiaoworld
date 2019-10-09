@@ -192,76 +192,6 @@ public class TAdminExample {
             return (Criteria) this;
         }
 
-        public Criteria andBAdminNoIsNull() {
-            addCriterion("b_admin__no is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andBAdminNoIsNotNull() {
-            addCriterion("b_admin__no is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andBAdminNoEqualTo(String value) {
-            addCriterion("b_admin__no =", value, "bAdminNo");
-            return (Criteria) this;
-        }
-
-        public Criteria andBAdminNoNotEqualTo(String value) {
-            addCriterion("b_admin__no <>", value, "bAdminNo");
-            return (Criteria) this;
-        }
-
-        public Criteria andBAdminNoGreaterThan(String value) {
-            addCriterion("b_admin__no >", value, "bAdminNo");
-            return (Criteria) this;
-        }
-
-        public Criteria andBAdminNoGreaterThanOrEqualTo(String value) {
-            addCriterion("b_admin__no >=", value, "bAdminNo");
-            return (Criteria) this;
-        }
-
-        public Criteria andBAdminNoLessThan(String value) {
-            addCriterion("b_admin__no <", value, "bAdminNo");
-            return (Criteria) this;
-        }
-
-        public Criteria andBAdminNoLessThanOrEqualTo(String value) {
-            addCriterion("b_admin__no <=", value, "bAdminNo");
-            return (Criteria) this;
-        }
-
-        public Criteria andBAdminNoLike(String value) {
-            addCriterion("b_admin__no like", value, "bAdminNo");
-            return (Criteria) this;
-        }
-
-        public Criteria andBAdminNoNotLike(String value) {
-            addCriterion("b_admin__no not like", value, "bAdminNo");
-            return (Criteria) this;
-        }
-
-        public Criteria andBAdminNoIn(List<String> values) {
-            addCriterion("b_admin__no in", values, "bAdminNo");
-            return (Criteria) this;
-        }
-
-        public Criteria andBAdminNoNotIn(List<String> values) {
-            addCriterion("b_admin__no not in", values, "bAdminNo");
-            return (Criteria) this;
-        }
-
-        public Criteria andBAdminNoBetween(String value1, String value2) {
-            addCriterion("b_admin__no between", value1, value2, "bAdminNo");
-            return (Criteria) this;
-        }
-
-        public Criteria andBAdminNoNotBetween(String value1, String value2) {
-            addCriterion("b_admin__no not between", value1, value2, "bAdminNo");
-            return (Criteria) this;
-        }
-
         public Criteria andBAdminNameIsNull() {
             addCriterion("b_admin_name is null");
             return (Criteria) this;
@@ -332,76 +262,6 @@ public class TAdminExample {
             return (Criteria) this;
         }
 
-        public Criteria andBAdminPasswordIsNull() {
-            addCriterion("b_admin_password is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andBAdminPasswordIsNotNull() {
-            addCriterion("b_admin_password is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andBAdminPasswordEqualTo(String value) {
-            addCriterion("b_admin_password =", value, "bAdminPassword");
-            return (Criteria) this;
-        }
-
-        public Criteria andBAdminPasswordNotEqualTo(String value) {
-            addCriterion("b_admin_password <>", value, "bAdminPassword");
-            return (Criteria) this;
-        }
-
-        public Criteria andBAdminPasswordGreaterThan(String value) {
-            addCriterion("b_admin_password >", value, "bAdminPassword");
-            return (Criteria) this;
-        }
-
-        public Criteria andBAdminPasswordGreaterThanOrEqualTo(String value) {
-            addCriterion("b_admin_password >=", value, "bAdminPassword");
-            return (Criteria) this;
-        }
-
-        public Criteria andBAdminPasswordLessThan(String value) {
-            addCriterion("b_admin_password <", value, "bAdminPassword");
-            return (Criteria) this;
-        }
-
-        public Criteria andBAdminPasswordLessThanOrEqualTo(String value) {
-            addCriterion("b_admin_password <=", value, "bAdminPassword");
-            return (Criteria) this;
-        }
-
-        public Criteria andBAdminPasswordLike(String value) {
-            addCriterion("b_admin_password like", value, "bAdminPassword");
-            return (Criteria) this;
-        }
-
-        public Criteria andBAdminPasswordNotLike(String value) {
-            addCriterion("b_admin_password not like", value, "bAdminPassword");
-            return (Criteria) this;
-        }
-
-        public Criteria andBAdminPasswordIn(List<String> values) {
-            addCriterion("b_admin_password in", values, "bAdminPassword");
-            return (Criteria) this;
-        }
-
-        public Criteria andBAdminPasswordNotIn(List<String> values) {
-            addCriterion("b_admin_password not in", values, "bAdminPassword");
-            return (Criteria) this;
-        }
-
-        public Criteria andBAdminPasswordBetween(String value1, String value2) {
-            addCriterion("b_admin_password between", value1, value2, "bAdminPassword");
-            return (Criteria) this;
-        }
-
-        public Criteria andBAdminPasswordNotBetween(String value1, String value2) {
-            addCriterion("b_admin_password not between", value1, value2, "bAdminPassword");
-            return (Criteria) this;
-        }
-
         public Criteria andBAdminEmailIsNull() {
             addCriterion("b_admin_email is null");
             return (Criteria) this;
@@ -469,6 +329,146 @@ public class TAdminExample {
 
         public Criteria andBAdminEmailNotBetween(String value1, String value2) {
             addCriterion("b_admin_email not between", value1, value2, "bAdminEmail");
+            return (Criteria) this;
+        }
+
+        public Criteria andBAdminNoIsNull() {
+            addCriterion("b_admin_no is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andBAdminNoIsNotNull() {
+            addCriterion("b_admin_no is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andBAdminNoEqualTo(String value) {
+            addCriterion("b_admin_no =", value, "bAdminNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andBAdminNoNotEqualTo(String value) {
+            addCriterion("b_admin_no <>", value, "bAdminNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andBAdminNoGreaterThan(String value) {
+            addCriterion("b_admin_no >", value, "bAdminNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andBAdminNoGreaterThanOrEqualTo(String value) {
+            addCriterion("b_admin_no >=", value, "bAdminNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andBAdminNoLessThan(String value) {
+            addCriterion("b_admin_no <", value, "bAdminNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andBAdminNoLessThanOrEqualTo(String value) {
+            addCriterion("b_admin_no <=", value, "bAdminNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andBAdminNoLike(String value) {
+            addCriterion("b_admin_no like", value, "bAdminNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andBAdminNoNotLike(String value) {
+            addCriterion("b_admin_no not like", value, "bAdminNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andBAdminNoIn(List<String> values) {
+            addCriterion("b_admin_no in", values, "bAdminNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andBAdminNoNotIn(List<String> values) {
+            addCriterion("b_admin_no not in", values, "bAdminNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andBAdminNoBetween(String value1, String value2) {
+            addCriterion("b_admin_no between", value1, value2, "bAdminNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andBAdminNoNotBetween(String value1, String value2) {
+            addCriterion("b_admin_no not between", value1, value2, "bAdminNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andBAdminPasswordIsNull() {
+            addCriterion("b_admin_password is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andBAdminPasswordIsNotNull() {
+            addCriterion("b_admin_password is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andBAdminPasswordEqualTo(String value) {
+            addCriterion("b_admin_password =", value, "bAdminPassword");
+            return (Criteria) this;
+        }
+
+        public Criteria andBAdminPasswordNotEqualTo(String value) {
+            addCriterion("b_admin_password <>", value, "bAdminPassword");
+            return (Criteria) this;
+        }
+
+        public Criteria andBAdminPasswordGreaterThan(String value) {
+            addCriterion("b_admin_password >", value, "bAdminPassword");
+            return (Criteria) this;
+        }
+
+        public Criteria andBAdminPasswordGreaterThanOrEqualTo(String value) {
+            addCriterion("b_admin_password >=", value, "bAdminPassword");
+            return (Criteria) this;
+        }
+
+        public Criteria andBAdminPasswordLessThan(String value) {
+            addCriterion("b_admin_password <", value, "bAdminPassword");
+            return (Criteria) this;
+        }
+
+        public Criteria andBAdminPasswordLessThanOrEqualTo(String value) {
+            addCriterion("b_admin_password <=", value, "bAdminPassword");
+            return (Criteria) this;
+        }
+
+        public Criteria andBAdminPasswordLike(String value) {
+            addCriterion("b_admin_password like", value, "bAdminPassword");
+            return (Criteria) this;
+        }
+
+        public Criteria andBAdminPasswordNotLike(String value) {
+            addCriterion("b_admin_password not like", value, "bAdminPassword");
+            return (Criteria) this;
+        }
+
+        public Criteria andBAdminPasswordIn(List<String> values) {
+            addCriterion("b_admin_password in", values, "bAdminPassword");
+            return (Criteria) this;
+        }
+
+        public Criteria andBAdminPasswordNotIn(List<String> values) {
+            addCriterion("b_admin_password not in", values, "bAdminPassword");
+            return (Criteria) this;
+        }
+
+        public Criteria andBAdminPasswordBetween(String value1, String value2) {
+            addCriterion("b_admin_password between", value1, value2, "bAdminPassword");
+            return (Criteria) this;
+        }
+
+        public Criteria andBAdminPasswordNotBetween(String value1, String value2) {
+            addCriterion("b_admin_password not between", value1, value2, "bAdminPassword");
             return (Criteria) this;
         }
 

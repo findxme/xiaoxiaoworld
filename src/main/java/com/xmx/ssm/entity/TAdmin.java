@@ -5,13 +5,13 @@ import java.util.Date;
 public class TAdmin {
     private Integer bAdminId;
 
-    private String bAdminNo;
-
     private String bAdminName;
 
-    private String bAdminPassword;
-
     private String bAdminEmail;
+
+    private String bAdminNo;
+
+    private String bAdminPassword;
 
     private String bAdminType;
 
@@ -29,14 +29,6 @@ public class TAdmin {
         this.bAdminId = bAdminId;
     }
 
-    public String getbAdminNo() {
-        return bAdminNo;
-    }
-
-    public void setbAdminNo(String bAdminNo) {
-        this.bAdminNo = bAdminNo == null ? null : bAdminNo.trim();
-    }
-
     public String getbAdminName() {
         return bAdminName;
     }
@@ -45,20 +37,28 @@ public class TAdmin {
         this.bAdminName = bAdminName == null ? null : bAdminName.trim();
     }
 
-    public String getbAdminPassword() {
-        return bAdminPassword;
-    }
-
-    public void setbAdminPassword(String bAdminPassword) {
-        this.bAdminPassword = bAdminPassword == null ? null : bAdminPassword.trim();
-    }
-
     public String getbAdminEmail() {
         return bAdminEmail;
     }
 
     public void setbAdminEmail(String bAdminEmail) {
         this.bAdminEmail = bAdminEmail == null ? null : bAdminEmail.trim();
+    }
+
+    public String getbAdminNo() {
+        return bAdminNo;
+    }
+
+    public void setbAdminNo(String bAdminNo) {
+        this.bAdminNo = bAdminNo == null ? null : bAdminNo.trim();
+    }
+
+    public String getbAdminPassword() {
+        return bAdminPassword;
+    }
+
+    public void setbAdminPassword(String bAdminPassword) {
+        this.bAdminPassword = bAdminPassword == null ? null : bAdminPassword.trim();
     }
 
     public String getbAdminType() {
@@ -91,5 +91,20 @@ public class TAdmin {
 
     public void setbAdminRemarks(String bAdminRemarks) {
         this.bAdminRemarks = bAdminRemarks == null ? null : bAdminRemarks.trim();
+    }
+
+    @Override
+    public String toString() {
+        return "TAdmin{" +
+                "bAdminId=" + bAdminId +
+                ", bAdminName='" + bAdminName + '\'' +
+                ", bAdminEmail='" + bAdminEmail + '\'' +
+                ", bAdminNo='" + bAdminNo + '\'' +
+                ", bAdminPassword='" + bAdminPassword + '\'' +
+                ", bAdminType='" + bAdminType + '\'' +
+                ", bAdminCreateDate=" + bAdminCreateDate +
+                ", bAdminStopDate=" + bAdminStopDate +
+                ", bAdminRemarks='" + bAdminRemarks + '\'' +
+                '}';
     }
 }

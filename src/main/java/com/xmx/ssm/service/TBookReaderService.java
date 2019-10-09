@@ -13,13 +13,16 @@ public interface TBookReaderService {
 
     Integer countInfos();
 
+    TBookReader queryInfoByBookReader(String bookNo,String readerNo);
+
     List<Map<String,Object>> pagingInfo(Integer page,Integer pageSize);
 
     List<Map<String,Object>> findAll();
 
     int borrowBook(TBook tBook, TReader tReader);
 
-    int returnBookByNo(TBook tBook, TReader tReader, String borrowDate);
+    int returnBook(TBook tBook,TReader tReader);
+
 
     List<TBookReader> findBookByReader(TReader tReader);
 

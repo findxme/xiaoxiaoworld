@@ -1,5 +1,6 @@
 package com.xmx.ssm.dao;
 
+import com.xmx.ssm.entity.TBook;
 import com.xmx.ssm.entity.TBookReader;
 import com.xmx.ssm.entity.TBookReaderExample;
 
@@ -7,16 +8,18 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import com.xmx.ssm.entity.TReader;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 public interface TBookReaderMapper {
 
 
-//    @Select("select * from t_book_reader limit #{currentIndex},#{pageSize}")
+
+
     List<Map<String,Object>> pagingInfo(@Param("currentIndex")Integer currentIndex,@Param("pageSize")Integer pageSize);
 
-    TBookReader queryInfoByBookReaderDate(@Param("bookNo")String bookNo,@Param("readerNo")String readerNo,@Param("borrowDate") String borrowDate);
+    List<TBookReader> queryInfoByBookReaderDate(@Param("bookNo")String bookNo,@Param("readerNo")String readerNo);
 
     List<Map<String,Object>> findAll();
 
@@ -41,4 +44,6 @@ public interface TBookReaderMapper {
     int updateByPrimaryKeySelective(TBookReader record);
 
     int updateByPrimaryKey(TBookReader record);
+
+    int borrowOrReturnBook(@Param("tBook")TBook tBook, @Param("tReader")TReader tReader);
 }
