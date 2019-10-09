@@ -85,13 +85,27 @@ public class TBookReaderController {
         return statusInfo;
     }
 
-//    @RequestMapping("returnBook")
-//    @ResponseBody
-//    public StatusInfo returnBook(@Param("bookNo")String bookNo,
-//                                 @Param("readerNo")String readerNo){
-//        TBook tBook = tBooksService.selectByPrimaryKey(bookNo);
-//        TReader tReader = tReadersService.findReaderByNo(readerNo);
-//
-//    }
+    @RequestMapping("returnBook")
+    @ResponseBody
+    public StatusInfo returnBook(@Param("bookNo")String bookNo,
+                                 @Param("readerNo")String readerNo){
+        TBook tBook = tBooksService.selectByPrimaryKey(bookNo);
+        TReader tReader = tReadersService.findReaderByNo(readerNo);
+        int result = tBookReaderService.returnBook(tBook,tReader);
+        StatusInfo statusInfo = new StatusInfo();
+        if(result==-2){
+            statusInfo.setStatus(404);
+            statusInfo.setMessage("未借该书");
+        }else if(result==-1){
+            statusInfo.setStatus(555);
+            statusInfo.setMessage("暂定");
+        }else if(result== 0){
+            statusInfo.setStatus(500);
+            statusInfo.setMessage("还书出错");
+        }else{
+            statusInfo.setMessage("");
+        }
+        return statusInfo;
+    }
 
 }
