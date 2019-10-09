@@ -23,4 +23,6 @@ public class TAdminServiceImpl implements TAdminService {
     public TAdmin findAdminByName(String adminName){
         return tAdminMapper.findAdminByName(adminName);
     }
+
+
 }

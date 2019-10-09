@@ -4,6 +4,7 @@ import com.xmx.ssm.entity.TAdmin;
 import com.xmx.ssm.entity.TReader;
 import com.xmx.ssm.entity.messageInfo.StatusInfo;
 import com.xmx.ssm.service.TAdminService;
+import com.xmx.ssm.service.TBooksService;
 import com.xmx.ssm.service.TReadersService;
 import com.xmx.ssm.util.CookiesDao;
 import org.apache.ibatis.annotations.Param;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -105,6 +107,15 @@ public class LoginController {
     @RequestMapping(value = "home")
     public String toHome(){
         return "test";
+    }
+
+    @RequestMapping("/dataStatistics")
+    public ModelAndView DataStatistics(ModelAndView modelAndView){
+       long readersQuantity= tReadersService.countByExample();
+        System.out.println(readersQuantity);
+       modelAndView.addObject("readersQuantity",readersQuantity);
+        modelAndView.setViewName("/home/console");
+        return modelAndView;
     }
 
 //    @RequestMapping(value = "/register",method = RequestMethod.POST)

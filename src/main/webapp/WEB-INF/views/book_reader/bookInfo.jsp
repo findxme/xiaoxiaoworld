@@ -31,6 +31,7 @@
 <script type="text/html" id="barDemo">
     <button class="layui-btn layui-btn-xs" lay-event="borrowBook">借书</button>
     <button class="layui-btn layui-btn-danger layui-btn-xs" lay-event="returnBook">还书</button>
+
 </script>
 
 
@@ -48,7 +49,7 @@
         //执行一个 table 实例
         table.render({
                 elem: '#demo'
-                ,height: 420
+              //  ,height: 420
                 ,url: '${ctx}/tBooks/findBooksAll' //数据接口
                 ,title: '图书预览'
                 ,page: true //开启分页
@@ -62,7 +63,7 @@
                     ,{field: 'b_book_number', title: '数量',sort: true}
                     ,{field: 'b_book_createDate', title: '入库时间'}
                     ,{field: 'b_book_type', title: '类型'}
-                    ,{ title: '操作', toolbar: '#barDemo',align:'center',width:110}
+                    ,{ title: '操作', toolbar: '#barDemo',align:'center',width:120}
                 ]]
 
         });
@@ -129,7 +130,7 @@
                             if(data.status===200){
                                 table.render({
                                     elem: '#demo'
-                                    ,height: 420
+                                   // ,height: 420
                                     ,url: '${ctx}/tBooks/findBooksAll' //数据接口
                                     ,title: '图书预览'
                                     ,page: true //开启分页

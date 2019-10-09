@@ -108,7 +108,7 @@
                         <dl class="layui-nav-child">
                             <dd data-name="console" class="layui-this">
 
-                                <a lay-href="index">控制台</a>
+                                <a lay-href="${ctx}/user/dataStatistics">控制台</a>
                             </dd>
                             <dd data-name="console">
                                 <a lay-href="${ctx}/static/layuiAdmin/src/views/home/homepage1.jsp">主页一</a>
@@ -231,7 +231,7 @@
             </div>
             <div class="layui-tab" lay-unauto lay-allowClose="true" lay-filter="layadmin-layout-tabs">
                 <ul class="layui-tab-title" id="LAY_app_tabsheader">
-                    <li lay-id="index" lay-attr="home/console.html" class="layui-this"><i class="layui-icon layui-icon-home"></i></li>
+                    <li lay-id="index" lay-attr="${ctx}/user/dataStatistics" class="layui-this"><i class="layui-icon layui-icon-home"></i></li>
                 </ul>
             </div>
         </div>
