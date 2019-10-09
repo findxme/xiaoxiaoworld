@@ -145,10 +145,10 @@
                             <cite>读者信息管理</cite>
                         </a>
                         <dl class="layui-nav-child">
-                            <dd data-name="list"><a lay-href="${ctx}/static/layuiAdmin/src/views/app/content/list.html">读者增</a></dd>
-                            <dd data-name="tags"><a lay-href="${ctx}/static/layuiAdmin/src/views/app/content/tags.html">读者删</a></dd>
-                            <dd data-name="comment"><a lay-href="${ctx}/static/layuiAdmin/src/views/app/content/comment.html">读者改</a></dd>
-                            <dd data-name="comment"><a lay-href="${ctx}/static/layuiAdmin/src/views/app/forum/replys.html">读者查询</a></dd>
+                            <dd data-name="list"><a lay-href="${ctx}/admin/readerAdmin/readerView">读者列表</a></dd>
+<%--                            <dd data-name="tags"><a lay-href="${ctx}/static/layuiAdmin/src/views/app/content/tags.html">读者删</a></dd>--%>
+<%--                            <dd data-name="comment"><a lay-href="${ctx}/static/layuiAdmin/src/views/app/content/comment.html">读者改</a></dd>--%>
+<%--                            <dd data-name="comment"><a lay-href="${ctx}/static/layuiAdmin/src/views/app/forum/replys.html">读者查询</a></dd>--%>
                         </dl>
                     </li>
 
