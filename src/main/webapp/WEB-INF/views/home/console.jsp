@@ -149,13 +149,13 @@
                       <li class="layui-col-xs6">
                         <a lay-href="app/content/comment.html" class="layadmin-backlog-body">
                           <h3>书籍总数</h3>
-                          <p><cite>66</cite></p>
+                          <p><cite>${map.booksQuantity}</cite></p>
                         </a>
                       </li>
                       <li class="layui-col-xs6">
                         <a lay-href="app/forum/list.html" class="layadmin-backlog-body">
                           <h3>用户总数</h3>
-                          <p><cite>${readersQuantity}</cite></p>
+                          <p><cite>${map.readersQuantity}</cite></p>
                         </a>
                       </li>
                       <li class="layui-col-xs6">

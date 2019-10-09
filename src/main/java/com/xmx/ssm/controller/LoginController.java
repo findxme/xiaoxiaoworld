@@ -17,6 +17,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/user")
@@ -27,6 +29,8 @@ public class LoginController {
     @Autowired
     private TReadersService tReadersService;
 
+    @Autowired
+    public TBooksService tBooksService;
 
 
     @RequestMapping(value = "index")
@@ -112,8 +116,12 @@ public class LoginController {
     @RequestMapping("/dataStatistics")
     public ModelAndView DataStatistics(ModelAndView modelAndView){
        long readersQuantity= tReadersService.countByExample();
+       long booksQuantity = tBooksService.countByExample();
         System.out.println(readersQuantity);
-       modelAndView.addObject("readersQuantity",readersQuantity);
+        Map<String, Object> map = new HashMap<>();
+        map.put("readersQuantity",readersQuantity);
+        map.put("booksQuantity",booksQuantity);
+        modelAndView.addObject("map",map);
         modelAndView.setViewName("/home/console");
         return modelAndView;
     }
