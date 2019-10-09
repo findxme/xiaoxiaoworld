@@ -27,7 +27,7 @@ public interface TBooksTypeService {
     /*查询全部*/
     List<Map<String ,Object>> selectBooksType();
 
-
+    int updateBookType(TBookType tBookType);
 
     /*ok*/
     /*删除书本类型*/

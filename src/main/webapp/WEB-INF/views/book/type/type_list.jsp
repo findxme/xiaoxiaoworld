@@ -8,7 +8,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <title></title>
-  <link rel="stylesheet" href="${ctx}/static/layuiAdmin/layui/css/layui.css" media="all">
+  <link rel="stylesheet" href="https://www.layuicdn.com/layui-v2.5.5/css/layui.css" media="all">
   <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
 
 </head>
@@ -19,7 +19,7 @@
 <script type="text/html" id="toolbarDemo">
   <div class="layui-btn-container">
     <button class="layui-btn layui-btn-sm" onclick="add()">新增</button>
-    <button class="layui-btn layui-btn-sm" onclick="deleteList()">删除</button>
+<%--    <button class="layui-btn layui-btn-sm" onclick="deleteList()">删除</button>--%>
   </div>
 </script>
 
@@ -28,7 +28,7 @@
   <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 </script>
 
-<script src="${ctx}/static/layuiAdmin/layui/layui.all.js"></script>
+<script src="https://www.layuicdn.com/layui-v2.5.5/layui.js"></script>
 <script>
 
   var  deleteListData=[];
@@ -49,8 +49,8 @@
       // ,totalRow: true //开启合计行
       ,id:'idTest'
       ,cols: [[ //标题栏
-        {type:'checkbox'}
-        ,{field: 'b_book_type_no', title: '类型编号',sort: true}
+        // {type:'checkbox'},
+        {field: 'b_book_type_no', title: '类型编号',sort: true}
         ,{field: 'b_book_type', title: '类型'}
         ,{ title: '操作', toolbar: '#barDemo',align:'center',width:150}
 
@@ -68,18 +68,20 @@
       var data = obj.data //获得当前行数据
               ,layEvent = obj.event //获得 lay-event 对应的值
               ,field = obj.field;
+
+      var id=data.b_book_type_no;
       if(layEvent === 'del'){
         layer.confirm('确定删除'+data.b_book_type_no+"号记录?", function(index){
           //向服务端发送删除指令
-          var id=data.b_book_type_no;
+
           // layer.msg(id);
           $.ajax({
             type: 'POST',
-            url:"${ctx}/tBooks/deleteByTBook",
+            url:"${ctx}/tBooksType/deleteBooksType",
             data: {id: data.b_book_type_no},
             success: function (msg) {
               if (msg===0){
-                layer.msg("已借出书籍无法删除！", {icon: 5});
+                layer.msg("该分类下已有图书，删除失败！", {icon: 5});
                 layer.close(index);
               }else {
                 obj.del(); //删除对应行（tr）的DOM结构
@@ -96,10 +98,10 @@
         // data.id 当前行数据id
         var index=layer.open({
           type: 2
-          ,title: '编辑'
-          ,content: 'book_listform_add'
+          ,title: '类型编号：'+id
+          ,content: '${ctx}/tBooksType/typeUpdateView?id='+id
           // ,maxmin: true
-          ,area: ['350px', '440px']
+          ,area: ['350px', '260px']
         });
 
       }
@@ -109,26 +111,26 @@
   function add() {
     layer.open({
       type: 2
-      ,title: '添加图书信息'
-      ,content: 'book_listform_add'
+      ,title: '添加类型信息'
+      ,content: '${ctx}/tBooksType/typeAddView'
       // ,maxmin: true
-      ,area: ['350px', '440px']
+      ,area: ['350px', '260px']
     });
   }
 
-  function  deleteList() {
-    if(deleteListData.length === 0){
-      layer.msg('请选择一行');
-    } else {
-      JSON.stringify(deleteListData)
-
-      // 删除多行
-      layer.alert(JSON.stringify(deleteListData));
-
-
-      // layer.msg('删除');
-    }
-  }
+  // function  deleteList() {
+  //   if(deleteListData.length === 0){
+  //     layer.msg('请选择一行');
+  //   } else {
+  //     JSON.stringify(deleteListData)
+  //
+  //     // 删除多行
+  //     layer.alert(JSON.stringify(deleteListData));
+  //
+  //
+  //     // layer.msg('删除');
+  //   }
+  // }
 
 </script>
 </body>
