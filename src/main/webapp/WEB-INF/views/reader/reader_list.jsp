@@ -53,8 +53,10 @@
                 {field: 'b_reader_no', title: '读者编号', sort: true}
                 , {field: 'b_reader_name', title: '姓名', sort: true}
                 , {field: 'b_reader_email', title: '邮箱', sort: true}
-                , {field: 'b_reader_borrow_already_number', title: '借阅数量', sort: true}
                 , {field: 'b_reader_mobile', title: '手机号', sort: true}
+                , {field: 'b_reader_password', title:'读者密码',sort:true}
+                , {field: 'b_reader_borrow_already_number', title: '已借阅数量', sort: true}
+                , {field: 'b_reader_borrow_number', title:'读者可借阅数',sort:true}
                 , {field: 'b_reader_Remarks', title: '备注', sort: true}
                 , {title: '操作', toolbar: '#barDemo', align: 'center', width: 110}
 
