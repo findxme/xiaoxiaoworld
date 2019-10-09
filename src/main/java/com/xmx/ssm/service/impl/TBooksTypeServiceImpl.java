@@ -43,6 +43,11 @@ public class TBooksTypeServiceImpl implements TBooksTypeService {
         return tBookTypeMapper.selectBooksType();
     }
 
+    @Override
+    public int updateBookType(TBookType tBookType) {
+        return tBookTypeMapper.updateBookType(tBookType);
+    }
+
 
     /*ok*/
     /*增加书籍信息 需要传入no和type*/

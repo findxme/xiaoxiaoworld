@@ -3,16 +3,27 @@ package com.xmx.ssm.dao;
 import com.xmx.ssm.entity.TReader;
 import com.xmx.ssm.entity.TReaderExample;
 import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 public interface TReaderMapper {
+    long countByExample();
 
-    TReader findReaderByName(@Param("readerName")String readerName);
 
-    TReader findReaderByNo(@Param("readerNo")String readerNo);
+    /**
+     * 分页查询
+     * @param currIndex
+     * @param pageSize
+     * @return
+     */
+    @Select("select * from t_reader limit #{currIndex},#{pageSize}")
+    List<Map<String ,Object>> findReaderLimit(@Param("currIndex") int currIndex, @Param("pageSize") int pageSize);
 
-    long countByExample(TReaderExample example);
+    @Select("select * from t_reader where b_reader_no=#{no}")
+    List<Map<String ,Object>> findReaderOne(String no);
+
 
     int deleteByExample(TReaderExample example);
 
