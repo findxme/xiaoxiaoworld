@@ -39,31 +39,31 @@
 
 <script>
 
-    layui.use(['laypage', 'layer', 'table'], function(){
-        var laypage = layui.laypage //分页
+    layui.use(['layer', 'table'], function(){
+        var $ = layui.$ //jquery
             ,layer = layui.layer //弹层
             ,table = layui.table //表格
 
 
         //执行一个 table 实例
-        table.render({
-                elem: '#demo'
-                ,height: 420
-                ,url: '${ctx}/tBooks/findBooksAll' //数据接口
-                ,title: '图书预览'
-                ,page: true //开启分页
-                ,toolbar: '#toolbarDemo' //开启工具栏，此处显示默认图标，可以自定义模板，详见文档
-                ,totalRow: true //开启合计行
-                ,cols: [[ //标题栏
-                    {type:'checkbox'}
-                    ,{field: 'b_book_no', title: '图书编号',sort: true}
-                    ,{field: 'b_book_name', title: '书名'}
-                    ,{field: 'b_book_author', title: '作者'}
-                    ,{field: 'b_book_number', title: '数量',sort: true}
-                    ,{field: 'b_book_createDate', title: '入库时间'}
-                    ,{field: 'b_book_type', title: '类型'}
-                    ,{ title: '操作', toolbar: '#barDemo',align:'center',width:110}
-                ]]
+        var myTable = table.render({
+            elem: '#demo'
+            // ,height: 420
+            ,url: '${ctx}/tBooks/findBooksAll' //数据接口
+            ,title: '图书预览'
+            ,page: true //开启分页
+            ,toolbar: '#toolbarDemo' //开启工具栏，此处显示默认图标，可以自定义模板，详见文档
+            ,totalRow: true //开启合计行
+            ,cols: [[ //标题栏
+                {type:'checkbox'}
+                ,{field: 'b_book_no', title: '图书编号',sort: true}
+                ,{field: 'b_book_name', title: '书名'}
+                ,{field: 'b_book_author', title: '作者'}
+                ,{field: 'b_book_number', title: '数量',sort: true}
+                ,{field: 'b_book_createDate', title: '入库时间'}
+                ,{field: 'b_book_type', title: '类型'}
+                ,{ title: '操作', toolbar: '#barDemo',align:'center',width:110}
+            ]]
 
         });
 
@@ -77,38 +77,6 @@
         });
 
 
-        // table.on('toolbar(test)', function(obj){
-        //     var checkStatus = table.checkStatus(obj.config.id)
-        //         ,data = checkStatus.data; //获取选中的数据
-        //     switch(obj.event){
-        //         case 'add':
-        //             console.log("ads")
-        //             layer.msg("das")
-        //             layer.open({
-        //                 type: 2
-        //                 ,title: '添加图书信息'
-        //                 ,content: 'book_listform_add.html'
-        //                 ,maxmin: true
-        //                 ,area: ['350px', '440px']
-        //             });
-        //
-        //             break;
-        //         case 'delete':
-        //             if(data.length === 0){
-        //                 layer.msg('请选择一行');
-        //             } else {
-        //                 var data = checkStatus.data;
-        //                 JSON.stringify(data)
-        //
-        //                 // 删除多行
-        //                 layer.alert(JSON.stringify(data));
-        //
-        //
-        //                 // layer.msg('删除');
-        //             }
-        //             break;
-        //     };
-        // });
 
         //监听行工具事件
         table.on('tool(test)', function(obj){ //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
@@ -127,25 +95,10 @@
                         success:function (data) {
                             console.log(data.status)
                             if(data.status===200){
-                                table.render({
-                                    elem: '#demo'
-                                    ,height: 420
-                                    ,url: '${ctx}/tBooks/findBooksAll' //数据接口
-                                    ,title: '图书预览'
-                                    ,page: true //开启分页
-                                    ,toolbar: '#toolbarDemo' //开启工具栏，此处显示默认图标，可以自定义模板，详见文档
-                                    ,totalRow: true //开启合计行
-                                    ,cols: [[ //标题栏
-                                        {type:'checkbox'}
-                                        ,{field: 'b_book_no', title: '图书编号',sort: true}
-                                        ,{field: 'b_book_name', title: '书名'}
-                                        ,{field: 'b_book_author', title: '作者'}
-                                        ,{field: 'b_book_number', title: '数量',sort: true}
-                                        ,{field: 'b_book_createDate', title: '入库时间'}
-                                        ,{field: 'b_book_type', title: '类型'}
-                                        ,{ title: '操作', toolbar: '#barDemo',align:'center',width:110}
 
-                                    ]]
+                                myTable.reload({
+                                    page:{curr:1},
+                                    where:{b_book_id:1}
 
                                 });
                             }
@@ -187,25 +140,9 @@
                         success:function (data) {
                             console.log(data.status)
                             if(data.status===200){
-                                table.render({
-                                    elem: '#demo'
-                                    ,height: 420
-                                    ,url: '${ctx}/tBooks/findBooksAll' //数据接口
-                                    ,title: '图书预览'
-                                    ,page: true //开启分页
-                                    ,toolbar: '#toolbarDemo' //开启工具栏，此处显示默认图标，可以自定义模板，详见文档
-                                    ,totalRow: true //开启合计行
-                                    ,cols: [[ //标题栏
-                                        {type:'checkbox'}
-                                        ,{field: 'b_book_no', title: '图书编号',sort: true}
-                                        ,{field: 'b_book_name', title: '书名'}
-                                        ,{field: 'b_book_author', title: '作者'}
-                                        ,{field: 'b_book_number', title: '数量',sort: true}
-                                        ,{field: 'b_book_createDate', title: '入库时间'}
-                                        ,{field: 'b_book_type', title: '类型'}
-                                        ,{ title: '操作', toolbar: '#barDemo',align:'center',width:110}
-
-                                    ]]
+                                myTable.reload({
+                                    page:{curr:1},
+                                    where:{b_book_id:1}
 
                                 });
                             }
