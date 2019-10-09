@@ -15,9 +15,6 @@ public class TReadersServiceImpl implements TReadersService {
     @Autowired
     private TReaderMapper tReaderMapper;
 
-    @Autowired
-    TReaderMapper tReaderMapper;
-
     @Override
     public long countByExample() {
         return tReaderMapper.countByExample();

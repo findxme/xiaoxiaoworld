@@ -24,6 +24,9 @@ public interface TReaderMapper {
     @Select("select * from t_reader where b_reader_no=#{no}")
     List<Map<String ,Object>> findReaderOne(String no);
 
+    TReader findReaderByName(@Param("readerName")String readerName);
+
+    TReader findReaderByNo(@Param("readerNo")String readerNo);
 
     int deleteByExample(TReaderExample example);
 

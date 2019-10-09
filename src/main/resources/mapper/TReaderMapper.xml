@@ -77,6 +77,16 @@
     b_reader_id, b_reader_no, b_reader_name, b_reader_email, b_reader_password, b_reader_borrow_number, 
     b_reader_borrow_already_number, b_reader_borrow_time, b_reader_mobile, b_reader_Remarks
   </sql>
+
+    <select id="findReaderByNo" parameterType="String" resultMap="BaseResultMap">
+        select * from t_reader where b_reader_no=#{readerNo}
+    </select>
+
+    <select id="findReaderByName" parameterType="String" resultMap="BaseResultMap">
+        select * from t_reader where b_reader_name=#{readerName}
+    </select>
+
+
     <select id="selectByExample" parameterType="com.xmx.ssm.entity.TReaderExample" resultMap="BaseResultMap">
         select
         <if test="distinct">
