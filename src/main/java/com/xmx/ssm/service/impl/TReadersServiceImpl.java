@@ -41,8 +41,8 @@ public class TReadersServiceImpl implements TReadersService {
     }
 
     @Override
-    public void insertReader(TReader tReader) {
-        tReaderMapper.insert(tReader);
+    public int insertReader(TReader tReader) {
+        return tReaderMapper.insert(tReader);
     }
 
     @Override
