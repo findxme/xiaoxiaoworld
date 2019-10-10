@@ -36,8 +36,8 @@ public class TReadersServiceImpl implements TReadersService {
     }
 
     @Override
-    public void deleteReadersNo(TReader tReader) {
-
+    public int deleteReadersNo(TReader tReader) {
+        return tReaderMapper.deleteByNo(tReader);
     }
 
     @Override

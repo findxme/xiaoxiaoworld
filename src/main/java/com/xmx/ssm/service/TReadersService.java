@@ -18,7 +18,7 @@ public interface TReadersService {
     List<Map<String, Object>> findReadersAll();
 
     /*删除读者信息*/
-    void deleteReadersNo(TReader tReader);
+    int deleteReadersNo(TReader tReader);
 
     /*增加读者信息*/
     int insertReader(TReader tReader);

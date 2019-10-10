@@ -32,6 +32,8 @@ public interface TReaderMapper {
 
     int deleteByPrimaryKey(@Param("bReaderId") Integer bReaderId, @Param("bReaderNo") String bReaderNo, @Param("bReaderName") String bReaderName, @Param("bReaderEmail") String bReaderEmail);
 
+    int deleteByNo(TReader tReader);
+
     int insert(TReader record);
 
     int insertSelective(TReader record);

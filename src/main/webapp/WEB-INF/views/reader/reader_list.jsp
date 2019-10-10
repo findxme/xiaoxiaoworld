@@ -76,14 +76,14 @@
                 , layEvent = obj.event //获得 lay-event 对应的值
                 , field = obj.field;
             if (layEvent === 'del') {
-                layer.confirm('确定删除' + data.b_book_no + "号记录?", function (index) {
+                layer.confirm('确定删除' + data.b_reader_no + "号记录?", function (index) {
                     //向服务端发送删除指令
-                    var id = data.b_book_no;
-                    // layer.msg(id);
+                    var id = data.b_reader_no;
+                     layer.msg(id);
                     $.ajax({
                         type: 'POST',
-                        url: "${ctx}/tBooks/deleteByTBook",
-                        data: {id: data.b_book_no},
+                        url: "${ctx}/admin/readerAdmin/deleteByTReader",
+                        data: {no: data.b_reader_no},
                         success: function (msg) {
                             if (msg === 0) {
                                 layer.msg("已借出书籍无法删除！", {icon: 5});

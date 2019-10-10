@@ -117,6 +117,10 @@
       and b_reader_name = #{bReaderName,jdbcType=VARCHAR}
       and b_reader_email = #{bReaderEmail,jdbcType=VARCHAR}
   </delete>
+    <delete id="deleteByNo" parameterType="map">
+    delete from t_reader
+    where b_reader_no = #{bReaderNo,jdbcType=VARCHAR}
+    </delete>
     <delete id="deleteByExample" parameterType="com.xmx.ssm.entity.TReaderExample">
         delete from t_reader
         <if test="_parameter != null">

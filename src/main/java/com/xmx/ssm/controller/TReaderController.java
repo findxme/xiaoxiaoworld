@@ -113,6 +113,23 @@ public class TReaderController {
         return 1;
     }
 
+    /*根据no字段删除*/
+    @ResponseBody
+    @RequestMapping("/deleteByTReader")
+    public int deleteByTReader(String no) {
+        TReader tReader = new TReader();
+        tReader.setbReaderNo(no);
+        System.err.println(tReader);
+        try {
+            tReadersService.deleteReadersNo(tReader);
+        } catch (Exception e) {
+
+            return 0;
+        }
+        return 1;
+//        return null;
+    }
+
     @ResponseBody
     @RequestMapping("/insertReade")
 
