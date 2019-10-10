@@ -21,7 +21,7 @@ public interface TReadersService {
     void deleteReadersNo(TReader tReader);
 
     /*增加读者信息*/
-    int insertReader(TReader tReader);
+    void insertReader(TReader tReader);
 
     /*更新读者信息*/
     void updateReader(TReader tReader);
