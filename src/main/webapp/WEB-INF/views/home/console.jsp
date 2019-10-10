@@ -336,7 +336,7 @@
       table.render({
         elem: '#demo'
         // ,height: 420
-        , url: '${ctx}/tBooks/findBooksAll' //数据接口
+       // , url: '${ctx}/tBooks/findBooksAll' //数据接口
         , title: '图书列表'
         , page: true //开启分页
         , toolbar: '#toolbarDemo'
