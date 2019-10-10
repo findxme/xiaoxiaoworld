@@ -1,9 +1,12 @@
 package com.xmx.ssm.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.xmx.ssm.entity.TAdmin;
+import com.xmx.ssm.entity.TBookReader;
 import com.xmx.ssm.entity.TReader;
 import com.xmx.ssm.entity.messageInfo.StatusInfo;
 import com.xmx.ssm.service.TAdminService;
+import com.xmx.ssm.service.TBookReaderService;
 import com.xmx.ssm.service.TBooksService;
 import com.xmx.ssm.service.TReadersService;
 import com.xmx.ssm.util.CookiesDao;
@@ -31,6 +34,9 @@ public class LoginController {
 
     @Autowired
     public TBooksService tBooksService;
+
+    @Autowired
+    public TBookReaderService tBookReaderService;
 
 
     @RequestMapping(value = "index")
@@ -103,7 +109,7 @@ public class LoginController {
 
     @RequestMapping("/loginOut")
     public void loginOut(HttpServletRequest request,HttpServletResponse response){
-        System.out.println("跳转到loginOut");
+        //System.out.println("转到loginOut");
 //        CookiesDao.LoginOut(request,response);
 //        return "redirect:toLogin";
     }
@@ -113,15 +119,35 @@ public class LoginController {
         return "test";
     }
 
+    @ResponseBody
     @RequestMapping("/dataStatistics")
     public ModelAndView DataStatistics(ModelAndView modelAndView){
        long readersQuantity= tReadersService.countByExample();
        long booksQuantity = tBooksService.countByExample();
+        long adminQuantity = tAdminService.countByExample();
         System.out.println(readersQuantity);
+        /*查询书籍总数*/
+        long tbookQuantity=tBooksService.countByBooksTotal();
+        /*查询多少书借出去了*/
+        long borrowingQuantity =  tBookReaderService.findReadersBorrowingQuantity();
+        /*未借书籍*/
+        long notBorrowingBooks =tbookQuantity-borrowingQuantity;
+
+        JSONObject jsonBooks = new JSONObject();
+//        jsonBooks.put("notBorrowingBooks",notBorrowingBooks);
+//        jsonBooks.put("borrowingQuantity",borrowingQuantity);
+        System.out.println("借出书籍"+borrowingQuantity);
+        System.out.println("未借书籍"+notBorrowingBooks);
         Map<String, Object> map = new HashMap<>();
+        map.put("adminQuantity",adminQuantity);
+        map.put("tbookQuantity",tbookQuantity);
         map.put("readersQuantity",readersQuantity);
         map.put("booksQuantity",booksQuantity);
+        map.put("notBorrowingBooks",notBorrowingBooks);
+        map.put("borrowingQuantity",borrowingQuantity);
         modelAndView.addObject("map",map);
+
+//        modelAndView.addObject("jsonBooks",jsonBooks);
         modelAndView.setViewName("/home/console");
         return modelAndView;
     }

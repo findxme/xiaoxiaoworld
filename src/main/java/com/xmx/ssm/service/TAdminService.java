@@ -9,4 +9,6 @@ public interface TAdminService {
     List<TAdmin> findAll();
 
     TAdmin findAdminByName(String adminName);
+
+    long countByExample();
 }

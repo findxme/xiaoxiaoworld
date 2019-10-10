@@ -149,7 +149,7 @@
                       <li class="layui-col-xs6">
                         <a lay-href="app/content/comment.html" class="layadmin-backlog-body">
                           <h3>书籍总数</h3>
-                          <p><cite>${map.booksQuantity}</cite></p>
+                          <p><cite>${map.tbookQuantity}</cite></p>
                         </a>
                       </li>
                       <li class="layui-col-xs6">
@@ -161,21 +161,21 @@
                       <li class="layui-col-xs6">
                         <a lay-href="template/goodslist.html" class="layadmin-backlog-body">
                           <h3>已借书籍数量</h3>
-                          <p><cite>99</cite></p>
+                          <p><cite>${map.borrowingQuantity}</cite></p>
                         </a>
                       </li>
                       <li class="layui-col-xs6">
                         <a href="javascript:;" onclick="layer.tips('不跳转', this, {tips: 3});" class="layadmin-backlog-body">
-                          <h3>待发货</h3>
-                          <p><cite>20</cite></p>
+                          <h3>剩余数量</h3>
+                          <p><cite>${map.notBorrowingBooks}</cite></p>
                         </a>
                       </li>
                     </ul>
                     <ul class="layui-row layui-col-space10">
                       <li class="layui-col-xs6">
                         <a href="javascript:;" class="layadmin-backlog-body">
-                          <h3>待审友情链接</h3>
-                          <p><cite style="color: #FF5722;">5</cite></p>
+                          <h3>管理员数量</h3>
+                          <p><cite style="color: #FF5722;">${map.adminQuantity}</cite></p>
                         </a>
                       </li>
                     </ul>
@@ -188,12 +188,15 @@
             <div class="layui-card">
               <div class="layui-card-header">数据概览</div>
               <div class="layui-card-body">
-
+<%--                <div id="main" style="width: 600px;height:400px;"></div>--%>
                 <div class="layui-carousel layadmin-carousel layadmin-dataview" data-anim="fade" lay-filter="LAY-index-dataview">
-                  <div carousel-item id="LAY-index-dataview">
-                    <div><i class="layui-icon layui-icon-loading1 layadmin-loading"></i></div>
-                    <div></div>
-                    <div></div>
+                  <div carousel-item >
+<%--                    <div><i class="layui-icon layui-icon-loading1 layadmin-loading"></i></div>--%>
+<%--                    <div></div>--%>
+<%--                    <div></div>--%>
+
+         <div id="main"   style="width: 1700%;height:300%;"></div>
+        <div id="main2"   style="width: 1700%;height:300%;"></div>
                   </div>
                 </div>
 
@@ -202,12 +205,13 @@
             <div class="layui-card">
               <div class="layui-tab layui-tab-brief layadmin-latestData">
                 <ul class="layui-tab-title">
-                  <li class="layui-this">今日热搜</li>
+                  <li class="layui-this">今日借书记录</li>
                   <li>今日热帖</li>
                 </ul>
                 <div class="layui-tab-content">
                   <div class="layui-tab-item layui-show">
-                    <table id="LAY-index-topSearch"></table>
+<%--                    <table id="LAY-index-topSearch"></table>--%>
+  <table class="layui-hide" id="demo" lay-filter="test"></table>
                   </div>
                   <div class="layui-tab-item">
                     <table id="LAY-index-topCard"></table>
@@ -218,112 +222,140 @@
           </div>
         </div>
       </div>
-
-<%--      <div class="layui-col-md4">--%>
-<%--        <div class="layui-card">--%>
-<%--          <div class="layui-card-header">版本信息</div>--%>
-<%--          <div class="layui-card-body layui-text">--%>
-<%--            <table class="layui-table">--%>
-<%--              <colgroup>--%>
-<%--                <col width="100">--%>
-<%--                <col>--%>
-<%--              </colgroup>--%>
-<%--              <tbody>--%>
-<%--                <tr>--%>
-<%--                  <td>当前版本</td>--%>
-<%--                  <td>--%>
-<%--                    <script type="text/html" template>--%>
-<%--                      v{{ layui.admin.v }}--%>
-<%--                      <a href="http://fly.layui.com/docs/3/" target="_blank" style="padding-left: 15px;">更新日志</a>--%>
-<%--                    </script>--%>
-<%--                  </td>--%>
-<%--                </tr>--%>
-<%--                <tr>--%>
-<%--                  <td>基于框架</td>--%>
-<%--                  <td>--%>
-<%--                    <script type="text/html" template>--%>
-<%--                      layui-v{{ layui.v }}--%>
-<%--                    </script>--%>
-<%--                 </td>--%>
-<%--                </tr>--%>
-<%--                <tr>--%>
-<%--                  <td>主要特色</td>--%>
-<%--                  <td>零门槛 / 响应式 / 清爽 / 极简</td>--%>
-<%--                </tr>--%>
-<%--                <tr>--%>
-<%--                  <td>获取渠道</td>--%>
-<%--                  <td style="padding-bottom: 0;">--%>
-<%--                    <div class="layui-btn-container">--%>
-<%--                      <a href="http://www.layui.com/admin/" target="_blank" class="layui-btn layui-btn-danger">获取授权</a>--%>
-<%--                      <a href="http://fly.layui.com/download/layuiAdmin/" target="_blank" class="layui-btn">立即下载</a>--%>
-<%--                    </div>--%>
-<%--                  </td>--%>
-<%--                </tr>--%>
-<%--              </tbody>--%>
-<%--            </table>--%>
-<%--          </div>--%>
-<%--        </div>--%>
-
-<%--        <div class="layui-card">--%>
-<%--          <div class="layui-card-header">效果报告</div>--%>
-<%--          <div class="layui-card-body layadmin-takerates">--%>
-<%--            <div class="layui-progress" lay-showPercent="yes">--%>
-<%--              <h3>转化率（日同比 28% <span class="layui-edge layui-edge-top" lay-tips="增长" lay-offset="-15"></span>）</h3>--%>
-<%--              <div class="layui-progress-bar" lay-percent="65%"></div>--%>
-<%--            </div>--%>
-<%--            <div class="layui-progress" lay-showPercent="yes">--%>
-<%--              <h3>签到率（日同比 11% <span class="layui-edge layui-edge-bottom" lay-tips="下降" lay-offset="-15"></span>）</h3>--%>
-<%--              <div class="layui-progress-bar" lay-percent="32%"></div>--%>
-<%--            </div>--%>
-<%--          </div>--%>
-<%--        </div>--%>
-
-<%--        <div class="layui-card">--%>
-<%--          <div class="layui-card-header">实时监控</div>--%>
-<%--          <div class="layui-card-body layadmin-takerates">--%>
-<%--            <div class="layui-progress" lay-showPercent="yes">--%>
-<%--              <h3>CPU使用率</h3>--%>
-<%--              <div class="layui-progress-bar" lay-percent="58%"></div>--%>
-<%--            </div>--%>
-<%--            <div class="layui-progress" lay-showPercent="yes">--%>
-<%--              <h3>内存占用率</h3>--%>
-<%--              <div class="layui-progress-bar layui-bg-red" lay-percent="9%"></div>--%>
-<%--            </div>--%>
-<%--          </div>--%>
-<%--        </div>--%>
-
-<%--        <div class="layui-card">--%>
-<%--          <div class="layui-card-header">产品动态</div>--%>
-<%--          <div class="layui-card-body">--%>
-<%--            <div class="layui-carousel layadmin-carousel layadmin-news" data-autoplay="true" data-anim="fade" lay-filter="news">--%>
-<%--              <div carousel-item>--%>
-<%--                <div><a href="http://fly.layui.com/docs/2/" target="_blank" class="layui-bg-red">layuiAdmin 快速上手文档</a></div>--%>
-<%--                <div><a href="http://fly.layui.com/vipclub/list/layuiadmin/" target="_blank" class="layui-bg-green">layuiAdmin 会员讨论专区</a></div>--%>
-<%--                <div><a href="http://www.layui.com/admin/#get" target="_blank" class="layui-bg-blue">获得 layui 官方后台模板系统</a></div>--%>
-<%--              </div>--%>
-<%--            </div>--%>
-<%--          </div>--%>
-<%--        </div>--%>
-
-<%--        <div class="layui-card">--%>
-<%--          <div class="layui-card-header">--%>
-<%--            作者心语--%>
-<%--            <i class="layui-icon layui-icon-tips" lay-tips="要支持的噢" lay-offset="5"></i>--%>
-<%--          </div>--%>
-<%--          <div class="layui-card-body layui-text layadmin-text">--%>
-<%--            <p>一直以来，layui 秉承无偿开源的初心，虔诚致力于服务各层次前后端 Web 开发者，在商业横飞的当今时代，这一信念从未动摇。即便身单力薄，仍然重拾决心，埋头造轮，以尽可能地填补产品本身的缺口。</p>--%>
-<%--            <p>在过去的一段的时间，我一直在寻求持久之道，已维持你眼前所见的一切。而 layuiAdmin 是我们尝试解决的手段之一。我相信真正有爱于 layui 生态的你，定然不会错过这一拥抱吧。</p>--%>
-<%--            <p>子曰：君子不用防，小人防不住。请务必通过官网正规渠道，获得 <a href="http://www.layui.com/admin/" target="_blank">layuiAdmin</a>！</p>--%>
-<%--            <p>—— 贤心（<a href="http://www.layui.com/" target="_blank">layui.com</a>）</p>--%>
-<%--          </div>--%>
-<%--        </div>--%>
-<%--      </div>--%>
-
     </div>
   </div>
 
   <script src="${ctx}/static/layuiAdmin/layui/layui.js?t=1"></script>
+  <script src="${ctx}/static/js/echarts.min.js"></script>
+  <script src="${ctx}/static/js/jquery-3.2.1.js"></script>
+  <script src="https://www.layuicdn.com/layui-v2.5.5/layui.js"></script>
+<%--  <script src="${ctx}/static/layuiAdmin/lib/index.js"></script>--%>
   <script>
+      // <!-- 基于准备好的dom，初始化echarts实例 -->
+      var myChart = echarts.init(document.getElementById('main'));
+      var option ={
+
+
+          title : {
+              text: '图书信息统计',
+              //subtext: '纯属虚构',
+              x:'center'
+          },
+
+          legend: {
+              orient: 'vertical',
+              left: 'left',
+              data: ['未借图书','已借图书']
+          },
+          series : [
+              {
+                  name: '访问来源',
+                  type: 'pie',
+                  radius : '55%',
+                  center: ['50%', '60%'],
+                  data:[
+                      {value:${map.notBorrowingBooks}, name:'未借图书'},
+                      {value:${map.borrowingQuantity}, name:'已借图书'}
+
+                  ],
+                  label: {
+                      normal: {
+                          show:true,
+                          //position:'inner', //标签的位置
+                          /* {b}对于data.name。{c}对应data.value，{d}对应百分比 */
+                          formatter: "{b} : {c} ({d}%)"
+                      }
+                  },
+
+                  itemStyle: {
+                      emphasis: {
+                          shadowBlur: 10,
+                          shadowOffsetX: 0,
+                          shadowColor: 'rgba(0, 0, 0, 0.5)'
+                      }
+                  }
+              }
+          ]};
+
+
+
+      window.onresize = myChart.resize;
+      myChart.setOption(option);
+
+
+      var my = echarts.init(document.getElementById('main2'));
+    my.setOption({
+      legend: {},
+      tooltip: {},
+      dataset: {
+        source: [
+          ['product', '2012', '2013', '2014', '2015', '2016', '2017'],
+          ['Matcha Latte', 41.1, 30.4, 65.1, 53.3, 83.8, 98.7],
+          ['Milk Tea', 86.5, 92.1, 85.7, 83.1, 73.4, 55.1],
+          ['Cheese Cocoa', 24.1, 67.2, 79.5, 86.4, 65.2, 82.5],
+          ['Walnut Brownie', 55.2, 67.1, 69.2, 72.4, 53.9, 39.1]
+        ]
+      },
+      series: [{
+        type: 'pie',
+        radius: 60,
+        center: ['25%', '30%']
+        // No encode specified, by default, it is '2012'.
+      }, {
+        type: 'pie',
+        radius: 60,
+        center: ['75%', '30%'],
+        encode: {
+          itemName: 'product',
+          value: '2013'
+        }
+      }, {
+        type: 'pie',
+        radius: 60,
+        center: ['25%', '75%'],
+        encode: {
+          itemName: 'product',
+          value: '2014'
+        }
+      }, {
+        type: 'pie',
+        radius: 60,
+        center: ['75%', '75%'],
+        encode: {
+          itemName: 'product',
+          value: '2015'
+        }
+      }]
+    });
+      layui.use(['laypage', 'layer', 'table'], function () {
+        var laydate = layui.laypage = layui.laypage //分页
+                , layer = layui.layer //弹层
+                , table = layui.table //表格
+
+      //执行一个 table 实例
+      table.render({
+        elem: '#demo'
+        // ,height: 420
+        , url: '${ctx}/tBooks/findBooksAll' //数据接口
+        , title: '图书列表'
+        , page: true //开启分页
+        , toolbar: '#toolbarDemo'
+        , id: 'idTest'
+        , cols: [[ //标题栏
+          // {type: 'checkbox'},
+          {field: 'b_book_no', title: '图书编号', sort: true}
+          , {field: 'b_book_name', title: '书名', sort: true}
+          , {field: 'b_book_author', title: '作者', sort: true}
+          , {field: 'b_book_number', title: '数量', sort: true}
+          , {field: 'b_book_createDate', title: '入库时间', sort: true}
+          , {field: 'b_book_type', title: '类型', sort: true}
+          , {title: '操作', toolbar: '#barDemo', align: 'center', width: 110}
+
+        ]]
+      });
+      });
+
+
   layui.config({
     base: '../static/layuiAdmin/' //静态资源所在路径
   }).extend({

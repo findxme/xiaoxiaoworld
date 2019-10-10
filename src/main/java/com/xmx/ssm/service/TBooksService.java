@@ -14,6 +14,9 @@ public interface TBooksService {
     /*查出有多少条记录ok*/
     long countByExample();
 
+    /*查询书本总数记录ok*/
+    long countByBooksTotal();
+
     /*ok*/
     /*查找全部*/
     List<Map<String ,Object>> findBooksAll();

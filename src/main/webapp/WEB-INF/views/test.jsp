@@ -19,6 +19,7 @@
     <script>
         /^http(s*):\/\//.test(location.href) || alert('请先部署到 localhost 下再访问');
     </script>
+
 </head>
 <body class="layui-layout-body">
 

@@ -46,4 +46,7 @@ public interface TBookReaderMapper {
     int updateByPrimaryKey(TBookReader record);
 
     int borrowOrReturnBook(@Param("tBook")TBook tBook, @Param("tReader")TReader tReader);
+
+    /*查询多少书借出去了*/
+    long findReadersBorrowingQuantity();
 }

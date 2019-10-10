@@ -29,4 +29,7 @@ public interface TBookReaderService {
     int deleteInfoByNo(TBookReader tBookReader);
 
     int renewBook(TBook tBook, TReader tReader, String borrowDate);
+
+    /*查询多少书借出去了*/
+    long findReadersBorrowingQuantity();
 }

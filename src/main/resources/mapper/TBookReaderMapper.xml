@@ -84,6 +84,10 @@
     ,r.b_reader_borrow_already_number=#{tReader.bReaderBorrowAlreadyNumber}
     where b.b_book_no=#{tBook.bBookNo} and r.b_reader_no=#{tReader.bReaderNo};
   </update>
+  <!--查询多少书借出去了-->
+  <select id="findReadersBorrowingQuantity" resultType="long">
+    SELECT COUNT(*) from t_book_reader where is_return_book="未还";
+  </select>
 
   <select id="pagingInfo" parameterType="map" resultType="map">
     select rb.b_book_reader_id,b.b_book_name,r.b_reader_name,a.b_admin_name

@@ -183,4 +183,9 @@ public class TBookReaderImpl implements TBookReaderService {
         return tBookReaderMapper.updateByPrimaryKey(tBookReader);
     }
 
+    @Override
+    public long findReadersBorrowingQuantity() {
+        return tBookReaderMapper.findReadersBorrowingQuantity();
+    }
+
 }
