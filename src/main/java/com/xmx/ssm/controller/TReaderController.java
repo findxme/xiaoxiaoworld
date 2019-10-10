@@ -75,7 +75,22 @@ public class TReaderController {
 
     @ResponseBody
     @RequestMapping("/insertReade")
-    public void insertReade(String no, String name, String email, String phone, @RequestParam(value = "remark", defaultValue = "") String remark) {
-        System.err.println(no+","+name+","+email+","+phone+","+remark);
+
+
+        public void insertReade(String no, String name, String email, String phone, @RequestParam(value = "remark", defaultValue = "") String remark,String password,int number) {
+                   TReader tReader=new TReader();
+            System.err.println(no+","+name+","+email+","+phone+","+remark);
+                   tReader.setbReaderNo(no);
+                   tReader.setbReaderName(name);
+                    tReader.setbReaderEmail(email);
+                    tReader.setbReaderMobile(phone);
+                    tReader.setbReaderRemarks(remark);
+                    tReader.setbReaderPassword(password);
+//                    tReader.setbReaderBorrowTime();
+                    tReader.setbReaderBorrowNumber(number);
+                    tReader.setbReaderBorrowAlreadyNumber(number);
+                    System.err.println(tReader);
+                    tReadersService.insertReader(tReader);
+
     }
 }
