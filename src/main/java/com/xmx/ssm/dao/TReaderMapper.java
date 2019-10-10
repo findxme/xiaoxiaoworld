@@ -46,5 +46,5 @@ public interface TReaderMapper {
 
     int updateByPrimaryKeySelective(TReader record);
 
-    int updateByPrimaryKey(TReader record);
+    int updateByNo(TReader record);
 }

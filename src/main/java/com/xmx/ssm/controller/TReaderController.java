@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 import java.util.Map;
@@ -28,6 +29,45 @@ public class TReaderController {
         JSONObject json = PageLimit.layuiJson(0, "", tReadersService.countByExample(), readerLimit);
         return json;
 //    return null;
+    }
+
+    @RequestMapping("/reader_listform_update")
+    public ModelAndView update(String no, ModelAndView modelAndView) {
+        TReader tReader = new TReader();
+
+        List<Map<String, Object>> readersOne = tReadersService.findReaderOne(no);
+//        System.err.println(booksOne.get(0));
+//        modelAndView.addObject("no", no);
+        modelAndView.addObject("reader", readersOne.get(0));
+//        List<Map<String, Object>> typeList = tBooksTypeService.selectBooksType();
+//        modelAndView.addObject("typeList", typeList);
+
+        modelAndView.setViewName("reader/reader_listform_update");
+        return modelAndView;
+    }
+
+    /* 根据no字段更新数据ok*/
+    @ResponseBody
+    @RequestMapping("/updateByExample")
+    public void updateByExample(String no, String name, String email, String phone, @RequestParam(value = "remark", defaultValue = "") String remark,String password,int number) {
+        TReader tReader = new TReader();
+//        tReader.setbBookNo(no);
+//        tReader.setbBookName(name);
+//        tReader.setbBookAuthor(author);
+//        tReader.setbBookNumber(number);
+//        tReader.setbBookType(type);
+        tReader.setbReaderNo(no);
+        tReader.setbReaderName(name);
+        tReader.setbReaderEmail(email);
+        tReader.setbReaderMobile(phone);
+        tReader.setbReaderRemarks(remark);
+        tReader.setbReaderPassword(password);
+//                    tReader.setbReaderBorrowTime();
+        tReader.setbReaderBorrowNumber(number);
+        tReader.setbReaderBorrowAlreadyNumber(number);
+        System.err.println(tReader);
+        tReadersService.updateReader(tReader);
+//        System.err.println(no+","+name + "," + author + "," + number + "," + type);
     }
 
     @RequestMapping("/readerAddView")
@@ -64,7 +104,7 @@ public class TReaderController {
     /*条件查询*/
     @ResponseBody
     @RequestMapping("/findReaderOne")
-    public int findReaderOne(String no) {
+    public int findReaderOne(String no,String name) {
 
         List<Map<String, Object>> readerOne = tReadersService.findReaderOne(no);
         if (readerOne.size() == 0) {

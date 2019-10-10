@@ -100,8 +100,8 @@
 
                 var index = layer.open({
                     type: 2
-                    , title: '图书编号：'+data.b_book_no
-                    , content: 'book_listform_update?id='+data.b_book_no
+                    , title: '读者编号：'+data.b_reader_no
+                    , content: 'reader_listform_update?no='+data.b_reader_no
                     // ,maxmin: true
                     , area: ['350px', '440px']
                 });

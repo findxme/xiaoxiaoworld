@@ -46,8 +46,8 @@ public class TReadersServiceImpl implements TReadersService {
     }
 
     @Override
-    public void updateReader(TReader tReader) {
-
+    public int updateReader(TReader tReader) {
+        return  tReaderMapper.updateByNo(tReader);
     }
 
     @Override

@@ -24,7 +24,7 @@ public interface TReadersService {
     int insertReader(TReader tReader);
 
     /*更新读者信息*/
-    void updateReader(TReader tReader);
+    int updateReader(TReader tReader);
 
     /*条件查询*/
     List<TReader> findReadersOne(TReader tReader);
