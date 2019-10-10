@@ -1,5 +1,7 @@
 package com.xmx.ssm.entity;
 
+import java.util.Date;
+
 public class TReader {
     private Integer bReaderId;
 
@@ -15,7 +17,7 @@ public class TReader {
 
     private Integer bReaderBorrowAlreadyNumber;
 
-    private Double bReaderBorrowTime;
+    private Date bReaderBorrowTime;
 
     private String bReaderMobile;
 
@@ -34,31 +36,15 @@ public class TReader {
     }
 
     public void setbReaderNo(String bReaderNo) {
-        this.bReaderNo = bReaderNo == null ? null : bReaderNo.trim();
+        this.bReaderNo = bReaderNo;
     }
 
     public String getbReaderName() {
         return bReaderName;
     }
 
-    @Override
-    public String toString() {
-        return "TReader{" +
-                "bReaderId=" + bReaderId +
-                ", bReaderNo='" + bReaderNo + '\'' +
-                ", bReaderName='" + bReaderName + '\'' +
-                ", bReaderEmail='" + bReaderEmail + '\'' +
-                ", bReaderPassword='" + bReaderPassword + '\'' +
-                ", bReaderBorrowNumber=" + bReaderBorrowNumber +
-                ", bReaderBorrowAlreadyNumber=" + bReaderBorrowAlreadyNumber +
-                ", bReaderBorrowTime=" + bReaderBorrowTime +
-                ", bReaderMobile='" + bReaderMobile + '\'' +
-                ", bReaderRemarks='" + bReaderRemarks + '\'' +
-                '}';
-    }
-
     public void setbReaderName(String bReaderName) {
-        this.bReaderName = bReaderName == null ? null : bReaderName.trim();
+        this.bReaderName = bReaderName;
     }
 
     public String getbReaderEmail() {
@@ -66,7 +52,7 @@ public class TReader {
     }
 
     public void setbReaderEmail(String bReaderEmail) {
-        this.bReaderEmail = bReaderEmail == null ? null : bReaderEmail.trim();
+        this.bReaderEmail = bReaderEmail;
     }
 
     public String getbReaderPassword() {
@@ -74,7 +60,7 @@ public class TReader {
     }
 
     public void setbReaderPassword(String bReaderPassword) {
-        this.bReaderPassword = bReaderPassword == null ? null : bReaderPassword.trim();
+        this.bReaderPassword = bReaderPassword;
     }
 
     public Integer getbReaderBorrowNumber() {
@@ -93,11 +79,11 @@ public class TReader {
         this.bReaderBorrowAlreadyNumber = bReaderBorrowAlreadyNumber;
     }
 
-    public Double getbReaderBorrowTime() {
+    public Date getbReaderBorrowTime() {
         return bReaderBorrowTime;
     }
 
-    public void setbReaderBorrowTime(Double bReaderBorrowTime) {
+    public void setbReaderBorrowTime(Date bReaderBorrowTime) {
         this.bReaderBorrowTime = bReaderBorrowTime;
     }
 
@@ -106,7 +92,7 @@ public class TReader {
     }
 
     public void setbReaderMobile(String bReaderMobile) {
-        this.bReaderMobile = bReaderMobile == null ? null : bReaderMobile.trim();
+        this.bReaderMobile = bReaderMobile;
     }
 
     public String getbReaderRemarks() {
@@ -114,6 +100,6 @@ public class TReader {
     }
 
     public void setbReaderRemarks(String bReaderRemarks) {
-        this.bReaderRemarks = bReaderRemarks == null ? null : bReaderRemarks.trim();
+        this.bReaderRemarks = bReaderRemarks;
     }
 }
