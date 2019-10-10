@@ -109,6 +109,7 @@ public class TReaderController {
         List<Map<String, Object>> readerOne = tReadersService.findReaderOne(no);
         if (readerOne.size() == 0) {
             return 0;
+
         }
         return 1;
     }

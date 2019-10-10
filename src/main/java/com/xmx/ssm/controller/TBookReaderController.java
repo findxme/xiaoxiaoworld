@@ -108,4 +108,15 @@ public class TBookReaderController {
         return statusInfo;
     }
 
+
+    @ResponseBody
+    @RequestMapping("/selectDay")
+    public JSONObject selectDay(int page, int limit) {
+        int currIndex = (page - 1) * limit;
+        List<Map<String, Object>> books = tBookReaderService.selectDay(currIndex,limit);
+
+        JSONObject json = PageLimit.layuiJson(0, "", tBookReaderService.countBydayQuantity(), books);
+        return json;
+    }
 }
+

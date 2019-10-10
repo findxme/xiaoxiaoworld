@@ -111,12 +111,12 @@
 
                                 <a lay-href="${ctx}/user/dataStatistics">控制台</a>
                             </dd>
-                            <dd data-name="console">
-                                <a lay-href="${ctx}/static/layuiAdmin/src/views/home/homepage1.jsp">主页一</a>
-                            </dd>
-                            <dd data-name="console">
-                                <a lay-href="${ctx}/static/layuiAdmin/src/views/home/homepage2.jsp">主页二</a>
-                            </dd>
+<%--                            <dd data-name="console">--%>
+<%--                                <a lay-href="${ctx}/static/layuiAdmin/src/views/home/homepage1.jsp">主页一</a>--%>
+<%--                            </dd>--%>
+<%--                            <dd data-name="console">--%>
+<%--                                <a lay-href="${ctx}/static/layuiAdmin/src/views/home/homepage2.jsp">主页二</a>--%>
+<%--                            </dd>--%>
                         </dl>
                     </li>
 
@@ -241,6 +241,7 @@
         <!-- 主体内容 -->
         <div class="layui-body" id="LAY_app_body">
             <div class="layadmin-tabsbody-item layui-show">
+<%--                <a lay-href="${ctx}/user/dataStatistics">控制台</a>--%>
                 <iframe src="${ctx}/user/dataStatistics" frameborder="0" class="layadmin-iframe"></iframe>
             </div>
         </div>
