@@ -3,6 +3,7 @@ package com.xmx.ssm.service.impl;
 import com.xmx.ssm.dao.TBookReaderMapper;
 import com.xmx.ssm.entity.*;
 import com.xmx.ssm.service.TBookReaderService;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +13,7 @@ import java.util.*;
 public class TBookReaderImpl implements TBookReaderService {
     private static final String notReturn = "未还";
     private static final String alreadyReturn = "已还";
-    private static final Integer bRenewFrequency = 0;
+    private static final Integer bRenewFrequency = 3;
     private static final Integer bRenewTime = 30;
 
     @Autowired
@@ -54,29 +55,28 @@ public class TBookReaderImpl implements TBookReaderService {
     }
 
     @Override
-    public List<Map<String,Object>> queryNotReturnInfo(Integer page,Integer pageSize){
-        int currentIndex = (page-1)*pageSize;
-        return tBookReaderMapper.queryNotReturnInfo(currentIndex,pageSize);
-    }
-
-    @Override
     public List<Map<String,Object>> findAll(){
         return tBookReaderMapper.findAll();
     }
 
     @Override
-    public List<Map<String,Object>> findInfoByBook(String bookNo,Integer page,Integer pageSize){
-        int currentIndex = (page-1)*pageSize;
-        return tBookReaderMapper.findInfoByBook(bookNo,currentIndex,pageSize);
-    }
-
-    @Override
-    public int borrowBook(TBook tBook, TReader tReader,TAdmin tAdmin){
+    public int borrowBook(TBook tBook, TReader tReader){
+        System.out.println(tBook.getbBookNo()+","+tReader.getbReaderNo());
         if(tBook.getbBookNo()==null||tReader.getbReaderNo()==null){
             return 0;
         }
         if(this.queryInfoByBookReader(tBook.getbBookNo(),tReader.getbReaderNo())!=null){
             return -2;
+        }
+        TBookReader tBookReader = new TBookReader();
+        tBookReader.setbBorrowDate(new Date());
+        tBookReader.setbBookNo(tBook.getbBookNo());
+        tBookReader.setbReaderNo(tReader.getbReaderNo());
+        tBookReader.setbUserNo("admin1");
+        tBookReader.setbOverDate(0);
+        tBookReader.setIsReturnBook(notReturn);
+        if(tBookReaderMapper.insert(tBookReader)==0){
+            return 0;
         }
 
         //书，读者的书的数量
@@ -93,27 +93,11 @@ public class TBookReaderImpl implements TBookReaderService {
         tReader.setbReaderBorrowNumber(--readerBorrowNumber);
         tReader.setbReaderBorrowAlreadyNumber(++readerAlNum);
 
-        if(tBookReaderMapper.borrowOrReturnBook(tBook,tReader)==0){
-            return 0;
-        }
-
-
-        TBookReader tBookReader = new TBookReader();
-        tBookReader.setbBorrowDate(new Date());
-        tBookReader.setbBookNo(tBook.getbBookNo());
-        tBookReader.setbReaderNo(tReader.getbReaderNo());
-        tBookReader.setbUserNo(tAdmin.getbAdminNo());
-        tBookReader.setbOverDate(0);
-        tBookReader.setIsReturnBook(notReturn);
-
-
-        System.out.println("这里运行");
-        return tBookReaderMapper.insert(tBookReader);
-
+        return tBookReaderMapper.borrowOrReturnBook(tBook,tReader);
     }
 
     @Override
-    public int returnBook(TBook tBook,TReader tReader,TAdmin tAdmin){
+    public int returnBook(TBook tBook,TReader tReader){
         if(tBook.getbBookNo()==null||tReader.getbReaderNo()==null){
             return 0;
         }
@@ -179,25 +163,40 @@ public class TBookReaderImpl implements TBookReaderService {
      *
      * @param tBook
      * @param tReader
+     * @param borrowDate
      *
      * 如果已经续借了三次，就无法再续借
      * @return
      */
     @Override
-    public int renewBook(TBook tBook, TReader tReader){
+    public int renewBook(TBook tBook, TReader tReader, String borrowDate){
         TBookReader tBookReader = this.queryInfoByBookReader(tBook.getbBookNo(),tReader.getbReaderNo());
         if(tBookReader==null){
             return 0;
         }
         tBookReader.setbOverDate(0);
         Integer time = tBookReader.getbRenewFrequency();
-        if(time<=bRenewFrequency){
-            System.out.println("运行借的次数以为空");
-            return -1;
+        if(time==bRenewFrequency){
+            return 2;
         }
-        tBookReader.setbRenewFrequency(--time);
+        tBookReader.setbRenewFrequency(++time);
         tBookReader.setbRenewTime(bRenewTime);
         return tBookReaderMapper.updateByPrimaryKey(tBookReader);
+    }
+
+    @Override
+    public long findReadersBorrowingQuantity() {
+        return tBookReaderMapper.findReadersBorrowingQuantity();
+    }
+
+    @Override
+    public List<Map<String, Object>> selectDay(@Param("currIndex") int currIndex, @Param("pageSize") int pageSize) {
+        return tBookReaderMapper.selectDay(currIndex,pageSize);
+    }
+
+    @Override
+    public long countBydayQuantity() {
+        return tBookReaderMapper.countBydayQuantity();
     }
 
 }

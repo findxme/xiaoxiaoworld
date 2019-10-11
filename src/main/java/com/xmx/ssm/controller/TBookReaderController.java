@@ -1,11 +1,9 @@
 package com.xmx.ssm.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.xmx.ssm.entity.TAdmin;
 import com.xmx.ssm.entity.TBook;
 import com.xmx.ssm.entity.TReader;
 import com.xmx.ssm.entity.messageInfo.StatusInfo;
-import com.xmx.ssm.service.TAdminService;
 import com.xmx.ssm.service.TBookReaderService;
 import com.xmx.ssm.service.TBooksService;
 import com.xmx.ssm.service.TReadersService;
@@ -27,9 +25,6 @@ public class TBookReaderController {
     private TBookReaderService tBookReaderService;
 
     @Autowired
-    private TAdminService tAdminService;
-
-    @Autowired
     private TBooksService tBooksService;
 
     @Autowired
@@ -42,7 +37,7 @@ public class TBookReaderController {
 
     @RequestMapping("/bookBorrowReturnInfo")
     public String bookBorrowReturnInfo(){
-        return "book_reader/worksheetInfo";
+        return "/WEB-INF/views/book_reader/worksheetInfo.jsp";
     }
 
 //    JSONObject json = new JSONObject();
@@ -56,17 +51,13 @@ public class TBookReaderController {
     @RequestMapping("/books")
     @ResponseBody
     public JSONObject getBookInfo(int page,int limit){
+
+//        System.err.println(tBookReaderService.findAll());
+
         List<Map<String,Object>> list =  tBookReaderService.pagingInfo(page,limit);
-        return PageLimit.layuiJson(0,"",tBookReaderService.countInfos(),list);
-    }
+//        List<Map<String,Object>> list =  tBookReaderService.findAll();
 
-
-
-    @RequestMapping("/notReturnBook")
-    @ResponseBody
-    public JSONObject getNotReturnBook(int page,int limit){
-        List<Map<String,Object>> list =  tBookReaderService.queryNotReturnInfo(page,limit);
-        System.out.println(list);
+//        System.err.println(PageLimit.layuiJson(0,"",tBookReaderService.countInfos(),list));
         return PageLimit.layuiJson(0,"",tBookReaderService.countInfos(),list);
     }
 
@@ -74,13 +65,10 @@ public class TBookReaderController {
     @RequestMapping("borrowBook")
     @ResponseBody
     public StatusInfo borrowBook(@Param("bookNo")String bookNo,
-                                 @Param("readerNo")String readerNo,
-                                 @Param("adminNo")String adminNo){
+                                 @Param("readerNo")String readerNo){
         TBook tBook = tBooksService.selectByPrimaryKey(bookNo);
         TReader tReader = tReadersService.findReaderByNo(readerNo);
-        TAdmin tAdmin = tAdminService.findAdminByNo(adminNo);
-        int result = tBookReaderService.borrowBook(tBook,tReader,tAdmin);
-
+        int result = tBookReaderService.borrowBook(tBook,tReader);
         StatusInfo statusInfo = new StatusInfo();
         if(result==0){
             statusInfo.setStatus(500);
@@ -94,23 +82,16 @@ public class TBookReaderController {
             statusInfo.setStatus(555);
             statusInfo.setMessage("本书，你已借过");
         }
-
         return statusInfo;
     }
 
     @RequestMapping("returnBook")
     @ResponseBody
     public StatusInfo returnBook(@Param("bookNo")String bookNo,
-                                 @Param("readerNo")String readerNo,
-                                 @Param("adminNo")String adminNo){
-
-
-
+                                 @Param("readerNo")String readerNo){
         TBook tBook = tBooksService.selectByPrimaryKey(bookNo);
         TReader tReader = tReadersService.findReaderByNo(readerNo);
-        TAdmin tAdmin = tAdminService.findAdminByNo(adminNo);
-
-        int result = tBookReaderService.returnBook(tBook,tReader,tAdmin);
+        int result = tBookReaderService.returnBook(tBook,tReader);
         StatusInfo statusInfo = new StatusInfo();
         if(result==-2){
             statusInfo.setStatus(404);
@@ -127,30 +108,15 @@ public class TBookReaderController {
         return statusInfo;
     }
 
-    @RequestMapping("/borrowingInfo")
-    public String borRetInfo(){
-        return "book_reader/returnOrRenew";
-    }
 
-    @RequestMapping("/renewBook")
     @ResponseBody
-    public StatusInfo renewBook(@Param("bookNo")String bookNo,
-                                @Param("readerNo")String readerNo){
-        TBook tBook = tBooksService.selectByPrimaryKey(bookNo);
-        TReader tReader = tReadersService.findReaderByNo(readerNo);
-        StatusInfo statusInfo = new StatusInfo();
-        int result = tBookReaderService.renewBook(tBook,tReader);
-        if(result==-1){
-            statusInfo.setStatus(403);
-            statusInfo.setMessage("续借次数已用完");
-        }else if(result==0){
-            statusInfo.setStatus(404);
-            statusInfo.setMessage("没借过");
-        }else if(result==1){
-            statusInfo.setMessage("续借成功");
-        }
-        return statusInfo;
+    @RequestMapping("/selectDay")
+    public JSONObject selectDay(int page, int limit) {
+        int currIndex = (page - 1) * limit;
+        List<Map<String, Object>> books = tBookReaderService.selectDay(currIndex,limit);
+
+        JSONObject json = PageLimit.layuiJson(0, "", tBookReaderService.countBydayQuantity(), books);
+        return json;
     }
-
-
 }
+
