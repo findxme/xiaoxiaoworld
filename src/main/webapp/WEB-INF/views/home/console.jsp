@@ -230,12 +230,12 @@
         </div>
     </div>
 </div>
-<script type="text/html" id="toolbarDemo">
-    <div class="layui-btn-container">
-        <button class="layui-btn layui-btn-sm" onclick="add()">新增</button>
-        <%--        <button class="layui-btn layui-btn-sm" onclick="deleteList()">删除</button>--%>
-    </div>
-</script>
+<%--<script type="text/html" id="toolbarDemo">--%>
+<%--    <div class="layui-btn-container">--%>
+<%--        <button class="layui-btn layui-btn-sm" onclick="add()">新增</button>--%>
+<%--        &lt;%&ndash;        <button class="layui-btn layui-btn-sm" onclick="deleteList()">删除</button>&ndash;%&gt;--%>
+<%--    </div>--%>
+<%--</script>--%>
 
 <%--  <script src="${ctx}/static/layuiAdmin/layui/layui.js?t=1"></script>--%>
 <script src="${ctx}/static/js/echarts.min.js"></script>

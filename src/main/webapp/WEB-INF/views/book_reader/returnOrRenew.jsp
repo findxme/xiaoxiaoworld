@@ -46,13 +46,13 @@
             // ,toolbar: 'default' //开启工具栏，此处显示默认图标，可以自定义模板，详见文档
 
             ,cols: [[ //标题栏
-                {field: 'b_book_name', title: '书名',width:250}
-                ,{field: 'b_reader_name', title: '读者',width:250}
-                ,{field: 'b_admin_name', title: '管理员',width:250}
-                ,{field: 'b_borrow_date', title: '借阅时间',width:150}
-                ,{field: 'b_renew_frequency', title: '还能续借次数',width:150}
-                ,{field: 'b_renew_time', title: '续借时间长度',width:125}
-                ,{ title: '操作', toolbar: '#barDemo',align:'center',width:110}
+                {field: 'b_book_name', title: '书名',sort: true}
+                ,{field: 'b_reader_name', title: '读者',sort: true}
+                ,{field: 'b_admin_name', title: '管理员',sort: true}
+                ,{field: 'b_borrow_date', title: '借阅时间',sort: true}
+                ,{field: 'b_renew_frequency', title: '还能续借次数',sort: true}
+                ,{field: 'b_renew_time', title: '续借时间长度',sort: true}
+                ,{ title: '操作', toolbar: '#barDemo',align:'center',sort: true}
             ]]
 
         });

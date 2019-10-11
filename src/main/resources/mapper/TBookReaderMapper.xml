@@ -87,6 +87,16 @@
     limit #{currentIndex},#{pageSize}
   </select>
 
+
+
+  <select id="findInfoByBook" parameterType="String" resultType="map">
+    select rb.b_book_no,r.b_reader_name,a.b_admin_name,rb.b_borrow_date,rb.b_return_date,rb.is_return_book
+    from t_admin a,t_book_reader rb,t_reader r
+    where a.b_admin_no=rb.b_user_no
+    and r.b_reader_no=rb.b_reader_no
+    and rb.b_book_no=#{bookNo};
+  </select>
+
   <update id="borrowOrReturnBook" parameterType="map">
     update t_book b,t_reader r
     set b.b_book_number=#{tBook.bBookNumber}

@@ -49,11 +49,11 @@
             ,limits:[5,15,25]
             ,cols: [[ //标题栏
                 {type:'checkbox'}
-                ,{field: 'b_book_reader_id', title: '工单编号',sort: true,width:150}
-                ,{field: 'b_book_name', title: '书名',width:250}
-                ,{field: 'b_reader_name', title: '读者',width:250}
-                ,{field: 'b_admin_name', title: '管理员',width:250}
-                ,{field: 'is_return_book', title: '是否归还',width:150}
+                ,{field: 'b_book_reader_id', title: '工单编号',sort: true}
+                ,{field: 'b_book_name', title: '书名',sort: true}
+                ,{field: 'b_reader_name', title: '读者',sort: true}
+                ,{field: 'b_admin_name', title: '管理员',sort: true}
+                ,{field: 'is_return_book', title: '是否归还',sort: true}
                 ,{ title: '操作', toolbar: '#barDemo',align:'center',width:190}
 
             ]]

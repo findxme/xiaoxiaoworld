@@ -20,7 +20,7 @@
 </head>
 <body>
 <table class="layui-hide" id="demo" lay-filter="test"></table>
-
+<%--<table class="layui-hide" id="demo" lay-filter="test"></table>--%>
 <template type="text/html" id="toolbarDemo">
     <div class="layui-btn-container">
         <button class="layui-btn layui-btn-normal" lay-event="add">新增</button>
@@ -98,7 +98,7 @@
                         '          </div>\n' +
                         '         </div> '
                     // ,maxmin: true
-                    ,area: ['400px', '200px']
+                  //  ,area: ['400px', '200px']
                 });
                 $("#borrow").on("click",function(){
                     var readerNo = $("#readerNo").val();
