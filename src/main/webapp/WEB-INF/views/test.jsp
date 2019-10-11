@@ -19,7 +19,6 @@
     <script>
         /^http(s*):\/\//.test(location.href) || alert('请先部署到 localhost 下再访问');
     </script>
-
 </head>
 <body class="layui-layout-body">
 
@@ -109,14 +108,14 @@
                         <dl class="layui-nav-child">
                             <dd data-name="console" class="layui-this">
 
-                                <a lay-href="${ctx}/user/dataStatistics">控制台</a>
+                                <a lay-href="index">控制台</a>
                             </dd>
-<%--                            <dd data-name="console">--%>
-<%--                                <a lay-href="${ctx}/static/layuiAdmin/src/views/home/homepage1.jsp">主页一</a>--%>
-<%--                            </dd>--%>
-<%--                            <dd data-name="console">--%>
-<%--                                <a lay-href="${ctx}/static/layuiAdmin/src/views/home/homepage2.jsp">主页二</a>--%>
-<%--                            </dd>--%>
+                            <dd data-name="console">
+                                <a lay-href="${ctx}/static/layuiAdmin/src/views/home/homepage1.jsp">主页一</a>
+                            </dd>
+                            <dd data-name="console">
+                                <a lay-href="${ctx}/static/layuiAdmin/src/views/home/homepage2.jsp">主页二</a>
+                            </dd>
                         </dl>
                     </li>
 
@@ -237,7 +236,7 @@
             </div>
             <div class="layui-tab" lay-unauto lay-allowClose="true" lay-filter="layadmin-layout-tabs">
                 <ul class="layui-tab-title" id="LAY_app_tabsheader">
-                    <li lay-id="index" lay-attr="" class="layui-this"><i class="layui-icon layui-icon-home"></i></li>
+                    <li lay-id="index" lay-attr="home/console.html" class="layui-this"><i class="layui-icon layui-icon-home"></i></li>
                 </ul>
             </div>
         </div>
@@ -246,8 +245,7 @@
         <!-- 主体内容 -->
         <div class="layui-body" id="LAY_app_body">
             <div class="layadmin-tabsbody-item layui-show">
-<%--                <a lay-href="${ctx}/user/dataStatistics">控制台</a>--%>
-                <iframe src="${ctx}/user/dataStatistics" frameborder="0" class="layadmin-iframe"></iframe>
+                <iframe src="index" frameborder="0" class="layadmin-iframe"></iframe>
             </div>
         </div>
 
