@@ -25,7 +25,9 @@ public class TAdminServiceImpl implements TAdminService {
     }
 
     @Override
-    public TAdmin findAdminByNo(String adminNo){
-        return tAdminMapper.findAdminByNo(adminNo);
+    public long countByExample() {
+        return tAdminMapper.countByExample();
     }
+
+
 }
