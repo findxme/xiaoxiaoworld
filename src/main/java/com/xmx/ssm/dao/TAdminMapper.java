@@ -6,10 +6,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface TAdminMapper {
-
-    TAdmin findAdminByNo(@Param("bAdminNo")String bAdminNo);
-
-    long countByExample(TAdminExample example);
+    long countByExample();
 
     int deleteByExample(TAdminExample example);
 

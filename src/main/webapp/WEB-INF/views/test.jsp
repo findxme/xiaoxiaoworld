@@ -19,6 +19,7 @@
     <script>
         /^http(s*):\/\//.test(location.href) || alert('请先部署到 localhost 下再访问');
     </script>
+
 </head>
 <body class="layui-layout-body">
 
@@ -79,7 +80,7 @@
                         <dd><a lay-href="set/user/info.html">基本资料</a></dd>
                         <dd><a lay-href="set/user/password.html">修改密码</a></dd>
                         <hr>
-                        <dd id="exit" style="text-align: center;"><a>退出</a></dd>
+                        <dd layadmin-event="logout" style="text-align: center;"><a>退出</a></dd>
                     </dl>
                 </li>
 
@@ -108,14 +109,14 @@
                         <dl class="layui-nav-child">
                             <dd data-name="console" class="layui-this">
 
-                                <a lay-href="index">控制台</a>
+                                <a lay-href="${ctx}/user/dataStatistics">控制台</a>
                             </dd>
-                            <dd data-name="console">
-                                <a lay-href="${ctx}/static/layuiAdmin/src/views/home/homepage1.jsp">主页一</a>
-                            </dd>
-                            <dd data-name="console">
-                                <a lay-href="${ctx}/static/layuiAdmin/src/views/home/homepage2.jsp">主页二</a>
-                            </dd>
+<%--                            <dd data-name="console">--%>
+<%--                                <a lay-href="${ctx}/static/layuiAdmin/src/views/home/homepage1.jsp">主页一</a>--%>
+<%--                            </dd>--%>
+<%--                            <dd data-name="console">--%>
+<%--                                <a lay-href="${ctx}/static/layuiAdmin/src/views/home/homepage2.jsp">主页二</a>--%>
+<%--                            </dd>--%>
                         </dl>
                     </li>
 
@@ -161,8 +162,8 @@
                             <dd data-name="header">
                             <a lay-href="" id="book">图书</a>
                                 <script>
-                                    var adminNo = getCookie("adminNo")
-                                    var str = "${ctx}/tBookReader/bookInfoPage?adminNo="+adminNo;
+                                    var readerNo = getCookie("readerNo")
+                                    var str = "${ctx}/tBookReader/bookInfoPage?readerNo="+readerNo;
                                     document.getElementById("book").setAttribute("lay-href",str);
                                 </script>
                             </dd>
@@ -177,12 +178,7 @@
                                 <%--</dl>--%>
                             <%--</dd>--%>
                             <dd data-name="content">
-                            <a lay-href="${ctx}/tBookReader/borrowingInfo" id="returnOrRenew">消息中心（在一周内如果要归还在这里）</a>
-                            <script>
-                                str = "${ctx}/tBookReader/borrowingInfo?adminNo="+adminNo;
-                                document.getElementById("returnOrRenew").setAttribute("lay-href",str);
-                                console.log()
-                            </script>
+                            <a lay-href="${ctx}/static/layuiAdmin/src/views/app/message/index.html">消息中心（在一周内如果要归还在这里）</a>
                             </dd>
                             <dd data-name="workorder">
                                 <a lay-href="${ctx}/tBookReader/bookBorrowReturnInfo">工单系统</a>
@@ -236,7 +232,7 @@
             </div>
             <div class="layui-tab" lay-unauto lay-allowClose="true" lay-filter="layadmin-layout-tabs">
                 <ul class="layui-tab-title" id="LAY_app_tabsheader">
-                    <li lay-id="index" lay-attr="home/console.html" class="layui-this"><i class="layui-icon layui-icon-home"></i></li>
+                    <li lay-id="index" lay-attr="" class="layui-this"><i class="layui-icon layui-icon-home"></i></li>
                 </ul>
             </div>
         </div>
@@ -245,7 +241,8 @@
         <!-- 主体内容 -->
         <div class="layui-body" id="LAY_app_body">
             <div class="layadmin-tabsbody-item layui-show">
-                <iframe src="index" frameborder="0" class="layadmin-iframe"></iframe>
+<%--                <a lay-href="${ctx}/user/dataStatistics">控制台</a>--%>
+                <iframe src="${ctx}/user/dataStatistics" frameborder="0" class="layadmin-iframe"></iframe>
             </div>
         </div>
 
@@ -265,21 +262,6 @@
         loginName = getCookie("adminName");
     }
     console.log(document.cookie)
-
-    $("#exit").on("click",function(){
-        if(getCookie("adminName")!=null){
-            deleteCookie("adminName");
-            deleteCookie("adminNo")
-        }
-        if(getCookie("reader")!=null){
-            deleteCookie("adminName");
-            deleteCookie("adminNo")
-        }
-
-        window.location="${ctx}/user/toLogin";
-    })
-
-
     $("#loginName").html(loginName)
     layui.config({
         base: '../static/layuiAdmin/' //静态资源所在路径

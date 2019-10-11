@@ -76,34 +76,66 @@
     b_over_date, is_return_book, b_renew_frequency, b_renew_time
   </sql>
 
-  <select id="queryNotReturnInfo" resultType="map">
-    select b.b_book_name,r.b_reader_name,a.b_admin_name,rb.b_borrow_date,rb.b_renew_frequency,rb.b_renew_time,rb.is_return_book,r.b_reader_no,b.b_book_no
-    from t_book b,t_admin a,t_book_reader rb,t_reader r
-    where a.b_admin_no=rb.b_user_no
-    and r.b_reader_no=rb.b_reader_no
-    and b.b_book_no=rb.b_book_no
-    and rb.is_return_book="未还"
-    limit #{currentIndex},#{pageSize}
-  </select>
-
-  <select id="findInfoByBook" parameterType="String" resultType="map">
-    select rb.b_book_no,r.b_reader_name,a.b_admin_name,rb.b_borrow_date,rb.b_return_date,rb.is_return_book
-    from t_admin a,t_book_reader rb,t_reader r
-    where a.b_admin_no=rb.b_user_no
-    and r.b_reader_no=rb.b_reader_no
-    and rb.b_book_no=#{bookNo};
-  </select>
 
   <update id="borrowOrReturnBook" parameterType="map">
     update t_book b,t_reader r
     set b.b_book_number=#{tBook.bBookNumber}
     ,r.b_reader_borrow_number=#{tReader.bReaderBorrowNumber}
     ,r.b_reader_borrow_already_number=#{tReader.bReaderBorrowAlreadyNumber}
-    where b.b_book_no=#{tBook.bBookNo} and r.b_reader_no=#{tReader.bReaderNo}
+    where b.b_book_no=#{tBook.bBookNo} and r.b_reader_no=#{tReader.bReaderNo};
   </update>
+  <!--查询多少书借出去了-->
+  <select id="findReadersBorrowingQuantity" resultType="long">
+    SELECT COUNT(*) from t_book_reader where is_return_book="未还";
+  </select>
+<!--<select id="selectDay" resultType="map">-->
+<!--SELECT-->
+<!--	t_book_reader.b_book_reader_id,-->
+<!--	t_book_reader.b_book_no,-->
+<!--	t_book.b_book_name,-->
+<!--	t_book_reader.b_user_no,-->
+<!--	t_admin.b_admin_name,-->
+<!--	t_book_reader.b_reader_no,-->
+<!--	t_reader.b_reader_name,-->
+<!--	t_book_reader.b_borrow_date,-->
+<!--	t_book_reader.is_return_book-->
+<!--FROM-->
+<!--	t_book_reader,-->
+<!--	t_reader,-->
+<!--	t_book,-->
+<!--	t_admin-->
+<!--WHERE-->
+<!--	t_book_reader.b_book_no = t_book.b_book_no-->
+<!--	AND t_book_reader.b_user_no = t_admin.b_admin_no-->
+<!--	AND t_book_reader.b_reader_no = t_reader.b_reader_no-->
+<!--	AND t_book_reader.b_borrow_date = date_format(now(), '%Y-%m-%d' )limit #{currIndex},#{pageSize};-->
+<!--</select>-->
 
+  <select id="countBydayQuantity" resultType="long">
+    select count(*) as dayQuantity from (SELECT
+	t_book_reader.b_book_reader_id,
+	t_book_reader.b_book_no,
+	t_book.b_book_name,
+	t_book_reader.b_user_no,
+	t_admin.b_admin_name,
+	t_book_reader.b_reader_no,
+	t_reader.b_reader_name,
+	t_book_reader.b_borrow_date,
+	t_book_reader.is_return_book
+
+FROM
+	t_book_reader,
+	t_reader,
+	t_book,
+	t_admin
+WHERE
+	t_book_reader.b_book_no = t_book.b_book_no
+	AND t_book_reader.b_user_no = t_admin.b_admin_no
+	AND t_book_reader.b_reader_no = t_reader.b_reader_no
+	AND t_book_reader.b_borrow_date = date_format( now(), '%Y-%m-%d' )) as total;
+  </select>
   <select id="pagingInfo" parameterType="map" resultType="map">
-    select rb.b_book_reader_id,b.b_book_name,r.b_reader_name,a.b_admin_name,rb.is_return_book
+    select rb.b_book_reader_id,b.b_book_name,r.b_reader_name,a.b_admin_name
     from t_book_reader rb,t_book b,t_reader r,t_admin a
     where rb.b_book_no=b.b_book_no
     and rb.b_reader_no=r.b_reader_no
@@ -167,11 +199,11 @@
   <insert id="insert" parameterType="com.xmx.ssm.entity.TBookReader">
     insert into t_book_reader (b_book_reader_id, b_book_no, b_reader_no, 
       b_user_no, b_borrow_date, b_return_date, 
-      b_over_date, is_return_book,
+      b_over_date, is_return_book, b_renew_frequency, 
       b_renew_time)
     values (#{bBookReaderId,jdbcType=INTEGER}, #{bBookNo,jdbcType=VARCHAR}, #{bReaderNo,jdbcType=VARCHAR}, 
       #{bUserNo,jdbcType=VARCHAR}, #{bBorrowDate,jdbcType=DATE}, #{bReturnDate,jdbcType=DATE}, 
-      #{bOverDate,jdbcType=INTEGER}, #{isReturnBook,jdbcType=VARCHAR},
+      #{bOverDate,jdbcType=INTEGER}, #{isReturnBook,jdbcType=VARCHAR}, #{bRenewFrequency,jdbcType=INTEGER}, 
       #{bRenewTime,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.xmx.ssm.entity.TBookReader">

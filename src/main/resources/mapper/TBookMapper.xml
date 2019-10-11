@@ -310,7 +310,9 @@
     select b_book_type,COUNT(b_book_id) as quantity from t_book GROUP BY b_book_type
   </select>
 
-
+<select id="countByBooksTotal" resultType="long">
+select sum(b_book_number) as bookTotal from t_book;
+</select>
 
 
 
