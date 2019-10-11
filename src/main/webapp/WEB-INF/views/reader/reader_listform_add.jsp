@@ -49,6 +49,21 @@
             </div>
         </div>
         <div class="layui-form-item">
+                       <label class="layui-form-label">密码</label>
+                       <div class="layui-input-inline">
+                           <input type="text" name="password" lay-verify="required|password" min="0" placeholder="请输入密码" autocomplete="off"
+                                                           class="layui-input">
+                        </div>
+                    </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">可借数量</label>
+                    <div class="layui-input-inline">
+                        <input type="number" name="number" lay-verify="number" min="0" placeholder="请输入数量" autocomplete="off"
+                                +                       class="layui-input">
+                    </div>
+                </div>
+
+               <div class="layui-form-item">
             <label class="layui-form-label">备注</label>
             <div class="layui-input-inline">
                 <textarea name="remark"  placeholder="请输入" class="layui-textarea"></textarea>

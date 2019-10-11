@@ -18,7 +18,6 @@
     <script src="${ctx}/static/layuiAdmin/layui/layui.js"></script>
 </head>
 <body>
-<h1>测试测试</h1>
 <table class="layui-hide" id="demo" lay-filter="test"></table>
 
 
@@ -31,7 +30,7 @@
 </template>
 
 <script type="text/html" id="barDemo">
-    <button class="layui-btn layui-btn-xs" lay-event="borrowAndReturn">借还信息</button>
+    <button class="layui-btn layui-btn-xs" lay-event="edit">编辑</button>
     <button class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</button>
 </script>
 
@@ -56,13 +55,14 @@
             ,page: true //开启分页
             ,toolbar: '#toolbarDemo' //开启工具栏，此处显示默认图标，可以自定义模板，详见文档
             ,totalRow: true //开启合计行
-            ,limits:[5,15,25]
             ,cols: [[ //标题栏
                 {type:'checkbox'}
-                ,{field: 'b_book_reader_id', title: '工单编号',sort: true}
+                ,{field: 'b_book_no', title: '图书编号',sort: true}
                 ,{field: 'b_book_name', title: '书名'}
-                ,{field: 'b_reader_name', title: '读者'}
-                ,{field: 'b_admin_name', title: '管理员'}
+                ,{field: 'b_book_author', title: '作者'}
+                ,{field: 'b_book_number', title: '数量',sort: true}
+                ,{field: 'b_book_createDate', title: '入库时间'}
+                ,{field: 'b_book_type', title: '类型'}
                 ,{ title: '操作', toolbar: '#barDemo',align:'center',width:110}
 
             ]]
@@ -126,7 +126,7 @@
                     //向服务端发送删除指令
 
                 });
-            } else if(layEvent === 'borrowAndReturn'){
+            } else if(layEvent === 'edit'){
 
                 layer.msg('编辑操作'+data.id);
 

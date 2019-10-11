@@ -18,12 +18,18 @@ public class TBooksServiceImpl implements TBooksService {
 
 
     /*OK*/
-
     /*查找有多少条记录*/
     @Override
     public long  countByExample(){
         return tBookMapper.countByExample();
     }
+
+    @Override
+    public long countByBooksTotal() {
+        return tBookMapper.countByBooksTotal();
+
+    }
+
     /*查找全部*/
     @Override
     public List<Map<String, Object>> findBooksAll() {
