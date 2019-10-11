@@ -60,7 +60,7 @@
                 ,{field: 'b_book_number', title: '数量',sort: true}
                 ,{field: 'b_book_createDate', title: '入库时间'}
                 ,{field: 'b_book_type', title: '类型'}
-                ,{ title: '操作', toolbar: '#barDemo',align:'center',width:110}
+                ,{ title: '操作', toolbar: '#barDemo',align:'center',width:130}
             ]]
 
         });

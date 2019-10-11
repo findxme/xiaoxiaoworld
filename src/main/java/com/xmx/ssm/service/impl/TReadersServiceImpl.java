@@ -36,24 +36,26 @@ public class TReadersServiceImpl implements TReadersService {
     }
 
     @Override
-    public void deleteReadersNo(TReader tReader) {
-
+    public int deleteReadersNo(TReader tReader) {
+        return tReaderMapper.deleteByNo(tReader);
     }
 
     @Override
-    public void insertReader(TReader tReader) {
-        tReaderMapper.insert(tReader);
+    public int insertReader(TReader tReader) {
+        return tReaderMapper.insert(tReader);
     }
 
     @Override
-    public void updateReader(TReader tReader) {
-
+    public int updateReader(TReader tReader) {
+        return  tReaderMapper.updateByNo(tReader);
     }
 
     @Override
     public List<TReader> findReadersOne(TReader tReader) {
         return null;
     }
+
+
 
     @Override
     public TReader findReaderByNo(String readerNo){

@@ -175,11 +175,9 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.xmx.ssm.entity.TAdminExample" resultType="java.lang.Long">
+  <select id="countByExample" resultType="java.lang.Long">
     select count(*) from t_admin
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
+
   </select>
   <update id="updateByExampleSelective" parameterType="map">
     update t_admin
