@@ -4,6 +4,7 @@ import com.xmx.ssm.entity.TAdmin;
 import com.xmx.ssm.entity.TBook;
 import com.xmx.ssm.entity.TBookReader;
 import com.xmx.ssm.entity.TReader;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.Date;
 import java.util.List;
@@ -32,4 +33,10 @@ public interface TBookReaderService {
 
     /*查询多少书借出去了*/
     long findReadersBorrowingQuantity();
+
+    /*查询当天借阅记录*/
+    List<Map<String,Object>> selectDay(@Param("currIndex") int currIndex, @Param("pageSize") int pageSize);
+
+
+    long countBydayQuantity();
 }

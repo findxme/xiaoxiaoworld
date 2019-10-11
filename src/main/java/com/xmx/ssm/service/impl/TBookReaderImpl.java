@@ -3,6 +3,7 @@ package com.xmx.ssm.service.impl;
 import com.xmx.ssm.dao.TBookReaderMapper;
 import com.xmx.ssm.entity.*;
 import com.xmx.ssm.service.TBookReaderService;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -186,6 +187,16 @@ public class TBookReaderImpl implements TBookReaderService {
     @Override
     public long findReadersBorrowingQuantity() {
         return tBookReaderMapper.findReadersBorrowingQuantity();
+    }
+
+    @Override
+    public List<Map<String, Object>> selectDay(@Param("currIndex") int currIndex, @Param("pageSize") int pageSize) {
+        return tBookReaderMapper.selectDay(currIndex,pageSize);
+    }
+
+    @Override
+    public long countBydayQuantity() {
+        return tBookReaderMapper.countBydayQuantity();
     }
 
 }

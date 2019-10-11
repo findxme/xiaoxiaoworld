@@ -53,10 +53,11 @@
                 {field: 'b_reader_no', title: '读者编号', sort: true}
                 , {field: 'b_reader_name', title: '姓名', sort: true}
                 , {field: 'b_reader_email', title: '邮箱', sort: true}
+                // , {field: 'b_reader_borrow_already_number', title: '借阅数量', sort: true}
                 , {field: 'b_reader_mobile', title: '手机号', sort: true}
-                , {field: 'b_reader_password', title:'读者密码',sort:true}
-                , {field: 'b_reader_borrow_already_number', title: '已借阅数量', sort: true}
-                , {field: 'b_reader_borrow_number', title:'读者可借阅数',sort:true}
+                    , {field: 'b_reader_password', title:'读者密码',sort:true}
+                               , {field: 'b_reader_borrow_already_number', title: '已借阅数量', sort: true}
+                               , {field: 'b_reader_borrow_number', title:'读者可借阅数',sort:true}
                 , {field: 'b_reader_Remarks', title: '备注', sort: true}
                 , {title: '操作', toolbar: '#barDemo', align: 'center', width: 110}
 
@@ -75,14 +76,14 @@
                 , layEvent = obj.event //获得 lay-event 对应的值
                 , field = obj.field;
             if (layEvent === 'del') {
-                layer.confirm('确定删除' + data.b_book_no + "号记录?", function (index) {
+                layer.confirm('确定删除' + data.b_reader_no + "号记录?", function (index) {
                     //向服务端发送删除指令
-                    var id = data.b_book_no;
-                    // layer.msg(id);
+                    var id = data.b_reader_no;
+                     layer.msg(id);
                     $.ajax({
                         type: 'POST',
-                        url: "${ctx}/tBooks/deleteByTBook",
-                        data: {id: data.b_book_no},
+                        url: "${ctx}/admin/readerAdmin/deleteByTReader",
+                        data: {no: data.b_reader_no},
                         success: function (msg) {
                             if (msg === 0) {
                                 layer.msg("已借出书籍无法删除！", {icon: 5});
@@ -99,8 +100,8 @@
 
                 var index = layer.open({
                     type: 2
-                    , title: '图书编号：'+data.b_book_no
-                    , content: 'book_listform_update?id='+data.b_book_no
+                    , title: '读者编号：'+data.b_reader_no
+                    , content: 'reader_listform_update?no='+data.b_reader_no
                     // ,maxmin: true
                     , area: ['350px', '440px']
                 });

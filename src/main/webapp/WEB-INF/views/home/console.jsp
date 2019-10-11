@@ -14,7 +14,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
   <link rel="stylesheet" href="${ctx}/static/layuiAdmin/layui/css/layui.css" media="all">
   <link rel="stylesheet" href="${ctx}/static/layuiAdmin/style/admin.css" media="all">
-
+  <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
 
 
 </head>
@@ -33,21 +33,21 @@
                   <div carousel-item>
                     <ul class="layui-row layui-col-space10">
                       <li class="layui-col-xs3">
-                        <a lay-href="home/homepage1.html">
-                          <i class="layui-icon layui-icon-console"></i>
-                          <cite>主页一</cite>
+                        <a lay-href="${ctx}/tBooks/list">
+                          <i class="layui-icon layui-icon-read"></i>
+                          <cite>图书列表</cite>
                         </a>
                       </li>
                       <li class="layui-col-xs3">
-                        <a lay-href="home/homepage2.html">
-                          <i class="layui-icon layui-icon-chart"></i>
-                          <cite>主页二</cite>
+                        <a lay-href="${ctx}/tBooksType/booksType">
+                          <i class="layui-icon layui-icon-form"></i>
+                          <cite>图书分类</cite>
                         </a>
                       </li>
                       <li class="layui-col-xs3">
-                        <a lay-href="component/layer/list.html">
-                          <i class="layui-icon layui-icon-template-1"></i>
-                          <cite>弹层</cite>
+                        <a lay-href="${ctx}/admin/readerAdmin/readerView">
+                          <i class="layui-icon layui-icon-user"></i>
+                          <cite>读者列表</cite>
                         </a>
                       </li>
                       <li class="layui-col-xs3">
@@ -56,14 +56,14 @@
                           <cite>聊天</cite>
                         </a>
                       </li>
+<%--                      <li class="layui-col-xs3">--%>
+<%--                        <a lay-href="component/progress/index.html">--%>
+<%--                          <i class="layui-icon layui-icon-find-fill"></i>--%>
+<%--                          <cite>进度条</cite>--%>
+<%--                        </a>--%>
+<%--                      </li>--%>
                       <li class="layui-col-xs3">
-                        <a lay-href="component/progress/index.html">
-                          <i class="layui-icon layui-icon-find-fill"></i>
-                          <cite>进度条</cite>
-                        </a>
-                      </li>
-                      <li class="layui-col-xs3">
-                        <a lay-href="app/workorder/list.html">
+                        <a lay-href="${ctx}/tBookReader/bookBorrowReturnInfo">
                           <i class="layui-icon layui-icon-survey"></i>
                           <cite>工单</cite>
                         </a>
@@ -77,60 +77,66 @@
                       <li class="layui-col-xs3">
                         <a lay-href="set/system/website.html">
                           <i class="layui-icon layui-icon-set"></i>
-                          <cite>设置</cite>
+                          <cite>基本资料</cite>
+                        </a>
+                      </li>
+                      <li class="layui-col-xs3">
+                        <a lay-href="set/user/info.html">
+                          <i class="layui-icon layui-icon-about"></i>
+                          <cite>关于本站</cite>
                         </a>
                       </li>
                     </ul>
-                    <ul class="layui-row layui-col-space10">
-                      <li class="layui-col-xs3">
-                        <a lay-href="set/user/info.html">
-                          <i class="layui-icon layui-icon-set"></i>
-                          <cite>我的资料</cite>
-                        </a>
-                      </li>
-                      <li class="layui-col-xs3">
-                        <a lay-href="set/user/info.html">
-                          <i class="layui-icon layui-icon-set"></i>
-                          <cite>我的资料</cite>
-                        </a>
-                      </li>
-                      <li class="layui-col-xs3">
-                        <a lay-href="set/user/info.html">
-                          <i class="layui-icon layui-icon-set"></i>
-                          <cite>我的资料</cite>
-                        </a>
-                      </li>
-                      <li class="layui-col-xs3">
-                        <a lay-href="set/user/info.html">
-                          <i class="layui-icon layui-icon-set"></i>
-                          <cite>我的资料</cite>
-                        </a>
-                      </li>
-                      <li class="layui-col-xs3">
-                        <a lay-href="set/user/info.html">
-                          <i class="layui-icon layui-icon-set"></i>
-                          <cite>我的资料</cite>
-                        </a>
-                      </li>
-                      <li class="layui-col-xs3">
-                        <a lay-href="set/user/info.html">
-                          <i class="layui-icon layui-icon-set"></i>
-                          <cite>我的资料</cite>
-                        </a>
-                      </li>
-                      <li class="layui-col-xs3">
-                        <a lay-href="set/user/info.html">
-                          <i class="layui-icon layui-icon-set"></i>
-                          <cite>我的资料</cite>
-                        </a>
-                      </li>
-                      <li class="layui-col-xs3">
-                        <a lay-href="set/user/info.html">
-                          <i class="layui-icon layui-icon-set"></i>
-                          <cite>我的资料</cite>
-                        </a>
-                      </li>
-                    </ul>
+<%--                    <ul class="layui-row layui-col-space10">--%>
+<%--                      <li class="layui-col-xs3">--%>
+<%--                        <a lay-href="set/user/info.html">--%>
+<%--                          <i class="layui-icon layui-icon-set"></i>--%>
+<%--                          <cite>我的资料</cite>--%>
+<%--                        </a>--%>
+<%--                      </li>--%>
+<%--                      <li class="layui-col-xs3">--%>
+<%--                        <a lay-href="set/user/info.html">--%>
+<%--                          <i class="layui-icon layui-icon-set"></i>--%>
+<%--                          <cite>我的资料</cite>--%>
+<%--                        </a>--%>
+<%--                      </li>--%>
+<%--                      <li class="layui-col-xs3">--%>
+<%--                        <a lay-href="set/user/info.html">--%>
+<%--                          <i class="layui-icon layui-icon-set"></i>--%>
+<%--                          <cite>我的资料</cite>--%>
+<%--                        </a>--%>
+<%--                      </li>--%>
+<%--                      <li class="layui-col-xs3">--%>
+<%--                        <a lay-href="set/user/info.html">--%>
+<%--                          <i class="layui-icon layui-icon-set"></i>--%>
+<%--                          <cite>我的资料</cite>--%>
+<%--                        </a>--%>
+<%--                      </li>--%>
+<%--                      <li class="layui-col-xs3">--%>
+<%--                        <a lay-href="set/user/info.html">--%>
+<%--                          <i class="layui-icon layui-icon-set"></i>--%>
+<%--                          <cite>我的资料</cite>--%>
+<%--                        </a>--%>
+<%--                      </li>--%>
+<%--                      <li class="layui-col-xs3">--%>
+<%--                        <a lay-href="set/user/info.html">--%>
+<%--                          <i class="layui-icon layui-icon-set"></i>--%>
+<%--                          <cite>我的资料</cite>--%>
+<%--                        </a>--%>
+<%--                      </li>--%>
+<%--                      <li class="layui-col-xs3">--%>
+<%--                        <a lay-href="set/user/info.html">--%>
+<%--                          <i class="layui-icon layui-icon-set"></i>--%>
+<%--                          <cite>我的资料</cite>--%>
+<%--                        </a>--%>
+<%--                      </li>--%>
+<%--                      <li class="layui-col-xs3">--%>
+<%--                        <a lay-href="set/user/info.html">--%>
+<%--                          <i class="layui-icon layui-icon-set"></i>--%>
+<%--                          <cite>我的资料</cite>--%>
+<%--                        </a>--%>
+<%--                      </li>--%>
+<%--                    </ul>--%>
 
                   </div>
                 </div>
@@ -140,7 +146,7 @@
           </div>
           <div class="layui-col-md6">
             <div class="layui-card">
-              <div class="layui-card-header">待办事项</div>
+              <div class="layui-card-header">数据统计</div>
               <div class="layui-card-body">
 
                 <div class="layui-carousel layadmin-carousel layadmin-backlog">
@@ -175,7 +181,7 @@
                       <li class="layui-col-xs6">
                         <a href="javascript:;" class="layadmin-backlog-body">
                           <h3>管理员数量</h3>
-                          <p><cite style="color: #FF5722;">${map.adminQuantity}</cite></p>
+                          <p><cite>${map.adminQuantity}</cite></p>
                         </a>
                       </li>
                     </ul>
@@ -206,7 +212,7 @@
               <div class="layui-tab layui-tab-brief layadmin-latestData">
                 <ul class="layui-tab-title">
                   <li class="layui-this">今日借书记录</li>
-                  <li>今日热帖</li>
+<%--                <li>今日热帖</li>--%>
                 </ul>
                 <div class="layui-tab-content">
                   <div class="layui-tab-item layui-show">
@@ -224,10 +230,16 @@
       </div>
     </div>
   </div>
+  <script type="text/html" id="toolbarDemo">
+    <div class="layui-btn-container">
+      <button class="layui-btn layui-btn-sm" onclick="add()">新增</button>
+      <%--        <button class="layui-btn layui-btn-sm" onclick="deleteList()">删除</button>--%>
+    </div>
+  </script>
 
-  <script src="${ctx}/static/layuiAdmin/layui/layui.js?t=1"></script>
+<%--  <script src="${ctx}/static/layuiAdmin/layui/layui.js?t=1"></script>--%>
   <script src="${ctx}/static/js/echarts.min.js"></script>
-  <script src="${ctx}/static/js/jquery-3.2.1.js"></script>
+<%--  <script src="${ctx}/static/js/jquery-3.2.1.js"></script>--%>
   <script src="https://www.layuicdn.com/layui-v2.5.5/layui.js"></script>
 <%--  <script src="${ctx}/static/layuiAdmin/lib/index.js"></script>--%>
   <script>
@@ -282,51 +294,52 @@
       window.onresize = myChart.resize;
       myChart.setOption(option);
 
-
-      var my = echarts.init(document.getElementById('main2'));
-    my.setOption({
-      legend: {},
-      tooltip: {},
-      dataset: {
-        source: [
-          ['product', '2012', '2013', '2014', '2015', '2016', '2017'],
-          ['Matcha Latte', 41.1, 30.4, 65.1, 53.3, 83.8, 98.7],
-          ['Milk Tea', 86.5, 92.1, 85.7, 83.1, 73.4, 55.1],
-          ['Cheese Cocoa', 24.1, 67.2, 79.5, 86.4, 65.2, 82.5],
-          ['Walnut Brownie', 55.2, 67.1, 69.2, 72.4, 53.9, 39.1]
-        ]
-      },
-      series: [{
-        type: 'pie',
-        radius: 60,
-        center: ['25%', '30%']
-        // No encode specified, by default, it is '2012'.
-      }, {
-        type: 'pie',
-        radius: 60,
-        center: ['75%', '30%'],
-        encode: {
-          itemName: 'product',
-          value: '2013'
-        }
-      }, {
-        type: 'pie',
-        radius: 60,
-        center: ['25%', '75%'],
-        encode: {
-          itemName: 'product',
-          value: '2014'
-        }
-      }, {
-        type: 'pie',
-        radius: 60,
-        center: ['75%', '75%'],
-        encode: {
-          itemName: 'product',
-          value: '2015'
-        }
-      }]
-    });
+    //
+    //   var my = echarts.init(document.getElementById('main2'));
+    // my.setOption({
+    //   legend: {},
+    //   tooltip: {},
+    //   dataset: {
+    //     source: [
+    //       ['product', '2012', '2013', '2014', '2015', '2016', '2017'],
+    //       ['Matcha Latte', 41.1, 30.4, 65.1, 53.3, 83.8, 98.7],
+    //       ['Milk Tea', 86.5, 92.1, 85.7, 83.1, 73.4, 55.1],
+    //       ['Cheese Cocoa', 24.1, 67.2, 79.5, 86.4, 65.2, 82.5],
+    //       ['Walnut Brownie', 55.2, 67.1, 69.2, 72.4, 53.9, 39.1]
+    //     ]
+    //   },
+    //   series: [{
+    //     type: 'pie',
+    //     radius: 60,
+    //     center: ['25%', '30%']
+    //     // No encode specified, by default, it is '2012'.
+    //   }, {
+    //     type: 'pie',
+    //     radius: 60,
+    //     center: ['75%', '30%'],
+    //     encode: {
+    //       itemName: 'product',
+    //       value: '2013'
+    //     }
+    //   }, {
+    //     type: 'pie',
+    //     radius: 60,
+    //     center: ['25%', '75%'],
+    //     encode: {
+    //       itemName: 'product',
+    //       value: '2014'
+    //     }
+    //   }, {
+    //     type: 'pie',
+    //     radius: 60,
+    //     center: ['75%', '75%'],
+    //     encode: {
+    //       itemName: 'product',
+    //       value: '2015'
+    //     }
+    //   }]
+    // });
+      var deleteListData = [];
       layui.use(['laypage', 'layer', 'table'], function () {
         var laydate = layui.laypage = layui.laypage //分页
                 , layer = layui.layer //弹层
@@ -336,25 +349,34 @@
       table.render({
         elem: '#demo'
         // ,height: 420
-        , url: '${ctx}/tBooks/findBooksAll' //数据接口
-        , title: '图书列表'
+        , url: '${ctx}/tBookReader/selectDay' //数据接口
+      //  , title: '图书列表'
         , page: true //开启分页
         , toolbar: '#toolbarDemo'
         , id: 'idTest'
         , cols: [[ //标题栏
           // {type: 'checkbox'},
-          {field: 'b_book_no', title: '图书编号', sort: true}
-          , {field: 'b_book_name', title: '书名', sort: true}
-          , {field: 'b_book_author', title: '作者', sort: true}
-          , {field: 'b_book_number', title: '数量', sort: true}
-          , {field: 'b_book_createDate', title: '入库时间', sort: true}
-          , {field: 'b_book_type', title: '类型', sort: true}
-          , {title: '操作', toolbar: '#barDemo', align: 'center', width: 110}
+          {field: 'b_book_reader_id', title: 'id', sort: true}
+          ,{field: 'b_book_no', title: '图书编号', sort: true}
+          ,{field: 'b_book_name', title: '图书名字', sort: true}
+          , {field: 'b_reader_no', title: '读者编号', sort: true}
+          , {field: 'b_reader_name', title: '读者名字', sort: true}
+          , {field: 'b_user_no', title: '管理员编号', sort: true}
+          , {field: 'b_admin_name', title: '管理员名字', sort: true}
+          , {field: 'b_borrow_date', title: '借书日期', sort: true}
+          , {field: 'is_return_book', title: '是否归还', sort: true}
+          // , {field: 'b_book_type', title: '类型', sort: true}
+        //  , {title: '操作', toolbar: '#barDemo', align: 'center', width: 110}
 
         ]]
       });
-      });
+        table.on('checkbox(test)', function (obj) {
+          var checkStatus = table.checkStatus('idTest');
+          deleteListData = checkStatus.data;
+          console.log(deleteListData);
 
+        });
+      });
 
   layui.config({
     base: '../static/layuiAdmin/' //静态资源所在路径

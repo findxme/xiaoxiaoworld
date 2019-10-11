@@ -9,7 +9,7 @@
         <result column="b_reader_password" jdbcType="VARCHAR" property="bReaderPassword"/>
         <result column="b_reader_borrow_number" jdbcType="INTEGER" property="bReaderBorrowNumber"/>
         <result column="b_reader_borrow_already_number" jdbcType="INTEGER" property="bReaderBorrowAlreadyNumber"/>
-        <result column="b_reader_borrow_time" jdbcType="java.sql.Date" property="bReaderBorrowTime"/>
+        <result column="b_reader_borrow_time" jdbcType="DOUBLE" property="bReaderBorrowTime"/>
         <result column="b_reader_mobile" jdbcType="VARCHAR" property="bReaderMobile"/>
         <result column="b_reader_Remarks" jdbcType="VARCHAR" property="bReaderRemarks"/>
     </resultMap>
@@ -117,6 +117,10 @@
       and b_reader_name = #{bReaderName,jdbcType=VARCHAR}
       and b_reader_email = #{bReaderEmail,jdbcType=VARCHAR}
   </delete>
+    <delete id="deleteByNo" parameterType="map">
+    delete from t_reader
+    where b_reader_no = #{bReaderNo,jdbcType=VARCHAR}
+    </delete>
     <delete id="deleteByExample" parameterType="com.xmx.ssm.entity.TReaderExample">
         delete from t_reader
         <if test="_parameter != null">
@@ -130,7 +134,7 @@
       b_reader_mobile, b_reader_Remarks)
     values (#{bReaderId,jdbcType=INTEGER}, #{bReaderNo,jdbcType=VARCHAR}, #{bReaderName,jdbcType=VARCHAR}, 
       #{bReaderEmail,jdbcType=VARCHAR}, #{bReaderPassword,jdbcType=VARCHAR}, #{bReaderBorrowNumber,jdbcType=INTEGER}, 
-      #{bReaderBorrowAlreadyNumber,jdbcType=INTEGER}, #{bReaderBorrowTime,jdbcType=java.sql.Date},
+      #{bReaderBorrowAlreadyNumber,jdbcType=INTEGER}, #{bReaderBorrowTime,jdbcType=DOUBLE}, 
       #{bReaderMobile,jdbcType=VARCHAR}, #{bReaderRemarks,jdbcType=VARCHAR})
   </insert>
     <insert id="insertSelective" parameterType="com.xmx.ssm.entity.TReader">
@@ -190,7 +194,7 @@
                 #{bReaderBorrowAlreadyNumber,jdbcType=INTEGER},
             </if>
             <if test="bReaderBorrowTime != null">
-                #{bReaderBorrowTime,jdbcType=java.sql.Date},
+                #{bReaderBorrowTime,jdbcType=DOUBLE},
             </if>
             <if test="bReaderMobile != null">
                 #{bReaderMobile,jdbcType=VARCHAR},
@@ -300,4 +304,39 @@
       and b_reader_name = #{bReaderName,jdbcType=VARCHAR}
       and b_reader_email = #{bReaderEmail,jdbcType=VARCHAR}
   </update>
+
+    <update id="updateByNo" parameterType="com.xmx.ssm.entity.TReader">
+    update  t_reader
+    <set>
+    <if test="bReaderPassword != null">
+        b_reader_password = #{bReaderPassword,jdbcType=VARCHAR},
+    </if>
+        <if test="bReaderBorrowNumber != null">
+            b_reader_borrow_number = #{bReaderBorrowNumber,jdbcType=INTEGER},
+        </if>
+        <if test="bReaderBorrowAlreadyNumber != null">
+            b_reader_borrow_already_number = #{bReaderBorrowAlreadyNumber,jdbcType=INTEGER},
+        </if>
+        <if test="bReaderBorrowTime != null">
+            b_reader_borrow_time = #{bReaderBorrowTime,jdbcType=DOUBLE},
+        </if>
+        <if test="bReaderMobile != null">
+            b_reader_mobile = #{bReaderMobile,jdbcType=VARCHAR},
+        </if>
+        <if test="bReaderRemarks != null">
+            b_reader_Remarks = #{bReaderRemarks,jdbcType=VARCHAR},
+        </if>
+        <if test="bReaderId!= null">
+            b_reader_id = #{bReaderId,jdbcType=INTEGER},
+        </if>
+        <if test="bReaderName!= null">
+            b_reader_name = #{bReaderName,jdbcType=VARCHAR},
+        </if>
+        <if test="bReaderEmail!= null">
+            b_reader_email = #{bReaderEmail,jdbcType=VARCHAR},
+        </if>
+    </set>
+        where
+        b_reader_no = #{bReaderNo,jdbcType=VARCHAR}
+    </update>
 </mapper>

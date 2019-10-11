@@ -18,13 +18,13 @@ public interface TReadersService {
     List<Map<String, Object>> findReadersAll();
 
     /*删除读者信息*/
-    void deleteReadersNo(TReader tReader);
+    int deleteReadersNo(TReader tReader);
 
     /*增加读者信息*/
     int insertReader(TReader tReader);
 
     /*更新读者信息*/
-    void updateReader(TReader tReader);
+    int updateReader(TReader tReader);
 
     /*条件查询*/
     List<TReader> findReadersOne(TReader tReader);
