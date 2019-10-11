@@ -55,7 +55,4 @@ public interface TBookMapper {
     List<Map<String,Object>> countBooksTypeQuantity();
 
 
-    long countByBooksTotal();
-
-
 }

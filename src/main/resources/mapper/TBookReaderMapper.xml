@@ -101,56 +101,7 @@
     ,r.b_reader_borrow_already_number=#{tReader.bReaderBorrowAlreadyNumber}
     where b.b_book_no=#{tBook.bBookNo} and r.b_reader_no=#{tReader.bReaderNo}
   </update>
-  <!--查询多少书借出去了-->
-  <select id="findReadersBorrowingQuantity" resultType="long">
-    SELECT COUNT(*) from t_book_reader where is_return_book="未还";
-  </select>
-<!--<select id="selectDay" resultType="map">-->
-<!--SELECT-->
-<!--	t_book_reader.b_book_reader_id,-->
-<!--	t_book_reader.b_book_no,-->
-<!--	t_book.b_book_name,-->
-<!--	t_book_reader.b_user_no,-->
-<!--	t_admin.b_admin_name,-->
-<!--	t_book_reader.b_reader_no,-->
-<!--	t_reader.b_reader_name,-->
-<!--	t_book_reader.b_borrow_date,-->
-<!--	t_book_reader.is_return_book-->
-<!--FROM-->
-<!--	t_book_reader,-->
-<!--	t_reader,-->
-<!--	t_book,-->
-<!--	t_admin-->
-<!--WHERE-->
-<!--	t_book_reader.b_book_no = t_book.b_book_no-->
-<!--	AND t_book_reader.b_user_no = t_admin.b_admin_no-->
-<!--	AND t_book_reader.b_reader_no = t_reader.b_reader_no-->
-<!--	AND t_book_reader.b_borrow_date = date_format(now(), '%Y-%m-%d' )limit #{currIndex},#{pageSize};-->
-<!--</select>-->
 
-  <select id="countBydayQuantity" resultType="long">
-    select count(*) as dayQuantity from (SELECT
-	t_book_reader.b_book_reader_id,
-	t_book_reader.b_book_no,
-	t_book.b_book_name,
-	t_book_reader.b_user_no,
-	t_admin.b_admin_name,
-	t_book_reader.b_reader_no,
-	t_reader.b_reader_name,
-	t_book_reader.b_borrow_date,
-	t_book_reader.is_return_book
-
-FROM
-	t_book_reader,
-	t_reader,
-	t_book,
-	t_admin
-WHERE
-	t_book_reader.b_book_no = t_book.b_book_no
-	AND t_book_reader.b_user_no = t_admin.b_admin_no
-	AND t_book_reader.b_reader_no = t_reader.b_reader_no
-	AND t_book_reader.b_borrow_date = date_format( now(), '%Y-%m-%d' )) as total;
-  </select>
   <select id="pagingInfo" parameterType="map" resultType="map">
     select rb.b_book_reader_id,b.b_book_name,r.b_reader_name,a.b_admin_name,rb.is_return_book
     from t_book_reader rb,t_book b,t_reader r,t_admin a
