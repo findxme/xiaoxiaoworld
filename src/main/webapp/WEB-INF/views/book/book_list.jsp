@@ -17,12 +17,12 @@
 
 <table class="layui-hide" id="demo" lay-filter="test"></table>
 
-<%--<script type="text/html" id="toolbarDemo">--%>
-<%--    <div class="layui-btn-container">--%>
-<%--        <button class="layui-btn layui-btn-sm" onclick="add()">新增</button>--%>
-<%--&lt;%&ndash;        <button class="layui-btn layui-btn-sm" onclick="deleteList()">删除</button>&ndash;%&gt;--%>
-<%--    </div>--%>
-<%--</script>--%>
+<script type="text/html" id="toolbarDemo">
+    <div class="layui-btn-container">
+        <button class="layui-btn layui-btn-sm" onclick="add()">新增</button>
+<%--        <button class="layui-btn layui-btn-sm" onclick="deleteList()">删除</button>--%>
+    </div>
+</script>
 
 <script type="text/html" id="barDemo">
     <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
@@ -61,50 +61,50 @@
             ]]
         });
 
-        <%--table.on('checkbox(test)', function (obj) {--%>
-        <%--    var checkStatus = table.checkStatus('idTest');--%>
-        <%--    deleteListData = checkStatus.data;--%>
-        <%--    console.log(deleteListData);--%>
+        table.on('checkbox(test)', function (obj) {
+            var checkStatus = table.checkStatus('idTest');
+            deleteListData = checkStatus.data;
+            console.log(deleteListData);
 
-        <%--});--%>
-        <%--//监听行工具事件--%>
-        <%--table.on('tool(test)', function (obj) { //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"--%>
-        <%--    var data = obj.data //获得当前行数据--%>
-        <%--        , layEvent = obj.event //获得 lay-event 对应的值--%>
-        <%--        , field = obj.field;--%>
-        <%--    if (layEvent === 'del') {--%>
-        <%--        layer.confirm('确定删除' + data.b_book_no + "号记录?", function (index) {--%>
-        <%--            //向服务端发送删除指令--%>
-        <%--            var id = data.b_book_no;--%>
-        <%--            // layer.msg(id);--%>
-        <%--            $.ajax({--%>
-        <%--                type: 'POST',--%>
-        <%--                url: "${ctx}/tBooks/deleteByTBook",--%>
-        <%--                data: {id: data.b_book_no},--%>
-        <%--                success: function (msg) {--%>
-        <%--                    if (msg === 0) {--%>
-        <%--                        layer.msg("已借出书籍无法删除！", {icon: 5});--%>
-        <%--                        layer.close(index);--%>
-        <%--                    } else {--%>
-        <%--                        obj.del(); //删除对应行（tr）的DOM结构--%>
-        <%--                        layer.close(index);--%>
-        <%--                        layer.msg("删除成功！", {icon: 6});--%>
-        <%--                    }--%>
-        <%--                }--%>
-        <%--            });--%>
-        <%--        });--%>
-        <%--    } else if (layEvent === 'edit') {--%>
+        });
+        //监听行工具事件
+        table.on('tool(test)', function (obj) { //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
+            var data = obj.data //获得当前行数据
+                , layEvent = obj.event //获得 lay-event 对应的值
+                , field = obj.field;
+            if (layEvent === 'del') {
+                layer.confirm('确定删除' + data.b_book_no + "号记录?", function (index) {
+                    //向服务端发送删除指令
+                    var id = data.b_book_no;
+                    // layer.msg(id);
+                    $.ajax({
+                        type: 'POST',
+                        url: "${ctx}/tBooks/deleteByTBook",
+                        data: {id: data.b_book_no},
+                        success: function (msg) {
+                            if (msg === 0) {
+                                layer.msg("已借出书籍无法删除！", {icon: 5});
+                                layer.close(index);
+                            } else {
+                                obj.del(); //删除对应行（tr）的DOM结构
+                                layer.close(index);
+                                layer.msg("删除成功！", {icon: 6});
+                            }
+                        }
+                    });
+                });
+            } else if (layEvent === 'edit') {
 
-        <%--        var index = layer.open({--%>
-        <%--            type: 2--%>
-        <%--            , title: '图书编号：'+data.b_book_no--%>
-        <%--            , content: 'book_listform_update?id='+data.b_book_no--%>
-        <%--            // ,maxmin: true--%>
-        <%--            , area: ['350px', '440px']--%>
-        <%--        });--%>
+                var index = layer.open({
+                    type: 2
+                    , title: '图书编号：'+data.b_book_no
+                    , content: 'book_listform_update?id='+data.b_book_no
+                    // ,maxmin: true
+                    , area: ['350px', '440px']
+                });
 
-        <%--    }--%>
-        <%--})--%>
+            }
+        })
     });
 
     function add() {

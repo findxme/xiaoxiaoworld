@@ -2,10 +2,13 @@ package com.xmx.test;
 
 import com.xmx.ssm.dao.TAdminMapper;
 import com.xmx.ssm.dao.TBookMapper;
+import com.xmx.ssm.dao.TBookReaderMapper;
 import com.xmx.ssm.dao.TBookTypeMapper;
 import com.xmx.ssm.entity.*;
 import com.xmx.ssm.service.TAdminService;
+import com.xmx.ssm.service.TBookReaderService;
 import com.xmx.ssm.service.TBooksService;
+import com.xmx.ssm.service.TReadersService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mybatis.generator.api.MyBatisGenerator;
@@ -83,6 +86,37 @@ public class MyTest {
         System.out.println(list);
         System.out.println(list.get(1).get("quantity"));
 
+    }
+    @Resource
+    private TReadersService tReadersService;
+
+    @Resource
+    private TAdminService tAdminService;
+    @Resource
+    private TAdminMapper tAdminMapper;
+
+
+    @Resource
+    private TBookReaderMapper tBookReaderMapper;
+
+    @Test
+    public void test2(){
+//        TReader tReader = tReadersService.findReaderByNo("reader");
+//        System.out.println(tReader);
+
+
+    }
+
+
+    @Resource
+    private TBookReaderService tBookReaderService;
+
+    @Test
+    public void test3(){
+        TBook tBook = tBooksService.selectByPrimaryKey("1");
+        TReader tReader = tReadersService.findReaderByNo("reader");
+        TAdmin tAdmin = tAdminService.findAdminByNo("admin3");
+        System.out.println(tBookReaderService.renewBook(tBook,tReader));
     }
 
 
