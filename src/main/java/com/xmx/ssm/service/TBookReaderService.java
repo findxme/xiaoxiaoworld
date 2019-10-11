@@ -4,13 +4,12 @@ import com.xmx.ssm.entity.TAdmin;
 import com.xmx.ssm.entity.TBook;
 import com.xmx.ssm.entity.TBookReader;
 import com.xmx.ssm.entity.TReader;
-import org.apache.ibatis.annotations.Param;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 public interface TBookReaderService {
+
 
     Integer countInfos();
 
@@ -18,25 +17,22 @@ public interface TBookReaderService {
 
     List<Map<String,Object>> pagingInfo(Integer page,Integer pageSize);
 
+    List<Map<String,Object>> queryNotReturnInfo(Integer page,Integer pageSize);
+
     List<Map<String,Object>> findAll();
 
-    int borrowBook(TBook tBook, TReader tReader);
+    List<Map<String,Object>> findInfoByBook(String bookNo,Integer page,Integer pageSize);
 
-    int returnBook(TBook tBook,TReader tReader);
+    int borrowBook(TBook tBook, TReader tReader,TAdmin tAdmin);
+
+    int returnBook(TBook tBook,TReader tReader,TAdmin tAdmin);
+
+
 
 
     List<TBookReader> findBookByReader(TReader tReader);
 
     int deleteInfoByNo(TBookReader tBookReader);
 
-    int renewBook(TBook tBook, TReader tReader, String borrowDate);
-
-    /*查询多少书借出去了*/
-    long findReadersBorrowingQuantity();
-
-    /*查询当天借阅记录*/
-    List<Map<String,Object>> selectDay(@Param("currIndex") int currIndex, @Param("pageSize") int pageSize);
-
-
-    long countBydayQuantity();
+    int renewBook(TBook tBook, TReader tReader);
 }
