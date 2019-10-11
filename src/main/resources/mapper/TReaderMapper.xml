@@ -117,10 +117,6 @@
       and b_reader_name = #{bReaderName,jdbcType=VARCHAR}
       and b_reader_email = #{bReaderEmail,jdbcType=VARCHAR}
   </delete>
-    <delete id="deleteByNo" parameterType="map">
-    delete from t_reader
-    where b_reader_no = #{bReaderNo,jdbcType=VARCHAR}
-    </delete>
     <delete id="deleteByExample" parameterType="com.xmx.ssm.entity.TReaderExample">
         delete from t_reader
         <if test="_parameter != null">
@@ -304,39 +300,4 @@
       and b_reader_name = #{bReaderName,jdbcType=VARCHAR}
       and b_reader_email = #{bReaderEmail,jdbcType=VARCHAR}
   </update>
-
-    <update id="updateByNo" parameterType="com.xmx.ssm.entity.TReader">
-    update  t_reader
-    <set>
-    <if test="bReaderPassword != null">
-        b_reader_password = #{bReaderPassword,jdbcType=VARCHAR},
-    </if>
-        <if test="bReaderBorrowNumber != null">
-            b_reader_borrow_number = #{bReaderBorrowNumber,jdbcType=INTEGER},
-        </if>
-        <if test="bReaderBorrowAlreadyNumber != null">
-            b_reader_borrow_already_number = #{bReaderBorrowAlreadyNumber,jdbcType=INTEGER},
-        </if>
-        <if test="bReaderBorrowTime != null">
-            b_reader_borrow_time = #{bReaderBorrowTime,jdbcType=DOUBLE},
-        </if>
-        <if test="bReaderMobile != null">
-            b_reader_mobile = #{bReaderMobile,jdbcType=VARCHAR},
-        </if>
-        <if test="bReaderRemarks != null">
-            b_reader_Remarks = #{bReaderRemarks,jdbcType=VARCHAR},
-        </if>
-        <if test="bReaderId!= null">
-            b_reader_id = #{bReaderId,jdbcType=INTEGER},
-        </if>
-        <if test="bReaderName!= null">
-            b_reader_name = #{bReaderName,jdbcType=VARCHAR},
-        </if>
-        <if test="bReaderEmail!= null">
-            b_reader_email = #{bReaderEmail,jdbcType=VARCHAR},
-        </if>
-    </set>
-        where
-        b_reader_no = #{bReaderNo,jdbcType=VARCHAR}
-    </update>
 </mapper>

@@ -10,5 +10,5 @@ public interface TAdminService {
 
     TAdmin findAdminByName(String adminName);
 
-    long countByExample();
+    TAdmin findAdminByNo(String adminNo);
 }
