@@ -78,6 +78,11 @@
   <select id="findAdminByName" parameterType="String" resultMap="BaseResultMap">
     select <include refid="Base_Column_List"/> from t_admin where b_admin_name=#{bAdminName}
   </select>
+  <select id="findAdminByNo" parameterType="String" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/> from t_admin where b_admin_no=#{bAdminNo}
+  </select>
+
+
 
   <select id="selectByExample" parameterType="com.xmx.ssm.entity.TAdminExample" resultMap="BaseResultMap">
     select
@@ -172,7 +177,6 @@
   </insert>
   <select id="countByExample" resultType="java.lang.Long">
     select count(*) from t_admin
-
   </select>
   <update id="updateByExampleSelective" parameterType="map">
     update t_admin

@@ -12,24 +12,31 @@ import java.util.Map;
 
 public interface TBookReaderService {
 
+
     Integer countInfos();
 
     TBookReader queryInfoByBookReader(String bookNo,String readerNo);
 
     List<Map<String,Object>> pagingInfo(Integer page,Integer pageSize);
 
+    List<Map<String,Object>> queryNotReturnInfo(Integer page,Integer pageSize);
+
     List<Map<String,Object>> findAll();
 
-    int borrowBook(TBook tBook, TReader tReader);
+    List<Map<String,Object>> findInfoByBook(String bookNo,Integer page,Integer pageSize);
 
-    int returnBook(TBook tBook,TReader tReader);
+    int borrowBook(TBook tBook, TReader tReader,TAdmin tAdmin);
+
+    int returnBook(TBook tBook,TReader tReader,TAdmin tAdmin);
+
+
 
 
     List<TBookReader> findBookByReader(TReader tReader);
 
     int deleteInfoByNo(TBookReader tBookReader);
 
-    int renewBook(TBook tBook, TReader tReader, String borrowDate);
+    int renewBook(TBook tBook, TReader tReader);
 
     /*查询多少书借出去了*/
     long findReadersBorrowingQuantity();

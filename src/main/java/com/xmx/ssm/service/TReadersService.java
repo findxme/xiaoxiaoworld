@@ -8,6 +8,7 @@ import java.util.Map;
 
 public interface TReadersService {
 
+
     long countByExample();
 
     List<Map<String, Object>> findReaderLimit(int currIndex, int pageSize);

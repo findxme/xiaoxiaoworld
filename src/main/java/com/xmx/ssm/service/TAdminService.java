@@ -6,9 +6,11 @@ import java.util.List;
 
 public interface TAdminService {
 
+    long countByExample();
+
     List<TAdmin> findAll();
 
     TAdmin findAdminByName(String adminName);
 
-    long countByExample();
+    TAdmin findAdminByNo(String adminNo);
 }

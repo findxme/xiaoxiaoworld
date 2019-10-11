@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     request.setAttribute("ctx",request.getContextPath());
-    request.setAttribute("readerNo",request.getParameter("readerNo"));
+    request.setAttribute("adminNo",request.getParameter("adminNo"));
 %>
 <html>
 <head>
@@ -30,7 +30,6 @@
 
 <script type="text/html" id="barDemo">
     <button class="layui-btn layui-btn-xs" lay-event="borrowBook">借书</button>
-    <button class="layui-btn layui-btn-danger layui-btn-xs" lay-event="returnBook">还书</button>
 </script>
 
 
@@ -40,8 +39,7 @@
 <script>
 
     layui.use(['layer', 'table'], function(){
-        var $ = layui.$ //jquery
-            ,layer = layui.layer //弹层
+        var layer = layui.layer //弹层
             ,table = layui.table //表格
 
 
@@ -62,7 +60,7 @@
                 ,{field: 'b_book_number', title: '数量',sort: true}
                 ,{field: 'b_book_createDate', title: '入库时间'}
                 ,{field: 'b_book_type', title: '类型'}
-                ,{ title: '操作', toolbar: '#barDemo',align:'center',width:130}
+                ,{ title: '操作', toolbar: '#barDemo',align:'center',width:110}
             ]]
 
         });
@@ -84,23 +82,39 @@
                 ,layEvent = obj.event //获得 lay-event 对应的值
                 ,tr = obj.tr;
             if(layEvent === 'borrowBook'){
-                layer.confirm('确定要借书？', function(index){
-                    var readerNo = "${readerNo}"
+
+                var index=layer.open({
+                    type: 1
+                    ,title: '读者编号'
+                    ,content: '<div class="layui-form-item center" >\n' +
+                        '          <label class="layui-form-label" style="width: 100px" >读者编号</label>\n' +
+                        '          <div class="layui-input-block">\n' +
+                        '           <input type="text" name="name" required value="" style="width: 240px" id="readerNo" lay-verify="required" placeholder="读者编号" autocomplete="off" class="layui-input">\n' +
+                        '          </div>\n' +
+                        '         </div>\n' +
+                        '         <div class="layui-form-item">\n' +
+                        '          <div class="layui-input-block">\n' +
+                        '           <button type="button" class="layui-btn" id="borrow" >出借</button>\n' +
+                        '          </div>\n' +
+                        '         </div> '
+                    // ,maxmin: true
+                    ,area: ['400px', '200px']
+                });
+                $("#borrow").on("click",function(){
+                    var readerNo = $("#readerNo").val();
+                    var adminNo = "${adminNo}";
                     $.ajax({
                         url:"${ctx}/tBookReader/borrowBook",
                         data:{
                             "bookNo":data.b_book_no,
-                            "readerNo":readerNo
+                            "readerNo":readerNo,
+                            "adminNo":adminNo
                         },
                         success:function (data) {
                             console.log(data.status)
                             if(data.status===200){
 
-                                myTable.reload({
-                                    page:{curr:1},
-                                    where:{b_book_id:1}
-
-                                });
+                                myTable.reload({});
                             }
                             if(data.status===404){
                                 layer.msg(data.message);
@@ -115,6 +129,7 @@
                             }
                             if(data.status===555){
                                 layer.msg(data.message);
+
                             }
                         },
                         error:{
@@ -122,55 +137,8 @@
                         }
 
                     })
-
-                    layer.close(index);
-                    //向服务端发送删除指令
-
-                });
-            } else if(layEvent === 'returnBook'){
-
-                layer.confirm('确定要还书？', function(index){
-                    var readerNo = "${readerNo}"
-                    $.ajax({
-                        url:"${ctx}/tBookReader/returnBook",
-                        data:{
-                            "bookNo":data.b_book_no,
-                            "readerNo":readerNo
-                        },
-                        success:function (data) {
-                            console.log(data.status)
-                            if(data.status===200){
-                                myTable.reload({
-                                    page:{curr:1},
-                                    where:{b_book_id:1}
-
-                                });
-                            }
-                            if(data.status===404){
-                                layer.msg(data.message);
-                                /**
-                                 * 按钮禁用
-                                 */
-                                // var tds =  tr.children();
-                                // var btns = tds.children();
-                                // console.log(btns)
-                                // var btn = btns[0];
-                                // btn.css("background","black")
-                            }
-                            if(data.status===555){
-                                layer.msg(data.message);
-                            }
-                        },
-                        error:{
-
-                        }
-
-                    })
-
-                    layer.close(index);
-                    //向服务端发送删除指令
-
-                });
+                    layer.close(index)
+                })
             }
         });
 

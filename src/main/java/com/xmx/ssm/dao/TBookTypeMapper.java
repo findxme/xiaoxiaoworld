@@ -13,6 +13,7 @@ import org.apache.ibatis.annotations.Update;
 
 public interface TBookTypeMapper {
 
+
     /*ok*/
     /*查找有多少条数据*/
     long countByExample();
