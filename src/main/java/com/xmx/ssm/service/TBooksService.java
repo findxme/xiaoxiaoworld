@@ -10,6 +10,7 @@ import java.util.Map;
 
 public interface TBooksService {
 
+
     /*OK*/
     /*查出有多少条记录ok*/
     long countByExample();

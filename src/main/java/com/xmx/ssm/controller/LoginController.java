@@ -109,7 +109,7 @@ public class LoginController {
 
     @RequestMapping("/loginOut")
     public void loginOut(HttpServletRequest request,HttpServletResponse response){
-        //System.out.println("转到loginOut");
+        System.out.println("跳转到loginOut");
 //        CookiesDao.LoginOut(request,response);
 //        return "redirect:toLogin";
     }
@@ -124,7 +124,7 @@ public class LoginController {
     public ModelAndView DataStatistics(ModelAndView modelAndView){
        long readersQuantity= tReadersService.countByExample();
        long booksQuantity = tBooksService.countByExample();
-        long adminQuantity = tAdminService.countByExample();
+       long adminQuantity = tAdminService.countByExample();
         System.out.println(readersQuantity);
         /*查询书籍总数*/
         long tbookQuantity=tBooksService.countByBooksTotal();

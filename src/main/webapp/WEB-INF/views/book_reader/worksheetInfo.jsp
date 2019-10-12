@@ -18,17 +18,7 @@
     <script src="${ctx}/static/layuiAdmin/layui/layui.js"></script>
 </head>
 <body>
-<h1>测试测试</h1>
 <table class="layui-hide" id="demo" lay-filter="test"></table>
-
-
-
-<template type="text/html" id="toolbarDemo">
-    <div class="layui-btn-container">
-        <button class="layui-btn layui-btn-normal" lay-event="add">新增</button>
-        <button class="layui-btn layui-btn-danger" lay-event="delete">删除</button>
-    </div>
-</template>
 
 <script type="text/html" id="barDemo">
     <button class="layui-btn layui-btn-xs" lay-event="borrowAndReturn">借还信息</button>
@@ -56,61 +46,23 @@
             ,page: true //开启分页
             ,toolbar: '#toolbarDemo' //开启工具栏，此处显示默认图标，可以自定义模板，详见文档
             ,totalRow: true //开启合计行
+            ,limit:5
             ,limits:[5,15,25]
             ,cols: [[ //标题栏
                 {type:'checkbox'}
                 ,{field: 'b_book_reader_id', title: '工单编号',sort: true}
-                ,{field: 'b_book_name', title: '书名'}
-                ,{field: 'b_reader_name', title: '读者'}
-                ,{field: 'b_admin_name', title: '管理员'}
-                ,{ title: '操作', toolbar: '#barDemo',align:'center',width:110}
+                ,{field: 'b_book_name', title: '书名',sort: true}
+                ,{field: 'b_reader_name', title: '读者',sort: true}
+                ,{field: 'b_admin_name', title: '管理员',sort: true}
+                ,{field: 'is_return_book', title: '是否归还',sort: true}
+                ,{ title: '操作', toolbar: '#barDemo',align:'center',width:190}
 
             ]]
 
         });
 
-        //监听头工具栏事件
-
-        table.on('toolbar(test)',function(obj){
-            if(obj.event === 'add'){
-                console.log("zengs")
-                layer.msg("增加")
-            }
-        });
 
 
-        // table.on('toolbar(test)', function(obj){
-        //     var checkStatus = table.checkStatus(obj.config.id)
-        //         ,data = checkStatus.data; //获取选中的数据
-        //     switch(obj.event){
-        //         case 'add':
-        //             console.log("ads")
-        //             layer.msg("das")
-        //             layer.open({
-        //                 type: 2
-        //                 ,title: '添加图书信息'
-        //                 ,content: 'book_listform_add.html'
-        //                 ,maxmin: true
-        //                 ,area: ['350px', '440px']
-        //             });
-        //
-        //             break;
-        //         case 'delete':
-        //             if(data.length === 0){
-        //                 layer.msg('请选择一行');
-        //             } else {
-        //                 var data = checkStatus.data;
-        //                 JSON.stringify(data)
-        //
-        //                 // 删除多行
-        //                 layer.alert(JSON.stringify(data));
-        //
-        //
-        //                 // layer.msg('删除');
-        //             }
-        //             break;
-        //     };
-        // });
 
         //监听行工具事件
         table.on('tool(test)', function(obj){ //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
@@ -133,10 +85,10 @@
                 // data.id 当前行数据id
                 var index=layer.open({
                     type: 2
-                    ,title: '编辑'
-                    ,content: 'book_listform_add.html'
-                    // ,maxmin: true
-                    ,area: ['350px', '440px']
+                    ,title: '借还信息'
+                    ,content: '${ctx}/tBookReader/borrowingInfo'
+                    ,maxmin: true
+                    ,area: ['600px', '300px']
                 });
 
             }

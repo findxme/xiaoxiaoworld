@@ -77,6 +77,26 @@
   </sql>
 
 
+  <select id="queryNotReturnInfo" resultType="map">
+    select b.b_book_name,r.b_reader_name,a.b_admin_name,rb.b_borrow_date,rb.b_renew_frequency,rb.b_renew_time,rb.is_return_book,r.b_reader_no,b.b_book_no
+    from t_book b,t_admin a,t_book_reader rb,t_reader r
+    where a.b_admin_no=rb.b_user_no
+    and r.b_reader_no=rb.b_reader_no
+    and b.b_book_no=rb.b_book_no
+    and rb.is_return_book="未还"
+    limit #{currentIndex},#{pageSize}
+  </select>
+
+
+
+  <select id="findInfoByBook" parameterType="String" resultType="map">
+    select rb.b_book_no,r.b_reader_name,a.b_admin_name,rb.b_borrow_date,rb.b_return_date,rb.is_return_book
+    from t_admin a,t_book_reader rb,t_reader r
+    where a.b_admin_no=rb.b_user_no
+    and r.b_reader_no=rb.b_reader_no
+    and rb.b_book_no=#{bookNo};
+  </select>
+
   <update id="borrowOrReturnBook" parameterType="map">
     update t_book b,t_reader r
     set b.b_book_number=#{tBook.bBookNumber}
@@ -199,11 +219,11 @@ WHERE
   <insert id="insert" parameterType="com.xmx.ssm.entity.TBookReader">
     insert into t_book_reader (b_book_reader_id, b_book_no, b_reader_no, 
       b_user_no, b_borrow_date, b_return_date, 
-      b_over_date, is_return_book, b_renew_frequency, 
+      b_over_date, is_return_book,
       b_renew_time)
     values (#{bBookReaderId,jdbcType=INTEGER}, #{bBookNo,jdbcType=VARCHAR}, #{bReaderNo,jdbcType=VARCHAR}, 
       #{bUserNo,jdbcType=VARCHAR}, #{bBorrowDate,jdbcType=DATE}, #{bReturnDate,jdbcType=DATE}, 
-      #{bOverDate,jdbcType=INTEGER}, #{isReturnBook,jdbcType=VARCHAR}, #{bRenewFrequency,jdbcType=INTEGER}, 
+      #{bOverDate,jdbcType=INTEGER}, #{isReturnBook,jdbcType=VARCHAR},
       #{bRenewTime,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.xmx.ssm.entity.TBookReader">

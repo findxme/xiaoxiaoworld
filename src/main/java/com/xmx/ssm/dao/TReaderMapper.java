@@ -12,6 +12,7 @@ public interface TReaderMapper {
     long countByExample();
 
 
+
     /**
      * 分页查询
      * @param currIndex

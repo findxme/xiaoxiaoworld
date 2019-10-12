@@ -5,7 +5,9 @@ import com.xmx.ssm.dao.TBookMapper;
 import com.xmx.ssm.dao.TBookTypeMapper;
 import com.xmx.ssm.entity.*;
 import com.xmx.ssm.service.TAdminService;
+import com.xmx.ssm.service.TBookReaderService;
 import com.xmx.ssm.service.TBooksService;
+import com.xmx.ssm.service.TReadersService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mybatis.generator.api.MyBatisGenerator;
@@ -26,64 +28,30 @@ import java.util.Map;
 @RunWith( SpringJUnit4ClassRunner.class )
 @ContextConfiguration(locations = {"classpath*:spring-mybatis.xml"})
 public class MyTest {
-//    @Resource
-//    private TAdminService tAdminService;
-    @Resource
-    private  TBooksService tBooksService;
-    @Resource
-    private TBookTypeMapper tBookTypeMapper;
 
-//    @Autowired
-//    private  TBookMapper tBookMapper;
+    @Resource
+    private TBookReaderService tBookReaderService;
 
+    @Resource
+    private TAdminService tAdminService;
+
+    @Resource
+    private TBooksService tBooksService;
+
+    @Resource
+    private TReadersService tReadersService;
 
     @Test
-    public void test()throws Exception{
-//        TAdmin tAdmin = new TAdmin();
-//        tAdmin.setbAdminCreateDate(new Date());
-//        tAdmin.setbAdminEmail("1");
-//        tAdmin.setbAdminName("1");
-//        tAdmin.setbAdminPassword("1");
-//        tAdmin.setbAdminStopDate(new Date());
-//        tAdmin.setbAdminType("1");
-//        tAdmin.setbAdminNo("1222");
-////        tAdminService.queryTAdmin();
-//        int flag = tAdminService.insert(tAdmin);
-//        System.out.println(tAdminService.findAdminByName("admin"));
-        TBookExample example;
-        System.out.println(123);
-//        tBookMapper.findBooksAll();
-//     TBook tbook  =tBookMapper.selectByPrimaryKey(1,"1");
-//        List<Map<String,Object>> a =tBooksService.findBooksAll();
+    public void test(){
 
-//       TBook a= tBooksService.selectByPrimaryKey("2");
-        TBook tBook =new TBook();
-//        tBook.setbBookNo("123");
-//        tBook.setbBookName("熊熊二号");
-//        tBook.setbBookAuthor("小熊熊2");
-//        tBook.setbBookNumber(2);
-//        tBook.setbBookType("动物类7");
-      // tBook.setbBookCreatedate(new Date());
+        TAdmin tAdmin = tAdminService.findAdminByNo("admin1");
 
-//        List<Map<String ,Object>> a=  tBooksService.findBooksOne(tBook);
-//tBook.setbBookNo("123");
-//tBooksService.deleteBooksNo(tBook);
+        TBook tBook = tBooksService.selectByPrimaryKey("1");
 
-//        System.out.println(123+a.toString());
-//        System.out.println("+123"+a);
-//        TBookType tBookType =new TBookType();
-//        tBookType.setbBookTypeNo("type6");
-//        tBookType.setbBookType("熊熊");
-////        tBookType.setbBookTypeNo("type1");
-//////       List<Map<String,Object>>  a=tBookTypeMapper.selectBooksTypeOne(tBookType);
-//        tBookTypeMapper.insertTBookType(tBookType);
-//        System.out.println();
+        TReader tReader = tReadersService.findReaderByNo("reader1");
 
-        List<Map<String,Object>> list =tBooksService.countBooksTypeQuantity();
-        System.out.println(list);
-        System.out.println(list.get(1).get("quantity"));
+        System.out.println(tBookReaderService.borrowBook(tBook,tReader,tAdmin));
 
     }
-
 
 }

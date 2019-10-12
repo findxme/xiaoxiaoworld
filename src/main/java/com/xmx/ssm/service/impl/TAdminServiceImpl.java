@@ -14,6 +14,12 @@ public class TAdminServiceImpl implements TAdminService {
     @Autowired
     private TAdminMapper tAdminMapper;
 
+
+    @Override
+    public long countByExample() {
+        return tAdminMapper.countByExample();
+    }
+
     @Override
     public List<TAdmin> findAll(){
         return tAdminMapper.selectByExample(new TAdminExample());
@@ -25,9 +31,7 @@ public class TAdminServiceImpl implements TAdminService {
     }
 
     @Override
-    public long countByExample() {
-        return tAdminMapper.countByExample();
+    public TAdmin findAdminByNo(String adminNo){
+        return tAdminMapper.findAdminByNo(adminNo);
     }
-
-
 }

@@ -13,6 +13,7 @@ public interface TBookMapper {
      /*查出有多少条记录*/
     long countByExample();
 
+
     /**
      * 分页查询
      * @param currIndex
