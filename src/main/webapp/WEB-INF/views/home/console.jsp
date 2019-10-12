@@ -69,13 +69,13 @@
                                             </a>
                                         </li>
                                         <li class="layui-col-xs3">
-                                            <a lay-href="user/user/list.html">
-                                                <i class="layui-icon layui-icon-user"></i>
-                                                <cite>用户</cite>
+                                            <a lay-href="${ctx}/user/email">
+                                                <i class="layui-icon layui-icon-website"></i>
+                                                <cite>邮件服务</cite>
                                             </a>
                                         </li>
                                         <li class="layui-col-xs3">
-                                            <a lay-href="set/system/website.html">
+                                            <a lay-href="${ctx}/user/info">
                                                 <i class="layui-icon layui-icon-set"></i>
                                                 <cite>基本资料</cite>
                                             </a>

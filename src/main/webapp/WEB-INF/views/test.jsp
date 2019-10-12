@@ -77,8 +77,8 @@
                         <cite id="loginName"></cite>
                     </a>
                     <dl class="layui-nav-child">
-                        <dd><a lay-href="set/user/info.html">基本资料</a></dd>
-                        <dd><a lay-href="set/user/password.html">修改密码</a></dd>
+                        <dd><a lay-href="${ctx}/user/info">基本资料</a></dd>
+                        <dd><a lay-href="${ctx}/user/password">修改密码</a></dd>
                         <hr>
                         <dd layadmin-event="logout" style="text-align: center;"><a>退出</a></dd>
                     </dl>
@@ -203,14 +203,14 @@
                                 <a href="javascript:;">系统设置</a>
                                 <dl class="layui-nav-child">
                                     <dd><a lay-href="${ctx}/static/layuiAdmin/src/views/set/system/website.html">网站设置</a></dd>
-                                    <dd><a lay-href="${ctx}/static/layuiAdmin/src/views/set/system/email.html">邮件服务</a></dd>
+                                    <dd><a lay-href="${ctx}/user/email">邮件服务</a></dd>
                                 </dl>
                             </dd>
                             <dd class="layui-nav-itemed">
                                 <a href="javascript:;">我的设置</a>
                                 <dl class="layui-nav-child">
-                                    <dd><a lay-href="${ctx}/static/layuiAdmin/src/views/set/user/info.html">基本资料</a></dd>
-                                    <dd><a lay-href="${ctx}/static/layuiAdmin/src/views/set/user/password.html">修改密码</a></dd>
+                                    <dd><a lay-href="${ctx}/user/info">基本资料</a></dd>
+                                    <dd><a lay-href="${ctx}/user/password">修改密码</a></dd>
                                 </dl>
                             </dd>
                         </dl>
