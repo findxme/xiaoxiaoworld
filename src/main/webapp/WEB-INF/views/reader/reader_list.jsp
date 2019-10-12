@@ -18,10 +18,27 @@
 <table class="layui-hide" id="demo" lay-filter="test"></table>
 
 <script type="text/html" id="toolbarDemo">
-    <div class="layui-btn-container">
-        <button class="layui-btn layui-btn-sm" onclick="add()">新增</button>
-<%--        <button class="layui-btn layui-btn-sm" onclick="deleteList()">删除</button>--%>
+<%--    <div class="layui-btn-container">--%>
+<%--        <button class="layui-btn layui-btn-sm" onclick="add()">新增</button>--%>
+
+
+<%--    </div>--%>
+<%--        <input type="text" name="title" required  lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">--%>
+<%--        <div class="layui-input-inline">--%>
+<%--            <input type="text" name="title" required  lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">--%>
+<%--        </div>--%>
+    <%--        <button class="layui-btn layui-btn-sm" onclick="deleteList()">删除</button>--%>
+
+<%--    <label class="layui-form-label"></label>--%>
+<label class="layui-form-label" style="text-align: center">|</label>
+    <div class="layui-input-inline">
+        <input type="text" name="title" required  lay-verify="required" placeholder="请输入读者姓名" autocomplete="off" class="layui-input">
     </div>
+    <button class="layui-btn layui-btn-sm" onclick="QueryMy()">查询</button>
+<div class="layui-inline">
+<label class="layui-form-label" style="text-align: center">|</label>
+</div>
+<button class="layui-btn layui-btn-sm" onclick="add()">新增</button>
 </script>
 
 <script type="text/html" id="barDemo">
@@ -119,6 +136,18 @@
             // ,maxmin: true
             , area: ['350px', '500px']
         });
+    }
+    
+    function QueryMy() {
+        console.log("查询测试ing");
+        layer.open({
+            type: 2
+            , title: '查询信息'
+            , content: '${ctx}/admin/readerAdmin/readerAddView'
+            // ,maxmin: true
+            , area: ['350px', '500px']
+        });
+
     }
 
 
