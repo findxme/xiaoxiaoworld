@@ -63,8 +63,9 @@ public class TBookReaderController {
 
     @RequestMapping("/notReturnBook")
     @ResponseBody
-    public JSONObject getNotReturnBook(int page,int limit){
-        List<Map<String,Object>> list =  tBookReaderService.queryNotReturnInfo(page,limit);
+    public JSONObject getNotReturnBook(@Param("keyWord")String keyWord,int page,int limit){
+        System.out.println("key:"+keyWord);
+        List<Map<String,Object>> list =  tBookReaderService.queryNotReturnInfo(keyWord,page,limit);
         long size = tBookReaderService.findReadersBorrowingQuantity();
         System.out.println(list);
         return PageLimit.layuiJson(0,"",size,list);

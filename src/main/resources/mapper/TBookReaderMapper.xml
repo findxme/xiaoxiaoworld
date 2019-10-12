@@ -84,6 +84,10 @@
     and r.b_reader_no=rb.b_reader_no
     and b.b_book_no=rb.b_book_no
     and rb.is_return_book="未还"
+    <if test="keyWord!=null">
+      and concat(b.b_book_name,r.b_reader_name,a.b_admin_name)
+      like "%"#{keyWord}"%"
+    </if>
     limit #{currentIndex},#{pageSize}
   </select>
 

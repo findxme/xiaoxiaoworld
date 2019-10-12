@@ -28,9 +28,9 @@ public class TBookReaderImpl implements TBookReaderService {
     }
 
     @Override
-    public List<Map<String,Object>> queryNotReturnInfo(Integer page,Integer pageSize){
+    public List<Map<String,Object>> queryNotReturnInfo(String keyWord,Integer page,Integer pageSize){
         int currentIndex = (page-1)*pageSize;
-        return tBookReaderMapper.queryNotReturnInfo(currentIndex,pageSize);
+        return tBookReaderMapper.queryNotReturnInfo(keyWord,currentIndex,pageSize);
     }
 
     @Override

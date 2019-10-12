@@ -20,8 +20,32 @@
     <script type="text/javascript" src="${ctx}/static/js/jquery-3.2.1.js"></script>
 </head>
 <body>
-<h1>测试测试</h1>
-<table class="layui-hide" id="demo" lay-filter="test"></table>
+
+<div class="layui-fluid">
+    <div class="layui-card">
+        <div class="layui-form layui-card-header layuiadmin-card-header-auto">
+            <div class="layui-form-item">
+                <div class="demoTable">
+                    搜索读者姓名：
+                    <div class="layui-inline">
+                        <input class="layui-input" name="id" id="demoReload" autocomplete="off">
+                    </div>
+                    <button class="layui-btn" data-type="reload">搜索</button>
+                </div>
+            </div>
+        </div>
+        <div class="layui-card-body">
+            <table class="layui-hide" id="demo" lay-filter="test"></table>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
 
 <script type="text/html" id="barDemo">
     <button class="layui-btn layui-btn-xs" lay-event="renewBook">续借</button>
@@ -54,6 +78,7 @@
                 ,{field: 'b_renew_time', title: '续借时间长度',sort: true}
                 ,{ title: '操作', toolbar: '#barDemo',align:'center',sort: true}
             ]]
+            ,id:'testReload'
 
         });
 
@@ -124,7 +149,21 @@
             }
         });
 
-
+        var active = {
+            reload:function(){
+                table.reload('testReload',{
+                    page:{
+                        curr:1
+                    },where:{
+                        keyWord:$("#demoReload").val()
+                    }
+                });
+            }
+        }
+        $('.demoTable .layui-btn').on('click', function(){
+            var type = $(this).data('type');
+            active[type] ? active[type].call(this) : '';
+        });
     });
 </script>
 </body>

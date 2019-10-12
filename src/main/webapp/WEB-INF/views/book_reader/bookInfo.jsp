@@ -19,14 +19,35 @@
     <script src="${ctx}/static/layuiAdmin/layui/layui.js"></script>
 </head>
 <body>
-<table class="layui-hide" id="demo" lay-filter="test"></table>
-<%--<table class="layui-hide" id="demo" lay-filter="test"></table>--%>
-<template type="text/html" id="toolbarDemo">
-    <div class="layui-btn-container">
-        <button class="layui-btn layui-btn-normal" lay-event="add">新增</button>
-        <button class="layui-btn layui-btn-danger" lay-event="delete">删除</button>
+
+<div class="layui-fluid">
+    <div class="layui-card">
+        <div class="layui-form layui-card-header layuiadmin-card-header-auto">
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    图书类型筛选
+                </div>
+                <div class="layui-inline">
+                    <select name="rolename" lay-filter="LAY-user-adminrole-type">
+                        <option value="-1">全部角色</option>
+                        <option value="0">管理员</option>
+                        <option value="1">超级管理员</option>
+                        <option value="2">纠错员</option>
+                        <option value="3">采购员</option>
+                        <option value="4">推销员</option>
+                        <option value="5">运营人员</option>
+                        <option value="6">编辑</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="layui-card-body">
+            <table class="layui-hide" id="demo" lay-filter="test"></table>
+
+        </div>
     </div>
-</template>
+</div>
+
 
 <script type="text/html" id="barDemo">
     <button class="layui-btn layui-btn-xs" lay-event="borrowBook">借书</button>
@@ -50,7 +71,7 @@
             ,url: '${ctx}/tBooks/findBooksAll' //数据接口
             ,title: '图书预览'
             ,page: true //开启分页
-            ,toolbar: '#toolbarDemo' //开启工具栏，此处显示默认图标，可以自定义模板，详见文档
+            // ,toolbar: '#toolbarDemo' //开启工具栏，此处显示默认图标，可以自定义模板，详见文档
             ,totalRow: true //开启合计行
             ,cols: [[ //标题栏
                 {type:'checkbox'}

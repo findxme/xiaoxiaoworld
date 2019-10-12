@@ -19,7 +19,7 @@ public interface TBookReaderService {
 
     List<Map<String,Object>> pagingInfo(Integer page,Integer pageSize);
 
-    List<Map<String,Object>> queryNotReturnInfo(Integer page,Integer pageSize);
+    List<Map<String,Object>> queryNotReturnInfo(String keyWord,Integer page,Integer pageSize);
 
     List<Map<String,Object>> findAll();
 
