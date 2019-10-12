@@ -92,6 +92,7 @@
                                 obj.del(); //删除对应行（tr）的DOM结构
                                 layer.close(index);
                                 layer.msg("删除成功！", {icon: 6});
+                                window.location.reload();
                             }
                         }
                     });
