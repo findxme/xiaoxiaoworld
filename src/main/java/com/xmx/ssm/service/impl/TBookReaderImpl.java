@@ -73,7 +73,7 @@ public class TBookReaderImpl implements TBookReaderService {
 
     @Override
     public int borrowBook(TBook tBook, TReader tReader,TAdmin tAdmin){
-        if(tBook.getbBookNo()==null||tReader.getbReaderNo()==null){
+        if(tBook.getbBookNo()==null||tReader.getbReaderNo()==null||tAdmin.getbAdminNo()==null){
             return 0;
         }
         if(this.queryInfoByBookReader(tBook.getbBookNo(),tReader.getbReaderNo())!=null){
@@ -83,7 +83,7 @@ public class TBookReaderImpl implements TBookReaderService {
         //书，读者的书的数量
         int bookNumber = tBook.getbBookNumber();
         if(bookNumber==0){
-            return -1;
+            return -3;
         }
         tBook.setbBookNumber(--bookNumber);
         int readerBorrowNumber = tReader.getbReaderBorrowNumber();

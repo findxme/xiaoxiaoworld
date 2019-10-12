@@ -115,22 +115,23 @@
                             if(data.status===200){
 
                                 myTable.reload({});
+                            }else{
+                                layer.msg(data.message)
                             }
-                            if(data.status===404){
-                                layer.msg(data.message);
-                                /**
-                                 * 按钮禁用
-                                 */
-                                // var tds =  tr.children();
-                                // var btns = tds.children();
-                                // console.log(btns)
-                                // var btn = btns[0];
-                                // btn.css("background","black")
-                            }
-                            if(data.status===555){
-                                layer.msg(data.message);
-
-                            }
+                            // if(data.status===404){
+                            //     layer.msg(data.message);
+                            //     /**
+                            //      * 按钮禁用
+                            //      */
+                            //     // var tds =  tr.children();
+                            //     // var btns = tds.children();
+                            //     // console.log(btns)
+                            //     // var btn = btns[0];
+                            //     // btn.css("background","black")
+                            // }
+                            // if(data.status===555){
+                            //     layer.msg(data.message);
+                            // }
                         },
                         error:{
 

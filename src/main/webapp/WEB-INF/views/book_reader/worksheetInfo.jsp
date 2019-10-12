@@ -46,6 +46,7 @@
             ,page: true //开启分页
             ,toolbar: '#toolbarDemo' //开启工具栏，此处显示默认图标，可以自定义模板，详见文档
             ,totalRow: true //开启合计行
+            ,limit:5
             ,limits:[5,15,25]
             ,cols: [[ //标题栏
                 {type:'checkbox'}

@@ -50,8 +50,7 @@
             <ul class="layui-nav layui-layout-right" lay-filter="layadmin-layout-right">
 
                 <li class="layui-nav-item" lay-unselect>
-                    <a lay-href="${ctx}/tBookReader/borrowingInfo">消息中心（在一周内如果要归还在这里）</a>
-
+                    <a lay-href="app/message/index.html" layadmin-event="message" lay-text="消息中心">
                         <i class="layui-icon layui-icon-notice"></i>
 
                         <!-- 如果有新消息，则显示小圆点 -->
@@ -163,8 +162,8 @@
                             <dd data-name="header">
                                 <a lay-href="" id="book">图书</a>
                                 <script>
-                                    const adminNo = getCookie("adminNo")
-                                    const str = "${ctx}/tBookReader/bookInfoPage?adminNo="+adminNo;
+                                    var adminNo = getCookie("adminNo")
+                                    var str = "${ctx}/tBookReader/bookInfoPage?adminNo="+adminNo;
                                     document.getElementById("book").setAttribute("lay-href",str);
                                 </script>
                             </dd>
@@ -181,8 +180,8 @@
                             <dd data-name="content">
                                 <a lay-href="" id="returnOrRenew">消息中心（在一周内如果要归还在这里）</a>
                                 <script>
-                                    const adminNo1 = getCookie("adminNo")
-                                    const str1 = "${ctx}/tBookReader/borrowingInfo?adminNo="+adminNo1;
+                                    var adminNo1 = getCookie("adminNo")
+                                    var str1 = "${ctx}/tBookReader/borrowingInfo?adminNo="+adminNo1;
                                     document.getElementById("returnOrRenew").setAttribute("lay-href",str1);
                                 </script>
                             </dd>

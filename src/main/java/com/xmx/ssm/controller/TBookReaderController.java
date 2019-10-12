@@ -65,8 +65,9 @@ public class TBookReaderController {
     @ResponseBody
     public JSONObject getNotReturnBook(int page,int limit){
         List<Map<String,Object>> list =  tBookReaderService.queryNotReturnInfo(page,limit);
+        long size = tBookReaderService.findReadersBorrowingQuantity();
         System.out.println(list);
-        return PageLimit.layuiJson(0,"",tBookReaderService.countInfos(),list);
+        return PageLimit.layuiJson(0,"",size,list);
     }
 
 
@@ -79,7 +80,7 @@ public class TBookReaderController {
         TReader tReader = tReadersService.findReaderByNo(readerNo);
         TAdmin tAdmin = tAdminService.findAdminByNo(adminNo);
         int result = tBookReaderService.borrowBook(tBook,tReader,tAdmin);
-
+        System.out.println("result:"+result);
         StatusInfo statusInfo = new StatusInfo();
         if(result==0){
             statusInfo.setStatus(500);
@@ -93,7 +94,10 @@ public class TBookReaderController {
             statusInfo.setStatus(555);
             statusInfo.setMessage("本书，你已借过");
         }
-
+        if(result==-3){
+            statusInfo.setStatus(501);
+            statusInfo.setMessage("书已借完");
+        }
         return statusInfo;
     }
 
