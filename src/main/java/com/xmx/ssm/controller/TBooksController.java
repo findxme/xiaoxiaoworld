@@ -6,6 +6,7 @@ import com.xmx.ssm.entity.TBook;
 import com.xmx.ssm.service.TBooksService;
 import com.xmx.ssm.service.TBooksTypeService;
 import com.xmx.ssm.util.PageLimit;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -41,10 +42,13 @@ public class TBooksController {
      * */
     @ResponseBody
     @RequestMapping("/findBooksAll")
-    public JSONObject findBooksAll(int page, int limit) {
+    public JSONObject findBooksAll(@Param("bookType")String bookType, Integer page, Integer limit) {
+        if("".equals(bookType)){bookType=null;}
         int currIndex = (page - 1) * limit;
-        List<Map<String, Object>> books = tBooksService.findBooksLimit(currIndex, limit);
-        JSONObject json = PageLimit.layuiJson(0, "", tBooksService.countByExample(), books);
+        System.out.println("bookType:"+bookType);
+        List<Map<String, Object>> books = tBooksService.findBooksLimit(bookType,currIndex, limit);
+        System.out.println("bookSize:"+books.size());
+        JSONObject json = PageLimit.layuiJson(0, "", books.size(), books);
         return json;
     }
 

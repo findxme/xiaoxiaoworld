@@ -50,8 +50,9 @@ public class MyTest {
 
         TReader tReader = tReadersService.findReaderByNo("reader1");
 
-        System.out.println(tBookReaderService.borrowBook(tBook,tReader,tAdmin));
+//        System.out.println(tBookReaderService.borrowBook(tBook,tReader,tAdmin));
 
+        System.out.println(tBooksService.findBooksLimit("type6",1,20));
     }
 
 }

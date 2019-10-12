@@ -20,8 +20,8 @@ public interface TBookMapper {
      * @param pageSize
      * @return
      */
-    @Select("select * from t_book,t_book_type where t_book_type.b_book_type_no=t_book.b_book_type_no limit #{currIndex},#{pageSize}")
-    List<Map<String ,Object>> findBooksLimit(@Param("currIndex") int currIndex,@Param("pageSize") int pageSize);
+
+    List<Map<String ,Object>> findBooksLimit(@Param("bookType")String bookType,@Param("currIndex") Integer currIndex,@Param("pageSize") Integer pageSize);
 
     /*查找全部*/
     List<Map<String ,Object>> findBooksAll();
