@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class TAdminServiceImpl implements TAdminService {
@@ -34,4 +35,15 @@ public class TAdminServiceImpl implements TAdminService {
     public TAdmin findAdminByNo(String adminNo){
         return tAdminMapper.findAdminByNo(adminNo);
     }
+
+    @Override
+    public int updateAdmin(TAdmin tAdmin) {
+        return tAdminMapper.updateAdmin(tAdmin);
+    }
+
+    @Override
+    public List<Map<String,Object>> findAdminOne(String username) {
+        return tAdminMapper.findAdminOne(username);
+    }
+
 }
