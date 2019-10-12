@@ -83,7 +83,6 @@ public class TBookReaderController {
         TReader tReader = tReadersService.findReaderByNo(readerNo);
         TAdmin tAdmin = tAdminService.findAdminByNo(adminNo);
         int result = tBookReaderService.borrowBook(tBook,tReader,tAdmin);
-        System.out.println("result:"+result);
         StatusInfo statusInfo = new StatusInfo();
         if(result==0){
             statusInfo.setStatus(500);
@@ -100,6 +99,10 @@ public class TBookReaderController {
         if(result==-3){
             statusInfo.setStatus(501);
             statusInfo.setMessage("书已借完");
+        }
+        if(result==-4){
+            statusInfo.setStatus(502);
+            statusInfo.setMessage("查无此人");
         }
         return statusInfo;
     }
