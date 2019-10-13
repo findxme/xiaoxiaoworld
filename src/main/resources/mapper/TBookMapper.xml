@@ -142,6 +142,17 @@
   </select>
 
 
+  <select id="findBooksLimit" resultType="map" parameterType="map">
+    select *
+    from
+    t_book b,t_book_type bt
+    where b.b_book_type_no=bt.b_book_type_no
+    <if test="bookType!=null">
+      and bt.b_book_type_no=#{bookType}
+    </if>
+    limit #{currIndex},#{pageSize}
+  </select>
+
   <!--ok-->
   <!--查找全部-->
   <select id="findBooksAll" resultType="map" parameterType="integer">

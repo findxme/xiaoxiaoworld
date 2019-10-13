@@ -28,15 +28,8 @@
                     图书类型筛选
                 </div>
                 <div class="layui-inline">
-                    <select name="rolename" lay-filter="LAY-user-adminrole-type">
-                        <option value="-1">全部角色</option>
-                        <option value="0">管理员</option>
-                        <option value="1">超级管理员</option>
-                        <option value="2">纠错员</option>
-                        <option value="3">采购员</option>
-                        <option value="4">推销员</option>
-                        <option value="5">运营人员</option>
-                        <option value="6">编辑</option>
+                    <select name="bookType" data-type="reload" id="bookType" lay-filter="book-type">
+                        <option value="">请选择图书类型</option>
                     </select>
                 </div>
             </div>
@@ -59,9 +52,33 @@
 
 <script>
 
-    layui.use(['layer', 'table'], function(){
+    function dropBox(){
+        layui.use(['form'],function(){
+
+            var form = layui.form;
+            $.ajax({
+                url:'${ctx}/tBookReader/dropBox',
+                type:'post',
+                success:function(data){
+                    $.each(data,function(index,item){
+                        $("select[name='bookType']").append(new Option(item.b_book_type,item.b_book_type_no));
+                    })
+                    form.render();
+                },
+                error:function(){
+                    layer.msg("错误")
+                }
+
+            })
+        })
+    }
+
+    layui.use(['layer', 'table','form'], function(){
         var layer = layui.layer //弹层
             ,table = layui.table //表格
+            ,form = layui.form;
+        dropBox()
+
 
 
         //执行一个 table 实例
@@ -72,6 +89,8 @@
             ,title: '图书预览'
             ,page: true //开启分页
             // ,toolbar: '#toolbarDemo' //开启工具栏，此处显示默认图标，可以自定义模板，详见文档
+            ,limit:8
+            ,limits:[8,16,24,32,40]
             ,totalRow: true //开启合计行
             ,cols: [[ //标题栏
                 {type:'checkbox'}
@@ -83,7 +102,7 @@
                 ,{field: 'b_book_type', title: '类型'}
                 ,{ title: '操作', toolbar: '#barDemo',align:'center',width:110}
             ]]
-
+            ,id:'testReload'
         });
 
         //监听头工具栏事件
@@ -135,7 +154,9 @@
                             console.log(data.status)
                             if(data.status===200){
 
-                                myTable.reload({});
+                                myTable.reload({
+                                    elem:'#demo'
+                                });
                             }else{
                                 layer.msg(data.message)
                             }
@@ -162,9 +183,28 @@
                     layer.close(index)
                 })
             }
+
+
         });
 
+
+
+
+        form.on('select(book-type)',function(data){
+
+            table.reload('testReload',{
+                page:{
+                    curr:1
+                },where:{
+                    bookType:data.value
+                }
+            });
+
+        })
+
     });
+
+
 </script>
 
 </body>

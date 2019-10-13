@@ -73,8 +73,8 @@ public class TBookReaderImpl implements TBookReaderService {
 
     @Override
     public int borrowBook(TBook tBook, TReader tReader,TAdmin tAdmin){
-        if(tBook.getbBookNo()==null||tReader.getbReaderNo()==null||tAdmin.getbAdminNo()==null){
-            return 0;
+        if(tBook==null||tReader==null||tAdmin==null){
+            return -4;
         }
         if(this.queryInfoByBookReader(tBook.getbBookNo(),tReader.getbReaderNo())!=null){
             return -2;

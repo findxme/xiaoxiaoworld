@@ -9,7 +9,9 @@ import com.xmx.ssm.service.TAdminService;
 import com.xmx.ssm.service.TBookReaderService;
 import com.xmx.ssm.service.TBooksService;
 import com.xmx.ssm.service.TReadersService;
+import com.xmx.ssm.service.impl.TSmtpServiceImpl;
 import com.xmx.ssm.util.CookiesDao;
+import com.xmx.ssm.util.Email;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -39,6 +42,10 @@ public class LoginController {
     public TBookReaderService tBookReaderService;
 
 
+    @Autowired
+    private TSmtpServiceImpl tSmtpService;
+
+
     @RequestMapping(value = "index")
     public String goHome(){
         return "/home/console";
@@ -55,7 +62,8 @@ public class LoginController {
     @ResponseBody
     public StatusInfo login(@Param("userName")String userName,
                             @Param("password")String password,
-                            @Param("userType")String userType){
+                            @Param("userType")String userType,
+                            HttpSession session){
         StatusInfo statusInfo = new StatusInfo();
 
 
@@ -94,6 +102,7 @@ public class LoginController {
                 }
             }
         }
+        session.setAttribute("userName", userName);
         return statusInfo;
     }
     @RequestMapping("/list")
@@ -116,6 +125,18 @@ public class LoginController {
 
     @RequestMapping(value = "home")
     public String toHome(){
+
+        //登录成功，获取邮件服务信息
+
+        Map<String, Object> smtp = tSmtpService.selectSmtp();
+
+        Email.setiEmail(smtp.get("email").toString());
+        Email.setHostName(smtp.get("smtp").toString());
+        Email.setName(smtp.get("name").toString());
+        Email.setUserName(smtp.get("email").toString());
+        Email.setPassword(smtp.get("password").toString());
+        Email.setPort(Integer.parseInt(smtp.get("prot").toString()));
+
         return "test";
     }
 

@@ -3,12 +3,10 @@ package com.xmx.ssm.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.xmx.ssm.entity.TAdmin;
 import com.xmx.ssm.entity.TBook;
+import com.xmx.ssm.entity.TBookType;
 import com.xmx.ssm.entity.TReader;
 import com.xmx.ssm.entity.messageInfo.StatusInfo;
-import com.xmx.ssm.service.TAdminService;
-import com.xmx.ssm.service.TBookReaderService;
-import com.xmx.ssm.service.TBooksService;
-import com.xmx.ssm.service.TReadersService;
+import com.xmx.ssm.service.*;
 import com.xmx.ssm.util.PageLimit;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,13 +14,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 @Controller
 @RequestMapping("/tBookReader")
 public class TBookReaderController {
 
+    @Autowired
+    private TBooksTypeService tBooksTypeService;
 
     @Autowired
     private TBookReaderService tBookReaderService;
@@ -81,7 +83,6 @@ public class TBookReaderController {
         TReader tReader = tReadersService.findReaderByNo(readerNo);
         TAdmin tAdmin = tAdminService.findAdminByNo(adminNo);
         int result = tBookReaderService.borrowBook(tBook,tReader,tAdmin);
-        System.out.println("result:"+result);
         StatusInfo statusInfo = new StatusInfo();
         if(result==0){
             statusInfo.setStatus(500);
@@ -98,6 +99,10 @@ public class TBookReaderController {
         if(result==-3){
             statusInfo.setStatus(501);
             statusInfo.setMessage("书已借完");
+        }
+        if(result==-4){
+            statusInfo.setStatus(502);
+            statusInfo.setMessage("查无此人");
         }
         return statusInfo;
     }
@@ -145,6 +150,14 @@ public class TBookReaderController {
 
         JSONObject json = PageLimit.layuiJson(0, "", tBookReaderService.countBydayQuantity(), books);
         return json;
+    }
+
+
+    @RequestMapping("/dropBox")
+    @ResponseBody
+    public List<Map<String,Object>> dropBox(){
+        List<Map<String,Object>> tBookTypes = tBooksTypeService.selectBooksType();
+        return tBookTypes;
     }
 }
 
