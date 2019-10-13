@@ -26,9 +26,14 @@
         <div class="layui-form layui-card-header layuiadmin-card-header-auto">
             <div class="layui-form-item">
                 <div class="demoTable">
-                    搜索读者姓名：
+                    <div class="layui-inline"> <!-- 注意：这一层元素并不是必须的 -->
+                        <input type="text" class="layui-input" id="startDate" placeholder="选择借书日期前">
+                    </div>
+                    <div class="layui-inline"> <!-- 注意：这一层元素并不是必须的 -->
+                        <input type="text" class="layui-input" id="endDate" placeholder="选择借书日期后">
+                    </div>
                     <div class="layui-inline">
-                        <input class="layui-input" name="id" id="demoReload" autocomplete="off">
+                        <input class="layui-input" name="demoReload" id="demoReload" autocomplete="off" placeholder="搜索">
                     </div>
                     <button class="layui-btn" data-type="reload">搜索</button>
                 </div>
@@ -55,9 +60,11 @@
 <script>
 
 
-    layui.use(['laypage', 'layer', 'table'], function(){
+    layui.use(['laypage', 'layer', 'table','laydate'], function(){
         var layer = layui.layer //弹层
             ,table = layui.table //表格
+            ,laydate = layui.laydate;
+
 
 
         //执行一个 table 实例
@@ -99,9 +106,8 @@
                             console.log(data.status)
                             if(data.status===200){
                                 myTable.reload({});
-                            }else{
-                                layer.msg(data.message)
                             }
+                            layer.msg(data.message)
                         }
                     })
                     layer.close(renewBook)
@@ -118,26 +124,11 @@
                             "adminNo":adminNo
                         },
                         success:function (data) {
-                            console.log(data.status)
                             if(data.status===200){
 
                                 myTable.reload();
                             }
-                            if(data.status===404){
-                                layer.msg(data.message);
-                                /**
-                                 * 按钮禁用
-                                 */
-                                // var tds =  tr.children();
-                                // var btns = tds.children();
-                                // console.log(btns)
-                                // var btn = btns[0];
-                                // btn.css("background","black")
-                            }
-                            if(data.status===555){
-                                layer.msg(data.message);
-
-                            }
+                            layer.msg(data.message)
                         },
                         error:{
 
@@ -149,13 +140,23 @@
             }
         });
 
+        laydate.render({
+            elem:'#startDate'
+        });
+
+        laydate.render({
+            elem:'#endDate'
+        });
+
         var active = {
             reload:function(){
                 table.reload('testReload',{
                     page:{
                         curr:1
                     },where:{
-                        keyWord:$("#demoReload").val()
+                        keyWord:$("#demoReload").val(),
+                        startDate:$("#startDate").val(),
+                        endDate:$("#endDate").val()
                     }
                 });
             }

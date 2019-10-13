@@ -20,17 +20,26 @@
 </head>
 <body>
 
+
+
 <div class="layui-fluid">
     <div class="layui-card">
         <div class="layui-form layui-card-header layuiadmin-card-header-auto">
             <div class="layui-form-item">
                 <div class="layui-inline">
-                    图书类型筛选
-                </div>
-                <div class="layui-inline">
-                    <select name="bookType" data-type="reload" id="bookType" lay-filter="book-type">
+                    <select name="bookType" data-type="reload" id="bookType" lay-filter="book-type" lay-search>
                         <option value="">请选择图书类型</option>
                     </select>
+                </div>
+                <div class="layui-inline">
+                    <div class="layui-input-inline">
+                        <input type="text" name="keyWord" id="keyWord" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <div class="layui-btn-group">
+                        <button type="button" id="search" class="layui-btn layui-btn-normal">搜索</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -151,29 +160,13 @@
                             "adminNo":adminNo
                         },
                         success:function (data) {
-                            console.log(data.status)
                             if(data.status===200){
 
                                 myTable.reload({
                                     elem:'#demo'
                                 });
-                            }else{
-                                layer.msg(data.message)
                             }
-                            // if(data.status===404){
-                            //     layer.msg(data.message);
-                            //     /**
-                            //      * 按钮禁用
-                            //      */
-                            //     // var tds =  tr.children();
-                            //     // var btns = tds.children();
-                            //     // console.log(btns)
-                            //     // var btn = btns[0];
-                            //     // btn.css("background","black")
-                            // }
-                            // if(data.status===555){
-                            //     layer.msg(data.message);
-                            // }
+                            layer.msg(data.message)
                         },
                         error:{
 
@@ -202,6 +195,15 @@
 
         })
 
+        $("#search").on('click',function(){
+            table.reload('testReload',{
+                page:{
+                    curr:1
+                },where:{
+                    keyWord:$("#keyWord").val()
+                }
+            });
+        })
     });
 
 

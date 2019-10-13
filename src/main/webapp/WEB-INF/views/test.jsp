@@ -237,7 +237,7 @@
             </div>
             <div class="layui-tab" lay-unauto lay-allowClose="true" lay-filter="layadmin-layout-tabs">
                 <ul class="layui-tab-title" id="LAY_app_tabsheader">
-                    <li lay-id="index" lay-attr="" class="layui-this"><i class="layui-icon layui-icon-home"></i></li>
+                    <li lay-id="${ctx}/user/dataStatistics" lay-attr="" class="layui-this"><i class="layui-icon layui-icon-home"></i></li>
                 </ul>
             </div>
         </div>

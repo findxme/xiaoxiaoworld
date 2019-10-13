@@ -15,7 +15,7 @@ import org.apache.ibatis.annotations.Select;
 public interface TBookReaderMapper {
 
 
-    List<Map<String,Object>> queryNotReturnInfo(@Param("keyWord")String keyWord,@Param("currentIndex")Integer currentIndex,@Param("pageSize")Integer pageSize);
+    List<Map<String,Object>> queryNotReturnInfo(@Param("startDate")String startDate,@Param("endDate")String endDate,@Param("keyWord")String keyWord,@Param("currentIndex")Integer currentIndex,@Param("pageSize")Integer pageSize);
 
     List<Map<String,Object>> findInfoByBook(@Param("bookNo")String bookName,@Param("currentIndex")Integer currentIndex,@Param("pageSize")Integer pageSize);
 

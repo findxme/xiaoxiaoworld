@@ -150,6 +150,10 @@
     <if test="bookType!=null">
       and bt.b_book_type_no=#{bookType}
     </if>
+    <if test="keyWord!=null">
+      and concat(b.b_book_name,b.b_book_no,b.b_book_author)
+      like "%"#{keyWord}"%"
+    </if>
     limit #{currIndex},#{pageSize}
   </select>
 
