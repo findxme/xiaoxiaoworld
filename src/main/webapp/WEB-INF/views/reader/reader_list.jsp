@@ -32,7 +32,7 @@
 <%--    <label class="layui-form-label"></label>--%>
 <label class="layui-form-label" style="text-align: center">|</label>
     <div class="layui-input-inline">
-        <input type="text" name="title" required  lay-verify="required" placeholder="请输入读者姓名" autocomplete="off" class="layui-input">
+        <input type="text" name="readername" id="reader" required  lay-verify="required"  placeholder="请输入读者姓名" autocomplete="off" class="layui-input">
     </div>
     <button class="layui-btn layui-btn-sm" onclick="QueryMy()">查询</button>
 <div class="layui-inline">
@@ -50,6 +50,7 @@
 <script>
 
     var deleteListData = [];
+
 
     layui.use(['laypage', 'layer', 'table'], function () {
         var laydate = layui.laypage = layui.laypage //分页
@@ -139,11 +140,15 @@
     }
     
     function QueryMy() {
-        console.log("查询测试ing");
+        // console.log("查询测试ing");
+        // console.log(document.getElementById("reader").getAttribute("value"));
+        var key=document.getElementById("reader");
+        var key1=key.value;
+        console.log(key1);
         layer.open({
             type: 2
             , title: '查询信息'
-            , content: '${ctx}/admin/readerAdmin/readerAddView'
+            , content: '${ctx}/admin/readerAdmin/queryOne?name='+key1
             // ,maxmin: true
             , area: ['350px', '500px']
         });

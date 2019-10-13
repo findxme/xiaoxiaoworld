@@ -92,9 +92,31 @@ public class TReaderController {
 
     }
 
-    @RequestMapping(value = "queryOne")
-    public List<TReader> findReadersOne(TReader tReader) {
-        return null;
+    @RequestMapping("queryOne")
+    public ModelAndView findReadersOne(String name) {
+        TReader tReader=tReadersService.findReaderByName(name);
+        ModelAndView modelAndView = new ModelAndView();
+        if (tReader!=null) {
+//        List<Map<String, Object>> readerOne = tReadersService.findReaderOne(no);
+//        if (readerOne.size() == 0) {
+//            return 0;
+//
+//        }
+//        return 1;
+
+
+            modelAndView.addObject("ReaderInfo", tReader);
+            System.out.println(tReader);
+            System.out.println(modelAndView);
+            modelAndView.setViewName("reader/reader_query");
+            return modelAndView;
+        }
+        else{
+            System.out.println("Spare Request!");
+            modelAndView.setViewName("reader/test");
+            return modelAndView;
+        }
+//        return "reader/test";
     }
 
     @RequestMapping("/readerView")
@@ -115,6 +137,7 @@ public class TReaderController {
         }
         return 1;
     }
+
 
     /*根据no字段删除*/
     @ResponseBody
@@ -153,4 +176,6 @@ public class TReaderController {
                     tReadersService.insertReader(tReader);
 
     }
+
+
 }
