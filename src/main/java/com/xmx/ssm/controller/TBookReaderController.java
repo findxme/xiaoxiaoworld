@@ -58,8 +58,17 @@ public class TBookReaderController {
      */
     @RequestMapping("/books")
     @ResponseBody
-    public JSONObject getBookInfo(int page,int limit){
-        List<Map<String,Object>> list =  tBookReaderService.pagingInfo(page,limit);
+    public JSONObject getBookInfo(@Param("keyWord")String keyWord,@Param("startDate")String startDate,@Param("endDate")String endDate,int page,int limit){
+        List<Map<String,Object>> list =  tBookReaderService.pagingInfo(keyWord,startDate,endDate,page,limit);
+        System.out.println("key:"+keyWord);
+        System.out.println("startDate:"+startDate);
+        System.out.println("endDate:"+endDate);
+        for(Map<String,Object> map:list){
+            System.out.println(map.get("b_return_date"));
+            if(map.get("b_return_date")==null||"".equals(map.get("b_return_date"))){
+                map.put("b_return_date","-");
+            }
+        }
         return PageLimit.layuiJson(0,"",tBookReaderService.countInfos(),list);
     }
 

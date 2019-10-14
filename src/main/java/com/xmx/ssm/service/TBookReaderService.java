@@ -17,7 +17,7 @@ public interface TBookReaderService {
 
     TBookReader queryInfoByBookReader(String bookNo,String readerNo);
 
-    List<Map<String,Object>> pagingInfo(Integer page,Integer pageSize);
+    List<Map<String,Object>> pagingInfo(String keyWord,String startDate,String endDate,Integer page,Integer pageSize);
 
     List<Map<String,Object>> queryNotReturnInfo(String startDate,String endDate,String keyWord,Integer page,Integer pageSize);
 
