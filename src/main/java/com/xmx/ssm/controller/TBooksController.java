@@ -45,7 +45,6 @@ public class TBooksController {
     public JSONObject findBooksAll(@Param("keyWord")String keyWord,@Param("bookType")String bookType, Integer page, Integer limit) {
         if("".equals(bookType)){bookType=null;}
         int currIndex = (page - 1) * limit;
-        System.out.println("bookType:"+bookType);
         List<Map<String, Object>> books = tBooksService.findBooksLimit(keyWord,bookType,currIndex, limit);
         System.out.println("bookSize:"+books.size());
         JSONObject json = PageLimit.layuiJson(0, "", tBooksService.countByExample(), books);
@@ -56,14 +55,17 @@ public class TBooksController {
     /*动态sql*/
     @ResponseBody
     @RequestMapping("/findBooksOne")
-    public int findBooksOne(String no) {
-        TBook tBook = new TBook();
-        tBook.setbBookNo(no);
-        List<Map<String, Object>> booksOne = tBooksService.findBooksOne(tBook);
-        if (booksOne.size() == 0) {
-            return 0;
-        }
-        return 1;
+    public JSONObject findBooksOne(@Param("bookNo")String bookNo,
+                            @Param("bookName")String bookName,
+                            @Param("bookAuthor")String bookAuthor,
+                            @Param("bookType")String bookType,
+                            Integer page,
+                            Integer limit) {
+        if("".equals(bookType)){bookType=null;}
+        int currIndex = (page - 1) * limit;
+        List<Map<String, Object>> booksOne = tBooksService.findBooksAll(bookNo,bookName,bookAuthor,bookType,currIndex,limit);
+
+        return PageLimit.layuiJson(0, "", tBooksService.countByExample(), booksOne);
     }
 
     /*根据主键查找数据 nook*/

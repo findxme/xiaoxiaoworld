@@ -352,7 +352,7 @@
             , url: '${ctx}/tBookReader/selectDay' //数据接口
             //  , title: '图书列表'
             , page: true //开启分页
-            , toolbar: '#toolbarDemo'
+            // , toolbar: '#toolbarDemo'
             , id: 'idTest'
             , cols: [[ //标题栏
                 // {type: 'checkbox'},

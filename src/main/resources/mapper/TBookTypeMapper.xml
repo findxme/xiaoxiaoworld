@@ -69,6 +69,9 @@
   </sql>
 
 
+  <select id="getTypeNoByTypeName" parameterType="String" resultType="com.xmx.ssm.entity.TBookType">
+    select b_book_type_no from t_book_type where b_book_type = #{typeName}
+  </select>
 
 
 <!--  <insert id="insertTBookType" parameterType="com.xmx.ssm.entity.TBookType">-->

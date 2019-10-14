@@ -15,8 +15,15 @@ public class TBooksTypeServiceImpl implements TBooksTypeService {
 
 
 
+
     @Autowired
     TBookTypeMapper tBookTypeMapper;
+
+
+    @Override
+    public TBookType getTypeNoByTypeName(String typeName){
+        return tBookTypeMapper.getTypeNoByTypeName(typeName);
+    }
 
     /*OK*/
     /*查出有多少条记录ok*/
