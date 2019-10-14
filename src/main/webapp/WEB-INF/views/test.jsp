@@ -111,12 +111,7 @@
 
                                 <a lay-href="${ctx}/user/dataStatistics">控制台</a>
                             </dd>
-                            <%--                            <dd data-name="console">--%>
-                            <%--                                <a lay-href="${ctx}/static/layuiAdmin/src/views/home/homepage1.jsp">主页一</a>--%>
-                            <%--                            </dd>--%>
-                            <%--                            <dd data-name="console">--%>
-                            <%--                                <a lay-href="${ctx}/static/layuiAdmin/src/views/home/homepage2.jsp">主页二</a>--%>
-                            <%--                            </dd>--%>
+
                         </dl>
                     </li>
 
@@ -127,13 +122,10 @@
                         </a>
                         <dl class="layui-nav-child">
 
-                            <%--                            <dd data-name="content">--%>
-                            <%--                                <a href="javascript:;">内容系统</a>--%>
-                            <%--                                <dl class="layui-nav-child">--%>
+
                             <dd data-name="list"><a lay-href="${ctx}/tBooks/list">图书列表</a></dd>
                             <dd data-name="tags"><a lay-href="${ctx}/tBooksType/booksType">分类管理</a></dd>
-                            <%--                                </dl>--%>
-                            <%--                            </dd>--%>
+
                         </dl>
                     </li>
 
@@ -147,9 +139,7 @@
                         </a>
                         <dl class="layui-nav-child">
                             <dd data-name="list"><a lay-href="${ctx}/admin/readerAdmin/readerView">读者列表</a></dd>
-                            <%--                            <dd data-name="tags"><a lay-href="${ctx}/static/layuiAdmin/src/views/app/content/tags.html">读者删</a></dd>--%>
-                            <%--                            <dd data-name="comment"><a lay-href="${ctx}/static/layuiAdmin/src/views/app/content/comment.html">读者改</a></dd>--%>
-                            <%--                            <dd data-name="comment"><a lay-href="${ctx}/static/layuiAdmin/src/views/app/forum/replys.html">读者查询</a></dd>--%>
+
                         </dl>
                     </li>
 
@@ -168,16 +158,7 @@
                                     document.getElementById("book").setAttribute("lay-href",str);
                                 </script>
                             </dd>
-                            <%--<dd data-name="content">--%>
-                            <%--<a href="javascript:;">内容系统</a>--%>
-                            <%--<dl class="layui-nav-child">--%>
 
-                            <%--<dd data-name="list"><a lay-href="${ctx}/static/layuiAdmin/src/views/app/content/list.html">借阅列表</a></dd>--%>
-                            <%--&lt;%&ndash;<dd data-name="tags"><a lay-href="${ctx}/static/layuiAdmin/src/views/app/content/tags.html">借书</a></dd>&ndash;%&gt;--%>
-                            <%--&lt;%&ndash;<dd data-name="comment"><a lay-href="${ctx}/static/layuiAdmin/src/views/app/content/comment.html">还书</a></dd>&ndash;%&gt;--%>
-                            <%--&lt;%&ndash;<dd data-name="comment"><a lay-href="${ctx}/static/layuiAdmin/src/views/app/forum/replys.html">续借</a></dd>&ndash;%&gt;--%>
-                            <%--</dl>--%>
-                            <%--</dd>--%>
                             <dd data-name="content">
                                 <a lay-href="" id="returnOrRenew">消息中心（在一周内如果要归还在这里）</a>
                                 <script>
@@ -203,7 +184,6 @@
                             <dd class="layui-nav-itemed">
                                 <a href="javascript:;">系统设置</a>
                                 <dl class="layui-nav-child">
-                                    <dd><a lay-href="${ctx}/static/layuiAdmin/src/views/set/system/website.html">网站设置</a></dd>
                                     <dd><a lay-href="${ctx}/user/email">邮件服务</a></dd>
                                 </dl>
                             </dd>
@@ -247,7 +227,7 @@
         <!-- 主体内容 -->
         <div class="layui-body" id="LAY_app_body">
             <div class="layadmin-tabsbody-item layui-show">
-                <%--                <a lay-href="${ctx}/user/dataStatistics">控制台</a>--%>
+
                 <iframe src="${ctx}/user/dataStatistics" frameborder="0" class="layadmin-iframe"></iframe>
             </div>
         </div>
@@ -261,14 +241,7 @@
 <script src="${ctx}/static/js/cookieDao.js"></script>
 <script src="${ctx}/static/layuiAdmin/layui/layui.js"></script>
 <script>
-    // var loginName;
-    // if(getCookie("adminName")==null||getCookie("adminName")==""){
-    //     loginName = getCookie("readerName");
-    // }else{
-    //     loginName = getCookie("adminName");
-    // }
-    // console.log(document.cookie)
-    // $("#loginName").html(loginName)
+
     layui.config({
         base: '../static/layuiAdmin/' //静态资源所在路径
     }).extend({

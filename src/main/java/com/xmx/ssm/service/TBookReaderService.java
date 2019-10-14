@@ -44,6 +44,9 @@ public interface TBookReaderService {
     /*查询当天借阅记录*/
     List<Map<String,Object>> selectDay(@Param("currIndex") int currIndex, @Param("pageSize") int pageSize);
 
+    List<Map<String,Object>> findOneReaderByBook(@Param("name")String name,@Param("currIndex") int currIndex, @Param("pageSize") int pageSize);
+
+    long findOneReaderByBookQuantity(@Param("name")String name);
 
     long countBydayQuantity();
 }

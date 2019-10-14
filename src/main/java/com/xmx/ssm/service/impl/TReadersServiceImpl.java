@@ -3,6 +3,7 @@ package com.xmx.ssm.service.impl;
 import com.xmx.ssm.dao.TReaderMapper;
 import com.xmx.ssm.entity.TReader;
 import com.xmx.ssm.service.TReadersService;
+import org.apache.ibatis.annotations.One;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,6 +34,11 @@ public class TReadersServiceImpl implements TReadersService {
     }
 
     @Override
+    public List<Map<String, Object>> findReaderNameOne(String name) {
+        return tReaderMapper.findReaderNameOne(name);
+    }
+
+    @Override
     public List<Map<String, Object>> findReadersAll() {
         return null;
     }
@@ -50,6 +56,11 @@ public class TReadersServiceImpl implements TReadersService {
     @Override
     public int updateReader(TReader tReader) {
         return  tReaderMapper.updateByNo(tReader);
+    }
+
+    @Override
+    public int updateByName(TReader tReader) {
+        return tReaderMapper.updateByName(tReader);
     }
 
     @Override

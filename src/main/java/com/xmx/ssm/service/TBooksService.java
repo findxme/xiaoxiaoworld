@@ -27,9 +27,14 @@ public interface TBooksService {
                                            Integer currIndex,
                                            Integer pageSize);
 
+
+    List<Map<String ,Object>> findReaderLookBooksAll();
+
     /*OK*/
     /*条件查询 ok*/
     List<Map<String ,Object>> findBooksOne(TBook tBook);
+
+
 
 
     /*OK*/

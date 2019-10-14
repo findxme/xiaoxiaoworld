@@ -1,134 +1,222 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Administrator
-  Date: 2019/9/25 0025
-  Time: 22:04
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
-    request.setAttribute("ctx",request.getContextPath());
+  request.setAttribute("ctx",request.getContextPath());
 %>
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Register - Input Form by Tooplate</title>
-
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400">
-    <link rel="stylesheet" href="${ctx}/static/css/bootstrap.min.css">
-    <link rel="stylesheet" href="${ctx}/static/css/materialize.min.css">
-    <link rel="stylesheet" href="${ctx}/static/css/tooplate.css">
+  <meta charset="utf-8">
+  <title>注册 - layuiAdmin</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link rel="stylesheet" href="https://www.layuicdn.com/layui-v2.5.5/css/layui.css" media="all">
+  <%--  <link rel="stylesheet" href="../../layuiadmin/style/admin.css" media="all">--%>
+  <link rel="stylesheet" href="${ctx}/static/layuiAdmin/style/admin.css" media="all">
+  <%--  <link rel="stylesheet" href="../../layuiadmin/style/login.css" media="all">--%>
+  <link rel="stylesheet" href="${ctx}/static/layuiAdmin/style/login.css" media="all">
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
 </head>
+<body>
 
-<body id="register">
-<div class="container">
-    <div class="row tm-register-row">
-        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 tm-register-col-l">
-            <form id="register_form" action="" method="post">
-                <div class="mb-2">
-                    <label class="mr-4">
-                        <input class="with-gap" name="userType" type="radio" value="librarion" id="librarion" />
-                        <span>图书管理员</span>
-                    </label>
-                    <label class="mr-4">
-                        <input class="with-gap" name="userType" type="radio" value="reader" id="reader" checked />
-                        <span>普通读者</span>
-                    </label>
-                </div>
-
-                <div class="input-field">
-                    <input placeholder="用户名" id="username" name="username" type="text" class="validate">
-                </div>
-                <div class="input-field">
-                    <input placeholder="密码" id="password" name="password" type="text" class="validate">
-                </div>
-                <div class="input-field">
-                    <input placeholder="邮箱" id="email" name="email" type="text" class="validate">
-                </div>
-                <div class="input-field">
-                    <input placeholder="手机号" id="mobile" name="mobile" type="text" class="validate">
-                </div>
-                <%--<div class="input-field">--%>
-                    <%--<input placeholder="地址" id="address" name="address" type="text" class="validate">--%>
-                <%--</div>--%>
-                <%--<div class="input-field">--%>
-                    <%--<input placeholder="地区/省" id="district" name="district" type="text" class="validate">--%>
-                <%--</div>--%>
-
-                <div class="input-field" id="ideaCodeDiv" style="display: none;">
-                    <input placeholder="认证码" id="ideaCode" name="ideaCode">
-                </div>
-
-                <div class="input-field">
-                    <span style="color: white">备注：</span>
-                    <textarea class="table-bordered" id="remarks" name="remarks"></textarea>
-                </div>
-                <%--<div class="row">--%>
-                    <%--<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 pl-0 tm-pr-xs-0">--%>
-                        <%--<select name="city">--%>
-                            <%--<option value="-">你的城市</option>--%>
-                            <%--<option value="Bangkok">武汉</option>--%>
-                            <%--<option value="Yangon">天津</option>--%>
-                            <%--<option value="Mumbai">北京</option>--%>
-                            <%--<option value="Singapore">深圳</option>--%>
-                        <%--</select>--%>
-                    <%--</div>--%>
-                <%--</div>--%>
-                <div class="text-right mt-4">
-                    <button type="button" id="register_button" class="waves-effect btn-large btn-large-white px-4 black-text">注册</button>
-                </div>
-            </form>
-        </div>
-        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 tm-register-col-r">
-            <header class="mb-5">
-                <h3 class="mt-0 text-white">注册账号</h3>
-                <p class="grey-text">热爱书吧---这是知识的源泉！ 只有知识才是有用的，只有它才能够使我们在精神上成为坚强、忠诚和有理智的人，成为能够真正爱人类、尊重人类劳动、衷心地欣赏人类那不间断的伟大劳动所产生的美好果实的人。 --《高尔基论青年》</p>
-                <p class="grey-text">Love books - this is the source of knowledge! Only knowledge can be useful. Only knowledge can make us strong, loyal and rational in spirit, and can we truly love human beings, respect human labor, and sincerely appreciate the good fruits of the great human labor. Gorky on Youth
-                </p>
-            </header>
-            <p style="color: #b9def0;">已有账户？<a href="toLogin" style="text-decoration: underline">快去读书吧</a></p>
-        </div>
+<div class="layadmin-user-login layadmin-user-display-show" id="LAY-user-login" style="display: none;">
+  <div class="layadmin-user-login-main">
+    <form id="register_form" action="" method="post">
+    <div class="layadmin-user-login-box layadmin-user-login-header">
+      <h2>小小世界</h2>
+      <p>小小世界图书管理系统</p>
     </div>
-    <footer class="row tm-mt-big mb-3">
-        <div class="col-xl-12">
-            <p class="text-center grey-text text-lighten-2 tm-footer-text-small">
-                Copyright &copy; 2018 Company Name
-
-                - Design:  Tooplate / More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></p>
+    <div class="layadmin-user-login-box layadmin-user-login-body layui-form">
+      <div class="layui-form-item">
+        <label class="layadmin-user-login-icon layui-icon layui-icon-username" for="LAY-user-login-nickname"></label>
+        <input type="text" name="username" id="LAY-user-login-nickname" lay-verify="username|isExistUser" placeholder="昵称" class="layui-input">
+      </div>
+      <div class="layui-form-item">
+        <label class="layadmin-user-login-icon layui-icon layui-icon-website" for="LAY-user-login-email"></label>
+        <input type="text" name="email" id="LAY-user-login-email" lay-verify="email" placeholder="邮箱" class="layui-input">
+      </div>
+      <div class="layui-form-item">
+        <label class="layadmin-user-login-icon layui-icon layui-icon-cellphone" for="LAY-user-login-cellphone"></label>
+        <input type="text" name="phone" id="LAY-user-login-cellphone" lay-verify="phone|isExistPhone" placeholder="手机号" class="layui-input">
+      </div>
+      <div class="layui-form-item">
+        <div class="layui-row">
+          <div class="layui-col-xs7">
+            <label class="layadmin-user-login-icon layui-icon layui-icon-vercode" for="LAY-user-login-vercode"></label>
+            <input type="text" name="vercode" id="LAY-user-login-vercode" lay-verify="required" placeholder="验证码" class="layui-input">
+          </div>
+          <div class="layui-col-xs5">
+            <div style="margin-left: 10px;">
+              <button type="button" class="layui-btn layui-btn-primary layui-btn-fluid" id="getAuthCode">获取验证码</button>
+            </div>
+          </div>
         </div>
-    </footer>
+      </div>
+      <div class="layui-form-item">
+        <label class="layadmin-user-login-icon layui-icon layui-icon-password" for="LAY-user-login-password"></label>
+        <input type="password" name="password" id="LAY-user-login-password" lay-verify="pass" placeholder="密码" class="layui-input">
+      </div>
+      <div class="layui-form-item">
+        <label class="layadmin-user-login-icon layui-icon layui-icon-password" for="LAY-user-login-repass"></label>
+        <input type="password" name="repass" id="LAY-user-login-repass" lay-verify="required" placeholder="确认密码" class="layui-input">
+      </div>
+
+      <div class="layui-form-item">
+        <input type="radio" name="show" value="1" title="图书管理员" checked />
+        <input type="radio" name="show" value="2" title="普通读者" />
+      </div>
+      <div class="layui-form-item">
+        <input type="checkbox" name="agreement" lay-skin="primary" title="同意用户协议" checked>
+      </div>
+      <div class="layui-form-item">
+        <button class="layui-btn layui-btn-fluid" id="register_button" lay-submit lay-filter="LAY-user-reg-submit">注 册</button>
+      </div>
+      <div class="layui-trans layui-form-item layadmin-user-login-other">
+
+
+        <a href="${ctx}/user/toLogin" class="layadmin-user-jump-change layadmin-link layui-hide-xs">用已有帐号登入</a>
+        <a href="login.html" class="layadmin-user-jump-change layadmin-link layui-hide-sm layui-show-xs-inline-block">登入</a>
+      </div>
+    </div>
+    </form>
+  </div>
+
+  <div class="layui-trans layadmin-user-login-footer">
+
+    <p>© 2019 <a href="http://www.layui.com/" target="_blank">小小世界图书馆</a></p>
+
+  </div>
+
 </div>
 
-<script src="${ctx}/static/js/jquery-3.2.1.js"></script>
-<script src="${ctx}/static/js/materialize.min.js"></script>
-<script>
-    $(document).ready(function () {
+<%--  <script src="https://www.layuicdn.com/layui-v2.5.5/layui.js"></script>--%>
+  <script src="${ctx}/static/layuiAdmin/layui/layui.js"></script>
+  <script>
+    layui.config({
+      base: '${ctx}/static/layuiAdmin/' //静态资源所在路径
+    }).extend({
+    index: 'lib/index' //主入口模块
+  }).use(['index', 'user'], function(){
+    var $ = layui.$
+    ,setter = layui.setter
+    ,admin = layui.admin
+    ,form = layui.form
+    ,router = layui.router();
 
-        $(".mb-2").on("click",function(){
-            if($("#reader").prop("checked")){
-                $("#ideaCodeDiv").fadeOut();
-            }else{
-                $("#ideaCodeDiv").fadeIn();
+    form.render();
+
+      form.verify({
+        //用户名是否存在
+        isExistUser: function (value) {
+          var data;
+          $.ajax({
+            async: false,
+            type: 'POST',
+            url: "${ctx}/user/isExistUser",
+            data: {username: value},
+            success: function (msg) {
+              data=msg;
             }
+          });
+          if (data===1){
+            return '用户名已存在';
+          }
+        },
+        isExistPhone: function (value) {
+          var data;
+          $.ajax({
+            async: false,
+            type: 'POST',
+            url: "${ctx}/user/isExistPhone",
+            data: {phone: value},
+            success: function (msg) {
+              data=msg;
+            }
+          });
+          if (data===1){
+            return '手机号已存在';
+          }
+        }
+      });
+
+      //提交
+      form.on('submit(LAY-user-reg-submit)', function(obj){
+        var field = obj.field;
+
+        //确认密码
+        if(field.password !== field.repass){
+          return layer.msg('两次密码输入不一致');
+        }
+
+        //是否同意用户协议
+        if(!field.agreement){
+          return layer.msg('你必须同意用户协议才能注册');
+        }
+
+        //$("#register_button").on("click",function(){
+          var a=$("#LAY-user-login-nickname").val()
+        //  alert(a);
+          $.ajax({
+            url:"${ctx}/user/registerUser",
+            type:"post",
+            dataType:"json",
+            data:$("#register_form").serialize(),
+            success:function(data){
+              // alert(data.message);
+              if(data===1){
+               //layer.msg("注册成功")
+                window.location.href = "${ctx}/user/toLogin";
+
+              }
+              if (data === 2) {
+                layer.msg("请获取验证码");
+              }
+              if (data === 3) {
+                layer.msg("验证码错误");
+              }
+            },
+            complete:function(data){
+             //  layer.close(loginPage);
+             //  alert(data);
+             // alert("888")
+           /*   alert(data),
+              $('form')[0].reset();*/
+            }
+          })
+      //  })
+
+        return false;
+      });
+
+
+
+      $('#getAuthCode').click(function () {
+        $.ajax({
+          type: "post",
+          url: "${ctx}/user/registerGetAuthCode",
+          data:{
+            "email":$("#LAY-user-login-email").val()
+          },
+          success: function (code) {
+
+          }
         });
+        var count = 60;
+        var countdown = setInterval(CountDown, 1000);
 
-        $("#register_button").on("click",function(){
-            $.ajax({
-                url:"register",
-                type:"post",
-                dataType:"json",
-                data:$("register_form").serialize(),
-                success:function(data){
-                    alert(data.message);
-                }
-            })
-        })
+        function CountDown() {
+          $("#getAuthCode").attr("disabled", true);
+          $("#getAuthCode").text(count + "秒后重试");
+          if (count == 0) {
+            $("#getAuthCode").text("重新获取").removeAttr("disabled");
+            clearInterval(countdown);
+          }
+          count--;
+        }
+      })
     });
-</script>
-</body>
 
+  </script>
+</body>
 </html>

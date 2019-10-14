@@ -51,6 +51,10 @@ public class TBooksController {
         return json;
     }
 
+    @RequestMapping("/goodslist")
+    public String goodslist(){
+        return "template/goodslist";
+    }
     /*条件查询*/
     /*动态sql*/
     @ResponseBody
@@ -95,7 +99,7 @@ public class TBooksController {
         tBook.setbBookNumber(number);
         tBook.setbBookType(type);
         tBooksService.updateByExample(tBook);
-//        System.err.println(no+","+name + "," + author + "," + number + "," + type);
+
     }
 
 
@@ -166,7 +170,7 @@ public class TBooksController {
         TBook tBook = new TBook();
         tBook.setbBookNo(id);
         List<Map<String, Object>> booksOne = tBooksService.findBooksOne(tBook);
-//        System.err.println(booksOne.get(0));
+
         modelAndView.addObject("book", booksOne.get(0));
 
         List<Map<String, Object>> typeList = tBooksTypeService.selectBooksType();

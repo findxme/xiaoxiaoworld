@@ -13,8 +13,27 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 public interface TBookReaderMapper {
+    @Select("SELECT\n" +
+            "\tt_book_reader.b_book_reader_id,\n" +
+            "\tt_book_reader.b_book_no,\n" +
+            "\tt_book.b_book_name,\n" +
+            "\tt_book_reader.b_user_no,\n" +
+            "\tt_admin.b_admin_name,\n" +
+            "\tt_reader.b_reader_no,\n" +
+            "\tt_reader.b_reader_name,\n" +
+            "\tt_book_reader.b_borrow_date,\n" +
+            "\tt_book_reader.is_return_book\n" +
+            "FROM\n" +
+            "\tt_book_reader,\n" +
+            "\tt_reader,\n" +
+            "\tt_book,\n" +
+            "\tt_admin\n" +
+            "WHERE\n" +
+            "t_reader.b_reader_name = #{name} limit #{currIndex},#{pageSize};")
+    List<Map<String,Object>> findOneReaderByBook(@Param("name")String name,@Param("currIndex") int currIndex, @Param("pageSize") int pageSize);
 
-
+@Select("SELECT count(*)  from t_book_reader, t_reader where t_book_reader.b_reader_no=t_reader.b_reader_no and t_reader.b_reader_name=#{name}")
+    long findOneReaderByBookQuantity(@Param("name")String name);
     List<Map<String,Object>> queryNotReturnInfo(@Param("startDate")String startDate,@Param("endDate")String endDate,@Param("keyWord")String keyWord,@Param("currentIndex")Integer currentIndex,@Param("pageSize")Integer pageSize);
 
     List<Map<String,Object>> findInfoByBook(@Param("bookNo")String bookName,@Param("currentIndex")Integer currentIndex,@Param("pageSize")Integer pageSize);

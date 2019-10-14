@@ -15,6 +15,7 @@ public interface TReadersService {
 
     List<Map<String ,Object>> findReaderOne(String no);
 
+    List<Map<String ,Object>> findReaderNameOne(String name);
     /*查找全部*/
     List<Map<String, Object>> findReadersAll();
 
@@ -27,6 +28,7 @@ public interface TReadersService {
     /*更新读者信息*/
     int updateReader(TReader tReader);
 
+    int updateByName(TReader tReader);
     /*条件查询*/
     List<TReader> findReadersOne(TReader tReader);
 

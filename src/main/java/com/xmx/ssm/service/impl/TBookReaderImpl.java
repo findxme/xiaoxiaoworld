@@ -214,6 +214,17 @@ public class TBookReaderImpl implements TBookReaderService {
     }
 
     @Override
+    public List<Map<String, Object>> findOneReaderByBook( @Param("name")String name, @Param("currIndex") int currIndex, @Param("pageSize") int pageSize) {
+        System.err.println("dervice层的"+name);
+        return tBookReaderMapper.findOneReaderByBook(name,currIndex,pageSize);
+    }
+
+    @Override
+    public long findOneReaderByBookQuantity(String name) {
+        return tBookReaderMapper.findOneReaderByBookQuantity(name);
+    }
+
+    @Override
     public long countBydayQuantity() {
         return tBookReaderMapper.countBydayQuantity();
     }

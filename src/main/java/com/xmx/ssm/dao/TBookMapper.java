@@ -31,6 +31,8 @@ public interface TBookMapper {
                                            @Param("currIndex") Integer currIndex,
                                            @Param("pageSize") Integer pageSize);
 
+    List<Map<String ,Object>> findReaderLookBooksAll();
+
     /*ok*/
     /*条件查询*/
     List<Map<String ,Object>> findBooksOne(TBook tBook);

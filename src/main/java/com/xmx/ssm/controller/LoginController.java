@@ -92,7 +92,7 @@ public class LoginController {
     @RequestMapping(value = "/toLogin", method = RequestMethod.GET)
     public String toLogin() {
         // return "login";
-        return "login2";
+        return "login";
     }
 
     @ResponseBody
@@ -117,7 +117,8 @@ public class LoginController {
     }
 
 
-    @RequestMapping("/login2")
+
+    @RequestMapping("/login")
     @ResponseBody
     public JSONObject login2(@Param("userName") String userName,
                              @Param("password") String password,
@@ -129,10 +130,7 @@ public class LoginController {
         JSONObject json = null;
 
         if (userName == null || password == null || "".equals(userName) || "".equals(password)) {
-//            statusInfo.setStatus(405);
-//            statusInfo.setMessage("用户或密码不能为空");
-//            map.put("msg","用户或密码不能为空");
-//            map.put("code",1);
+
             json = PageLimit.layuiJson(0, "用户或密码不能为空", -1, objects);
             return json;
         }
@@ -141,19 +139,16 @@ public class LoginController {
         if ("reader".equals(userType)) {
             TReader tReader = tReadersService.findReaderByName(userName);
             if (tReader == null) {
-//                statusInfo.setStatus(404);
-//                statusInfo.setMessage("不存在该用户");
+
                 json = PageLimit.layuiJson(0, "不存在该用户", -1, objects);
-//                map.put("msg","不存在该用户");
-//                map.put("code",1);
+
 
             } else {
                 if (!tReader.getbReaderPassword().equals(password)) {
-//                    statusInfo.setStatus(500);
-//                    statusInfo.setMessage("用户密码错误");
+
                     json = PageLimit.layuiJson(0, "用户密码错误", -1, objects);
                 } else {
-//                    statusInfo.setMessage(tReader.getbReaderNo());
+
 
                     json = PageLimit.layuiJson(0, tReader.getbReaderNo(), 1, objects);
                 }
@@ -161,17 +156,15 @@ public class LoginController {
         } else {
             TAdmin tAdmin = tAdminService.findAdminByName(userName);
             if (tAdmin == null) {
-//                statusInfo.setStatus(404);
-//                statusInfo.setMessage("不存在该管理员");
+
                 json = PageLimit.layuiJson(0, "不存在该管理员", -1, objects);
             } else {
                 if (tAdmin.getbAdminPassword().equals(password)) {
                     session.setAttribute("adminNo",tAdmin.getbAdminNo());
                     json = PageLimit.layuiJson(0, tAdmin.getbAdminNo(), 0, objects);
-//                    statusInfo.setMessage(tAdmin.getbAdminNo());
+
                 } else {
-//                    statusInfo.setStatus(500);
-//                    statusInfo.setMessage("密码错误");
+
                     json = PageLimit.layuiJson(0, "密码错误", -1, objects);
                 }
             }
@@ -179,55 +172,6 @@ public class LoginController {
         session.setAttribute("userName", userName);
         return json;
     }
-
-
-//    @RequestMapping(value = "/login")
-//    @ResponseBody
-//    public StatusInfo login(@Param("userName") String userName,
-//                            @Param("password") String password,
-//                            @Param("userType") String userType,
-//                            HttpSession session) {
-//        StatusInfo statusInfo = new StatusInfo();
-//
-//        System.err.println(userName + "," + password + "," + userType);
-//
-//        if (userName == null || password == null || "".equals(userName) || "".equals(password)) {
-//            statusInfo.setStatus(405);
-//            statusInfo.setMessage("用户或密码不能为空");
-//            return statusInfo;
-//        }
-//
-//
-//        if ("reader".equals(userType)) {
-//            TReader tReader = tReadersService.findReaderByName(userName);
-//            if (tReader == null) {
-//                statusInfo.setStatus(404);
-//                statusInfo.setMessage("不存在该用户");
-//            } else {
-//                if (!tReader.getbReaderPassword().equals(password)) {
-//                    statusInfo.setStatus(500);
-//                    statusInfo.setMessage("用户密码错误");
-//                } else {
-//                    statusInfo.setMessage(tReader.getbReaderNo());
-//                }
-//            }
-//        } else {
-//            TAdmin tAdmin = tAdminService.findAdminByName(userName);
-//            if (tAdmin == null) {
-//                statusInfo.setStatus(404);
-//                statusInfo.setMessage("不存在该管理员");
-//            } else {
-//                if (tAdmin.getbAdminPassword().equals(password)) {
-//                    statusInfo.setMessage(tAdmin.getbAdminNo());
-//                } else {
-//                    statusInfo.setStatus(500);
-//                    statusInfo.setMessage("密码错误");
-//                }
-//            }
-//        }
-//        session.setAttribute("userName", userName);
-//        return statusInfo;
-//    }
 
     @RequestMapping("/list")
     public String findBooksAll() {
@@ -238,7 +182,7 @@ public class LoginController {
     @RequestMapping("/toRegister")
     public String toRegister() {
         //  return "register";
-        return "reg";
+        return "register";
     }
 
     @RequestMapping("/loginOut")
@@ -308,33 +252,6 @@ public class LoginController {
         return modelAndView;
     }
 
-//    @RequestMapping(value = "/register",method = RequestMethod.POST)
-//    @ResponseBody
-//    public StatusInfo register(@RequestParam("userType")String userType,
-//                           @RequestParam("username")String username,
-//                           @RequestParam("password")String password,
-//                           @RequestParam("email")String email,
-//                           @RequestParam("mobile")String mobile,
-//                           @RequestParam("address")String address,
-//                           @RequestParam("city")String city){
-////        User user = new User();
-////        user.setUserType(userType);
-////        user.setUserName(username);
-////        user.setPassword(password);
-////        user.setEmail(email);
-////        user.setMobile(mobile);
-////        user.setAddress(address);
-////        user.setCity(city);
-////        int result = userService.insertUser(user);
-////        StatusInfo info = new StatusInfo();
-////        if(result==1){
-////            info.setMessage("注册成功");
-////        }else{
-////            info.setStatus(500);
-////            info.setMessage("注册失败");
-////        }
-//        return info;
-//    }
 
 
     /**

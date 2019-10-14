@@ -104,12 +104,12 @@
                     <li data-name="home" class="layui-nav-item layui-nav-itemed">
                         <a href="javascript:;" lay-tips="主页" lay-direction="2">
                             <i class="layui-icon layui-icon-home"></i>
-                            <cite>主页1111111111111111111111</cite>
+                            <cite>主页</cite>
                         </a>
                         <dl class="layui-nav-child">
                             <dd data-name="console" class="layui-this">
 
-                                <a lay-href="${ctx}/user/dataStatistics">控制台</a>
+                                <a lay-href="${ctx}/readerView/dataStatistics">控制台</a>
                             </dd>
                             <%--                            <dd data-name="console">--%>
                             <%--                                <a lay-href="${ctx}/static/layuiAdmin/src/views/home/homepage1.jsp">主页一</a>--%>
@@ -130,8 +130,8 @@
                             <%--                            <dd data-name="content">--%>
                             <%--                                <a href="javascript:;">内容系统</a>--%>
                             <%--                                <dl class="layui-nav-child">--%>
-                            <dd data-name="list"><a lay-href="${ctx}/tBooks/list">图书列表</a></dd>
-                            <dd data-name="tags"><a lay-href="${ctx}/tBooksType/booksType">分类管理</a></dd>
+                            <dd data-name="list"><a lay-href="${ctx}/readerView/list">图书列表</a></dd>
+                                <dd><a lay-href="${ctx}/readerView/goodslist">商品列表</a></dd>
                             <%--                                </dl>--%>
                             <%--                            </dd>--%>
                         </dl>
@@ -140,56 +140,6 @@
 
 
 
-                    <li data-name="app" class="layui-nav-item">
-                        <a href="javascript:;" lay-tips="应用" lay-direction="2">
-                            <i class="layui-icon layui-icon-app"></i>
-                            <cite>读者信息管理</cite>
-                        </a>
-                        <dl class="layui-nav-child">
-                            <dd data-name="list"><a lay-href="${ctx}/admin/readerAdmin/readerView">读者列表</a></dd>
-                            <%--                            <dd data-name="tags"><a lay-href="${ctx}/static/layuiAdmin/src/views/app/content/tags.html">读者删</a></dd>--%>
-                            <%--                            <dd data-name="comment"><a lay-href="${ctx}/static/layuiAdmin/src/views/app/content/comment.html">读者改</a></dd>--%>
-                            <%--                            <dd data-name="comment"><a lay-href="${ctx}/static/layuiAdmin/src/views/app/forum/replys.html">读者查询</a></dd>--%>
-                        </dl>
-                    </li>
-
-                    <li data-name="app" class="layui-nav-item">
-                        <a href="javascript:;" lay-tips="应用" lay-direction="2">
-                            <i class="layui-icon layui-icon-app"></i>
-                            <cite>借阅信息管理</cite>
-                        </a>
-                        <dl class="layui-nav-child">
-                            <dd data-name="header">
-                                <a lay-href="" id="book">图书</a>
-                                <script>
-                                    var adminNo = getCookie("adminNo")
-                                    var str = "${ctx}/tBookReader/bookInfoPage?adminNo="+adminNo;
-                                    document.getElementById("book").setAttribute("lay-href",str);
-                                </script>
-                            </dd>
-                            <%--<dd data-name="content">--%>
-                            <%--<a href="javascript:;">内容系统</a>--%>
-                            <%--<dl class="layui-nav-child">--%>
-
-                            <%--<dd data-name="list"><a lay-href="${ctx}/static/layuiAdmin/src/views/app/content/list.html">借阅列表</a></dd>--%>
-                            <%--&lt;%&ndash;<dd data-name="tags"><a lay-href="${ctx}/static/layuiAdmin/src/views/app/content/tags.html">借书</a></dd>&ndash;%&gt;--%>
-                            <%--&lt;%&ndash;<dd data-name="comment"><a lay-href="${ctx}/static/layuiAdmin/src/views/app/content/comment.html">还书</a></dd>&ndash;%&gt;--%>
-                            <%--&lt;%&ndash;<dd data-name="comment"><a lay-href="${ctx}/static/layuiAdmin/src/views/app/forum/replys.html">续借</a></dd>&ndash;%&gt;--%>
-                            <%--</dl>--%>
-                            <%--</dd>--%>
-                            <dd data-name="content">
-                                <a lay-href="" id="returnOrRenew">消息中心（在一周内如果要归还在这里）</a>
-                                <script>
-                                    var adminNo1 = getCookie("adminNo")
-                                    var str1 = "${ctx}/tBookReader/borrowingInfo?adminNo="+adminNo1;
-                                    document.getElementById("returnOrRenew").setAttribute("lay-href",str1);
-                                </script>
-                            </dd>
-                            <dd data-name="workorder">
-                                <a lay-href="${ctx}/tBookReader/bookBorrowReturnInfo">工单系统</a>
-                            </dd>
-                        </dl>
-                    </li>
 
 
 
@@ -199,18 +149,12 @@
                             <cite>设置</cite>
                         </a>
                         <dl class="layui-nav-child">
-                            <dd class="layui-nav-itemed">
-                                <a href="javascript:;">系统设置</a>
-                                <dl class="layui-nav-child">
-                                    <dd><a lay-href="${ctx}/static/layuiAdmin/src/views/set/system/website.html">网站设置</a></dd>
-                                    <dd><a lay-href="${ctx}/user/email">邮件服务</a></dd>
-                                </dl>
-                            </dd>
+
                             <dd class="layui-nav-itemed">
                                 <a href="javascript:;">我的设置</a>
                                 <dl class="layui-nav-child">
-                                    <dd><a lay-href="${ctx}/user/info">基本资料</a></dd>
-                                    <dd><a lay-href="${ctx}/user/password">修改密码</a></dd>
+                                    <dd><a lay-href="${ctx}/readerView/readerInfo">基本资料</a></dd>
+                                    <dd><a lay-href="${ctx}/readerView/goReaderPassword">修改密码</a></dd>
                                 </dl>
                             </dd>
                         </dl>
@@ -247,7 +191,7 @@
         <div class="layui-body" id="LAY_app_body">
             <div class="layadmin-tabsbody-item layui-show">
                 <%--                <a lay-href="${ctx}/user/dataStatistics">控制台</a>--%>
-                <iframe src="${ctx}/user/dataStatistics" frameborder="0" class="layadmin-iframe"></iframe>
+                <iframe src="${ctx}/readerView/dataStatistics" frameborder="0" class="layadmin-iframe"></iframe>
             </div>
         </div>
 

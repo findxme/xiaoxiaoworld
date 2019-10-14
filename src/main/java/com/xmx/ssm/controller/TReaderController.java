@@ -53,11 +53,7 @@ public class TReaderController {
     @RequestMapping("/updateByExample")
     public void updateByExample(String no, String name, String email, String phone, @RequestParam(value = "remark", defaultValue = "") String remark,String password,int number) {
         TReader tReader = new TReader();
-//        tReader.setbBookNo(no);
-//        tReader.setbBookName(name);
-//        tReader.setbBookAuthor(author);
-//        tReader.setbBookNumber(number);
-//        tReader.setbBookType(type);
+
         tReader.setbReaderNo(no);
         tReader.setbReaderName(name);
         tReader.setbReaderEmail(email);

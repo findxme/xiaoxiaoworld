@@ -31,7 +31,7 @@
   </filter>
   <filter-mapping>
     <filter-name>HiddenHttpMethodFilter</filter-name>
-    <url-pattern>/*</url-pattern>
+    <url-pattern>*.jsp</url-pattern>
   </filter-mapping>
 
 <!-- SpringMVC的前端控制器 -->

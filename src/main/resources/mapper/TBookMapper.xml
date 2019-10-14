@@ -179,6 +179,16 @@
     limit #{currIndex},#{pageSize}
   </select>
 
+
+  <!--读者查看图书列表-->
+  <select id="findReaderLookBooksAll" resultType="map" parameterType="map">
+    select *
+    from
+    t_book
+
+  </select>
+
+
   <!--ok-->
   <!--条件查询-->
   <select id="findBooksOne" parameterType="com.xmx.ssm.entity.TBook" resultType="map">

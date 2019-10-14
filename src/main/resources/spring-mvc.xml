@@ -35,4 +35,12 @@
         <property name="suffix" value=".jsp"/>
     </bean>
 
+    <!-- 拦截器 -->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**" />
+            <bean class="com.xmx.ssm.interceptor.LoginInterceptor">
+            </bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
 </beans>

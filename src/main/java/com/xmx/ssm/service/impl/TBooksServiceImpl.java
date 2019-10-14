@@ -42,6 +42,12 @@ public class TBooksServiceImpl implements TBooksService {
                                                   Integer pageSize) {
         return tBookMapper.findBooksAll(bookNo,bookName,bookAuthor,bookType,currIndex,pageSize);
     }
+
+    @Override
+    public List<Map<String, Object>> findReaderLookBooksAll() {
+        return tBookMapper. findReaderLookBooksAll();
+    }
+
     /**
      * 分页查询
      * @param currIndex
