@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Service
@@ -100,6 +101,7 @@ public class TBookReaderImpl implements TBookReaderService {
 
 
         TBookReader tBookReader = new TBookReader();
+
         tBookReader.setbBorrowDate(new Date());
         tBookReader.setbBookNo(tBook.getbBookNo());
         tBookReader.setbReaderNo(tReader.getbReaderNo());
