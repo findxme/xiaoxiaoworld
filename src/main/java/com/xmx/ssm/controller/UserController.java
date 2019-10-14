@@ -8,12 +8,15 @@ import com.xmx.ssm.util.Email;
 import com.xmx.ssm.util.RandomUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.xml.registry.infomodel.User;
 import java.util.Map;
 
 @Controller
@@ -107,6 +110,30 @@ public class UserController {
         if (Email.sendEmail(tAdminService.findAdminOne(String.valueOf(session.getAttribute("userName"))).get(0).get("b_admin_email").toString(), "验证码", Email.text("修改密码", authCode))) {
             session.setAttribute("authCode", authCode);
             System.err.println(session.getAttribute("authCode"));
+        }
+    }
+
+
+    @ResponseBody
+    @RequestMapping("/registerGetAuthCode")
+    public void registerGetAuthCode(HttpServletRequest request,HttpSession session) {
+       String email= request.getParameter("email");
+        System.out.println("1+++++++++++++++"+email);
+
+        Map<String, Object> smtp = tSmtpService.selectSmtp();
+//
+        Email.setiEmail(smtp.get("email").toString());
+        Email.setHostName(smtp.get("smtp").toString());
+        Email.setName(smtp.get("name").toString());
+        Email.setUserName(smtp.get("email").toString());
+        Email.setPassword(smtp.get("password").toString());
+        Email.setPort(Integer.parseInt(smtp.get("prot").toString()));
+//
+        String registerAuthCode = RandomUtil.generateString(5) + String.valueOf(System.currentTimeMillis()).substring(8);
+        System.out.println("123+++++++++"+registerAuthCode);
+        if (Email.sendEmail(email, "验证码", Email.text("注册帐户", registerAuthCode))) {
+            session.setAttribute("registerAuthCode", registerAuthCode);
+            System.err.println(session.getAttribute("registerAuthCode"));
         }
     }
 

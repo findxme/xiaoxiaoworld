@@ -35,4 +35,6 @@ public interface TReadersService {
     TReader findReaderByNo(String readerNo);
 
     TReader findReaderByName(String readerName);
+
+    int insertReaderSelective(TReader tReader);
 }

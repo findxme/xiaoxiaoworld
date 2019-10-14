@@ -230,6 +230,8 @@
   </update>
 
 
+
+
   <update id="updateAdmin" parameterType="TAdmin">
     update t_admin
     <set>

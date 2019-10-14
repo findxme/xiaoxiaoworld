@@ -18,4 +18,6 @@ public interface TAdminService {
     int updateAdmin(TAdmin tAdmin);
 
     List<Map<String,Object>> findAdminOne(String username);
+
+    int insertSelective(TAdmin record);
 }

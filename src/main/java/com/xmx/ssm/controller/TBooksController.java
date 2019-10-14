@@ -53,6 +53,7 @@ public class TBooksController {
     }
 
     /*条件查询*/
+    /*动态sql*/
     @ResponseBody
     @RequestMapping("/findBooksOne")
     public int findBooksOne(String no) {

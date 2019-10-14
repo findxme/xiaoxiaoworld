@@ -36,4 +36,7 @@ public interface TAdminMapper {
 
 
     int updateAdmin(TAdmin tAdmin);
+
+//    int selectAdmin(TAdmin tAdmin);
+
 }
