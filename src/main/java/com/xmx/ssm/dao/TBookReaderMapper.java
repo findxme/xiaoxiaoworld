@@ -19,7 +19,7 @@ public interface TBookReaderMapper {
 
     List<Map<String,Object>> findInfoByBook(@Param("bookNo")String bookName,@Param("currentIndex")Integer currentIndex,@Param("pageSize")Integer pageSize);
 
-    List<Map<String,Object>> pagingInfo(@Param("currentIndex")Integer currentIndex,@Param("pageSize")Integer pageSize);
+    List<Map<String,Object>> pagingInfo(@Param("keyWord")String keyWord,@Param("startDate")String startDate,@Param("endDate")String endDate,@Param("currentIndex")Integer currentIndex,@Param("pageSize")Integer pageSize);
 
     List<TBookReader> queryInfoByBookReaderDate(@Param("bookNo")String bookNo,@Param("readerNo")String readerNo);
 

@@ -150,7 +150,7 @@
             , title: '查询信息'
             , content: '${ctx}/admin/readerAdmin/queryOne?name='+key1
             // ,maxmin: true
-            , area: ['350px', '500px']
+            , area: ['550px', '500px']
         });
 
     }

@@ -15,8 +15,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <title>layui在线调试</title>
-    <link rel="stylesheet" href="${ctx}/static/layuiAdmin/layui/css/layui.css" media="all">
-    <script src="${ctx}/static/layuiAdmin/layui/layui.js"></script>
+    <%--<link rel="stylesheet" href="${ctx}/static/layuiAdmin/layui/css/layui.css" media="all">--%>
+    <%--<script src="${ctx}/static/layuiAdmin/layui/layui.js"></script>--%>
+    <link rel="stylesheet" href="https://www.layuicdn.com/layui-v2.5.5/css/layui.css" media="all">
+    <script src="https://www.layuicdn.com/layui-v2.5.5/layui.js"></script>
 </head>
 <body>
 
@@ -97,7 +99,7 @@
             ,url: '${ctx}/tBooks/findBooksAll' //数据接口
             ,title: '图书预览'
             ,page: true //开启分页
-            // ,toolbar: '#toolbarDemo' //开启工具栏，此处显示默认图标，可以自定义模板，详见文档
+            ,toolbar: 'default' //开启工具栏，此处显示默认图标，可以自定义模板，详见文档
             ,limit:8
             ,limits:[8,16,24,32,40]
             ,totalRow: true //开启合计行

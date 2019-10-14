@@ -62,9 +62,9 @@ public class TBookReaderImpl implements TBookReaderService {
      * @return
      */
     @Override
-    public List<Map<String,Object>> pagingInfo(Integer page,Integer pageSize){
+    public List<Map<String,Object>> pagingInfo(String keyWord,String startDate,String endDate,Integer page,Integer pageSize){
         int currentIndex = (page-1)*pageSize;
-        return tBookReaderMapper.pagingInfo(currentIndex,pageSize);
+        return tBookReaderMapper.pagingInfo(keyWord,startDate,endDate,currentIndex,pageSize);
     }
 
     @Override

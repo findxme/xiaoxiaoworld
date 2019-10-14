@@ -9,8 +9,14 @@
 <html>
 <head>
     <title>Title</title>
+    <link rel="stylesheet" href="https://www.layuicdn.com/layui-v2.5.5/css/layui.css" media="all">
+    <script src="https://www.layuicdn.com/layui-v2.5.5/layui.js"></script>
 </head>
 <body>
-        查无此人！
+<blockquote class="layui-elem-quote layui-quote-nm">
+    没有相对应的结果。
+    <br>---------------------------------------------------------------404
+    <hr class="layui-bg-red">
+</blockquote>
 </body>
 </html>

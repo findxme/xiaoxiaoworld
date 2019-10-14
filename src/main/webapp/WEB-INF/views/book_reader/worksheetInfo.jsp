@@ -14,8 +14,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <title>layui在线调试</title>
-    <link rel="stylesheet" href="${ctx}/static/layuiAdmin/layui/css/layui.css" media="all">
-    <script src="${ctx}/static/layuiAdmin/layui/layui.js"></script>
+    <link rel="stylesheet" href="https://www.layuicdn.com/layui-v2.5.5/css/layui.css" media="all">
+    <script type="text/javascript" src="${ctx}/static/js/jquery-3.2.1.js"></script>
+    <script src="https://www.layuicdn.com/layui-v2.5.5/layui.js"></script>
 </head>
 <body>
 
@@ -23,20 +24,17 @@
     <div class="layui-card">
         <div class="layui-form layui-card-header layuiadmin-card-header-auto">
             <div class="layui-form-item">
-                <div class="layui-inline">
-                    图书类型筛选
-                </div>
-                <div class="layui-inline">
-                    <select name="rolename" lay-filter="LAY-user-adminrole-type">
-                        <option value="-1">全部角色</option>
-                        <option value="0">管理员</option>
-                        <option value="1">超级管理员</option>
-                        <option value="2">纠错员</option>
-                        <option value="3">采购员</option>
-                        <option value="4">推销员</option>
-                        <option value="5">运营人员</option>
-                        <option value="6">编辑</option>
-                    </select>
+                <div class="demoTable">
+                    <div class="layui-inline"> <!-- 注意：这一层元素并不是必须的 -->
+                        <input type="text" class="layui-input" id="startDate" placeholder="选择还书日期前">
+                    </div>
+                    <div class="layui-inline"> <!-- 注意：这一层元素并不是必须的 -->
+                        <input type="text" class="layui-input" id="endDate" placeholder="选择还书日期后">
+                    </div>
+                    <div class="layui-inline">
+                        <input class="layui-input" name="demoReload" id="demoReload" autocomplete="off" placeholder="搜索">
+                    </div>
+                    <button class="layui-btn" data-type="reload">搜索</button>
                 </div>
             </div>
         </div>
@@ -48,6 +46,9 @@
 </div>
 
 
+<script id="itemDemo" type="text/javascript">
+
+</script>
 
 
 <script type="text/html" id="barDemo">
@@ -61,10 +62,11 @@
 <script>
 
 
-    layui.use(['laypage', 'layer', 'table'], function(){
-        var laypage = layui.laypage //分页
+    layui.use(['laydate', 'layer', 'table'], function(){
+        var laydate = layui.laydate //分页
             ,layer = layui.layer //弹层
             ,table = layui.table //表格
+
 
 
         //执行一个 table 实例
@@ -74,20 +76,22 @@
             ,url: '${ctx}/tBookReader/books' //数据接口
             ,title: '图书预览'
             ,page: true //开启分页
-            // ,toolbar: '#toolbarDemo' //开启工具栏，此处显示默认图标，可以自定义模板，详见文档
+            ,toolbar: 'default' //开启工具栏，此处显示默认图标，可以自定义模板，详见文档
             ,totalRow: true //开启合计行
-            ,limit:5
-            ,limits:[5,15,25]
+            ,limit:8
+            ,limits:[8,16,32,48,64]
             ,cols: [[ //标题栏
                 {type:'checkbox'}
-                ,{field: 'b_book_reader_id', title: '工单编号',sort: true}
-                ,{field: 'b_book_name', title: '书名',sort: true}
-                ,{field: 'b_reader_name', title: '读者',sort: true}
-                ,{field: 'b_admin_name', title: '管理员',sort: true}
-                ,{field: 'is_return_book', title: '是否归还',sort: true}
+                ,{field: 'b_book_reader_id', title: '工单编号',sort: true,align:'center'}
+                ,{field: 'b_book_name', title: '书名',sort: true,align:'center'}
+                ,{field: 'b_reader_name', title: '读者',sort: true,align:'center'}
+                ,{field: 'b_admin_name', title: '管理员',sort: true,align:'center'}
+                ,{field: 'b_borrow_date', title: '借书日期',sort: true,align:'center'}
+                ,{field: 'b_return_date', title: '还书日期',sort: true,align:'center'}
                 ,{ title: '操作', toolbar: '#barDemo',align:'center',width:190}
 
-            ]]
+            ]],
+            id:'testReload'
 
         });
 
@@ -124,6 +128,31 @@
             }
         });
 
+        laydate.render({
+            elem:'#startDate'
+        });
+
+        laydate.render({
+            elem:'#endDate'
+        });
+
+        var active = {
+            reload:function(){
+                table.reload('testReload',{
+                    page:{
+                        curr:1
+                    },where:{
+                        keyWord:$("#demoReload").val(),
+                        startDate:$("#startDate").val(),
+                        endDate:$("#endDate").val()
+                    }
+                });
+            }
+        }
+        $('.demoTable .layui-btn').on('click', function(){
+            var type = $(this).data('type');
+            active[type] ? active[type].call(this) : '';
+        });
     });
 </script>
 </body>
