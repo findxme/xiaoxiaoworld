@@ -74,7 +74,7 @@
                 </li>
                 <li class="layui-nav-item" lay-unselect>
                     <a href="javascript:;">
-                        <cite id="loginName"></cite>
+                        <cite id="loginName">${userNmae}</cite>
                     </a>
                     <dl class="layui-nav-child">
                         <dd><a lay-href="${ctx}/user/info">基本资料</a></dd>
@@ -162,7 +162,8 @@
                             <dd data-name="header">
                                 <a lay-href="" id="book">图书</a>
                                 <script>
-                                    var adminNo = getCookie("adminNo")
+                                    // var adminNo = getCookie("adminNo")
+                                    var adminNo = '${adminNo}';
                                     var str = "${ctx}/tBookReader/bookInfoPage?adminNo="+adminNo;
                                     document.getElementById("book").setAttribute("lay-href",str);
                                 </script>
@@ -260,14 +261,14 @@
 <script src="${ctx}/static/js/cookieDao.js"></script>
 <script src="${ctx}/static/layuiAdmin/layui/layui.js"></script>
 <script>
-    var loginName;
-    if(getCookie("adminName")==null||getCookie("adminName")==""){
-        loginName = getCookie("readerName");
-    }else{
-        loginName = getCookie("adminName");
-    }
-    console.log(document.cookie)
-    $("#loginName").html(loginName)
+    // var loginName;
+    // if(getCookie("adminName")==null||getCookie("adminName")==""){
+    //     loginName = getCookie("readerName");
+    // }else{
+    //     loginName = getCookie("adminName");
+    // }
+    // console.log(document.cookie)
+    // $("#loginName").html(loginName)
     layui.config({
         base: '../static/layuiAdmin/' //静态资源所在路径
     }).extend({

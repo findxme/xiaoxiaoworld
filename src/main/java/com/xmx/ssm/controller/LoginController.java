@@ -165,6 +165,7 @@ public class LoginController {
                 json = PageLimit.layuiJson(0, "不存在该管理员", 1, objects);
             } else {
                 if (tAdmin.getbAdminPassword().equals(password)) {
+                    session.setAttribute("adminNo",tAdmin.getbAdminNo());
                     json = PageLimit.layuiJson(0, tAdmin.getbAdminNo(), 0, objects);
 //                    statusInfo.setMessage(tAdmin.getbAdminNo());
                 } else {
@@ -249,7 +250,7 @@ public class LoginController {
     }
 
     @RequestMapping(value = "home")
-    public String toHome() {
+    public ModelAndView toHome(HttpSession session,ModelAndView modelAndView) {
 
         //登录成功，获取邮件服务信息
 
@@ -262,7 +263,10 @@ public class LoginController {
         Email.setPassword(smtp.get("password").toString());
         Email.setPort(Integer.parseInt(smtp.get("prot").toString()));
 
-        return "test";
+        modelAndView.addObject("userNmae",session.getAttribute("userName"));
+        modelAndView.addObject("adminNo",session.getAttribute("adminNo"));
+        modelAndView.setViewName("test");
+        return modelAndView;
     }
 
     @ResponseBody
