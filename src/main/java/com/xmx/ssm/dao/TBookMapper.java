@@ -21,7 +21,7 @@ public interface TBookMapper {
      * @return
      */
 
-    List<Map<String ,Object>> findBooksLimit(@Param("bookType")String bookType,@Param("currIndex") Integer currIndex,@Param("pageSize") Integer pageSize);
+    List<Map<String ,Object>> findBooksLimit(@Param("keyWord")String keyWord,@Param("bookType")String bookType,@Param("currIndex") Integer currIndex,@Param("pageSize") Integer pageSize);
 
     /*查找全部*/
     List<Map<String ,Object>> findBooksAll();

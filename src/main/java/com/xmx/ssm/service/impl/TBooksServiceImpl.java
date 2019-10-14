@@ -43,8 +43,8 @@ public class TBooksServiceImpl implements TBooksService {
      * @param pageSize
      * @return
      */
-    public List<Map<String ,Object>> findBooksLimit(String bookType,Integer currIndex,Integer pageSize){
-        return tBookMapper.findBooksLimit(bookType,currIndex,pageSize);
+    public List<Map<String ,Object>> findBooksLimit(String keyWord,String bookType,Integer currIndex,Integer pageSize){
+        return tBookMapper.findBooksLimit(keyWord,bookType,currIndex,pageSize);
     }
 
     /*查出每种数的类型有多少本 数量字段名quantity*/

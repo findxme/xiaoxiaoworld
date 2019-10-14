@@ -7,13 +7,14 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Service
 public class TBookReaderImpl implements TBookReaderService {
     private static final String notReturn = "未还";
     private static final String alreadyReturn = "已还";
-    private static final Integer bRenewFrequency = 3;
+    private static final Integer bRenewFrequency = 0;
     private static final Integer bRenewTime = 30;
 
 
@@ -28,9 +29,9 @@ public class TBookReaderImpl implements TBookReaderService {
     }
 
     @Override
-    public List<Map<String,Object>> queryNotReturnInfo(String keyWord,Integer page,Integer pageSize){
+    public List<Map<String,Object>> queryNotReturnInfo(String startDate,String endDate,String keyWord,Integer page,Integer pageSize){
         int currentIndex = (page-1)*pageSize;
-        return tBookReaderMapper.queryNotReturnInfo(keyWord,currentIndex,pageSize);
+        return tBookReaderMapper.queryNotReturnInfo(startDate,endDate,keyWord,currentIndex,pageSize);
     }
 
     @Override
@@ -100,6 +101,7 @@ public class TBookReaderImpl implements TBookReaderService {
 
 
         TBookReader tBookReader = new TBookReader();
+
         tBookReader.setbBorrowDate(new Date());
         tBookReader.setbBookNo(tBook.getbBookNo());
         tBookReader.setbReaderNo(tReader.getbReaderNo());

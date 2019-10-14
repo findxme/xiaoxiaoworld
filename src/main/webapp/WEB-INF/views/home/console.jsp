@@ -1,8 +1,6 @@
-
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
-    request.setAttribute("ctx",request.getContextPath());
+    request.setAttribute("ctx", request.getContextPath());
 %>
 <!DOCTYPE html>
 <html>
@@ -14,8 +12,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <link rel="stylesheet" href="${ctx}/static/layuiAdmin/layui/css/layui.css" media="all">
     <link rel="stylesheet" href="${ctx}/static/layuiAdmin/style/admin.css" media="all">
+    <meta http-equiv="refresh" content="60">
     <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
-
 
 </head>
 <body>
@@ -171,7 +169,8 @@
                                             </a>
                                         </li>
                                         <li class="layui-col-xs6">
-                                            <a href="javascript:;" onclick="layer.tips('不跳转', this, {tips: 3});" class="layadmin-backlog-body">
+                                            <a href="javascript:;" onclick="layer.tips('不跳转', this, {tips: 3});"
+                                               class="layadmin-backlog-body">
                                                 <h3>剩余数量</h3>
                                                 <p><cite>${map.notBorrowingBooks}</cite></p>
                                             </a>
@@ -195,14 +194,15 @@
                         <div class="layui-card-header">数据概览</div>
                         <div class="layui-card-body">
                             <%--                <div id="main" style="width: 600px;height:400px;"></div>--%>
-                            <div class="layui-carousel layadmin-carousel layadmin-dataview" data-anim="fade" lay-filter="LAY-index-dataview">
-                                <div carousel-item >
+                            <div class="layui-carousel layadmin-carousel layadmin-dataview" data-anim="fade"
+                                 lay-filter="LAY-index-dataview">
+                                <div carousel-item>
                                     <%--                    <div><i class="layui-icon layui-icon-loading1 layadmin-loading"></i></div>--%>
                                     <%--                    <div></div>--%>
                                     <%--                    <div></div>--%>
 
-                                    <div id="main"   style="width: 1700%;height:300%;"></div>
-                                    <div id="main2"   style="width: 1700%;height:300%;"></div>
+                                    <div id="main" style="width: 1700%;height:300%;"></div>
+                                    <div id="main2" style="width: 1700%;height:300%;"></div>
                                 </div>
                             </div>
 
@@ -245,34 +245,34 @@
 <script>
     // <!-- 基于准备好的dom，初始化echarts实例 -->
     var myChart = echarts.init(document.getElementById('main'));
-    var option ={
+    var option = {
 
 
-        title : {
+        title: {
             text: '图书信息统计',
             //subtext: '纯属虚构',
-            x:'center'
+            x: 'center'
         },
 
         legend: {
             orient: 'vertical',
             left: 'left',
-            data: ['未借图书','已借图书']
+            data: ['未借图书', '已借图书']
         },
-        series : [
+        series: [
             {
                 name: '访问来源',
                 type: 'pie',
-                radius : '55%',
+                radius: '55%',
                 center: ['50%', '60%'],
-                data:[
-                    {value:${map.notBorrowingBooks}, name:'未借图书'},
-                    {value:${map.borrowingQuantity}, name:'已借图书'}
+                data: [
+                    {value:${map.notBorrowingBooks}, name: '未借图书'},
+                    {value:${map.borrowingQuantity}, name: '已借图书'}
 
                 ],
                 label: {
                     normal: {
-                        show:true,
+                        show: true,
                         //position:'inner', //标签的位置
                         /* {b}对于data.name。{c}对应data.value，{d}对应百分比 */
                         formatter: "{b} : {c} ({d}%)"
@@ -287,8 +287,8 @@
                     }
                 }
             }
-        ]};
-
+        ]
+    };
 
 
     window.onresize = myChart.resize;
@@ -357,8 +357,8 @@
             , cols: [[ //标题栏
                 // {type: 'checkbox'},
                 {field: 'b_book_reader_id', title: 'id', sort: true}
-                ,{field: 'b_book_no', title: '图书编号', sort: true}
-                ,{field: 'b_book_name', title: '图书名字', sort: true}
+                , {field: 'b_book_no', title: '图书编号', sort: true}
+                , {field: 'b_book_name', title: '图书名字', sort: true}
                 , {field: 'b_reader_no', title: '读者编号', sort: true}
                 , {field: 'b_reader_name', title: '读者名字', sort: true}
                 , {field: 'b_user_no', title: '管理员编号', sort: true}

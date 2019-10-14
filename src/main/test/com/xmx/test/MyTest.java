@@ -48,11 +48,24 @@ public class MyTest {
 
         TBook tBook = tBooksService.selectByPrimaryKey("1");
 
-        TReader tReader = tReadersService.findReaderByNo("reader1");
+        TReader tReader = tReadersService.findReaderByNo("ads");
 
-//        System.out.println(tBookReaderService.borrowBook(tBook,tReader,tAdmin));
+//        System.out.println(tReader);
 
-        System.out.println(tBooksService.findBooksLimit("type6",1,20));
+        System.out.println(tBookReaderService.borrowBook(tBook,tReader,tAdmin));
+
+//        System.out.println(tBooksService.findBooksLimit("type6",1,20));
     }
 
+    @Test
+    public void test4(){
+        String a = "abc";
+        String b = new String("abc");
+        String c = "a"+"b"+"c";
+        System.out.println(a==b);//false
+        System.out.println(a==c);//true
+        System.out.println(a.equals(b));//true
+        System.out.println(a.equals(c));//true
+        System.out.println(a.intern()==b.intern());//true
+    }
 }

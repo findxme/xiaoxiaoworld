@@ -12,23 +12,29 @@ import com.xmx.ssm.service.TReadersService;
 import com.xmx.ssm.service.impl.TSmtpServiceImpl;
 import com.xmx.ssm.util.CookiesDao;
 import com.xmx.ssm.util.Email;
+import com.xmx.ssm.util.PageLimit;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.naming.Name;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Controller
 @RequestMapping("/user")
 public class LoginController {
+
     @Autowired
     private TAdminService tAdminService;
 
@@ -54,7 +60,18 @@ public class LoginController {
 
     @RequestMapping(value = "/toLogin",method = RequestMethod.GET)
     public String toLogin(){
-        return "login";
+       // return "login";
+        return "login2";
+    }
+    @RequestMapping("/login2")
+    @ResponseBody
+    public JSONObject login2(){
+        System.out.println("成功的转跳");
+        List<Object> objects = new ArrayList<Object>();
+//        String a="";
+        JSONObject json = PageLimit.layuiJson(0, "成功",10,objects);
+        return  json;
+
     }
 
 
@@ -113,13 +130,15 @@ public class LoginController {
 
     @RequestMapping("/toRegister")
     public String toRegister(){
-        return "register";
+      //  return "register";
+        return "reg";
     }
 
     @RequestMapping("/loginOut")
     public void loginOut(HttpServletRequest request,HttpServletResponse response){
-        System.out.println("跳转到loginOut");
-//        CookiesDao.LoginOut(request,response);
+
+        //System.out.println("跳转到loginOut");
+        CookiesDao.LoginOut(request,response);
 //        return "redirect:toLogin";
     }
 
@@ -200,4 +219,57 @@ public class LoginController {
 ////        }
 //        return info;
 //    }
+
+
+    /**
+     * 注册账户
+     *
+//     * @param oldPassword
+//     * @param repassword
+//     * @param authCode
+//     * @param session
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping("/registerUser")
+    public int setRegister_form(String username,String email,String phone,String vercode,String password,String show,HttpSession session) {
+
+
+
+        if((session.getAttribute("registerAuthCode")).equals(vercode)){
+            if (show.equals("1")){
+                TAdmin tAdmin = new TAdmin();
+                tAdmin.setbAdminNo(phone);
+                tAdmin.setbAdminName(username);
+                tAdmin.setbAdminPassword(password);
+                tAdmin.setbAdminEmail(email);
+                tAdmin.setbAdminType(show);
+                // System.out.println("执行"+"");
+                tAdminService.insertSelective(tAdmin);
+                // return
+
+            }else if(show.equals("2")){
+                TReader tReader = new TReader();
+                tReader.setbReaderNo(phone);
+                tReader.setbReaderName(username);
+                tReader.setbReaderEmail(email);
+                tReader.setbReaderPassword(password);
+                tReader.setbReaderMobile(phone);
+                tReadersService.insertReaderSelective(tReader);
+
+
+            }
+
+        }
+        else if(session.getAttribute("registerAuthCode")==null){
+            //System.out.println("请获取验证码1");
+            return 2;//未获取验证码
+        } else
+        {  //System.out.println("验证码错误" + "");
+        return 3;//验证码错误
+
+}
+
+        return 1;//注册成功
+    }
 }

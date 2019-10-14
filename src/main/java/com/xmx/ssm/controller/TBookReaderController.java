@@ -65,9 +65,13 @@ public class TBookReaderController {
 
     @RequestMapping("/notReturnBook")
     @ResponseBody
-    public JSONObject getNotReturnBook(@Param("keyWord")String keyWord,int page,int limit){
-        System.out.println("key:"+keyWord);
-        List<Map<String,Object>> list =  tBookReaderService.queryNotReturnInfo(keyWord,page,limit);
+    public JSONObject getNotReturnBook(@Param("startDate")String startDate,
+                                       @Param("endDate")String endDate,
+                                       @Param("keyWord")String keyWord,
+                                       int page,
+                                       int limit){
+        System.out.println("startDate:"+startDate);
+        List<Map<String,Object>> list =  tBookReaderService.queryNotReturnInfo(startDate,endDate,keyWord,page,limit);
         long size = tBookReaderService.findReadersBorrowingQuantity();
         System.out.println(list);
         return PageLimit.layuiJson(0,"",size,list);
@@ -84,6 +88,7 @@ public class TBookReaderController {
         TAdmin tAdmin = tAdminService.findAdminByNo(adminNo);
         int result = tBookReaderService.borrowBook(tBook,tReader,tAdmin);
         StatusInfo statusInfo = new StatusInfo();
+        statusInfo.setMessage("借书成功");
         if(result==0){
             statusInfo.setStatus(500);
             statusInfo.setMessage("借书失败");
@@ -131,7 +136,7 @@ public class TBookReaderController {
             statusInfo.setStatus(500);
             statusInfo.setMessage("还书出错");
         }else{
-            statusInfo.setMessage("");
+            statusInfo.setMessage("还书成功");
         }
         return statusInfo;
     }
@@ -152,6 +157,26 @@ public class TBookReaderController {
         return json;
     }
 
+
+    @RequestMapping("/renewBook")
+    @ResponseBody
+    public StatusInfo renewBook(@Param("bookNo")String bookNo,
+                                @Param("readerNo")String readerNo){
+        TBook tBook = tBooksService.selectByPrimaryKey(bookNo);
+        TReader tReader = tReadersService.findReaderByNo(readerNo);
+        StatusInfo statusInfo = new StatusInfo();
+        int result = tBookReaderService.renewBook(tBook,tReader);
+        if(result==-1){
+            statusInfo.setStatus(403);
+            statusInfo.setMessage("续借次数已用完");
+        }else if(result==0){
+            statusInfo.setStatus(404);
+            statusInfo.setMessage("没借过");
+        }else if(result==1){
+            statusInfo.setMessage("续借成功");
+        }
+        return statusInfo;
+    }
 
     @RequestMapping("/dropBox")
     @ResponseBody

@@ -150,6 +150,10 @@
     <if test="bookType!=null">
       and bt.b_book_type_no=#{bookType}
     </if>
+    <if test="keyWord!=null">
+      and concat(b.b_book_name,b.b_book_no,b.b_book_author)
+      like "%"#{keyWord}"%"
+    </if>
     limit #{currIndex},#{pageSize}
   </select>
 
@@ -165,28 +169,28 @@
     SELECT * from t_book
     <where>
       <if test="bBookId != null">
-        b_book_id=#{bBookId}
+        b_book_id like "%"#{bBookId}"%"
       </if>
       <if test="bBookNo != null">
-        and   b_book_no=#{bBookNo}
+        and  b_book_no like "%"#{bBookNo}"%"
       </if>
       <if test="bBookName != null">
-        and b_book_name=#{bBookName}
+        and b_book_name like "%"#{bBookName}"%"
       </if>
       <if test="bBookAuthor != null">
-        and    b_book_author=#{bBookAuthor}
+        and b_book_author like "%"#{bBookAuthor}"%"
       </if>
       <if test="bBookNumber != null">
-        and   b_book_number=#{bBookNumber}
+        and b_book_number like "%"#{bBookNumber}"%"
       </if>
       <if test="bBookType != null">
-        and   b_book_type=#{bBookType}
+        and b_book_type like "%"#{bBookType}"%"
       </if>
       <if test="bBookCreatedate != null">
-        and   b_book_createDate=#{bBookCreatedate}
+        and  b_book_createDate like "%"#{bBookCreatedate}"%"
       </if>
       <if test="bStopDate != null">
-        and  b_stop_date=#{bStopDate}
+        and  b_stop_date like "%"#{bStopDate}"%"
       </if>
     </where>
 

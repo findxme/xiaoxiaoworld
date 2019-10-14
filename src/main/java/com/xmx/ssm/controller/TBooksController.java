@@ -42,17 +42,18 @@ public class TBooksController {
      * */
     @ResponseBody
     @RequestMapping("/findBooksAll")
-    public JSONObject findBooksAll(@Param("bookType")String bookType, Integer page, Integer limit) {
+    public JSONObject findBooksAll(@Param("keyWord")String keyWord,@Param("bookType")String bookType, Integer page, Integer limit) {
         if("".equals(bookType)){bookType=null;}
         int currIndex = (page - 1) * limit;
         System.out.println("bookType:"+bookType);
-        List<Map<String, Object>> books = tBooksService.findBooksLimit(bookType,currIndex, limit);
+        List<Map<String, Object>> books = tBooksService.findBooksLimit(keyWord,bookType,currIndex, limit);
         System.out.println("bookSize:"+books.size());
-        JSONObject json = PageLimit.layuiJson(0, "", books.size(), books);
+        JSONObject json = PageLimit.layuiJson(0, "", tBooksService.countByExample(), books);
         return json;
     }
 
     /*条件查询*/
+    /*动态sql*/
     @ResponseBody
     @RequestMapping("/findBooksOne")
     public int findBooksOne(String no) {

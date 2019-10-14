@@ -46,4 +46,9 @@ public class TAdminServiceImpl implements TAdminService {
         return tAdminMapper.findAdminOne(username);
     }
 
+    @Override
+    public int insertSelective(TAdmin record) {
+        return tAdminMapper.insertSelective(record);
+    }
+
 }

@@ -14,15 +14,35 @@
 
 </head>
 <body>
-
+<div class="demoTable">
+    图书ID：
+    <div class="layui-inline">
+        <input class="layui-input" name="id" id="TBookID" autocomplete="off">
+    </div>
+    书名：
+    <div class="layui-inline">
+        <input class="layui-input" name="id" id="TBookName" autocomplete="off">
+    </div>
+    作者：
+    <div class="layui-inline">
+        <input class="layui-input" name="id" id="TBookAuthor" autocomplete="off">
+    </div>
+    类型：
+    <div class="layui-inline">
+        <input class="layui-input" name="id" id="TBookType" autocomplete="off">
+    </div>
+    <button class="layui-btn" id="Bookfind"data-type="reload">搜索</button>
+</div>
 <table class="layui-hide" id="demo" lay-filter="test"></table>
 
 <script type="text/html" id="toolbarDemo">
     <div class="layui-btn-container">
         <button class="layui-btn layui-btn-sm" onclick="add()">新增</button>
 <%--        <button class="layui-btn layui-btn-sm" onclick="deleteList()">删除</button>--%>
+
     </div>
-<%--</script>--%>
+
+</script>
 
 <script type="text/html" id="barDemo">
     <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
@@ -104,7 +124,37 @@
                 });
 
             }
-        })
+        });
+        var $ = layui.$, active = {
+            reload: function(){
+                 var tBooksID = $('#TBookID');
+                var tBookName = $('#TBookName');
+                var tBookName = $('#TBookAuthor');
+                var tBookName = $('#TBookType');
+                var tBookName = $('#TBookName');
+                // console.log(demoReload.val());
+                //执行重载
+                table.reload('idTest', {
+                    page: {
+                        curr: 1 //重新从第 1 页开始
+                    }
+                    ,where: {
+                        // key: {
+                        tBooksID: tBooksID.val()
+
+                      //  KeyWords:$("#TBookID").val()
+                        // }
+                    }
+                }, 'data');
+            }
+        };
+
+        $('#Bookfind').on('click', function(){
+            var type = $(this).data('type');
+            active[type] ? active[type].call(this) : '';
+        });
+
+
     });
 
     function add() {

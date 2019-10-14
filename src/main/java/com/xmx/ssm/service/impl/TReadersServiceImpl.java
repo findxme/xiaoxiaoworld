@@ -71,4 +71,9 @@ public class TReadersServiceImpl implements TReadersService {
         }
         return tReaderMapper.findReaderByName(readerName);
     }
+
+    @Override
+    public int insertReaderSelective(TReader tReader) {
+        return tReaderMapper.insertSelective(tReader);
+    }
 }
