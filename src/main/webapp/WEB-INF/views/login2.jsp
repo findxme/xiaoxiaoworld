@@ -150,10 +150,17 @@
                             location.href = '${ctx}/user/home'; //后台主页
                         });
 
-                    }else {
+                    } else if (res.count === 1) {
+                        layer.msg('登入成功', {
+                            offset: '15px'
+                            , icon: 1
+                            , time: 1000
+                        }, function () {
+                            location.href = '${ctx}/user/toReaderHome'; //后台主页
+                        });
+                    } else {
                         layer.msg(res.msg);
                     }
-
 
 
                 }

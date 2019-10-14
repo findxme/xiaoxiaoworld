@@ -133,7 +133,7 @@ public class LoginController {
 //            statusInfo.setMessage("用户或密码不能为空");
 //            map.put("msg","用户或密码不能为空");
 //            map.put("code",1);
-            json = PageLimit.layuiJson(0, "用户或密码不能为空", 1, objects);
+            json = PageLimit.layuiJson(0, "用户或密码不能为空", -1, objects);
             return json;
         }
 
@@ -143,7 +143,7 @@ public class LoginController {
             if (tReader == null) {
 //                statusInfo.setStatus(404);
 //                statusInfo.setMessage("不存在该用户");
-                json = PageLimit.layuiJson(0, "不存在该用户", 1, objects);
+                json = PageLimit.layuiJson(0, "不存在该用户", -1, objects);
 //                map.put("msg","不存在该用户");
 //                map.put("code",1);
 
@@ -151,10 +151,11 @@ public class LoginController {
                 if (!tReader.getbReaderPassword().equals(password)) {
 //                    statusInfo.setStatus(500);
 //                    statusInfo.setMessage("用户密码错误");
-                    json = PageLimit.layuiJson(0, "用户密码错误", 1, objects);
+                    json = PageLimit.layuiJson(0, "用户密码错误", -1, objects);
                 } else {
 //                    statusInfo.setMessage(tReader.getbReaderNo());
-                    json = PageLimit.layuiJson(0, tReader.getbReaderNo(), 0, objects);
+
+                    json = PageLimit.layuiJson(0, tReader.getbReaderNo(), 1, objects);
                 }
             }
         } else {
@@ -162,7 +163,7 @@ public class LoginController {
             if (tAdmin == null) {
 //                statusInfo.setStatus(404);
 //                statusInfo.setMessage("不存在该管理员");
-                json = PageLimit.layuiJson(0, "不存在该管理员", 1, objects);
+                json = PageLimit.layuiJson(0, "不存在该管理员", -1, objects);
             } else {
                 if (tAdmin.getbAdminPassword().equals(password)) {
                     session.setAttribute("adminNo",tAdmin.getbAdminNo());
@@ -171,63 +172,62 @@ public class LoginController {
                 } else {
 //                    statusInfo.setStatus(500);
 //                    statusInfo.setMessage("密码错误");
-                    json = PageLimit.layuiJson(0, "密码错误", 1, objects);
+                    json = PageLimit.layuiJson(0, "密码错误", -1, objects);
                 }
             }
         }
-
         session.setAttribute("userName", userName);
         return json;
     }
 
 
-    @RequestMapping(value = "/login")
-    @ResponseBody
-    public StatusInfo login(@Param("userName") String userName,
-                            @Param("password") String password,
-                            @Param("userType") String userType,
-                            HttpSession session) {
-        StatusInfo statusInfo = new StatusInfo();
-
-        System.err.println(userName + "," + password + "," + userType);
-
-        if (userName == null || password == null || "".equals(userName) || "".equals(password)) {
-            statusInfo.setStatus(405);
-            statusInfo.setMessage("用户或密码不能为空");
-            return statusInfo;
-        }
-
-
-        if ("reader".equals(userType)) {
-            TReader tReader = tReadersService.findReaderByName(userName);
-            if (tReader == null) {
-                statusInfo.setStatus(404);
-                statusInfo.setMessage("不存在该用户");
-            } else {
-                if (!tReader.getbReaderPassword().equals(password)) {
-                    statusInfo.setStatus(500);
-                    statusInfo.setMessage("用户密码错误");
-                } else {
-                    statusInfo.setMessage(tReader.getbReaderNo());
-                }
-            }
-        } else {
-            TAdmin tAdmin = tAdminService.findAdminByName(userName);
-            if (tAdmin == null) {
-                statusInfo.setStatus(404);
-                statusInfo.setMessage("不存在该管理员");
-            } else {
-                if (tAdmin.getbAdminPassword().equals(password)) {
-                    statusInfo.setMessage(tAdmin.getbAdminNo());
-                } else {
-                    statusInfo.setStatus(500);
-                    statusInfo.setMessage("密码错误");
-                }
-            }
-        }
-        session.setAttribute("userName", userName);
-        return statusInfo;
-    }
+//    @RequestMapping(value = "/login")
+//    @ResponseBody
+//    public StatusInfo login(@Param("userName") String userName,
+//                            @Param("password") String password,
+//                            @Param("userType") String userType,
+//                            HttpSession session) {
+//        StatusInfo statusInfo = new StatusInfo();
+//
+//        System.err.println(userName + "," + password + "," + userType);
+//
+//        if (userName == null || password == null || "".equals(userName) || "".equals(password)) {
+//            statusInfo.setStatus(405);
+//            statusInfo.setMessage("用户或密码不能为空");
+//            return statusInfo;
+//        }
+//
+//
+//        if ("reader".equals(userType)) {
+//            TReader tReader = tReadersService.findReaderByName(userName);
+//            if (tReader == null) {
+//                statusInfo.setStatus(404);
+//                statusInfo.setMessage("不存在该用户");
+//            } else {
+//                if (!tReader.getbReaderPassword().equals(password)) {
+//                    statusInfo.setStatus(500);
+//                    statusInfo.setMessage("用户密码错误");
+//                } else {
+//                    statusInfo.setMessage(tReader.getbReaderNo());
+//                }
+//            }
+//        } else {
+//            TAdmin tAdmin = tAdminService.findAdminByName(userName);
+//            if (tAdmin == null) {
+//                statusInfo.setStatus(404);
+//                statusInfo.setMessage("不存在该管理员");
+//            } else {
+//                if (tAdmin.getbAdminPassword().equals(password)) {
+//                    statusInfo.setMessage(tAdmin.getbAdminNo());
+//                } else {
+//                    statusInfo.setStatus(500);
+//                    statusInfo.setMessage("密码错误");
+//                }
+//            }
+//        }
+//        session.setAttribute("userName", userName);
+//        return statusInfo;
+//    }
 
     @RequestMapping("/list")
     public String findBooksAll() {
@@ -249,6 +249,12 @@ public class LoginController {
 //        return "redirect:toLogin";
     }
 
+    @RequestMapping("/toReaderHome")
+    public ModelAndView toReaderHome(ModelAndView modelAndView,HttpSession session){
+        modelAndView.addObject("userNmae",session.getAttribute("userName"));
+        modelAndView.setViewName("readerTest");
+        return modelAndView;
+    }
     @RequestMapping(value = "home")
     public ModelAndView toHome(HttpSession session,ModelAndView modelAndView) {
 

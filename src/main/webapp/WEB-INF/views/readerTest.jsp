@@ -74,7 +74,7 @@
                 </li>
                 <li class="layui-nav-item" lay-unselect>
                     <a href="javascript:;">
-                        <cite id="loginName"></cite>
+                        <cite id="loginName">${userNmae}</cite>
                     </a>
                     <dl class="layui-nav-child">
                         <dd><a lay-href="${ctx}/user/info">基本资料</a></dd>
@@ -104,7 +104,7 @@
                     <li data-name="home" class="layui-nav-item layui-nav-itemed">
                         <a href="javascript:;" lay-tips="主页" lay-direction="2">
                             <i class="layui-icon layui-icon-home"></i>
-                            <cite>主页</cite>
+                            <cite>主页1111111111111111111111</cite>
                         </a>
                         <dl class="layui-nav-child">
                             <dd data-name="console" class="layui-this">
@@ -260,14 +260,14 @@
 <script src="${ctx}/static/js/cookieDao.js"></script>
 <script src="${ctx}/static/layuiAdmin/layui/layui.js"></script>
 <script>
-    var loginName;
-    if(getCookie("adminName")==null||getCookie("adminName")==""){
-        loginName = getCookie("readerName");
-    }else{
-        loginName = getCookie("adminName");
-    }
-    console.log(document.cookie)
-    $("#loginName").html(loginName)
+    // var loginName;
+    // if(getCookie("adminName")==null||getCookie("adminName")==""){
+    //     loginName = getCookie("readerName");
+    // }else{
+    //     loginName = getCookie("adminName");
+    // }
+    // console.log(document.cookie)
+    // $("#loginName").html(loginName)
     layui.config({
         base: '../static/layuiAdmin/' //静态资源所在路径
     }).extend({
