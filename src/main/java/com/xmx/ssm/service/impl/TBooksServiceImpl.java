@@ -34,8 +34,13 @@ public class TBooksServiceImpl implements TBooksService {
 
     /*查找全部*/
     @Override
-    public List<Map<String, Object>> findBooksAll() {
-        return tBookMapper.findBooksAll();
+    public List<Map<String, Object>> findBooksAll(String bookNo,
+                                                  String bookName,
+                                                  String bookAuthor,
+                                                  String bookType,
+                                                  Integer currIndex,
+                                                  Integer pageSize) {
+        return tBookMapper.findBooksAll(bookNo,bookName,bookAuthor,bookType,currIndex,pageSize);
     }
     /**
      * 分页查询

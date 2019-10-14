@@ -1,5 +1,6 @@
 package com.xmx.ssm.dao;
 
+import com.xmx.ssm.entity.TBook;
 import com.xmx.ssm.entity.TBookType;
 import com.xmx.ssm.entity.TBookTypeExample;
 
@@ -13,6 +14,12 @@ import org.apache.ibatis.annotations.Update;
 
 public interface TBookTypeMapper {
 
+
+    /**
+     * 根据类型名称得到类型
+     * @return
+     */
+    TBookType getTypeNoByTypeName(@Param("typeName") String typeName);
 
     /*ok*/
     /*查找有多少条数据*/

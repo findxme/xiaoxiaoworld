@@ -159,8 +159,24 @@
 
   <!--ok-->
   <!--查找全部-->
-  <select id="findBooksAll" resultType="map" parameterType="integer">
-    select * from t_book
+  <select id="findBooksAll" resultType="map" parameterType="map">
+    select *
+    from
+    t_book b,t_book_type bt
+    where b.b_book_type_no=bt.b_book_type_no
+    <if test="bookNo!=null">
+      and b.b_book_no like "%"#{bookNo}"%"
+    </if>
+    <if test="bookName!=null">
+      and b.b_book_name like "%"#{bookName}"%"
+    </if>
+    <if test="bookType!=null">
+      and bt.b_book_type_no=#{bookType}
+    </if>
+    <if test="bookAuthor!=null">
+      and b.b_book_author like "%"#{bookAuthor}"%"
+    </if>
+    limit #{currIndex},#{pageSize}
   </select>
 
   <!--ok-->

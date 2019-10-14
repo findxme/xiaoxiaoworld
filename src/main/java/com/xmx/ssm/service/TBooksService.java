@@ -20,7 +20,12 @@ public interface TBooksService {
 
     /*ok*/
     /*查找全部*/
-    List<Map<String ,Object>> findBooksAll();
+    List<Map<String ,Object>> findBooksAll(String bookNo,
+                                           String bookName,
+                                           String bookAuthor,
+                                           String bookType,
+                                           Integer currIndex,
+                                           Integer pageSize);
 
     /*OK*/
     /*条件查询 ok*/

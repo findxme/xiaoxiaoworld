@@ -9,6 +9,9 @@ import java.util.Map;
 public interface TBooksTypeService {
 
 
+
+    TBookType getTypeNoByTypeName(String typeName);
+
     /*OK*/
     /*查出有多少条记录ok*/
     long countByExample();

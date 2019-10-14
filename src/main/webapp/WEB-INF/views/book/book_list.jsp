@@ -15,25 +15,43 @@
 </head>
 <body>
 <div class="demoTable">
-    图书ID：
-    <div class="layui-inline">
-        <input class="layui-input" name="id" id="TBookID" autocomplete="off">
-    </div>
-    书名：
-    <div class="layui-inline">
-        <input class="layui-input" name="id" id="TBookName" autocomplete="off">
-    </div>
-    作者：
-    <div class="layui-inline">
-        <input class="layui-input" name="id" id="TBookAuthor" autocomplete="off">
-    </div>
-    类型：
-    <div class="layui-inline">
-        <input class="layui-input" name="id" id="TBookType" autocomplete="off">
-    </div>
-    <button class="layui-btn" id="Bookfind"data-type="reload">搜索</button>
+
+
 </div>
-<table class="layui-hide" id="demo" lay-filter="test"></table>
+
+
+<div class="layui-fluid">
+    <div class="layui-card">
+        <div class="layui-form layui-card-header layuiadmin-card-header-auto">
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <select name="bookType" data-type="reload" id="bookType" lay-filter="book-type" lay-search>
+                        <option value="">请选择图书类型</option>
+                    </select>
+                </div>
+                <div class="layui-inline">
+                    <input class="layui-input" name="id" id="TBookNo" autocomplete="off" placeholder="图书ID">
+                </div>
+                <div class="layui-inline">
+                    <input class="layui-input" name="id" id="TBookName" autocomplete="off" placeholder="书名">
+                </div>
+                <div class="layui-inline">
+                    <input class="layui-input" name="id" id="TBookAuthor" autocomplete="off" placeholder="作者">
+                </div>
+                <div class="layui-inline">
+                    <div class="layui-btn-group">
+                        <button class="layui-btn" id="Bookfind"data-type="reload">搜索</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-card-body">
+            <table class="layui-hide" id="demo" lay-filter="test"></table>
+
+        </div>
+    </div>
+</div>
+
 
 <script type="text/html" id="toolbarDemo">
     <div class="layui-btn-container">
@@ -52,22 +70,42 @@
 <script src="https://www.layuicdn.com/layui-v2.5.5/layui.js"></script>
 <script>
 
+    function dropBox(){
+        layui.use(['form'],function(){
+
+            var form = layui.form;
+            $.ajax({
+                url:'${ctx}/tBookReader/dropBox',
+                type:'post',
+                success:function(data){
+                    $.each(data,function(index,item){
+                        $("select[name='bookType']").append(new Option(item.b_book_type,item.b_book_type_no));
+                    })
+                    form.render();
+                },
+                error:function(){
+                    layer.msg("错误")
+                }
+
+            })
+        })
+    }
     var deleteListData = [];
 
-    layui.use(['laypage', 'layer', 'table'], function () {
-        var laydate = layui.laypage = layui.laypage //分页
+    layui.use(['form', 'layer', 'table'], function () {
+        var form = layui.form
             , layer = layui.layer //弹层
             , table = layui.table //表格
 
+        dropBox()
         //执行一个 table 实例
         table.render({
             elem: '#demo'
             // ,height: 420
-            , url: '${ctx}/tBooks/findBooksAll' //数据接口
+            , url: '${ctx}/tBooks/findBooksOne' //数据接口
             , title: '图书列表'
             , page: true //开启分页
             , toolbar: '#toolbarDemo'
-            , id: 'idTest'
             , cols: [[ //标题栏
                 // {type: 'checkbox'},
                 {field: 'b_book_no', title: '图书编号', sort: true}
@@ -79,6 +117,7 @@
                 , {title: '操作', toolbar: '#barDemo', align: 'center', width: 110}
 
             ]]
+            ,id:'idTest'
         });
 
         table.on('checkbox(test)', function (obj) {
@@ -127,23 +166,15 @@
         });
         var $ = layui.$, active = {
             reload: function(){
-                 var tBooksID = $('#TBookID');
-                var tBookName = $('#TBookName');
-                var tBookName = $('#TBookAuthor');
-                var tBookName = $('#TBookType');
-                var tBookName = $('#TBookName');
-                // console.log(demoReload.val());
                 //执行重载
                 table.reload('idTest', {
                     page: {
                         curr: 1 //重新从第 1 页开始
                     }
                     ,where: {
-                        // key: {
-                        tBooksID: tBooksID.val()
-
-                      //  KeyWords:$("#TBookID").val()
-                        // }
+                        bookNo:$("#TBookNo").val(),
+                        bookName:$("#TBookName").val(),
+                        bookAuthor:$("#TBookAuthor").val(),
                     }
                 }, 'data');
             }
@@ -154,6 +185,18 @@
             active[type] ? active[type].call(this) : '';
         });
 
+
+        form.on('select(book-type)',function(data){
+
+            table.reload('idTest',{
+                page:{
+                    curr:1
+                },where:{
+                    bookType:data.value
+                }
+            });
+
+        })
 
     });
 
