@@ -30,7 +30,7 @@
     <div class="layadmin-user-login-box layadmin-user-login-body layui-form">
       <div class="layui-form-item">
         <label class="layadmin-user-login-icon layui-icon layui-icon-username" for="LAY-user-login-nickname"></label>
-        <input type="text" name="username" id="LAY-user-login-nickname" lay-verify="username" placeholder="昵称" class="layui-input">
+        <input type="text" name="username" id="LAY-user-login-nickname" lay-verify="username|isExistUser" placeholder="昵称" class="layui-input">
       </div>
       <div class="layui-form-item">
         <label class="layadmin-user-login-icon layui-icon layui-icon-website" for="LAY-user-login-email"></label>
@@ -38,7 +38,7 @@
       </div>
       <div class="layui-form-item">
         <label class="layadmin-user-login-icon layui-icon layui-icon-cellphone" for="LAY-user-login-cellphone"></label>
-        <input type="text" name="phone" id="LAY-user-login-cellphone" lay-verify="phone" placeholder="手机号" class="layui-input">
+        <input type="text" name="phone" id="LAY-user-login-cellphone" lay-verify="phone|isExistPhone" placeholder="手机号" class="layui-input">
       </div>
       <div class="layui-form-item">
         <div class="layui-row">
@@ -105,6 +105,40 @@
     ,router = layui.router();
 
     form.render();
+
+      form.verify({
+        //用户名是否存在
+        isExistUser: function (value) {
+          var data;
+          $.ajax({
+            async: false,
+            type: 'POST',
+            url: "${ctx}/user/isExistUser",
+            data: {username: value},
+            success: function (msg) {
+              data=msg;
+            }
+          });
+          if (data===1){
+            return '用户名已存在';
+          }
+        },
+        isExistPhone: function (value) {
+          var data;
+          $.ajax({
+            async: false,
+            type: 'POST',
+            url: "${ctx}/user/isExistPhone",
+            data: {phone: value},
+            success: function (msg) {
+              data=msg;
+            }
+          });
+          if (data===1){
+            return '手机号已存在';
+          }
+        }
+      });
 
       //提交
       form.on('submit(LAY-user-reg-submit)', function(obj){
