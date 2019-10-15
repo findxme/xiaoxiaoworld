@@ -36,12 +36,10 @@
                             <div class="layui-carousel layadmin-carousel layadmin-dataview" data-anim="fade"
                                  lay-filter="LAY-index-dataview">
                                 <div carousel-item>
-                                    <%--                    <div><i class="layui-icon layui-icon-loading1 layadmin-loading"></i></div>--%>
-                                    <%--                    <div></div>--%>
-                                    <%--                    <div></div>--%>
 
-                                    <div id="main" style="width: 1700%;height:300%;">111</div>
-                                    <div id="main2" style="width: 1700%;height:300%;"></div>
+
+                                    <div id="main" style="width: 1700%;height:300%;"></div>
+
                                 </div>
                             </div>
 
@@ -69,12 +67,7 @@
         </div>
     </div>
 </div>
-<%--<script type="text/html" id="toolbarDemo">--%>
-<%--    <div class="layui-btn-container">--%>
-<%--        <button class="layui-btn layui-btn-sm" onclick="add()">新增</button>--%>
-<%--        &lt;%&ndash;        <button class="layui-btn layui-btn-sm" onclick="deleteList()">删除</button>&ndash;%&gt;--%>
-<%--    </div>--%>
-<%--</script>--%>
+
 
 <%--  <script src="${ctx}/static/layuiAdmin/layui/layui.js?t=1"></script>--%>
 <script src="${ctx}/static/js/echarts.min.js"></script>

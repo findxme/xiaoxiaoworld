@@ -89,6 +89,8 @@
 
 <script src="${ctx}/static/layuiAdmin/layui/layui.js"></script>
 <script>
+    var loginPage;
+
     function img() {
         document.getElementById("img").src = "${ctx}/user/verifyCode?a=" + Math.random();
     };
@@ -155,7 +157,15 @@
                     }
 
 
+                },
+                beforeSend:function(){
+                    loginPage =  layer.msg('登录中...', {icon: 16,shade: [0.5, '#f5f5f5'],scrollbar: false,offset: '0px',time: 0});
+                },
+                complete:function(){
+                    layer.close(loginPage);
                 }
+
+
             });
 
 

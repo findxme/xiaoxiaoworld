@@ -49,17 +49,12 @@
                                             </a>
                                         </li>
                                         <li class="layui-col-xs3">
-                                            <a layadmin-event="im">
-                                                <i class="layui-icon layui-icon-chat"></i>
-                                                <cite>聊天</cite>
+                                            <a lay-href="https://www.baidu.com/">
+                                                <i class="layui-icon layui-icon-release"></i>
+                                                <cite>百度一下</cite>
                                             </a>
                                         </li>
-                                        <%--                      <li class="layui-col-xs3">--%>
-                                        <%--                        <a lay-href="component/progress/index.html">--%>
-                                        <%--                          <i class="layui-icon layui-icon-find-fill"></i>--%>
-                                        <%--                          <cite>进度条</cite>--%>
-                                        <%--                        </a>--%>
-                                        <%--                      </li>--%>
+
                                         <li class="layui-col-xs3">
                                             <a lay-href="${ctx}/tBookReader/bookBorrowReturnInfo">
                                                 <i class="layui-icon layui-icon-survey"></i>
@@ -79,62 +74,13 @@
                                             </a>
                                         </li>
                                         <li class="layui-col-xs3">
-                                            <a lay-href="set/user/info.html">
-                                                <i class="layui-icon layui-icon-about"></i>
-                                                <cite>关于本站</cite>
+                                            <a lay-href="https://gitee.com/">
+                                                <i class="layui-icon layui-icon-rate"></i>
+                                                <cite>码云</cite>
                                             </a>
                                         </li>
                                     </ul>
-                                    <%--                    <ul class="layui-row layui-col-space10">--%>
-                                    <%--                      <li class="layui-col-xs3">--%>
-                                    <%--                        <a lay-href="set/user/info.html">--%>
-                                    <%--                          <i class="layui-icon layui-icon-set"></i>--%>
-                                    <%--                          <cite>我的资料</cite>--%>
-                                    <%--                        </a>--%>
-                                    <%--                      </li>--%>
-                                    <%--                      <li class="layui-col-xs3">--%>
-                                    <%--                        <a lay-href="set/user/info.html">--%>
-                                    <%--                          <i class="layui-icon layui-icon-set"></i>--%>
-                                    <%--                          <cite>我的资料</cite>--%>
-                                    <%--                        </a>--%>
-                                    <%--                      </li>--%>
-                                    <%--                      <li class="layui-col-xs3">--%>
-                                    <%--                        <a lay-href="set/user/info.html">--%>
-                                    <%--                          <i class="layui-icon layui-icon-set"></i>--%>
-                                    <%--                          <cite>我的资料</cite>--%>
-                                    <%--                        </a>--%>
-                                    <%--                      </li>--%>
-                                    <%--                      <li class="layui-col-xs3">--%>
-                                    <%--                        <a lay-href="set/user/info.html">--%>
-                                    <%--                          <i class="layui-icon layui-icon-set"></i>--%>
-                                    <%--                          <cite>我的资料</cite>--%>
-                                    <%--                        </a>--%>
-                                    <%--                      </li>--%>
-                                    <%--                      <li class="layui-col-xs3">--%>
-                                    <%--                        <a lay-href="set/user/info.html">--%>
-                                    <%--                          <i class="layui-icon layui-icon-set"></i>--%>
-                                    <%--                          <cite>我的资料</cite>--%>
-                                    <%--                        </a>--%>
-                                    <%--                      </li>--%>
-                                    <%--                      <li class="layui-col-xs3">--%>
-                                    <%--                        <a lay-href="set/user/info.html">--%>
-                                    <%--                          <i class="layui-icon layui-icon-set"></i>--%>
-                                    <%--                          <cite>我的资料</cite>--%>
-                                    <%--                        </a>--%>
-                                    <%--                      </li>--%>
-                                    <%--                      <li class="layui-col-xs3">--%>
-                                    <%--                        <a lay-href="set/user/info.html">--%>
-                                    <%--                          <i class="layui-icon layui-icon-set"></i>--%>
-                                    <%--                          <cite>我的资料</cite>--%>
-                                    <%--                        </a>--%>
-                                    <%--                      </li>--%>
-                                    <%--                      <li class="layui-col-xs3">--%>
-                                    <%--                        <a lay-href="set/user/info.html">--%>
-                                    <%--                          <i class="layui-icon layui-icon-set"></i>--%>
-                                    <%--                          <cite>我的资料</cite>--%>
-                                    <%--                        </a>--%>
-                                    <%--                      </li>--%>
-                                    <%--                    </ul>--%>
+
 
                                 </div>
                             </div>
@@ -197,12 +143,10 @@
                             <div class="layui-carousel layadmin-carousel layadmin-dataview" data-anim="fade"
                                  lay-filter="LAY-index-dataview">
                                 <div carousel-item>
-                                    <%--                    <div><i class="layui-icon layui-icon-loading1 layadmin-loading"></i></div>--%>
-                                    <%--                    <div></div>--%>
-                                    <%--                    <div></div>--%>
+
 
                                     <div id="main" style="width: 1700%;height:300%;"></div>
-                                    <div id="main2" style="width: 1700%;height:300%;"></div>
+
                                 </div>
                             </div>
 
