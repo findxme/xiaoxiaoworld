@@ -22,6 +22,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -55,14 +57,20 @@ public class LoginController {
 
     @ResponseBody
     @RequestMapping(value = "verifyCode")
-    public void verifyCode(HttpServletResponse response, HttpSession session) throws IOException {
+    public void verifyCode(HttpServletResponse response, HttpSession session) throws IOException, NoSuchAlgorithmException {
 
         String authCode = RandomUtil.generateString(4);
         //生成图片
         int width = 100;//宽
         int height = 40;//高
         VerifyCodeUtils.outputImage(width, height, response.getOutputStream(), authCode);
-        session.setAttribute("verifyCodeImg", authCode);
+
+
+        String md5 = VerifyCodeUtils.Md5(authCode.toUpperCase());
+
+        System.err.println("MD5:" + md5);
+        //图片验证码MD5
+        session.setAttribute("verifyCodeImg", md5);
     }
 
     @RequestMapping("/exit")
@@ -73,11 +81,13 @@ public class LoginController {
 
     @ResponseBody
     @RequestMapping("/isVerifyCode")
-    public int isVerifyCode(@RequestParam(value = "verifyCode", defaultValue = "") String verifyCode, HttpSession session) {
-        String verifyCodeImg = session.getAttribute("verifyCodeImg").toString().toUpperCase();
+    public int isVerifyCode(@RequestParam(value = "verifyCode", defaultValue = "") String verifyCode, HttpSession session) throws UnsupportedEncodingException, NoSuchAlgorithmException {
+        String verifyCodeImg = session.getAttribute("verifyCodeImg").toString();
+        String md5 = VerifyCodeUtils.Md5(verifyCode.toUpperCase());
 
-        System.err.println(verifyCodeImg + "," + verifyCode.toUpperCase());
-        if ((verifyCode.toUpperCase()).equals(verifyCodeImg)) {
+        //图片验证码输入MD5
+        System.err.println("session：" + verifyCodeImg + ",输入：" + VerifyCodeUtils.Md5(verifyCode.toUpperCase()));
+        if (md5.equals(verifyCodeImg)) {
             return 0;
         }
         return 1;
@@ -110,7 +120,6 @@ public class LoginController {
         }
         return 1;
     }
-
 
 
     @RequestMapping("/login")
@@ -155,7 +164,7 @@ public class LoginController {
                 json = PageLimit.layuiJson(0, "不存在该管理员", -1, objects);
             } else {
                 if (tAdmin.getbAdminPassword().equals(password)) {
-                    session.setAttribute("adminNo",tAdmin.getbAdminNo());
+                    session.setAttribute("adminNo", tAdmin.getbAdminNo());
                     session.setAttribute("userName", userName);
                     json = PageLimit.layuiJson(0, tAdmin.getbAdminNo(), 0, objects);
 
@@ -190,13 +199,14 @@ public class LoginController {
     }
 
     @RequestMapping("/toReaderHome")
-    public ModelAndView toReaderHome(ModelAndView modelAndView,HttpSession session){
-        modelAndView.addObject("userNmae",session.getAttribute("userName"));
+    public ModelAndView toReaderHome(ModelAndView modelAndView, HttpSession session) {
+        modelAndView.addObject("userNmae", session.getAttribute("userName"));
         modelAndView.setViewName("readerTest");
         return modelAndView;
     }
+
     @RequestMapping(value = "home")
-    public ModelAndView toHome(HttpSession session,ModelAndView modelAndView) {
+    public ModelAndView toHome(HttpSession session, ModelAndView modelAndView) {
 
         //登录成功，获取邮件服务信息
 
@@ -209,8 +219,8 @@ public class LoginController {
         Email.setPassword(smtp.get("password").toString());
         Email.setPort(Integer.parseInt(smtp.get("prot").toString()));
 
-        modelAndView.addObject("userNmae",session.getAttribute("userName"));
-        modelAndView.addObject("adminNo",session.getAttribute("adminNo"));
+        modelAndView.addObject("userNmae", session.getAttribute("userName"));
+        modelAndView.addObject("adminNo", session.getAttribute("adminNo"));
         modelAndView.setViewName("test");
         return modelAndView;
     }
@@ -247,7 +257,6 @@ public class LoginController {
         modelAndView.setViewName("/home/console");
         return modelAndView;
     }
-
 
 
     /**

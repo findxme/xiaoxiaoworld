@@ -44,6 +44,7 @@
             <mvc:exclude-mapping path="/user/verifyCode"/>
             <mvc:exclude-mapping path="/user/isExistUser"/>
             <mvc:exclude-mapping path="/user/isExistPhone"/>
+            <mvc:exclude-mapping path="/user/isVerifyCode"/>
             <mvc:exclude-mapping path="/user/login"/>
             <mvc:exclude-mapping path="/user/toRegister"/>
             <mvc:exclude-mapping path="/user/registerUser"/>
@@ -66,6 +67,7 @@
             <mvc:exclude-mapping path="/user/verifyCode"/>
             <mvc:exclude-mapping path="/user/isExistUser"/>
             <mvc:exclude-mapping path="/user/isExistPhone"/>
+            <mvc:exclude-mapping path="/user/isVerifyCode"/>
             <mvc:exclude-mapping path="/user/login"/>
             <mvc:exclude-mapping path="/user/toRegister"/>
             <mvc:exclude-mapping path="/user/registerUser"/>

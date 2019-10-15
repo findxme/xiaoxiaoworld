@@ -115,22 +115,11 @@
                         </a>
                         <dl class="layui-nav-child">
                             <dd data-name="header">
-                                <a lay-href="" id="book">图书</a>
-                                <script>
-                                    // var adminNo = getCookie("adminNo")
-                                    var adminNo = '${adminNo}';
-                                    var str = "${ctx}/tBookReader/bookInfoPage?adminNo="+adminNo;
-                                    document.getElementById("book").setAttribute("lay-href",str);
-                                </script>
+                                <a lay-href="${ctx}/tBookReader/bookInfoPage?adminNo=${adminNo}" id="book">图书</a>
                             </dd>
 
                             <dd data-name="content">
-                                <a lay-href="" id="returnOrRenew">消息中心</a>
-                                <script>
-                                    var adminNo1 = getCookie("adminNo")
-                                    var str1 = "${ctx}/tBookReader/borrowingInfo?adminNo="+adminNo1;
-                                    document.getElementById("returnOrRenew").setAttribute("lay-href",str1);
-                                </script>
+                                <a lay-href="${ctx}/tBookReader/borrowingInfo?adminNo=${adminNo}" id="returnOrRenew">消息中心</a>
                             </dd>
                             <dd data-name="workorder">
                                 <a lay-href="${ctx}/tBookReader/bookBorrowReturnInfo">工单系统</a>

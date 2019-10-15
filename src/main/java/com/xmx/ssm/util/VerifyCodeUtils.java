@@ -1,5 +1,7 @@
 package com.xmx.ssm.util;
 
+import sun.misc.BASE64Encoder;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -7,10 +9,9 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
+import java.io.*;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 import java.util.Random;
 
@@ -23,6 +24,20 @@ public class VerifyCodeUtils {
     public static final String VERIFY_CODES = "23456789ABCDEFGHJKLMNPQRSTUVWXYZ";
     private static Random random = new Random();
 
+    /**利用MD5进行加密
+     * @param str  待加密的字符串
+     * @return  加密后的字符串
+     * @throws NoSuchAlgorithmException  没有这种产生消息摘要的算法
+     * @throws UnsupportedEncodingException
+     */
+    public static String Md5(String str) throws NoSuchAlgorithmException, UnsupportedEncodingException {
+        //确定计算方法
+        MessageDigest md5=MessageDigest.getInstance("MD5");
+        BASE64Encoder base64en = new BASE64Encoder();
+        //加密后的字符串
+        String newstr=base64en.encode(md5.digest(str.getBytes("utf-8")));
+        return newstr;
+    }
 
     /**
      * 使用系统默认字符源生成验证码
