@@ -36,6 +36,7 @@ public interface TBookTypeMapper {
     @Select("select * from t_book_type  limit #{currIndex},#{pageSize}")
     List<Map<String, Object>> findBooksTypeLimit(@Param("currIndex") int currIndex, @Param("pageSize") int pageSize);
 
+
     @Update("update t_book_type set b_book_type=#{bBookType} where b_book_type_no=#{bBookTypeNo}")
     int updateBookType(TBookType tBookType);
 

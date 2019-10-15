@@ -6,13 +6,15 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>登入 - layuiAdmin</title>
+    <title>登陆 - 小小世界图书馆</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <link rel="stylesheet" href="https://www.layuicdn.com/layui-v2.5.5/css/layui.css" media="all">
-    <%--  <link rel="stylesheet" href="../../layuiadmin/style/admin.css" media="all">--%>
+    <link href="${ctx}/static/img/logo.png" rel="icon" type="image/x-ico">
+
+<%--  <link rel="stylesheet" href="../../layuiadmin/style/admin.css" media="all">--%>
     <link rel="stylesheet" href="${ctx}/static/layuiAdmin/style/admin.css" media="all">
     <%--  <link rel="stylesheet" href="../../layuiadmin/style/login.css" media="all">--%>
     <link rel="stylesheet" href="${ctx}/static/layuiAdmin/style/login.css" media="all">
@@ -24,8 +26,10 @@
 
     <div class="layadmin-user-login-main">
         <div class="layadmin-user-login-box layadmin-user-login-header">
+            <img  style="height: 5.3125rem; width: 5.9375rem;" src="${ctx}/static/img/logo.png">
             <h2 id="title">管理员登录</h2>
             <p>小小世界图书管理系统登陆</p>
+
         </div>
         <div class="layadmin-user-login-box layadmin-user-login-body layui-form">
             <div class="layui-form-item">
@@ -79,18 +83,7 @@
         <p>© 2019 <a href="#" target="_blank">小小世界图书馆</a></p>
     </div>
 
-    <!--<div class="ladmin-user-login-theme">
-      <script type="text/html" template>
-        <ul>
-          <li data-theme=""><img src="{{ layui.setter.base }}style/res/bg-none.jpg"></li>
-          <li data-theme="#03152A" style="background-color: #03152A;"></li>
-          <li data-theme="#2E241B" style="background-color: #2E241B;"></li>
-          <li data-theme="#50314F" style="background-color: #50314F;"></li>
-          <li data-theme="#344058" style="background-color: #344058;"></li>
-          <li data-theme="#20222A" style="background-color: #20222A;"></li>
-        </ul>
-      </script>
-    </div>-->
+
 
 </div>
 

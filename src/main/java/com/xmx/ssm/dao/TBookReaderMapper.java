@@ -29,7 +29,10 @@ public interface TBookReaderMapper {
             "\tt_book,\n" +
             "\tt_admin\n" +
             "WHERE\n" +
-            "t_reader.b_reader_name = #{name} limit #{currIndex},#{pageSize};")
+            "\tt_book_reader.b_book_no = t_book.b_book_no\n" +
+            "\tAND t_book_reader.b_user_no = t_admin.b_admin_no\n" +
+            "\tAND t_book_reader.b_reader_no = t_reader.b_reader_no\n" +
+            "\tAND t_reader.b_reader_name = #{name} limit #{currIndex},#{pageSize};")
     List<Map<String,Object>> findOneReaderByBook(@Param("name")String name,@Param("currIndex") int currIndex, @Param("pageSize") int pageSize);
 
 @Select("SELECT count(*)  from t_book_reader, t_reader where t_book_reader.b_reader_no=t_reader.b_reader_no and t_reader.b_reader_name=#{name}")

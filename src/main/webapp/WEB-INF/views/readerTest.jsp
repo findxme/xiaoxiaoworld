@@ -13,6 +13,7 @@
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link href="${ctx}/static/img/logo.png" rel="icon" type="image/x-ico">
     <link rel="stylesheet" href="${ctx}/static/layuiAdmin/layui/css/layui.css" media="all">
     <link rel="stylesheet" href="${ctx}/static/layuiAdmin/style/admin.css" media="all">
     <script type="text/javascript" src="${ctx}/static/js/cookieDao.js"></script>
@@ -97,7 +98,7 @@
         <div class="layui-side layui-side-menu">
             <div class="layui-side-scroll">
                 <div class="layui-logo" lay-href="index">
-                    <span>layuiAdmin</span>
+                    <span>小小世界图书馆</span>
                 </div>
 
                 <ul class="layui-nav layui-nav-tree" lay-shrink="all" id="LAY-system-side-menu" lay-filter="layadmin-system-side-menu">

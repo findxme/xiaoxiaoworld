@@ -7,11 +7,12 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>注册 - layuiAdmin</title>
+  <title>注册 - 小小世界图书馆</title>
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
   <link rel="stylesheet" href="https://www.layuicdn.com/layui-v2.5.5/css/layui.css" media="all">
+    <link href="${ctx}/static/img/logo.png" rel="icon" type="image/x-ico">
   <%--  <link rel="stylesheet" href="../../layuiadmin/style/admin.css" media="all">--%>
   <link rel="stylesheet" href="${ctx}/static/layuiAdmin/style/admin.css" media="all">
   <%--  <link rel="stylesheet" href="../../layuiadmin/style/login.css" media="all">--%>
@@ -24,6 +25,7 @@
   <div class="layadmin-user-login-main">
     <form id="register_form" action="" method="post">
     <div class="layadmin-user-login-box layadmin-user-login-header">
+      <img  style="height: 5.3125rem; width: 5.9375rem;" src="${ctx}/static/img/logo.png">
       <h2>小小世界</h2>
       <p>小小世界图书管理系统</p>
     </div>
@@ -90,7 +92,7 @@
 
 </div>
 
-<%--  <script src="https://www.layuicdn.com/layui-v2.5.5/layui.js"></script>--%>
+
   <script src="${ctx}/static/layuiAdmin/layui/layui.js"></script>
   <script>
     layui.config({
