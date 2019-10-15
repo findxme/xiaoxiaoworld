@@ -22,8 +22,8 @@ public interface TReaderMapper {
     @Select("select * from t_reader limit #{currIndex},#{pageSize}")
     List<Map<String ,Object>> findReaderLimit(@Param("currIndex") int currIndex, @Param("pageSize") int pageSize);
 
-    @Select("select * from t_reader where b_reader_name=#{name}")
-    List<Map<String ,Object>> findReaderOne(String name);
+    @Select("select * from t_reader where b_reader_no=#{no}")
+    List<Map<String ,Object>> findReaderOne(String no);
 
     @Select("select * from t_reader where b_reader_name=#{name}")
     List<Map<String ,Object>> findReaderNameOne(String name);
@@ -53,5 +53,6 @@ public interface TReaderMapper {
     int updateByPrimaryKeySelective(TReader record);
 
     int updateByNo(TReader record);
+
     int updateByName(TReader record);
 }

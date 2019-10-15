@@ -29,8 +29,8 @@ public class TReadersServiceImpl implements TReadersService {
     }
 
     @Override
-    public List<Map<String ,Object>> findReaderOne(String no) {
-        return tReaderMapper.findReaderOne(no);
+    public List<Map<String ,Object>> findReaderOne(String name) {
+        return tReaderMapper.findReaderOne(name);
     }
 
     @Override
