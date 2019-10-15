@@ -24,14 +24,14 @@
             <label class="layui-form-label">读者编号</label>
             <div class="layui-input-inline">
                 <input type="text" name="no" lay-verify="" min="0" placeholder="请输入可借阅数量" autocomplete="off"
-                       class="layui-input" value="${reader.b_reader_no}">
+                       class="layui-input" readonly value="${reader.b_reader_no}">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">邮箱</label>
             <div class="layui-input-inline">
                 <input type="text" name="email" lay-verify="required|email" placeholder="请输入邮箱" autocomplete="off"
-                       class="layui-input no" readonly value="${reader.b_reader_email}">
+                       class="layui-input" value="${reader.b_reader_email}">
             </div>
         </div>
         <div class="layui-form-item">

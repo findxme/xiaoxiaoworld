@@ -51,13 +51,13 @@ public class TReaderController {
     /* 根据no字段更新数据ok*/
     @ResponseBody
     @RequestMapping("/updateByExample")
-    public void updateByExample(String no, String name, String email, String phone, @RequestParam(value = "remark", defaultValue = "") String remark,String password,int number) {
+    public void updateByExample(String no, String name, String email, String mobile, @RequestParam(value = "remark", defaultValue = "") String remark,String password,int number) {
         TReader tReader = new TReader();
 
         tReader.setbReaderNo(no);
         tReader.setbReaderName(name);
         tReader.setbReaderEmail(email);
-        tReader.setbReaderMobile(phone);
+        tReader.setbReaderMobile(mobile);
         tReader.setbReaderRemarks(remark);
         tReader.setbReaderPassword(password);
 //                    tReader.setbReaderBorrowTime();
