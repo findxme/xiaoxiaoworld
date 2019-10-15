@@ -160,7 +160,7 @@
                             </dd>
 
                             <dd data-name="content">
-                                <a lay-href="" id="returnOrRenew">消息中心（在一周内如果要归还在这里）</a>
+                                <a lay-href="" id="returnOrRenew">消息中心</a>
                                 <script>
                                     var adminNo1 = getCookie("adminNo")
                                     var str1 = "${ctx}/tBookReader/borrowingInfo?adminNo="+adminNo1;

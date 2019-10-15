@@ -1,12 +1,8 @@
 package com.xmx.ssm.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.sun.deploy.net.HttpResponse;
 import com.xmx.ssm.entity.TAdmin;
-import com.xmx.ssm.entity.TBook;
-import com.xmx.ssm.entity.TBookReader;
 import com.xmx.ssm.entity.TReader;
-import com.xmx.ssm.entity.messageInfo.StatusInfo;
 import com.xmx.ssm.service.TAdminService;
 import com.xmx.ssm.service.TBookReaderService;
 import com.xmx.ssm.service.TBooksService;
@@ -22,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.naming.Name;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -149,7 +144,7 @@ public class LoginController {
                     json = PageLimit.layuiJson(0, "用户密码错误", -1, objects);
                 } else {
 
-
+                    session.setAttribute("userName", userName);
                     json = PageLimit.layuiJson(0, tReader.getbReaderNo(), 1, objects);
                 }
             }
@@ -161,6 +156,7 @@ public class LoginController {
             } else {
                 if (tAdmin.getbAdminPassword().equals(password)) {
                     session.setAttribute("adminNo",tAdmin.getbAdminNo());
+                    session.setAttribute("userName", userName);
                     json = PageLimit.layuiJson(0, tAdmin.getbAdminNo(), 0, objects);
 
                 } else {
@@ -169,7 +165,7 @@ public class LoginController {
                 }
             }
         }
-        session.setAttribute("userName", userName);
+
         return json;
     }
 

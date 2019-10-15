@@ -76,7 +76,6 @@
     </div>
 
     <div class="layui-trans layadmin-user-login-footer">
-
         <p>© 2019 <a href="#" target="_blank">小小世界图书馆</a></p>
     </div>
 

@@ -10,83 +10,29 @@ import javax.xml.registry.infomodel.User;
 
 public class LoginInterceptor implements HandlerInterceptor {
 
-    @Override
-    public void afterCompletion(HttpServletRequest arg0, HttpServletResponse arg1, Object arg2, Exception arg3)
-            throws Exception {
-        // 执行完毕，返回前拦截
-    }
 
     @Override
-    public void postHandle(HttpServletRequest arg0, HttpServletResponse arg1, Object arg2, ModelAndView arg3)
-            throws Exception {
-        // 在处理过程中，执行拦截
-    }
+    public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
+        httpServletRequest.setAttribute("ctx", httpServletRequest.getContextPath());
+        /**
+         * Session 存在放行，不存在 转发或重定向到 login
+         */
+        if (httpServletRequest.getSession().getAttribute("userName") == null) {
 
-  /*  @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object arg2) throws Exception {
-        // 在拦截点执行前拦截，如果返回true则不执行拦截点后的操作（拦截成功）
-        // 返回false则不执行拦截
-        HttpSession session = request.getSession();
-        //String uri = request.getRequestURI(); // 获取登录的uri，这个是不进行拦截的
-        //if(session.getAttribute("LOGIN_USER")!=null || uri.indexOf("system/login")!=-1) {// 说明登录成功 或者 执行登录功能
-        if(session.getAttribute("userName")!=null||session.getAttribute("adminNo")!=null) {
-            // 登录成功不拦截
-            return true;
-        }else {
-            // 拦截后进入登录页面
-            response.sendRedirect(request.getContextPath()+"/index");
+            httpServletRequest.getRequestDispatcher("toLogin").forward(httpServletRequest, httpServletResponse);
+//            httpServletResponse.sendRedirect("${ctx}/user/toLogin");
             return false;
         }
-    }*/
-  @Override
-  public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object obj) throws Exception {
-//
- /*     String url=request.getRequestURI();
-      if(url.indexOf("/user/toLogin")>=0) {
-          return true;
-      }
-      *//*
-       * if(url.indexOf("/regist.jsp")>=0) { return true; }
-       *//*
-      if(url.indexOf("user/toRegister")>=0) {
-          return true;
-      }
-      if(url.indexOf(request.getContextPath()+"/static/layuiAdmin/")>=0) {
-          return true;
-      }
-      if(url.indexOf(request.getContextPath()+"/user/isVerifyCode")>=0) {
-          return true;
-      }
-      if(url.indexOf("user/isVerifyCode")>=0) {
-          return true;
-      }
-      if(url.indexOf("user/registerGetAuthCode")>=0) {
-          return true;
-      }
-//      if(url.indexOf("user/verifyCode")>=0) {
-////          return true;
-////      }
-      if(url.indexOf("user/")>=0) {
-          return true;
-      }
-      HttpSession session=request.getSession();
-      User user=(User) session.getAttribute("userName");
-//      User user2=(User) session.getAttribute("userName");
+        return true;
+    }
 
-      if(user!=null) {
-          return true;
-      }
+    @Override
+    public void postHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, ModelAndView modelAndView) throws Exception {
 
-//      if(url.indexOf("/tologin.action")>=0) {
-//          request.getRequestDispatcher("/index").forward(request, response);
-//          return false;
-//      }
+    }
 
+    @Override
+    public void afterCompletion(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, Exception e) throws Exception {
 
-      //request.setAttribute("msg", "你还没有登录，请先登录");
-     // request.getRequestDispatcher("/index.jsp").forward(request, response);*/
-
-
-      return true;
-  }
+    }
 }

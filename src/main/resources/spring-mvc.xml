@@ -17,7 +17,6 @@
     <!--开启注解模式-->
 
 
-
     <!--使用mvc:annotation-driven 代替注解映射器和注解适配器配置 -->
     <mvc:annotation-driven/>
 
@@ -37,10 +36,60 @@
 
     <!-- 拦截器 -->
     <mvc:interceptors>
+        <!--        登录拦截-->
         <mvc:interceptor>
-            <mvc:mapping path="/**" />
-            <bean class="com.xmx.ssm.interceptor.LoginInterceptor">
-            </bean>
+            <mvc:mapping path="/**"/>
+            <!--            URL-->
+            <mvc:exclude-mapping path="/user/toLogin"/>
+            <mvc:exclude-mapping path="/user/verifyCode"/>
+            <mvc:exclude-mapping path="/user/isExistUser"/>
+            <mvc:exclude-mapping path="/user/isExistPhone"/>
+            <mvc:exclude-mapping path="/user/login"/>
+            <mvc:exclude-mapping path="/user/toRegister"/>
+            <mvc:exclude-mapping path="/user/registerUser"/>
+            <mvc:exclude-mapping path="/user/registerGetAuthCode"/>
+
+            <!--            resources-->
+            <mvc:exclude-mapping path="/static/**"/>
+            <mvc:exclude-mapping path="/css/**"/>
+            <mvc:exclude-mapping path="/js/**"/>
+            <mvc:exclude-mapping path="/img/**"/>
+            <mvc:exclude-mapping path="/layer/**"/>
+            <bean class="com.xmx.ssm.interceptor.LoginInterceptor"></bean>
+        </mvc:interceptor>
+
+        <!--        角色拦截-->
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <!--            URL-->
+            <mvc:exclude-mapping path="/user/toLogin"/>
+            <mvc:exclude-mapping path="/user/verifyCode"/>
+            <mvc:exclude-mapping path="/user/isExistUser"/>
+            <mvc:exclude-mapping path="/user/isExistPhone"/>
+            <mvc:exclude-mapping path="/user/login"/>
+            <mvc:exclude-mapping path="/user/toRegister"/>
+            <mvc:exclude-mapping path="/user/registerUser"/>
+            <mvc:exclude-mapping path="/user/registerGetAuthCode"/>
+
+            <!--            readerURL-->
+            <mvc:exclude-mapping path="/user/toReaderHome"/>
+            <mvc:exclude-mapping path="//readerView/readerInfo"/>
+            <mvc:exclude-mapping path="/readerView/goReaderPassword"/>
+            <mvc:exclude-mapping path="/user/exit"/>
+            <mvc:exclude-mapping path="/readerView/dataStatistics"/>
+            <mvc:exclude-mapping path="/readerView/list"/>
+            <mvc:exclude-mapping path="/readerView/goodslist"/>
+            <mvc:exclude-mapping path="/tBookReader/dropBox"/>
+            <mvc:exclude-mapping path="/tBooks/findBooksOne"/>
+            <mvc:exclude-mapping path="/readerView/findOneReaderByBook"/>
+
+            <!--            resources-->
+            <mvc:exclude-mapping path="/static/**"/>
+            <mvc:exclude-mapping path="/css/**"/>
+            <mvc:exclude-mapping path="/js/**"/>
+            <mvc:exclude-mapping path="/img/**"/>
+            <mvc:exclude-mapping path="/layer/**"/>
+            <bean class="com.xmx.ssm.interceptor.readerInterceptor"></bean>
         </mvc:interceptor>
     </mvc:interceptors>
 </beans>
