@@ -29,9 +29,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static com.xmx.ssm.util.AES.aesDecrypt;
+
 @Controller
 @RequestMapping("/user")
 public class LoginController {
+
+    private static final String KEY = "qwertyuiqwertyui";
 
     @Autowired
     private TAdminService tAdminService;
@@ -200,6 +204,20 @@ public class LoginController {
 
     @RequestMapping("/toReaderHome")
     public ModelAndView toReaderHome(ModelAndView modelAndView, HttpSession session) {
+
+        Map<String, Object> smtp = tSmtpService.selectSmtp();
+
+        Email.setiEmail(smtp.get("email").toString());
+        Email.setHostName(smtp.get("smtp").toString());
+        Email.setName(smtp.get("name").toString());
+        Email.setUserName(smtp.get("email").toString());
+        try {
+            Email.setPassword(aesDecrypt(smtp.get("password").toString(), KEY));
+            System.err.println(Email.getPassword());
+        } catch (Exception e) {
+        }
+        Email.setPort(Integer.parseInt(smtp.get("prot").toString()));
+
         modelAndView.addObject("userNmae", session.getAttribute("userName"));
         modelAndView.setViewName("readerTest");
         return modelAndView;
@@ -216,7 +234,11 @@ public class LoginController {
         Email.setHostName(smtp.get("smtp").toString());
         Email.setName(smtp.get("name").toString());
         Email.setUserName(smtp.get("email").toString());
-        Email.setPassword(smtp.get("password").toString());
+        try {
+            Email.setPassword(aesDecrypt(smtp.get("password").toString(), KEY));
+            System.err.println(Email.getPassword());
+        } catch (Exception e) {
+        }
         Email.setPort(Integer.parseInt(smtp.get("prot").toString()));
 
         modelAndView.addObject("userNmae", session.getAttribute("userName"));

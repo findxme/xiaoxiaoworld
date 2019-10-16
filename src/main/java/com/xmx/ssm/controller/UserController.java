@@ -87,7 +87,7 @@ public class UserController {
                 Email.setHostName(smtp);
                 Email.setName(name);
                 Email.setUserName(email);
-                Email.setPassword(aesEncrypt(password, KEY));
+                Email.setPassword(password);
                 Email.setPort(prot);
                 return 0;
             }
@@ -188,6 +188,7 @@ public class UserController {
             }
         }
         session.setAttribute("authCode", null);
+        System.err.println(Email.getPassword());
         Email.sendEmail(tAdminService.findAdminOne(String.valueOf(session.getAttribute("userName"))).get(0).get("b_admin_email").toString(), "提示", Email.hint("密码修改成功"));
         return 0;//修改成功
     }

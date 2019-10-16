@@ -1,7 +1,6 @@
 package com.xmx.ssm.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.xmx.ssm.entity.TAdmin;
 import com.xmx.ssm.entity.TReader;
 import com.xmx.ssm.service.TAdminService;
 import com.xmx.ssm.service.TBookReaderService;
@@ -13,14 +12,12 @@ import com.xmx.ssm.util.PageLimit;
 import com.xmx.ssm.util.RandomUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -113,12 +110,7 @@ public ModelAndView goReaderPassword(ModelAndView modelAndView) {
     public int setUser(HttpSession session, @RequestParam(value = "email", defaultValue = "") String email, @RequestParam(value = "remarks", defaultValue = "") String remarks) {
         Map<String, Object> smtp = tSmtpService.selectSmtp();
 
-        Email.setiEmail(smtp.get("email").toString());
-        Email.setHostName(smtp.get("smtp").toString());
-        Email.setName(smtp.get("name").toString());
-        Email.setUserName(smtp.get("email").toString());
-        Email.setPassword(smtp.get("password").toString());
-        Email.setPort(Integer.parseInt(smtp.get("prot").toString()));
+
         if (!"".equals(email) || !"".equals(remarks)) {
 
             TReader tReader = new TReader();
@@ -162,12 +154,7 @@ public ModelAndView goReaderPassword(ModelAndView modelAndView) {
     public void getAuthCode(HttpSession session) {
         Map<String, Object> smtp = tSmtpService.selectSmtp();
 
-        Email.setiEmail(smtp.get("email").toString());
-        Email.setHostName(smtp.get("smtp").toString());
-        Email.setName(smtp.get("name").toString());
-        Email.setUserName(smtp.get("email").toString());
-        Email.setPassword(smtp.get("password").toString());
-        Email.setPort(Integer.parseInt(smtp.get("prot").toString()));
+
         String authCode = RandomUtil.generateString(5) + String.valueOf(System.currentTimeMillis()).substring(8);
         System.out.println("readerd修改密码的验证码"+authCode);
         String readerGetAuthCode =tReadersService.findReaderOne(String.valueOf(session.getAttribute("userName"))).get(0).get("b_reader_email").toString();
