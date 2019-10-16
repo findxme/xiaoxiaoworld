@@ -53,6 +53,12 @@ public class UserController {
         return modelAndView;
     }
 
+    @RequestMapping("/file")
+    public ModelAndView file(ModelAndView modelAndView) {
+        modelAndView.setViewName("admin/file");
+        return modelAndView;
+    }
+
     @ResponseBody
     @RequestMapping("/setEmail")
     public int setEmail(String email, String name, String password, String smtp, int prot) {

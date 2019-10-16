@@ -18,6 +18,7 @@
 
 
     <!--使用mvc:annotation-driven 代替注解映射器和注解适配器配置 -->
+
     <mvc:annotation-driven/>
 
     <!--静态资源默认servlet配置 将静态资源交还给WEB服务器处理-->
@@ -32,6 +33,12 @@
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/views/"/>
         <property name="suffix" value=".jsp"/>
+    </bean>
+
+    <!--文件服务-->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="DefaultEncoding" value="UTF-8"/>
+        <property name="MaxInMemorySize" value="-1"/>
     </bean>
 
     <!-- 拦截器 -->

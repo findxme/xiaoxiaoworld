@@ -139,6 +139,7 @@
                                 <a href="javascript:;">系统设置</a>
                                 <dl class="layui-nav-child">
                                     <dd><a lay-href="${ctx}/user/email">邮件服务</a></dd>
+                                    <dd><a lay-href="${ctx}/user/file">文件服务</a></dd>
                                 </dl>
                             </dd>
                             <dd class="layui-nav-itemed">
