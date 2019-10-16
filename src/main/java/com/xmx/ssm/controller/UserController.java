@@ -8,7 +8,6 @@ import com.xmx.ssm.util.Email;
 import com.xmx.ssm.util.RandomUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -16,12 +15,15 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.xml.registry.infomodel.User;
 import java.util.Map;
+
+import static com.xmx.ssm.util.AES.aesDecrypt;
+import static com.xmx.ssm.util.AES.aesEncrypt;
 
 @Controller
 @RequestMapping("/user")
 public class UserController {
+    private static final String KEY = "qwertyuiqwertyui";
 
     @Autowired
     private TAdminServiceImpl tAdminService;
@@ -46,7 +48,11 @@ public class UserController {
         Map<String, Object> smtp = tSmtpService.selectSmtp();
         modelAndView.addObject("email", smtp.get("email"));
         modelAndView.addObject("name", smtp.get("name"));
-        modelAndView.addObject("password", smtp.get("password"));
+        try {
+            System.err.println(aesDecrypt(smtp.get("password").toString()));
+            modelAndView.addObject("password", aesDecrypt(smtp.get("password").toString()));
+        }catch (Exception e){
+        }
         modelAndView.addObject("smtp", smtp.get("smtp"));
         modelAndView.addObject("prot", smtp.get("prot"));
         modelAndView.setViewName("admin/email");
@@ -67,14 +73,21 @@ public class UserController {
         tSmtp.setName(name);
         tSmtp.setProt(prot);
         tSmtp.setSmtp(smtp);
-        tSmtp.setPassword(password);
+
+        try {
+            tSmtp.setPassword(aesEncrypt(password, KEY));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+//
+
         try {
             if (tSmtpService.updateSmtp(tSmtp) > 0) {
                 Email.setiEmail(email);
                 Email.setHostName(smtp);
                 Email.setName(name);
                 Email.setUserName(email);
-                Email.setPassword(password);
+                Email.setPassword(aesEncrypt(password, KEY));
                 Email.setPort(prot);
                 return 0;
             }
@@ -122,9 +135,9 @@ public class UserController {
 
     @ResponseBody
     @RequestMapping("/registerGetAuthCode")
-    public void registerGetAuthCode(HttpServletRequest request,HttpSession session) {
-       String email= request.getParameter("email");
-        System.out.println("1+++++++++++++++"+email);
+    public void registerGetAuthCode(HttpServletRequest request, HttpSession session) {
+        String email = request.getParameter("email");
+        System.out.println("1+++++++++++++++" + email);
 
         Map<String, Object> smtp = tSmtpService.selectSmtp();
 //
@@ -136,7 +149,7 @@ public class UserController {
         Email.setPort(Integer.parseInt(smtp.get("prot").toString()));
 //
         String registerAuthCode = RandomUtil.generateString(5) + String.valueOf(System.currentTimeMillis()).substring(8);
-        System.out.println("123+++++++++"+registerAuthCode);
+        System.out.println("123+++++++++" + registerAuthCode);
         if (Email.sendEmail(email, "验证码", Email.text("注册帐户", registerAuthCode))) {
             session.setAttribute("registerAuthCode", registerAuthCode);
             System.err.println(session.getAttribute("registerAuthCode"));
