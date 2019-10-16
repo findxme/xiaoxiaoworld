@@ -8,6 +8,7 @@ import com.xmx.ssm.service.TAdminService;
 import com.xmx.ssm.service.TBookReaderService;
 import com.xmx.ssm.service.TBooksService;
 import com.xmx.ssm.service.TReadersService;
+import com.xmx.ssm.util.AES;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mybatis.generator.api.MyBatisGenerator;
@@ -41,6 +42,11 @@ public class MyTest {
     @Resource
     private TReadersService tReadersService;
 
+    @Resource
+    private AES aes;
+
+
+
     @Test
     public void test(){
 
@@ -59,13 +65,18 @@ public class MyTest {
 
     @Test
     public void test4(){
-        String a = "abc";
+ /*       String a = "abc";
         String b = new String("abc");
         String c = "a"+"b"+"c";
         System.out.println(a==b);//false
         System.out.println(a==c);//true
         System.out.println(a.equals(b));//true
         System.out.println(a.equals(c));//true
-        System.out.println(a.intern()==b.intern());//true
+        System.out.println(a.intern()==b.intern());//true*/
+//        AES aes= new AES();
+         String a=aes.aesEncrypt("pjhbkznjxidweaia");
+        String decrypt =aes.aesDecrypt(a);
+        System.out.println("解密后：" + decrypt);
+        System.err.println(a);
     }
 }

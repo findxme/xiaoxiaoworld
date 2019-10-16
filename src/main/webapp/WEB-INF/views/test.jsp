@@ -139,7 +139,7 @@
                                 <a href="javascript:;">系统设置</a>
                                 <dl class="layui-nav-child">
                                     <dd><a lay-href="${ctx}/user/email">邮件服务</a></dd>
-                                    <dd><a lay-href="${ctx}/user/file">文件服务</a></dd>
+
                                 </dl>
                             </dd>
                             <dd class="layui-nav-itemed">
@@ -149,6 +149,18 @@
                                     <dd><a lay-href="${ctx}/user/password">修改密码</a></dd>
                                 </dl>
                             </dd>
+                        </dl>
+                    </li>
+
+                    <li data-name="app" class="layui-nav-item">
+                        <a href="javascript:;" lay-tips="应用" lay-direction="2">
+                            <i class="layui-icon layui-icon-util"></i>
+                            <cite>扩展演示</cite>
+                        </a>
+                        <dl class="layui-nav-child">
+                            <dd><a lay-href="${ctx}/user/file">文件服务</a></dd>
+                            <dd><a lay-href="${ctx}/user/pswDemo">加密演示</a></dd>
+
                         </dl>
                     </li>
                 </ul>

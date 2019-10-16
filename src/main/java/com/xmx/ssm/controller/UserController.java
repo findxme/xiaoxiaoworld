@@ -1,9 +1,11 @@
 package com.xmx.ssm.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.xmx.ssm.entity.TAdmin;
 import com.xmx.ssm.entity.TSmtp;
 import com.xmx.ssm.service.impl.TAdminServiceImpl;
 import com.xmx.ssm.service.impl.TSmtpServiceImpl;
+import com.xmx.ssm.util.AES;
 import com.xmx.ssm.util.Email;
 import com.xmx.ssm.util.RandomUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -191,5 +193,35 @@ public class UserController {
         System.err.println(Email.getPassword());
         Email.sendEmail(tAdminService.findAdminOne(String.valueOf(session.getAttribute("userName"))).get(0).get("b_admin_email").toString(), "提示", Email.hint("密码修改成功"));
         return 0;//修改成功
+    }
+
+    @RequestMapping("/pswDemo")
+    public String pswDemo(){
+        return "admin/encryption";
+    }
+@RequestMapping("encryption")
+@ResponseBody
+    public String   encryption(String text1){
+    AES aes = new AES();
+    String encryptionText1= aes.aesEncrypt(text1);
+    System.out.println("加密的数据："+encryptionText1);
+  /*  System.out.println("加密的数据："+encryptionText1);
+    ModelAndView modelAndView =new ModelAndView();
+    modelAndView.addObject(encryptionText1);
+    modelAndView.setViewName("admin/encryption");*/
+    return  encryptionText1;
+}
+
+    @RequestMapping("decrypt")
+    @ResponseBody
+    public String  decrypt(String text2){
+        AES aes = new AES();
+        String decryptText2= aes.aesDecrypt(text2);
+        System.out.println("解密的数据："+decryptText2);
+    /*ModelAndView modelAndView =new ModelAndView();
+    modelAndView.addObject(encryptionText1);
+    modelAndView.setViewName("admin/encryption");*/
+        return  decryptText2;
+
     }
 }

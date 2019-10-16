@@ -133,6 +133,7 @@
             url: "${ctx}/user/isExistPhone",
             data: {phone: value},
             success: function (msg) {
+
               data=msg;
             }
           });

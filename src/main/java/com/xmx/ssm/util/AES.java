@@ -2,8 +2,11 @@ package com.xmx.ssm.util;
 
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
 import sun.misc.BASE64Decoder;
 
+import javax.annotation.Resource;
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 import javax.crypto.spec.SecretKeySpec;
@@ -14,6 +17,7 @@ import java.math.BigInteger;
  *
  * @author libo
  */
+
 public class AES {
     //密钥 (需要前端和后端保持一致)
     private static final String KEY = "qwertyuiqwertyui";
