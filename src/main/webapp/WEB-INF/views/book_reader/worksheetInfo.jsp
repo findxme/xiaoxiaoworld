@@ -55,7 +55,7 @@
 
 <script type="text/html" id="barDemo">
     <button class="layui-btn layui-btn-xs"  lay-event="borrowAndReturn" id="returnOrRenew">借还信息</button>
-    <button class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</button>
+<%--    <button class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</button>--%>
 </script>
 
 
@@ -75,13 +75,13 @@
             , url: '${ctx}/tBookReader/books' //数据接口
             , title: '图书预览'
             , page: true //开启分页
-            , toolbar: 'default' //开启工具栏，此处显示默认图标，可以自定义模板，详见文档
-            , totalRow: true //开启合计行
-            , limit: 8
-            , limits: [8, 16, 32, 48, 64]
+            , toolbar: '#toolbarDemo' //开启工具栏，此处显示默认图标，可以自定义模板，详见文档
+            // , totalRow: true //开启合计行
+            // , limit: 8
+            // , limits: [8, 16, 32, 48, 64]
             , cols: [[ //标题栏
-                {type: 'checkbox'}
-                , {field: 'b_book_reader_id', title: '工单编号', sort: true, align: 'center'}
+                // {type: 'checkbox'},
+                {field: 'b_book_reader_id', title: '工单编号', sort: true, align: 'center'}
                 , {field: 'b_book_name', title: '书名', sort: true, align: 'center'}
                 , {field: 'b_reader_name', title: '读者', sort: true, align: 'center'}
                 , {field: 'b_admin_name', title: '管理员', sort: true, align: 'center'}
@@ -103,7 +103,7 @@
                 , field = obj.field;
             if (layEvent === 'del') {
                 layer.confirm('真的删除行么', function (index) {
-                    layer.msg(data.id);
+                    layer.msg(data.b_book_reader_id);
                     obj.del(); //删除对应行（tr）的DOM结构
                     layer.close(index);
                     //向服务端发送删除指令

@@ -76,7 +76,7 @@
             ,url: '${ctx}/tBookReader/notReturnBook' //数据接口
             ,title: '图书预览'
             ,page: true //开启分页
-            ,toolbar: 'default' //开启工具栏，此处显示默认图标，可以自定义模板，详见文档
+            ,toolbar: '#toolbarDemo' //开启工具栏，此处显示默认图标，可以自定义模板，详见文档
             ,limit:10
             ,cols: [[ //标题栏
                 {field: 'b_book_name', title: '书名',sort: true}

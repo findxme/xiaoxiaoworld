@@ -98,13 +98,12 @@
             , url: '${ctx}/tBooks/findBooksAll' //数据接口
             , title: '图书预览'
             , page: true //开启分页
-            , toolbar: 'default' //开启工具栏，此处显示默认图标，可以自定义模板，详见文档
-            , limit: 8
-            , limits: [8, 16, 24, 32, 40]
-            , totalRow: true //开启合计行
+            , toolbar: '#toolbarDemo' //开启工具栏，此处显示默认图标，可以自定义模板，详见文档
+            // , limit: 8
+            // , limits: [8, 16, 24, 32, 40]
+            // , totalRow: true //开启合计行
             , cols: [[ //标题栏
-                {type: 'checkbox'}
-                , {field: 'b_book_no', title: '图书编号', sort: true}
+                {field: 'b_book_no', title: '图书编号', sort: true}
                 , {field: 'b_book_name', title: '书名'}
                 , {field: 'b_book_author', title: '作者'}
                 , {field: 'b_book_number', title: '数量', sort: true}
@@ -117,12 +116,12 @@
 
         //监听头工具栏事件
 
-        table.on('toolbar(test)', function (obj) {
-            if (obj.event === 'add') {
-                console.log("zengs")
-                layer.msg("增加")
-            }
-        });
+        // table.on('toolbar(test)', function (obj) {
+        //     if (obj.event === 'add') {
+        //         console.log("zengs")
+        //         layer.msg("增加")
+        //     }
+        // });
 
 
         //监听行工具事件
