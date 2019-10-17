@@ -15,13 +15,13 @@ import java.util.Map;
 
 public class FtpUtils {
     //ftp服务器地址
-    public String hostname = "47.96.234.198";
+    public String hostname = "127.0.0.1";
     //ftp服务器端口号默认为21
     public Integer port = 21;
     //ftp登录账号
-    public String username = "findme";
+    public String username = "";
     //ftp登录密码
-    public String password = "123456";
+    public String password = "";
 
     private static FTPClient ftpClient = null;
 
