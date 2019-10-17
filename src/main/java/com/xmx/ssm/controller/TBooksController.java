@@ -42,32 +42,49 @@ public class TBooksController {
      * */
     @ResponseBody
     @RequestMapping("/findBooksAll")
-    public JSONObject findBooksAll(@Param("keyWord")String keyWord,@Param("bookType")String bookType, Integer page, Integer limit) {
-        if("".equals(bookType)){bookType=null;}
+    public JSONObject findBooksAll(@Param("keyWord") String keyWord, @Param("bookType") String bookType, Integer page, Integer limit) {
+        if ("".equals(bookType)) {
+            bookType = null;
+        }
         int currIndex = (page - 1) * limit;
-        List<Map<String, Object>> books = tBooksService.findBooksLimit(keyWord,bookType,currIndex, limit);
-        System.out.println("bookSize:"+books.size());
+        List<Map<String, Object>> books = tBooksService.findBooksLimit(keyWord, bookType, currIndex, limit);
+        System.out.println("bookSize:" + books.size());
         JSONObject json = PageLimit.layuiJson(0, "", tBooksService.countByExample(), books);
         return json;
     }
 
     @RequestMapping("/goodslist")
-    public String goodslist(){
+    public String goodslist() {
         return "template/goodslist";
     }
+
+
+    @ResponseBody
+    @RequestMapping("/findBooksNo")
+    public int findBooksNo(String no) {
+        TBook tBook = new TBook();
+        tBook.setbBookNo(no);
+        if (tBooksService.findBooksOne(tBook).size() > 0) {
+            return 1;
+        }
+        return 0;
+    }
+
     /*条件查询*/
     /*动态sql*/
     @ResponseBody
     @RequestMapping("/findBooksOne")
-    public JSONObject findBooksOne(@Param("bookNo")String bookNo,
-                            @Param("bookName")String bookName,
-                            @Param("bookAuthor")String bookAuthor,
-                            @Param("bookType")String bookType,
-                            Integer page,
-                            Integer limit) {
-        if("".equals(bookType)){bookType=null;}
+    public JSONObject findBooksOne(@Param("bookNo") String bookNo,
+                                   @Param("bookName") String bookName,
+                                   @Param("bookAuthor") String bookAuthor,
+                                   @Param("bookType") String bookType,
+                                   Integer page,
+                                   Integer limit) {
+        if ("".equals(bookType)) {
+            bookType = null;
+        }
         int currIndex = (page - 1) * limit;
-        List<Map<String, Object>> booksOne = tBooksService.findBooksAll(bookNo,bookName,bookAuthor,bookType,currIndex,limit);
+        List<Map<String, Object>> booksOne = tBooksService.findBooksAll(bookNo, bookName, bookAuthor, bookType, currIndex, limit);
 
         return PageLimit.layuiJson(0, "", tBooksService.countByExample(), booksOne);
     }
@@ -91,7 +108,7 @@ public class TBooksController {
     /* 根据no字段更新数据ok*/
     @ResponseBody
     @RequestMapping("/updateByExample")
-    public void updateByExample(String no,String name, String author, int number, String type) {
+    public void updateByExample(String no, String name, String author, int number, String type) {
         TBook tBook = new TBook();
         tBook.setbBookNo(no);
         tBook.setbBookName(name);

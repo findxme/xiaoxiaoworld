@@ -82,7 +82,7 @@
                 $.ajax({
                     async: false,
                     type: 'POST',
-                    url: "${ctx}/tBooks/findBooksOne",
+                    url: "${ctx}/tBooks/findBooksNo",
                     data: {no: value},
                     success: function (msg) {
                         data=msg;
