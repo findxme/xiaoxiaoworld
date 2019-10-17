@@ -1,17 +1,17 @@
-/*
+﻿/*
  Navicat Premium Data Transfer
 
- Source Server         : 39.106.200.227_3306_root
+ Source Server         : 
  Source Server Type    : MySQL
  Source Server Version : 80016
- Source Host           : 39.106.200.227:3306
+ Source Host           : 
  Source Schema         : db_library_project
 
  Target Server Type    : MySQL
  Target Server Version : 80016
  File Encoding         : 65001
 
- Date: 15/10/2019 10:20:27
+ Date: 17/10/2019 10:02:51
 */
 
 SET NAMES utf8mb4;
@@ -34,7 +34,7 @@ CREATE TABLE `t_admin`  (
   PRIMARY KEY (`b_admin_id`, `b_admin_name`, `b_admin_email`, `b_admin_no`) USING BTREE,
   UNIQUE INDEX `b_admin_name`(`b_admin_name`) USING BTREE,
   INDEX `b_user_no`(`b_admin_no`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 42 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 45 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for t_book
@@ -53,7 +53,7 @@ CREATE TABLE `t_book`  (
   INDEX `b_book_no`(`b_book_no`) USING BTREE,
   INDEX `b_book_type`(`b_book_type_no`) USING BTREE,
   CONSTRAINT `b_book_type_no` FOREIGN KEY (`b_book_type_no`) REFERENCES `t_book_type` (`b_book_type_no`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 37 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 44 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for t_book_reader
@@ -77,7 +77,7 @@ CREATE TABLE `t_book_reader`  (
   CONSTRAINT `b_book_no` FOREIGN KEY (`b_book_no`) REFERENCES `t_book` (`b_book_no`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `b_reader_no` FOREIGN KEY (`b_reader_no`) REFERENCES `t_reader` (`b_reader_no`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `b_user_no` FOREIGN KEY (`b_user_no`) REFERENCES `t_admin` (`b_admin_no`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB AUTO_INCREMENT = 161 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 170 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for t_book_type
@@ -90,7 +90,7 @@ CREATE TABLE `t_book_type`  (
   PRIMARY KEY (`b_book_type_id`, `b_book_type_no`) USING BTREE,
   INDEX `b_book_type`(`b_book_type`) USING BTREE,
   INDEX `b_book_type_no`(`b_book_type_no`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 69 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 71 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for t_reader
@@ -110,7 +110,7 @@ CREATE TABLE `t_reader`  (
   PRIMARY KEY (`b_reader_id`, `b_reader_no`, `b_reader_name`, `b_reader_email`) USING BTREE,
   UNIQUE INDEX `b_reader_name`(`b_reader_name`) USING BTREE,
   UNIQUE INDEX `b_reader_no`(`b_reader_no`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 26 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 51 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for t_smtp
@@ -120,7 +120,7 @@ CREATE TABLE `t_smtp`  (
   `email` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '系统邮箱SMTP账号',
   `smtp` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT 'SMTP服务器',
   `name` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '发件人昵称',
-  `password` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT 'SMTP授权码',
+  `password` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT 'SMTP授权码',
   `prot` int(4) NOT NULL COMMENT 'SMTP端口',
   PRIMARY KEY (`email`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
