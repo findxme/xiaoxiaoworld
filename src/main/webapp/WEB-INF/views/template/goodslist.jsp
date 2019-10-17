@@ -26,7 +26,7 @@
         <div class="cmdlist-container">
             <a href="javascript:;">
                 <img src="${ctx}/static/img/xiaokeai.png">
-                <img src="${ctx}/static/img/b4.jpg">
+                <img src="${ctx}/static/img/logo.png">
             </a>
             <a href="javascript:;">
               <div class="cmdlist-text">
@@ -58,12 +58,12 @@
   var laypage = layui.laypage
   ,layer = layui.layer;
   
-  //总页数低于页码总数
+/*  //总页数低于页码总数
   laypage.render({
     elem: 'demo0'
     ,count: ${booksByExample}
       ,limit: 3    //数据总数
-  });
+  });*/
 });
   </script>
 </body>
