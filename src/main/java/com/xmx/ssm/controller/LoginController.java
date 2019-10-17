@@ -212,11 +212,18 @@ public class LoginController {
         Email.setName(smtp.get("name").toString());
         Email.setUserName(smtp.get("email").toString());
         try {
+
             Email.setPassword(aesDecrypt(smtp.get("password").toString(), KEY));
             System.err.println(Email.getPassword());
         } catch (Exception e) {
         }
-        Email.setPort(Integer.parseInt(smtp.get("prot").toString()));
+
+        try {
+            Email.setPort(Integer.parseInt(smtp.get("prot").toString()));
+        } catch (NumberFormatException e) {
+            Email.setPort(Integer.parseInt("587"));
+            e.printStackTrace();
+        }
 
         modelAndView.addObject("userNmae", session.getAttribute("userName"));
         modelAndView.setViewName("readerTest");
@@ -238,8 +245,12 @@ public class LoginController {
             Email.setPassword(aesDecrypt(smtp.get("password").toString(), KEY));
             System.err.println(Email.getPassword());
         } catch (Exception e) {
+
+            Email.setPort(Integer.parseInt(smtp.get("prot").toString()));
+
+            Email.setPort(Integer.parseInt("587"));
+            e.printStackTrace();
         }
-        Email.setPort(Integer.parseInt(smtp.get("prot").toString()));
 
         modelAndView.addObject("userNmae", session.getAttribute("userName"));
         modelAndView.addObject("adminNo", session.getAttribute("adminNo"));
@@ -250,33 +261,41 @@ public class LoginController {
     @ResponseBody
     @RequestMapping("/dataStatistics")
     public ModelAndView DataStatistics(ModelAndView modelAndView) {
-        long readersQuantity = tReadersService.countByExample();
-        long booksQuantity = tBooksService.countByExample();
-        long adminQuantity = tAdminService.countByExample();
-        System.out.println(readersQuantity);
-        /*查询书籍总数*/
-        long tbookQuantity = tBooksService.countByBooksTotal();
-        /*查询多少书借出去了*/
-        long borrowingQuantity = tBookReaderService.findReadersBorrowingQuantity();
-        /*未借书籍*/
-        long notBorrowingBooks = tbookQuantity - borrowingQuantity;
+        System.out.println("运行到控制台");
+        System.err.println("运行到控制台");
 
-        JSONObject jsonBooks = new JSONObject();
+        try {
+            long readersQuantity = tReadersService.countByExample();
+            long booksQuantity = tBooksService.countByExample();
+            long adminQuantity = tAdminService.countByExample();
+            System.out.println(readersQuantity);
+            /*查询书籍总数*/
+            long tbookQuantity = tBooksService.countByBooksTotal();
+            /*查询多少书借出去了*/
+            long borrowingQuantity = tBookReaderService.findReadersBorrowingQuantity();
+            /*未借书籍*/
+            long notBorrowingBooks = tbookQuantity - borrowingQuantity;
+
+            JSONObject jsonBooks = new JSONObject();
 //        jsonBooks.put("notBorrowingBooks",notBorrowingBooks);
 //        jsonBooks.put("borrowingQuantity",borrowingQuantity);
-        System.out.println("借出书籍" + borrowingQuantity);
-        System.out.println("未借书籍" + notBorrowingBooks);
-        Map<String, Object> map = new HashMap<>();
-        map.put("adminQuantity", adminQuantity);
-        map.put("tbookQuantity", tbookQuantity);
-        map.put("readersQuantity", readersQuantity);
-        map.put("booksQuantity", booksQuantity);
-        map.put("notBorrowingBooks", notBorrowingBooks);
-        map.put("borrowingQuantity", borrowingQuantity);
-        modelAndView.addObject("map", map);
+            System.out.println("借出书籍" + borrowingQuantity);
+            System.out.println("未借书籍" + notBorrowingBooks);
+            Map<String, Object> map = new HashMap<>();
+            map.put("adminQuantity", adminQuantity);
+            map.put("tbookQuantity", tbookQuantity);
+            map.put("readersQuantity", readersQuantity);
+            map.put("booksQuantity", booksQuantity);
+            map.put("notBorrowingBooks", notBorrowingBooks);
+            map.put("borrowingQuantity", borrowingQuantity);
+            modelAndView.addObject("map", map);
 
 //        modelAndView.addObject("jsonBooks",jsonBooks);
-        modelAndView.setViewName("/home/console");
+            modelAndView.setViewName("/home/console");
+        } catch (Exception e) {
+            modelAndView.setViewName("/home/404");
+            e.printStackTrace();
+        }
         return modelAndView;
     }
 

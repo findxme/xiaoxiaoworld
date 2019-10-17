@@ -66,7 +66,7 @@
                 </div>
 
                 <ul class="layui-nav layui-nav-tree" lay-shrink="all" id="LAY-system-side-menu" lay-filter="layadmin-system-side-menu">
-                    <li data-name="home" class="layui-nav-item layui-nav-itemed">
+        <%--            <li data-name="home" class="layui-nav-item layui-nav-itemed">
                         <a href="javascript:;" lay-tips="主页" lay-direction="2">
                             <i class="layui-icon layui-icon-home"></i>
                             <cite>主页</cite>
@@ -74,12 +74,12 @@
                         <dl class="layui-nav-child">
                             <dd data-name="console" class="layui-this">
 
-                                <a lay-href="${ctx}/user/dataStatistics">控制台</a>
+                              &lt;%&ndash;  <a lay-href="${ctx}/user/dataStatistics">控制台</a>&ndash;%&gt;
                             </dd>
 
                         </dl>
                     </li>
-
+--%>
                     <li data-name="app" class="layui-nav-item">
                         <a href="javascript:;" lay-tips="应用" lay-direction="2">
                             <i class="layui-icon layui-icon-app"></i>
@@ -185,7 +185,7 @@
             </div>
             <div class="layui-tab" lay-unauto lay-allowClose="true" lay-filter="layadmin-layout-tabs">
                 <ul class="layui-tab-title" id="LAY_app_tabsheader">
-                    <li lay-id="${ctx}/user/dataStatistics" lay-attr="" class="layui-this"><i class="layui-icon layui-icon-home"></i></li>
+                    <li lay-id="${ctx}/tBooks/list" lay-attr="" class="layui-this"><i class="layui-icon layui-icon-home"></i></li>
                 </ul>
             </div>
         </div>
@@ -195,7 +195,7 @@
         <div class="layui-body" id="LAY_app_body">
             <div class="layadmin-tabsbody-item layui-show">
 
-                <iframe src="${ctx}/user/dataStatistics" frameborder="0" class="layadmin-iframe"></iframe>
+                <iframe src="${ctx}/tBooks/list" frameborder="0" class="layadmin-iframe"></iframe>
             </div>
         </div>
 
