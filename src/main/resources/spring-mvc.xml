@@ -82,15 +82,9 @@
 
             <!--            readerURL-->
             <mvc:exclude-mapping path="/user/toReaderHome"/>
-            <mvc:exclude-mapping path="/readerView/readerInfo"/>
-            <mvc:exclude-mapping path="/readerView/goReaderPassword"/>
             <mvc:exclude-mapping path="/user/exit"/>
-            <mvc:exclude-mapping path="/readerView/dataStatistics"/>
-            <mvc:exclude-mapping path="/readerView/list"/>
-            <mvc:exclude-mapping path="/readerView/goodslist"/>
             <mvc:exclude-mapping path="/tBookReader/dropBox"/>
             <mvc:exclude-mapping path="/tBooks/findBooksOne"/>
-            <mvc:exclude-mapping path="/readerView/findOneReaderByBook"/>
             <mvc:exclude-mapping path="/readerView/**"/>
 
             <!--            resources-->

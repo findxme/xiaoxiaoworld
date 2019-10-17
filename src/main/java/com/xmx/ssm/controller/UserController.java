@@ -147,7 +147,7 @@ public class UserController {
         Email.setHostName(smtp.get("smtp").toString());
         Email.setName(smtp.get("name").toString());
         Email.setUserName(smtp.get("email").toString());
-        Email.setPassword(smtp.get("password").toString());
+        Email.setPassword(aesDecrypt(smtp.get("password").toString()));
         Email.setPort(Integer.parseInt(smtp.get("prot").toString()));
 //
         String registerAuthCode = RandomUtil.generateString(5) + String.valueOf(System.currentTimeMillis()).substring(8);

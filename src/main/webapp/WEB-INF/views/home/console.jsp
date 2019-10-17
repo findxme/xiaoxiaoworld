@@ -97,26 +97,25 @@
                                 <div carousel-item>
                                     <ul class="layui-row layui-col-space10">
                                         <li class="layui-col-xs6">
-                                            <a lay-href="app/content/comment.html" class="layadmin-backlog-body">
+                                            <a href="javascript:;" class="layadmin-backlog-body">
                                                 <h3>书籍总数</h3>
                                                 <p><cite>${map.tbookQuantity}</cite></p>
                                             </a>
                                         </li>
                                         <li class="layui-col-xs6">
-                                            <a lay-href="app/forum/list.html" class="layadmin-backlog-body">
+                                            <a href="javascript:;" class="layadmin-backlog-body">
                                                 <h3>用户总数</h3>
                                                 <p><cite>${map.readersQuantity}</cite></p>
                                             </a>
                                         </li>
                                         <li class="layui-col-xs6">
-                                            <a lay-href="template/goodslist.html" class="layadmin-backlog-body">
+                                            <a href="javascript:;" class="layadmin-backlog-body">
                                                 <h3>已借书籍数量</h3>
                                                 <p><cite>${map.borrowingQuantity}</cite></p>
                                             </a>
                                         </li>
                                         <li class="layui-col-xs6">
-                                            <a href="javascript:;" onclick="layer.tips('不跳转', this, {tips: 3});"
-                                               class="layadmin-backlog-body">
+                                            <a href="javascript:;" class="layadmin-backlog-body">
                                                 <h3>剩余数量</h3>
                                                 <p><cite>${map.notBorrowingBooks}</cite></p>
                                             </a>

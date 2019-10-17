@@ -30,13 +30,13 @@
     <%--        <button class="layui-btn layui-btn-sm" onclick="deleteList()">删除</button>--%>
 
 <%--    <label class="layui-form-label"></label>--%>
-<label class="layui-form-label" style="text-align: center">|</label>
+<%--<label class="layui-form-label" style="text-align: center">|</label>--%>
     <div class="layui-input-inline">
         <input type="text" name="readername" id="reader" required  lay-verify="required"  placeholder="请输入读者姓名" autocomplete="off" class="layui-input">
     </div>
     <button class="layui-btn layui-btn-sm" onclick="QueryMy()">查询</button>
 <div class="layui-inline">
-<label class="layui-form-label" style="text-align: center">|</label>
+<%--<label class="layui-form-label" style="text-align: center">|</label>--%>
 </div>
 <button class="layui-btn layui-btn-sm" onclick="add()">新增</button>
 </script>
@@ -135,7 +135,7 @@
             , title: '添加读者信息'
             , content: '${ctx}/admin/readerAdmin/readerAddView'
             // ,maxmin: true
-            , area: ['350px', '500px']
+            , area: ['350px', '620px']
         });
     }
     
@@ -150,7 +150,7 @@
             , title: '查询信息'
             , content: '${ctx}/admin/readerAdmin/queryOne?name='+key1
             // ,maxmin: true
-            , area: ['550px', '500px']
+            , area: ['1300px', '200px']
         });
 
     }

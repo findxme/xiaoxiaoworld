@@ -13,10 +13,8 @@
     <script src="https://www.layuicdn.com/layui-v2.5.5/layui.js"></script>
 </head>
 <body>
-<blockquote class="layui-elem-quote layui-quote-nm">
+<blockquote class="layui-elem-quote layui-quote-nm" style="text-align: center">
     没有相对应的结果。
-    <br>---------------------------------------------------------------404
-    <hr class="layui-bg-red">
 </blockquote>
 </body>
 </html>
