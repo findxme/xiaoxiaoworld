@@ -19,6 +19,7 @@
     <%--  <link rel="stylesheet" href="../../layuiadmin/style/login.css" media="all">--%>
     <link rel="stylesheet" href="${ctx}/static/layuiAdmin/style/login.css" media="all">
     <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+    <script type="text/javascript" src="http://cdn.staticfile.org/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
 </head>
 <body>
 
@@ -78,8 +79,11 @@
             </div>
         </div>
     </div>
-
     <div class="layui-trans layadmin-user-login-footer">
+
+    </div>
+    <div class="layui-trans layadmin-user-login-footer">
+        <div id="qrcode"></div>
         <p>© 2019 <a href="#" target="_blank">小小世界图书馆</a></p>
     </div>
 
@@ -180,6 +184,28 @@
             }
         });
     });
+    var str= "http://www.findvme.xyz:334/world";
+    function utf16to8(str) {
+        var out, i, len, c;
+        out = "";
+        len = str.length;
+        for(i = 0; i < len; i++) {
+            c = str.charCodeAt(i);
+            if ((c >= 0x0001) && (c <= 0x007F)) {
+                out += str.charAt(i);
+            } else if (c > 0x07FF) {
+                out += String.fromCharCode(0xE0 | ((c >> 12) & 0x0F));
+                out += String.fromCharCode(0x80 | ((c >>  6) & 0x3F));
+                out += String.fromCharCode(0x80 | ((c >>  0) & 0x3F));
+            } else {
+                out += String.fromCharCode(0xC0 | ((c >>  6) & 0x1F));
+                out += String.fromCharCode(0x80 | ((c >>  0) & 0x3F));
+            }
+        }
+        return out;
+    }
+
+    $('#qrcode').qrcode({width: 164,height: 164,text: utf16to8(str)});
 
 </script>
 </body>

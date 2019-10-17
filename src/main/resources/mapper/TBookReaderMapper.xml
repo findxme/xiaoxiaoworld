@@ -84,11 +84,13 @@
     and r.b_reader_no=rb.b_reader_no
     and b.b_book_no=rb.b_book_no
     and rb.is_return_book="未还"
-    <if test="startDate!=null and endDate!=null">
-      and rb.b_borrow_date between #{startDate} and #{endDate}
+    <if test="startDate!=null and endDate!=null and ''!=startDate and ''!=endDate">
+
+    and rb.b_borrow_date between #{startDate} and #{endDate}
     </if>
-    <if test="keyWord!=null">
-      and concat(b.b_book_name,r.b_reader_name,a.b_admin_name)
+    <if test="keyWord!=null and ''!=keyWord">
+
+    and concat(b.b_book_name,r.b_reader_name,a.b_admin_name)
       like "%"#{keyWord}"%"
     </if>
     limit #{currentIndex},#{pageSize}
@@ -167,11 +169,11 @@ WHERE
     where rb.b_book_no=b.b_book_no
     and rb.b_reader_no=r.b_reader_no
     and rb.b_user_no=a.b_admin_no
-    <if test="startDate!=null and endDate!=null">
-      and rb.b_borrow_date between #{startDate} and #{endDate}
+    <if test="startDate!=null and endDate!=null and startDate!='' and endDate!=''">
+    and rb.b_borrow_date between #{startDate} and #{endDate}
     </if>
-    <if test="keyWord!=null">
-      and concat(b.b_book_name,r.b_reader_name,a.b_admin_name)
+    <if test="keyWord!=''and keyWord!=null">
+    and concat(b.b_book_name,r.b_reader_name,a.b_admin_name)
       like "%"#{keyWord}"%"
     </if>
     order by rb.b_book_reader_id
